@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="grade table">
+	<div id="gradeDepartment table">
 		<table border="1"
            	   width="50%"
                height="50">
@@ -24,12 +24,12 @@
 					
 					<tbody>
 						<tr align="center" bgcolor="white">
-							<td>강00</td>
+							<td >강00</td>
 							<td>70</td>
 							<td>60</td>
 							<td>70</td>
 							<td>50</td>	
-							<td><input id="" type="button" name=""></td>
+							<td><button name="" type="button">상세보기</button></td>
 						</tr>
 						<tr align="center" bgcolor="white">
 							<td>김00</td>
@@ -37,15 +37,15 @@
 							<td>70</td>
 							<td>50</td>
 							<td>80</td>	
-							<td><input id="" type="button" name=""></td>
+							<td><button name="" type="button">상세보기</button></td>
 						</tr>
 						<tr align="center" bgcolor="white">
 							<td>정00</td>
 							<td>90</td>
 							<td>90</td>
-							<td>55</td>
-							<td>75</td>	
-							<td><input id="" type="button" name="">상세보기</td>
+							<td>75</td>
+							<td>80</td>	
+							<td><button name="" type="button">상세보기</button></td>
 						</tr>
 						<tr align="center" bgcolor="white">
 							<td>윤00</td>
@@ -53,7 +53,7 @@
 							<td>40</td>
 							<td>65</td>
 							<td>55</td>	
-							<td><input id="" type="button" name=""></td>
+							<td><button name="" type="button">상세보기</button></td>
 						</tr>
 					</tbody>	
 					
