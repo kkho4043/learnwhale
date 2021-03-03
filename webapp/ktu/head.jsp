@@ -1,46 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<link href="/learnwhale/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <html>
 <style>
-ul {
+.header ul {
 	list-style: none;
-	margin: 5;
-	padding: 5;
 }
 
-li {
-	margin: 5 5 5 5;
-	padding: 5 5 5 5;
-	border: 0;
+.header li {
+	outline:1px dotted red;
+	margin-left: 20px;
 	float: right;
 }
 
-h2 {
-	text-align: center;
+
+.header div{
+	height: 100px;
+	padding: 0px;
 }
+
+
 </style>
-<head>
-</head>
-<body>
-	<div>
 
-		<img src="/">
+	<div class="header">
+		<div class="col-md-4">
+			<img src="/">
+		</div>
 
-		<ul class="clearfix">
-			<!-- 로그인 전 메뉴 -->
-			<li> 로그인 </li>
-			<li> 홍길동 선생님  </li>
-			
-			<!-- 로그인 후 메뉴 -->
-			<!-- 자신의 블로그일때만 관리 메뉴가 보인다. 
+		<div class="col-md-4">
+			<h1>myclass</h1>
+		</div>
+
+		<div class="col-md-4">
+			<ul>
+				<!-- 로그인 전 메뉴 -->
+				
+				<li>로그아웃</li>
+				<li>홍길동 선생님</li>
+				
+				<!-- 로그인 후 메뉴 -->
+				<!-- 자신의 블로그일때만 관리 메뉴가 보인다. 
 				
 						<li><a class="btn_s" href="${pageContext.request.contextPath}/${authUser.id}/admin/basic">내블로그 관리</a></li>
 					
 						<li><a class="btn_s" href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-					-->
-		</ul>
-
-		<h2>myclass</h2>
-
+			-->
+			</ul>
+		</div>
 	</div>
-</body>
+
+
+</head>
 </html>
