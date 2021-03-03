@@ -27,16 +27,14 @@
 					<button type="button" class="btn btn-success">주관식</button>
 				</div>
 				<br>
-				<form style="text-align: right;">
-					<select name="time" >
+				<div class="col-sm-12" style="margin:10px; text-align: right;">
+					<select id="asdasd" name="time" >
 				    	<option value="none">시간 선택</option>
-				    	<option>10초</option>
-				    	<option>15초</option>
+				    	<option value="10">10초</option>
+				    	<option value="15">15초</option>
 				    	<option>20초</option>
 				    	<option>30초</option>
 					</select>
-				</form>
-				<form>
 					<select name="point" >
 				    	<option value="none">점수 선택</option>
 				    	<option>5점</option>
@@ -44,7 +42,7 @@
 				    	<option>15점</option>
 				    	<option>20점</option>
 					</select>
-				</form>
+				 </div>
 				<br><br>
 				<div class="col-sm-12" style="text-align: center;">
 					<form>
