@@ -9,6 +9,7 @@
 </head>
 <body>
 	<c:import url="/ktu/head.jsp"></c:import>
+	<c:import url="/ktu/myclass-side.jsp"></c:import>
 	내용~~~~~~~~~~~~
 </body>
 </html>
