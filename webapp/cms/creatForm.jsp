@@ -6,28 +6,85 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<link href="/learnwhale/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+
 <title>Insert title here</title>
-<style>
-	#check-box{background-color: blue;}
-	#multiple-choice{text-align: center;}
-	#OX{text-align: left;}
-	#short-answer{text-align: right;}
-	#formation-problem {width: 1000px; height: 70px; background-color: #FFFFFF; border-bottom: 1px solid #A6A6A6; }
-</style>
 
 </head>
 <body>
-	<div id ="check-box">
-		<p style="text-align: center">채민식</p>
+	<div id="Creat-Title">
+			<h1 style="text-align: center">문제 작성지</h1>
 	</div>
-	
-	<div id="formation-problem">
-		<ul>
-			<li id="multiple-choice">객관식</li>
-			<li id="OX">객관식</li>
-			<li id="short-answer">객관식</li>
-		</ul>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8" style="text-align: center; border: 1px solid black; padding: 0px;">
+				<div class="col-sm-4" style="text-align: center;"><button type="button" class="btn btn-warning">객관식</button></div>
+				<div class="col-sm-4" style="text-align: center;"><button type="button" class="btn btn-info">OX문제</button></div>
+				<div class="col-sm-2" style="text-align: center;">
+					<button type="button" class="btn btn-success">주관식</button>
+				</div>
+				<br>
+				<form style="text-align: right;">
+					<select name="time" >
+				    	<option value="none">시간 선택</option>
+				    	<option>10초</option>
+				    	<option>15초</option>
+				    	<option>20초</option>
+				    	<option>30초</option>
+					</select>
+				</form>
+				<form>
+					<select name="point" >
+				    	<option value="none">점수 선택</option>
+				    	<option>5점</option>
+				    	<option>10점</option>
+				    	<option>15점</option>
+				    	<option>20점</option>
+					</select>
+				</form>
+				<br><br>
+				<div class="col-sm-12" style="text-align: center;">
+					<form>
+					  <div class="form-group">
+					 	<label for="exampleInputTitle1">문제를 작성</label>
+					    <input type="text" class="form-control" placeholder="문제 제목을 입력해주세요."><br>
+					    <input type="text" class="form-control" placeholder="문제를 입력해주세요."><br>
+					    <input type="text" class="form-control" placeholder="이미지를 넣어주세요.">
+					    <input type="file" id="ex_file"><br>
+					    <input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요.">
+					  </div>
+					  <br><br>
+					</form>
+				</div>
+				<div class="col-sm-10" >
+					<form>
+					  <div class="form-group">
+					 	<label for="exampleInputTitle1">문제를 작성</label>
+					    <input type="text" class="form-control" placeholder="내용을 입력해주세요.">
+					    <input type="file" id="ex_file"><br>
+					    <input type="text" class="form-control" placeholder="내용을 입력해주세요.">
+					    <input type="file" id="ex_file"><br>
+					    <input type="text" class="form-control" placeholder="내용을 입력해주세요.">
+					    <input type="file" id="ex_file"><br>
+					    <input type="text" class="form-control" placeholder="내용을 입력해주세요.">
+					    <input type="file" id="ex_file"><br>
+					  </div>
+					  <br><br>
+					</form>
+				</div>
+				<div class="col-sm-6" style="text-align: center;">
+					<button type="button" class="btn btn-primary">임시저장</button>
+				</div>
+				<div class="col-sm-6" style="text-align: center;">
+					<button type="button" class="btn btn-primary">저장하기</button>
+				</div>
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
 	</div>
-	
+
 </body>
 </html>
