@@ -6,8 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../../assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/board.css" rel="stylesheet" type="text/css">
+
+<style>
+	.form-text{font-size: 20px; font-weight: 300; color: #008B8B;, line-height: 100px}
+	 table{text-align: center;
+	    	align: center;
+ ​			border-collapse: collapse;
+            }
+</style>
+
+<link href="/learnwhale/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -18,18 +26,6 @@
 
 		<div id="content">
 
-			<div id="content-head">
-			
-            	<div id="location">
-            		<ul>
-            			<li>내가 만든 문제</li>
-            			<li>내 반 리스트</li>
-            			<li>내 정보 수정</li>
-            		</ul>
-            	</div>
-            	
-            </div>
-            <!-- //content-head -->
 
 			<div id="list">
 	
@@ -46,49 +42,49 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr align="center">
+						<tr>
 							<td>10</td>
-							<td class="text-left"><a href="#">하이미디어 C</a></td>
+							<td><a href="#">하이미디어 C</a></td>
 							<td>2020-12-21</td>
 							<td>20명</td>
 							<td>70%</td>
 							<td><a href="">[수정]</a></td>
 						</tr>
-						<tr align="center">
+						<tr>
 							<td>9</td>
-							<td class="text-left"><a href="#">하이미디어 B</a></td>
+							<td><a href="#">하이미디어 B</a></td>
 							<td>2020-12-20</td>
 							<td>15명</td>
 							<td>60%</td>
 							<td><a href="">[수정]</a></td>
 						</tr>
-						<tr align="center">
+						<tr>
 							<td>8</td>
-							<td class="text-left"><a href="#">하이미디어 A</a></td>
+							<td><a href="#">하이미디어 A</a></td>
 							<td>2020-12-19</td>
 							<td>15명</td>
 							<td>60%</td>
 							<td><a href="">[수정]</a></td>
 						</tr>
-						<tr align="center">
+						<tr>
 							<td>7</td>
-							<td class="text-left"><a href="#">JAVA기초반 C</a></td>
+							<td><a href="#">JAVA기초반 C</a></td>
 							<td>2020-12-19</td>
 							<td>15명</td>
 							<td>60%</td>
 							<td><a href="">[수정]</a></td>
 						</tr>
-						<tr align="center">
+						<tr>
 							<td>6</td>
-							<td class="text-left"><a href="#">JAVA기초반 B</a></td>
+							<td><a href="#">JAVA기초반 B</a></td>
 							<td>2020-12-19</td>
 							<td>15명</td>
 							<td>60%</td>
 							<td><a href="">[수정]</a></td>
 						</tr>
-						<tr align="center">
+						<tr=>
 							<td>5</td>
-							<td class="text-left"><a href="#">JAVA기초반 A</a></td>
+							<td><a href="#">JAVA기초반 A</a></td>
 							<td>2020-12-19</td>
 							<td>15명</td>
 							<td>60%</td>
