@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/learnwhale/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>수강인원</title>
 </head>
 <body>
-
+	<!-- header -->
+	<c:import url="/ktu/head.jsp"></c:import>
+	<!-- //header -->
 	<div id="participants table">
-		<table border="1"
-           	   width="50%"
-               height="50">
+		<table class="table table-hover text-center">
            	   <caption>수강 인원</caption>
            	   		<thead>
-           	   			<tr align="center" bgcolor="white">
+           	   			<tr class="info">
 							<th>이름</th>
 							<th>가입일</th>
 							<th>핸드폰 번호</th>

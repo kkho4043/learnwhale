@@ -2,15 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/learnwhale/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<div id="gradeDetail table">
-		<table border="1">
+		<table class="table table-hover text-center" >
 			<caption>성적 상세보기</caption>
 			<thead>
-				<tr align="center" bgcolor="white">
+				<tr class="info">
 					<th>번호</th>
 					<th>이름</th>
 					<th>문제유형</th>
@@ -22,7 +23,7 @@
 			</thead>
 
 			<tbody>
-				<tr align="center" bgcolor="white">
+				<tr>
 					<td>10</td>
 					<td>java</td>
 					<td>쪽지</td>
@@ -31,7 +32,7 @@
 					<td>-</td>
 					<td>90</td>
 				</tr>
-				<tr align="center" bgcolor="white">
+				<tr>
 					<td>9</td>
 					<td>jblog</td>
 					<td>과제</td>
@@ -40,7 +41,7 @@
 					<td>미제출</td>
 					<td>0</td>
 				</tr>
-				<tr align="center" bgcolor="white">
+				<tr>
 					<td>8</td>
 					<td>guestbook</td>
 					<td>쪽지</td>
@@ -49,7 +50,7 @@
 					<td>-</td>
 					<td>85</td>
 				</tr>
-				<tr align="center" bgcolor="white">
+				<tr>
 					<td>7</td>
 					<td>phonebook</td>
 					<td>과제</td>
