@@ -12,8 +12,6 @@
 	margin-left: 20px;
 	float: right;
 }
-
-
 .header div{
 	height: 100px;
 	padding: 0px;
