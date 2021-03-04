@@ -22,6 +22,32 @@
 					
 					var ctx = canvas.getContext('2d');
 					
+					
+					var point = [90, 80, 60];
+					var point1 = [90, 80, 70];
+					var point2 = [50, 50, 70];
+					var point3 = [70, 80, 40];
+					
+					let pointArr = [point, point1, point2, point3];
+					
+					let sumArr = new Array;
+					
+					
+					for(let i=0; i<pointArr.length; i++){
+						
+						var result = pointArr[i].reduce(function add(sum, currValue){
+							
+							return sum + currValue;
+							
+						}, 0);
+						
+						sumArr.push(result/pointArr[i].length);
+			
+					}
+					
+					console.log(sumArr);
+				
+					
 					var myChart = new Chart(ctx, {
 						
 						type: 'bar',
@@ -33,7 +59,7 @@
 								
 								label: '평균점수',
 								
-								data: [70, 80, 60, 55, 56, 77.4],
+								data: sumArr,
 								
 								backgroundColor: [
 									
