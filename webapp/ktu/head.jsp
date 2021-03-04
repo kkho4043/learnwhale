@@ -17,6 +17,7 @@
 .header div{
 	height: 100px;
 	padding: 0px;
+	border-bottom:solid 1px gray; 
 }
 
 
