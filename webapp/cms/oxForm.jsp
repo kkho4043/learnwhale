@@ -65,7 +65,7 @@
 					  </div>
 					  <br><br><br><br>
 					</form>
-				</div>
+				</div>s
 				
 				
 				<div class="col-sm-6" style="text-align: center;">
