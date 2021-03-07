@@ -51,15 +51,8 @@
 	width: 90px;
 }
 
-.middle {
-	
-}
 
-.aside {
-	
-}
-
-.side1 {
+.mcside1 {
 	height: 540px;
 	padding: 0px;
 	margin: 0px;
@@ -67,23 +60,23 @@
 	border: solid 1px black;
 }
 
-.side1 ul {
+.mcside1 ul {
 	padding-left: 20px
 }
 
-.side2 {
+.mcside2 {
 	height: 600px;
 	padding: 0px;
 }
 
-.side2 div {
+.mcside2 div {
 	margin-left: 5px; height : 180px;
 	padding: 85px 0px 0px 0px;
 	border: solid 1px black;
 	height: 180px;
 }
 
-.side2 .side-active {
+.mcside2 .side-active {
 	border-right: solid 5px white;
 }
 
@@ -98,3 +91,28 @@
 .footer {
 	
 }
+
+.boside {
+	height: 540px;
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+	border: solid 1px black;
+}
+.bosidetop{
+	height: 150px;
+	padding:10px;
+	border-bottom: solid 1px gray;
+	margin-bottom: 10px; 
+}
+.botab{
+	width: 167px;
+	margin:20px 0px 20px 0px; 
+	font-size: 15px
+}
+.bomenu{
+	font-size: 20px;
+}
+.bomenu li{
+	height: 42px;
+	}

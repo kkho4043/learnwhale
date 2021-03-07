@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!-- header -->
-	<c:import url="/ktu/head.jsp"></c:import>
+	<c:import url="/ktu/header.jsp"></c:import>
 	<!-- //header -->
 	<div id="submit table">
 		<table class="table table-hover text-center">
