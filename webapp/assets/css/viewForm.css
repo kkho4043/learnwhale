@@ -52,6 +52,11 @@
     width: 700px;
     margin-left: 20px;
 }
-.answerO{
-	color:
+#viewCorrectAnswer{
+	font-size: 32px;
+	margin-top: -20px
+}
+#viewWrongAnswer{
+	font-size: 32px;
+	margin-top: -20px
 }

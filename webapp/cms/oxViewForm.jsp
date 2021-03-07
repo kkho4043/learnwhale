@@ -10,6 +10,7 @@
 <link href="/learnwhale/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="/learnwhale/assets/css/multiplechoiceForm.css">
 <link rel="stylesheet" href="/learnwhale/assets/css/solveForm.css">
+<link rel="stylesheet" href="/learnwhale/assets/css/viewForm.css">
 
 <%-- <c:import url="/ktu/head.jsp"></c:import> --%>
 
@@ -36,28 +37,28 @@
 		<div class="row">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8">
-
-
-
 				<div class="row">
 					<div class="col-sm-12" id="make-problem">
 						<div class="form-group" id="question">
-							<span>사진 속 인물의 이름을 고르시오.</span>
+							<span>사진 속 인물의 이름은 이순신 장군이다.</span>
 						</div>
 						<div class="form-group">
 							<img id="testImage" src="/learnwhale/assets/image/test.jpg">
+							<div id="description-box">정답 설명란 입니다.</div>
 						</div>
-						<div class="col-sm-6" id="btn">
-							<button type="button" class="btn btn-success">이순신</button>
+						<div class="col-sm-6">
+							<span id="O">O</span>
 						</div>
-						<div class="col-sm-6" id="btn">
-							<button type="button" class="btn btn-info">조세호</button>
+						<div class="col-sm-6">
+							<span  id="X">X</span>
 						</div>
-						<div class="col-sm-6" id="btn">
-							<button type="button" class="btn btn-warning">유재석</button>
+						<div class="col-sm-6" id="viewCorrectAnswer">
+							<span>정답</span>
+							<!-- <span>오답</span> -->
 						</div>
-						<div class="col-sm-6" id="btn">
-							<button type="button" class="btn btn-danger">강호동</button>
+						<div class="col-sm-6" id="viewWrongAnswer">
+							<!-- <span>정답</span> -->
+							<span>오답</span>
 						</div>
 					</div>
 					<!-- //col-sm-12 -->
@@ -68,8 +69,11 @@
 				<div class="col-sm-6">
 					<a id="solveOut" href="">나가기</a>
 				</div>
+				<!-- <div class="col-sm-6">
+					<a id="previousProblem" href=""><이전문제</a>
+				</div> -->
 				<div class="col-sm-6">
-					<a id="nextQuestion" href="">다음문제></a>
+					<a id="nextQuestion" href=""	>다음문제></a>
 				</div>
 				<!-- <div class="col-sm-6">
 					<a id="Completion" href="">완료</a>

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/learnwhale/assets/css/solveForm.css">
 <link rel="stylesheet" href="/learnwhale/assets/css/viewForm.css">
 
-<c:import url="/ktu/head.jsp"></c:import>
+<%-- <c:import url="/ktu/head.jsp"></c:import> --%>
 
 <title>Insert title here</title>
 
@@ -52,7 +52,7 @@
 							</div>
 						</div>
 						<div class="col-sm-2 oxView">
-							<span class="answerO">O</span>
+							<span>O</span>
 							<!-- <span>X</span> -->
 						</div>
 						
