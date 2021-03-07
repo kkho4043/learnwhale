@@ -1,0 +1,40 @@
+@charset "UTF-8";
+#Creat-Title{text-align: center}
+.problemType{text-align: center;}
+#time-point{margin: 10px; text-align: right;}
+#TPdiv{margin-bottom: 50px;}
+#make-problem{text-align: center;}
+#img-file{
+	margin-top: -14px;
+	margin-bottom: 30px;
+	float: right;
+	width: 185px;
+}
+.fileArea{
+		margin-left: 50px;
+		margin-bottom: 20px;
+}
+#last-makeType{margin-bottom: 60px;}
+
+.answer-num{margin-top: 5px;}
+.checkBox{margin-top: 10px;}
+.save{text-align: center;}
+
+#O{
+	font-size: 100px;
+	color: #00E0F7;
+}
+#X{
+	font-size: 100px;
+	color: #E74407;
+}
+
+input[type=radio]{
+	width: 25px; 
+	height: 25px;
+}
+
+#out{
+	font-size: 20px;
+	color: red;
+}
