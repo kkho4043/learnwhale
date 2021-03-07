@@ -23,7 +23,6 @@
 			<div class="col-xs-10 body">
 
 				<!-- 내용 -->
-
 			</div>
 		</div>
 			<!-- //body -->
