@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+.spanArea{
+	background-color: #5CB85C;
+	width: 300px;
+	height: 50px;
+	margin-left: 22px;
+	color: white;
+}
+
+.spanArea2{
+	background-color: #5BC0DE;
+	width: 300px;
+	height: 50px;
+	margin-left: 22px;
+	margin-bottom: 20px;
+	color: white;
+}
+
+.spanArea3{
+	background-color: #EC971F;
+	width: 300px;
+	height: 50px;
+	margin-left: 22px;
+	color: white;
+}
+
+.spanArea4{
+	background-color: #D9534F;
+	width: 300px;
+	height: 50px;
+	margin-left: -50px;
+	color: white;
+}
+.oxView{
+	width: 50px;
+	margin-left: 40px;
+	margin-top: 1px;
+	font-size: 32px;
+}
+.oxPosition{
+	margin-left: 3px;
+	margin-top: 1px;
+	font-size: 32px;
+}
+.needLeft{
+	margin-left: -50px;
+}
+#description-box{
+	background-color: orange;
+    height: 100px;
+    width: 700px;
+    margin-left: 20px;
+}
+.answerO{
+	color:
+}
