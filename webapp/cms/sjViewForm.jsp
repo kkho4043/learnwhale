@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/learnwhale/assets/css/solveForm.css">
 <link rel="stylesheet" href="/learnwhale/assets/css/viewForm.css">
 
-<%-- <c:import url="/ktu/head.jsp"></c:import> --%>
+<c:import url="/ktu/header.jsp"></c:import>
 
 <title>Insert title here</title>
 
