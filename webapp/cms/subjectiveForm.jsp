@@ -9,7 +9,7 @@
 <link href="/learnwhale/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="/learnwhale/assets/css/multiplechoiceForm.css">
 
-<c:import url="/ktu/head.jsp"></c:import>
+<c:import url="/ktu/header.jsp"></c:import>
 
 <title>Insert title here</title>
 

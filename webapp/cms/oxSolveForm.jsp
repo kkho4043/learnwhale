@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/learnwhale/assets/css/multiplechoiceForm.css">
 <link rel="stylesheet" href="/learnwhale/assets/css/solveForm.css">
 
-<%-- <c:import url="/ktu/head.jsp"></c:import> --%>
+<c:import url="/ktu/header.jsp"></c:import>
 
 <title>Insert title here</title>
 

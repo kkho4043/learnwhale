@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/learnwhale/assets/css/solveForm.css">
 <link rel="stylesheet" href="/learnwhale/assets/css/viewForm.css">
 
-<%-- <c:import url="/ktu/head.jsp"></c:import> --%>
+<c:import url="/ktu/header.jsp"></c:import>
 
 <title>Insert title here</title>
 
@@ -62,8 +62,8 @@
 							</div>
 						</div>
 						<div class="col-sm-2 oxPosition" style="width: 0px;">
-							<span>O</span>
-							<!-- <span>X</span> -->
+							<!-- <span>O</span> -->
+							<span>X</span>
 						</div>
 						
 						<div class="col-sm-4">
@@ -72,8 +72,8 @@
 							</div>
 						</div>
 						<div class="col-sm-2 oxView">
-							<span>O</span>
-							<!-- <span>X</span> -->
+							<!-- <span>O</span> -->
+							<span>X</span>
 						</div>
 						
 						<div class="col-sm-4">
@@ -82,8 +82,8 @@
 							</div>
 						</div>
 						<div class="col-sm-2 oxPosition" style="width: 0px;">
-							<span>O</span>
-							<!-- <span>X</span> -->
+							<!-- <span>O</span> -->
+							<span>X</span>
 						</div>
 						
 					</div>
