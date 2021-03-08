@@ -19,12 +19,12 @@
 <title>Insert title here</title>
 
 </head>
-<body>
+<body id="position-parents">
 
 
-
-
-	<div class="container-fluid">
+	
+	<div class="container-fluid" id="div-position">
+	<img id="timeImage" src="/learnwhale/assets/image/time.png">
 		<div class="row">
 			<div class="container">
 				<div class="row" id="all-Area">
@@ -42,7 +42,7 @@
 									<div class="col-sm-12 joinArea">
 										<div class="form-group">
 											<div class="col-sm-12">
-												<label for="id-margin" class="idArea">아이디</label>
+												<label for="id-margin" id="idArea">아이디</label>
 											</div>
 											<input type="text" class="form-control" id="id-margin" placeholder="아이디를 입력해 주세요.">
 											<button type="button" id="btnCheck">중복체크</button>
@@ -52,7 +52,7 @@
 									<div class="col-sm-12 joinArea">
 										<div class="form-group">
 											<div class="col-sm-12">
-												<label for="password" class="pwArea">비밀번호</label>
+												<label for="password" id="pwArea">비밀번호</label>
 											</div> 
 											<input type="text" class="form-control" id="password" placeholder="비밀번호를 입력해 주세요.">
 										</div>
@@ -61,7 +61,7 @@
 									<div class="col-sm-12 joinArea">
 										<div class="form-group">
 											<div class="col-sm-12">
-												<label for="check-password" class="check-pwArea">비밀번호 확인</label>
+												<label for="check-password" id="check-pwArea">비밀번호 확인</label>
 											</div> 
 											<input type="text" class="form-control" id="check-password" placeholder="비밀번호를 다시 입력해 주세요.">
 										</div>
@@ -70,7 +70,7 @@
 									<div class="col-sm-12 joinArea">
 										<div class="form-group">
 											<div class="col-sm-12">
-												<label for="name" class="nameArea">이름</label>
+												<label for="name" id="nameArea">이름</label>
 											</div>
 											<input type="text" class="form-control" id="name" placeholder="이름을 입력해 주세요.">
 										</div>
@@ -80,9 +80,9 @@
 									<div class="col-sm-12 joinArea">
 										<div class="form-group">
 											<div class="col-sm-12">
-												<label for="name" class="nameArea">전화번호</label>
+												<label for="phoneNo" id="phoneArea">전화번호</label>
 											</div>
-											<input type="text" class="form-control" id="name" placeholder="이름을 입력해 주세요.">
+											<input type="text" class="form-control" id="phoneNo" placeholder="이름을 입력해 주세요.">
 										</div>
 									</div>
 									
