@@ -19,9 +19,9 @@
 		<!-- 헤더 -->
 		<div class="row">
 			<c:import url="/ktu/blog-aside.jsp"></c:import>
-
+			<!-- 사이드 -->
 			<div class="col-xs-10 body">
-
+				내용
 				<!-- 내용 -->
 			</div>
 		</div>
