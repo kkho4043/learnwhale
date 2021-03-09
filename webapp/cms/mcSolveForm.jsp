@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/learnwhale/assets/css/multiplechoiceForm.css">
 <link rel="stylesheet" href="/learnwhale/assets/css/solveForm.css">
 
-<c:import url="/ktu/header.jsp"></c:import>
+<c:import url="/cms/header.jsp"></c:import>
 
 <title>Insert title here</title>
 
@@ -47,17 +47,17 @@
 						<div class="form-group">
 							<img id="testImage" src="/learnwhale/assets/image/test.jpg">
 						</div>
-						<div class="col-sm-6" id="btn">
-							<button type="button" class="btn btn-success">이순신</button>
+						<div class="col-sm-6" >
+							<button type="button" class="btn btn-success solve-btn" style="margin-bottom: 20px;">이순신</button>
 						</div>
-						<div class="col-sm-6" id="btn">
-							<button type="button" class="btn btn-info">조세호</button>
+						<div class="col-sm-6">
+							<button type="button" class="btn btn-info solve-btn" style="margin-bottom: 20px;">조세호</button>
 						</div>
-						<div class="col-sm-6" id="btn">
-							<button type="button" class="btn btn-warning">유재석</button>
+						<div class="col-sm-6">
+							<button type="button" class="btn btn-warning solve-btn" >유재석</button>
 						</div>
-						<div class="col-sm-6" id="btn">
-							<button type="button" class="btn btn-danger">강호동</button>
+						<div class="col-sm-6">
+							<button type="button" class="btn btn-danger solve-btn">강호동</button>
 						</div>
 					</div>
 					<!-- //col-sm-12 -->
