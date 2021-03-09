@@ -2,14 +2,16 @@
 
 
 #position-parents{
-	background-color: blue;
+	background-color: white;
 	position: relative;
 	border: solid 1px black;
+	height: 1200px;
 }
 #div-position{
-	background-color: #ffffff;
+	background-color: #353535;
 	opacity: 0.5;
 	border: solid 1px black;
+	margin-top: -40px
 }
 #Creat-Title{
 	color:blue;
@@ -72,5 +74,5 @@
 }
 #all-Area{
 	margin-bottom: 100px;
-	background-color: rgba( 255, 255, 255, 0.5 );
+	background-color: rgba( #CDCDCD, #CDCDCD, #CDCDCD, 0.5 );
 }
