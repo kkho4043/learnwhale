@@ -47,8 +47,13 @@
 					</div>
 					<button type="submit" class="btn btn-default" id="loginBtn">로그인</button>
 				</form>
-			</div>
+			</div> 
 			<!-- //col-sm-4 -->
+			
+			<!-- <div class="col-sm-4">
+				<button type="submit" class="btn btn-default inBtn">로그아웃</button>
+				<button type="submit" class="btn btn-default inBtn">MyHome</button>
+			</div> -->
 			
 			
 		</div>
