@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+
+.style Attribute {
+	visibility: visible;
+} 
+
+.underline {
+    border-top: 2px solid #ef6e35;
+}
+
+.underline {
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    margin-top: 21px;
+}
+
+.section-head {
+	text-align: center;
+	margin-bottom: 70px;
+}
+
+.section-head p {
+	margin-bottom: 0px;
+}
+
+.contents_title {
+	font-size: 42px;
+	color: #000;
+	font-weight: 800;
+	letter-spacing: -0.04em;
+}
+
+.contents_subtitle {
+    font-size: 16px;
+    color: #999;
+    font-weight: 600;
+}
+
+.sub_span {
+    font-size: 17px;
+    color: #333;
+    padding-left: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.ov_p {
+    font-size: 27px;
+    background: url(/assets/image/ov_p_bg.png) no-repeat left center;
+    padding-left: 40px;
+}
+
+.mon {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+p {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+
+.features .feature {
+    margin-bottom: 23px;
+    min-height: 130px;
+}
+
+.features .feature .icon-container {
+    display: block;
+    min-height: 130px;
+    top: 10px;
+    position: relative;
+}
+
+.features .features-left .icon-container {
+    float: right;
+    margin-left: 40px;
+}
+
+.swiper-container {
+    width: 264px;
+    height: 568px;
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+    left: 50px;
+    top: 18px;
+    border-radius: 28px;
+    background: #fff;
+}
+
+.swiper-container {
+    margin: 0 auto;
+}
+
+.tab-content>.active {
+    display: block;
+}
+.tab-content>.tab-pane {
+    display: none;
+}
+.fade.in {
+    opacity: 1;
+}
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+
+
+
+element.style {
+    margin-top: 40px;
+    visibility: visible;
+    animation-duration: 1.5s;
+    animation-name: fadeInRight;
+}
+
+.brief-content {
+    max-width: 550px;
+}
+
+.brief-content .tap_title {
+    font-size: 42px;
+    font-weight: bold;
+    color: #000;
+    letter-spacing: -.04em;
+    width: 650px;
+}
+
+.brief-content .tap_subtitle {
+    color: #777;
+    font-size: 21px;
+    font-family: 'Noto Sans KR Light', sans-serif;
+    letter-spacing: -0.04em;
+    padding-top: 35px;
+}
+
+
+.numlist {
+    margin-top: -20px;
+}
+
+.nopadding {
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+@media (min-width: 992px)
+.col-md-6 {
+    width: 50%;
+}
+@media (min-width: 992px)
+.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+    float: left;
+}
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+body {
+	background-color: #fff;
+	font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
+	overflow-x: hidden;
+	position: relative;
+}
