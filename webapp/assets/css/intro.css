@@ -16,6 +16,11 @@
     margin-top: 21px;
 }
 
+.section {
+	padding: 100px 0;
+	overflow-x: hidden;
+}
+
 .section-head {
 	text-align: center;
 	margin-bottom: 70px;
@@ -47,7 +52,7 @@
 
 .ov_p {
     font-size: 27px;
-    background: url(/assets/image/ov_p_bg.png) no-repeat left center;
+    background: url('/assets/image/ov_p_bg.png') no-repeat left center;
     padding-left: 40px;
 }
 
@@ -62,6 +67,13 @@ p {
 	margin-block-end: 1em;
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 300;
+    /* line-height: 2em; */
+    margin-bottom: 10px;
 }
 
 .features .feature {
@@ -137,7 +149,7 @@ element.style {
 .brief-content .tap_subtitle {
     color: #777;
     font-size: 21px;
-    font-family: 'Noto Sans KR Light', sans-serif;
+    /* font-family: 'Noto Sans KR Light', sans-serif; */
     letter-spacing: -0.04em;
     padding-top: 35px;
 }
@@ -160,6 +172,18 @@ element.style {
     float: left;
 }
 
+.s_title {
+    color: #222;
+    font-size: 21px;
+    /* font-family: 'Montserrat', sans-serif; */
+    font-weight: 700;
+}
+
+.s_subp {
+    color: #777;
+   /*  font-family: 'Noto Sans KR Light', sans-serif; */
+}
+
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
@@ -168,6 +192,17 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     font-size: 100%;
     vertical-align: baseline;
     background: transparent;
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
 }
 
 body {

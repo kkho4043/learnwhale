@@ -185,12 +185,12 @@
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="first-tab">
 						<div class="col-md-5">
-							<figure class="wow fadeInLeft animated ap_tap animated" data-wow-offset="10" data-wow-duration="1,5s" style="position: relative; left: -40px; visibility: visible; animation-duration: 1.5s; animation-name: fadeInLeft;">
+							<figure class=""> <!-- wow fadeInLeft animated ap_tap animated" data-wow-offset="10" data-wow-duration="1,5s" style="position: relative; left: -40px; visibility: visible; animation-duration: 1.5s; animation-name: fadeInLeft; -->
 								<img src="${pageContext.request.contextPath}/assets/image/app_img_school.png" alt="">
 							</figure>
 						</div>
 						<div class="col-md-6 col-md-offset-1">
-							<div class="brief-content wow fadeInRight animated animated" data-wow-offset="10" data-wow-duration="1.5s" style="margin-top: 40px; visibility: visible; animation-duration: 1.5s; animation-name: fadeInLeft;">
+							<div class="brief-content"> <!-- wow fadeInRight animated animated" data-wow-offset="10" data-wow-duration="1.5s" style="margin-top: 40px; visibility: visible; animation-duration: 1.5s; animation-name: fadeInLeft; -->
 								<p class="tap_title">
 									지루했던 수업이
                                     <span style="color:#ef6e35;">놀이</span>
@@ -224,13 +224,13 @@
 											<div class="icon">
 												02
 											</div>
-											수업 내 활용
+											학생의견 수집
 										</li>
 										<li>
 											<div class="icon">
 												04
 											</div>
-											방과 후 과제
+											학습통계 제공
 										</li>
 									</ul>
 								</div>
@@ -241,11 +241,93 @@
 					</div>
 				</div>
 			</div>
-
+			<!-- //row끝  -->
+			
 		</div>
 	</section>
+	<!-- //section 끝 -->
 	
+	<section class="services" id="services">
+		<div class="container">
+		
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-head">
+						<span class="underline"></span>
+						<p class="contents_title">Service</p>
+						<p class="contents_subtitle">learnWhale를 즐기는 방법</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				
+				<div class="col-md-3 col-sm-6">
+					<div class="service wow fadeIn animated animated" data-wow-offset="10" style="visibility: visible; animation-name: fadeIn;"> 
+						<span class="fa">
+							<img src="${pageContext.request.contextPath}/assets/image/s_icon01.png">
+						</span>
+						<p class="s_title">Sign up</p>
+						<p class="s_subp">
+							무료로 회원가입 후
+							<br>
+							로그인하세요.​​
+						</p>
+					</div>
+				</div>
+				
+				<div class="col-md-3 col-sm-6">
+					<div class="service wow fadeIn animated animated" data-wow-offset="10" style="visibility: visible; animation-name: fadeIn;"> 
+						<span class="fa">
+							<img src="${pageContext.request.contextPath}/assets/image/s_icon02.png">
+						</span>
+						<p class="s_title">Create</p>
+						<p class="s_subp">
+							Quiz Show를 생성하고​
+							<br>
+							Quiz를 출제하세요.​​
+						</p>
+					</div>
+				</div>
+				
+				<div class="col-md-3 col-sm-6">
+					<div class="service wow fadeIn animated animated" data-wow-offset="10" style="visibility: visible; animation-name: fadeIn;"> 
+						<span class="fa">
+							<img src="${pageContext.request.contextPath}/assets/image/s_icon03.png">
+						</span>
+						<p class="s_title">Share</p>
+						<p class="s_subp">
+							생성된 Quiz Show를
+							<br>
+							URL 공유를 통해
+							<br>
+							즐거운 경쟁을 경험하세요.​​
+						</p>
+					</div>
+				</div>	
+					
+				<div class="col-md-3 col-sm-6">
+					<div class="service wow fadeIn animated animated" data-wow-offset="10" style="visibility: visible; animation-name: fadeIn;"> 
+						<span class="fa">
+							<img src="${pageContext.request.contextPath}/assets/image/s_icon04.png">
+						</span>
+						<p class="s_title">Play</p>
+						<p class="s_subp">
+							실시간 Quiz를 통해
+							<br>
+							즐거운 경쟁을 경험하세요.​​
+						</p>
+					</div>
+				</div>
+				
+			</div>
+			<!-- //row 끝  -->
+		</div>
+		<!-- //container 끝 -->
+	</section>
+	<!-- //services section 끝 -->
 	
+	       
 	
 	<div class="row"></div>
 	<div class="contact"></div>
