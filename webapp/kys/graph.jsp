@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
-<html>
-
-
+	
+	<html>
 
 	<head>
 	
@@ -11,6 +12,9 @@
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+		
+		<link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<link href="${pageContext.request.contextPath }/assets/css/common.css" rel="stylesheet" type="text/css">
 		
 		<script type="text/javascript">
 		
@@ -125,11 +129,39 @@
 	
 	<body onload="draw();">
 		
-		<div>
-			<canvas id="myChart"></canvas>
+		<div id="wrap"class="container-fluid">
+		
+			
+			<c:import url="/ktu/header.jsp"></c:import>
+			<!-- 헤더 -->
+		
+			<div class="row">
+				
+			<!-- aside -->
+			<c:import url="/ktu/blog-aside.jsp"></c:import>
+				
+				
+				<div class="col-xs-10 body">
+					
+					<!-- content -->
+					<div id="content">
+						
+						<div>
+							<canvas id="myChart"></canvas>
+						</div>
+								
+					</div>
+					<!-- content -->	
+				
+				</div>
+					
+			</div>
+				
+			<div class="col-md-xs footer">푸터</div>
+			<!-- footer -->	
+			
 		</div>
-		
-		
+		<!-- wrapper -->
 	
 	
 	</body>
