@@ -6,8 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../../assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/user.css" rel="stylesheet" type="text/css">
+
+<!-- 스타일시트 자리 -->
+<style>
+	.form-text{font-size: 20px; font-weight: 300; color: #008B8B;, line-height: 100px}
+	#profile-img {border-radius: 10px;}
+
+</style>
+
+<link href="/learnwhale/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -18,60 +25,44 @@
 
 		<div id="content">
 			
-			<div id="content-head">
-
-            	<div id="location">
-            		<ul>
-            			<li>내가 만든 문제</li>
-            			<li>내 반 리스트</li>
-            			<li>내 정보 수정</li>
-            		</ul>
-            	</div>
-
-            </div>
-             <!-- //content-head -->
-
-			<div id="user">
+			
+			<div class="container">
 				<div id="modifyForm">
 					<form action="" method="">
 
 						<h3>내 정보 수정</h3>
 						
 						<!-- 사진틀 -->
-						<div class="img" style="weight:200px; height:200px;">Image</div>
+						<img id="profile-img" src="..." alt="..." class="img-rounded">
 						
 						<!-- 아이디 -->
 						<div class="form-group">
 							<label class="form-text" for="input-uid">아이디</label> 
-							<span class="text-large bold">userid</span>
+							<span class="form-value">userid</span>
 						</div>
 
 						<!-- 이름 -->
 						<div class="form-group">
 							<label class="form-text" for="input-name">이름</label> 
-							<span class="text-large bold">홍길동</span>
-							<button type="submit" id="btn-submit">수정하기</button>
+							<span class="form-value">홍길동</span>
 						</div>
 						
 						<!-- 이메일 -->
 						<div class="form-group">
-							<span class="form-text" for="input-email">이메일</label> 
-							<span class="text-large bold">abc@naver.com</span>
-							<button type="submit" id="btn-submit">수정하기</button>
+							<label class="form-text" for="input-email">이메일</label> 
+							<span class="form-value">abc@naver.com</span>
 						</div>
 						
 						<!-- 비밀번호 -->
 						<div class="form-group">
 							<label class="form-text" for="input-password">비밀번호</label> 
-							<input type="password" id="" name="" value="" placeholder="">
-							<button type="submit" id="btn-submit">수정하기</button>
+							<span class="form-value">abc@naver.com</span>
 						</div>
 
 						<!-- 전화번호 -->
 						<div class="form-group">
 							<label class="form-text" for="input-phone">전화</label> 
 							<input type="text" id="input-phone" name="" value="" placeholder="전화번호를 입력하세요">
-							<button type="submit" id="btn-submit">저장하기</button>
 						</div>
 
 						<br>
