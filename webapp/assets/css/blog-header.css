@@ -1,0 +1,46 @@
+@charset "UTF-8";
+#header-imgArea{
+	margin-top: 20px;
+	position: relative;
+}
+#in-Area{
+	position: absolute;
+	margin-top: 100px;
+	color: white;
+}
+#logoName-img{
+	width: 280px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+#inBtn{
+	background-color: #316898;
+	float: right;
+	margin-right: 20px;
+	margin-top: 18px;
+	font-size: 15px;
+	width: 100px;
+	font-weight: bold;
+}
+#span-name{
+	margin-top: -5px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #316898;
+	padding-top: 30px;
+}
+#span-Area{
+	float: right;
+}
+#background-img{
+	height: 100px;
+	width: 100%;
+}
+#blog-name{
+	text-align: center;
+	font-size: 25px;
+}
+#blog-Date{
+	text-align: center;
+	font-size: 20px;
+}
