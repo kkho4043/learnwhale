@@ -22,47 +22,98 @@
 			#content {width:910px;
 					  }
 			
-			#wrap {display: flex;
-				   width: 900px;
+			#wrap {width: 900px;
 				  }
+				  
+			#content-title .glyphicon {font-size: 19px;
+							    	   padding: 25px 8px 0px 0px;
+									   }
 			
+			#content-title h2 {font-size: 28px;
+							   }
+			
+			#content-title {display: flex;
+			   				}
+			
+			#content-body{display: flex;
+						 }
 			
 			#studentList {background-color: #94B1CF;
-						  width: 400px;
+						  width: 150px;
 						  height: 500px;
 						  margin: 20px 15px 0 0;
-						  color: #D0DFF0; 
+						  color: #D0DFF0;
+						   
 						 }
 			
 			#studentList ul {list-style: none;
-							 padding: 20px 0 0 0;
+							 padding: 5px 0 0 0;
 							
 							 }
+			
+			#studentList ul li {padding-top: 15px;}
+							 
 			#studentList h4 {margin-top:20px;
 							}
 			
-			
-			
-			h2 {font-size: 28px;
-			   }
-			
-			.glyphicon {font-size: 19px;
-					    padding-right: 8px;
-						}
-			
 			#board {width: 720px;}
 			
-			#boardHeader {display:flex;
-					   	  height: 60px;
+			#boardHeader {width:720px; 
+						  height: 100px;
+						  background: #F4EBDD;
+						  margin-top: 20px;
+						  }
+			
+			#boardHeader h3 {font-size: 18px;
+							 float: left;
+							 width: 370px;
+							 padding-right: 160px;
+							}
+			
+			#boardHeader .list-inline{font-weight: 560;
+									  font-size: 15px;
+									  float: left;
+									  padding: 15px 0 0 10px;
+							  		  }
+			
+			#boardHeader #total {width:100px;
+								 height:100px;
+								 background: #D0DFF0;;
+								 display: inline-block;
+								 float: right;
+								 margin-right: 10px;
+								 }
+			
+			#boardHeader #total ul {list-style: none;
+								    padding: 0 0 0 0;
+								    font-size: 16px;
+								    font-weight: 560;
+								    }
+			
+			#boardHeader #total ul li:nth-child(1) {padding-top: 20px;
+												   }
+			
+			#boardHeader #total ul li:nth-child(2) {padding-top: 10px;
+													}
+			
+			
+			#searchForm {display:flex;
+					   	 height: 60px;
 					     }
 			
-			#boardHeader ul {list-style:none;
+			#searchForm .btn-group {padding-top: 20px;
+									}
+			
+			#searchForm .btn-group ul {padding-top: 10px;
+										}
+			
+			#searchForm ul {list-style:none;
 							 padding-top: 30px;
 							}
 			
-			#boardHeader .row {margin-left:auto;
-				  padding-top: 17px;
-				  }
+			#searchForm .row {margin-left:auto;
+				 			   padding-top: 17px;
+				  				}
 			
 			#search-box {width: 226px;
 						  }
@@ -102,37 +153,76 @@
 						<!-- wrap -->
 						<div id="wrap">
 						
+							<div id="content-title">
+								<span class="glyphicon glyphicon-menu-hamburger"></span><h2> 성적관리</h2>
+							</div>
+						
+						<!-- body-wrap -->
+							<div id="content-body">
+						
 							<div id="studentList">
 								
 								<h4>학생리스트</h4>
 								
 								<ul>
-									<a href="#"><li>1> 강용수</li></a>
-									<a href="#"><li>2> 강용수</li></a>
-									<a href="#"><li>3> 강용수</li></a>
-									<a href="#"><li>4> 강용수</li></a>
-									<a href="#"><li>5> 강용수</li></a>
-									<a href="#"><li>6> 강용수</li></a>
-									<a href="#"><li>7> 강용수</li></a>
-									<a href="#"><li>8> 강용수</li></a>
-									<a href="#"><li>9> 강용수</li></a>
+									<li><a href="#">강용수</a></li>
+									<li><a href="#">강용수</a></li>
+									<li><a href="#">강용수</a></li>
+									<li><a href="#">강용수</a></li>
+									<li><a href="#">강용수</a></li>
+									<li><a href="#">강용수</a></li>
+									<li><a href="#">강용수</a></li>
+									<li><a href="#">강용수</a></li>
+									<li><a href="#">강용수</a></li>
 								</ul>
 									
 							</div>
 							
 							<div id="myGrade">
 							
-							<h2><span class="glyphicon glyphicon-paperclip"></span> 성적관리</h2>
+							<div id="boardHeader">
+								<h3>정우성님 성적 평균점수</h3>
+								
+								<div id="total">
+									<ul>
+										<li>종합</li>
+										<li>80점</li>
+									</ul>
+								</div>
+								
+								<ul class="list-inline text-left">
+									<li>쪽지:  60점</li>
+									<li>과제:  70점</li>
+									<li>시험:  100점</li>
+								</ul>
+								
+							</div>
 							
 								<!-- search -->
-								<div id="boardHeader">
+								<div id="searchForm">
+									
+									<!-- Single button -->
+									<div class="btn-group">
+									  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									    전체 <span class="caret"></span>
+									  </button>
+									  <ul class="dropdown-menu" role="menu">
+									    <li><a href="#">전체</a></li>
+									    <li><a href="#">쪽지시험</a></li>
+									    <li><a href="#">과제</a></li>
+									    <li><a href="#">시험</a></li>
+									  </ul>
+									</div>
 								
-									<ul class="list-inline">
-										<li>전체</li>
-										<li>쪽지</li>
-										<li>과제</li>
-										<li>시험</li>
-									</ul>
+									<!-- <ul class="list-inline">
+										<li><a href="#">전체</a></li>
+										<li>|</li>
+										<li><a href="#">쪽지</a></li>
+										<li>|</li>
+										<li><a href="#">과제</a></li>
+										<li>|</li>
+										<li><a href="#">시험</a></li>
+									</ul> -->
 								
 								
 									<div class="row">
@@ -294,6 +384,9 @@
 							
 							</div>
 							<!-- myGrade -->
+						
+						</div>
+						<!-- content-body -->
 						
 						</div>
 						<!-- wrap -->
