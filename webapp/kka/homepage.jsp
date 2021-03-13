@@ -18,19 +18,19 @@
 <body>
 	<div id="head-Area">
 		<div class="row" id="margin-btm">
-			<div class="col-sm-3">
-				<div>
+			<div class="navbar-brand">
+				<div class="">
 					<img id="logo-img" src="/learnwhale/assets/image/Logo.png">
 				</div>
 			</div>
 			<!-- //col-sm-2 -->
 			
 			<div class="col-sm-5" id="col6">
-				<ul>
-					<li><a href="">OVERVIEW</a></li>
-					<li><a href="">FEATURES</a></li>
-					<li><a href="">SERVICE</a></li>
-					<li><a><button type="submit" class="btn btn-default" id="myclass">마이클래스</button></a></li>
+				<ul class="navbar">
+					<li class="nav"><a href="">OVERVIEW</a></li>
+					<li class="nav"><a href="">FEATURES</a></li>
+					<li class="nav"><a href="">SERVICE</a></li>
+					<li class="nav"><a><button type="submit" class="btn btn-default" id="myclass">마이클래스</button></a></li>
 				</ul>
 			</div>
 			

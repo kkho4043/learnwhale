@@ -1,34 +1,44 @@
 @charset "UTF-8";
 
 #logo-img{
-	width: 360px;
+	width: 300px;
 	height: 100%;
-	margin-top: 18px;
-	margin-left: 30px;
+	margin-top: 5px;
+	/* margin-left: 30px; */
 }
 #logoName-img{
 	width: 200px;
 	height: 35px;
 	margin-left: 30px;
 }
-ul{
-	list-style:none;	
-	margin-left: -40px;
+
+.navbar{
+	list-style:none;
 }
-ul li{
+
+.nav{
 	float: left;
 	font-size: 18px;
 	margin-top: 30px;
 	margin-left: 30px;
 }
-ul li a{
+
+.nav > a{
 	text-decoration: none;
 	color: #316898;
 	font-weight: bold
 }
-ul li a:hover{
+
+.nav > a:hover{
 	color:black;
 } 
+
+.navbar-brand{
+	width: 300px;
+	height: px;
+	margin-left: 30px;
+}
+
 .rightmost{
 	margin-top: 28px;
 }
@@ -80,7 +90,7 @@ ul li a:hover{
 }
 
 #margin-btm{
-	margin-bottom: 10px
+	margin-bottom: 0px
 }
 
 .left_menu {
