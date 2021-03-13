@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div id="head-Area">
-		<div class="row" id="margin-btm">
+		<div class="row">
 			<div class="navbar-brand">
 				<div class="">
 					<img id="logo-img" src="/learnwhale/assets/image/Logo.png">
@@ -34,11 +34,11 @@
 				</ul>
 			</div>
 			
-			<div class="col-sm-2">
-				<form class="form-inline">
+			<div class="">
+				<div class="">
 					<button type="submit" class="btn btn-default rightmost" >로그인</button>
 					<button type="submit" class="btn btn-default rightmost" >회원가입</button>
-				</form>
+				</div>
 			</div>
 			
 		</div>

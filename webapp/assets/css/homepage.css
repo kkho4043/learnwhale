@@ -12,6 +12,13 @@
 	margin-left: 30px;
 }
 
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .navbar{
 	list-style:none;
 }
@@ -57,6 +64,10 @@
 	color: white;
 	font-weight: bold;
 }
+
+.navbar-nav{
+	right: 0;
+}
 #text-center{
 	padding-left: 575px;
 }
@@ -65,6 +76,7 @@
 	font-size: 30px;
 	text-align: center;
 }
+
 #class-name{
 	font-size: 20px;
 	margin-top: 30px;
@@ -87,10 +99,6 @@
 
 #right{
 	margin-top: 30px;
-}
-
-#margin-btm{
-	margin-bottom: 0px
 }
 
 .left_menu {
@@ -135,6 +143,10 @@
 	text-align: center;
 	border-radius: 3px;
 	margin: 0 0 0 40px;
+}
+
+nav ul, li {
+    list-style: none;
 }
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
