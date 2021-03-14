@@ -6,109 +6,155 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<link href="/learnwhale/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/common.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="/learnwhale/assets/css/multiplechoiceForm.css">
-<link rel="stylesheet" href="/learnwhale/assets/css/solveForm.css">
-<link rel="stylesheet" href="/learnwhale/assets/css/viewForm.css">
 
-<c:import url="/ktu/header.jsp"></c:import>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
+<c:import url="/cms/category.jsp"></c:import>
+
+
 
 <title>Insert title here</title>
 
 </head>
 <body>
-	<div id="Creat-Title">
-		<div>
-			<h1>남은시간</h1>
-			<span id="pageCount">1/10</span> 
-			<span id="point">5점</span>
-		</div>
-		<div>
-			<img id="timeImage" src="/learnwhale/assets/image/time.png">
-		</div>
-		<div id="time">
-			<span>29초</span	>
-		</div>
-	</div>
-	<!-- //Creat-Title -->
 
-	<div class="container">
+
+
+
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-8">
+			<div class="container">
 				<div class="row">
-					<div class="col-sm-12" id="make-problem">
-						<div class="form-group" id="question">
-							<span>사진 속 인물의 이름을 고르시오.</span>
-						</div>
-						<div class="form-group">
-							<img id="testImage" src="/learnwhale/assets/image/test.jpg">
-							<div id="description-box">정답 설명란 입니다.</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="spanArea">
-								<span>이순신</span>
-							</div>
-						</div>
-						<div class="col-sm-2 oxView">
-							<span>O</span>
-							<!-- <span>X</span> -->
-						</div>
-						
-						<div class="col-sm-4">
-							<div class="spanArea2 needLeft">
-								<span>조세호</span>
-							</div>
-						</div>
-						<div class="col-sm-2 oxPosition" style="width: 0px;">
-							<!-- <span>O</span> -->
-							<span>X</span>
-						</div>
-						
-						<div class="col-sm-4">
-							<div class="spanArea3" >
-								<span>유재석</span>
-							</div>
-						</div>
-						<div class="col-sm-2 oxView">
-							<!-- <span>O</span> -->
-							<span>X</span>
-						</div>
-						
-						<div class="col-sm-4">
-							<div class="spanArea4">
-								<span>강호동</span>
-							</div>
-						</div>
-						<div class="col-sm-2 oxPosition" style="width: 0px;">
-							<!-- <span>O</span> -->
-							<span>X</span>
-						</div>
-						
-					</div>
-					<!-- //col-sm-12 -->
-				</div>
-				<!-- //row -->
-				
-				<!-- 하단 버튼 -->
-				<div class="col-sm-6">
-					<a id="solveOut" href="">나가기</a>
-				</div>
-				<!-- <div class="col-sm-6">
-					<a id="previousProblem" href=""><이전문제</a>
-				</div> -->
-				<div class="col-sm-6">
-					<a id="nextQuestion" href="">다음문제></a>
-				</div>
-				<!-- <div class="col-sm-6">
-					<a id="Completion" href="">완료</a>
-				</div> -->
-				
+					<div id="Creat-Title">문제 작성지</div>
 
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="col-sm-4 problemType">
+								<a href="${pageContext.request.contextPath }/cms/multiplechoiceForm.jsp"><button type="button" class="btn btn-warning">객관식</button></a>
+							</div>
+							<div class="col-sm-4 problemType">
+								<a href="${pageContext.request.contextPath }/cms/oxForm.jsp"><button type="button" class="btn btn-info">OX문제</button></a>
+							</div>
+							<div class="col-sm-4 problemType">
+								<a href="${pageContext.request.contextPath }/cms/subjectiveForm.jsp"><button type="button" class="btn btn-success">주관식</button></a>
+							</div>
+						</div>
+						<!-- //row -->
+
+
+						<div class="row">
+							<div class="col-sm-12" id="make-problem">
+								<form action="#" method="post">
+									<div class="form-group">
+										<input type="text" class="form-control" value="역사 시험" placeholder="문제 제목을 입력해주세요.">
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" value="다음 한글을 만든 인물은 누구인가?"  placeholder="문제를 입력해주세요.">
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control" value=""  placeholder="이미지를 넣어주세요.">
+									</div>
+									<div class="form-group" id="img-file">
+										<input type="file" value="">
+									</div>
+									<div class="form-group" id="last-makeType">
+										<input type="text" class="form-control" value="" placeholder="정답에 대한 설명을 넣어주세요.">
+									</div>
+									<!-- //col-sm-12 -->
+
+									<div class="row answer-content">
+										<div class="col-sm-12">
+											<h4>각 문항에 내용을 입력해주세요.</h4>
+										</div>
+										<div class="col-sm-1 answer-num">
+											<strong>1</strong>
+										</div>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="exampleInputEmail3" value="이순신" placeholder="The first answer">
+										</div>
+										<div class="col-sm-2">
+											<input type="checkbox" id="check-first"> <label class="checkBox" for="check-first">정답체크</label>
+										</div>
+									</div>
+									<!-- //answer-content -->
+									<div class="col-sm-12 fileArea">
+										<input type="file">
+									</div>
+									<!-- //fileArea -->
+
+									<div class="row answer-content">
+										<div class="col-sm-1 answer-num">
+											<strong>2</strong>
+										</div>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="exampleInputEmail3" value="세종대왕" placeholder="The second answer">
+										</div>
+										<div class="col-sm-2">
+											<input type="checkbox" id="check-second"> <label class="checkBox" for="check-second">정답체크</label>
+										</div>
+									</div>
+									<!-- //answer-content -->
+									<div class="col-sm-12 fileArea">
+										<input type="file">
+									</div>
+									<!-- //fileArea -->
+
+									<div class="row answer-content">
+										<div class="col-sm-1 answer-num">
+											<strong>3</strong>
+										</div>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="exampleInputEmail3" value="장수왕" placeholder="The third answer">
+										</div>
+										<div class="col-sm-2">
+											<input type="checkbox" id="check-third"> <label class="checkBox" for="check-third">정답체크</label>
+										</div>
+									</div>
+									<!-- //answer-content -->
+									<div class="col-sm-12 fileArea">
+										<input type="file">
+									</div>
+									<!-- //fileArea -->
+
+									<div class="row answer-content">
+										<div class="col-sm-1 answer-num">
+											<strong>4</strong>
+										</div>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="exampleInputEmail3" value="유재석" placeholder="The fourth answer">
+										</div>
+										<div class="col-sm-2">
+											<input type="checkbox" id="check-fourth"> <label class="checkBox" for="check-fourth">정답체크</label>
+										</div>
+									</div>
+									<!-- //answer-content -->
+									<div class="col-sm-12 fileArea">
+										<input type="file">
+									</div>
+									<!-- //fileArea -->
+								</form>
+								<!-- //form -->
+							</div>
+							<!-- //col-sm-12 -->
+						</div>
+						<!-- //row -->
+
+						<div class="col-sm-2">
+							<a id="out" href="">나가기</a>
+						</div>
+						<div class="col-sm-10">
+							<button type="submit" class="btn btn-primary" id="save">수정하기</button>
+						</div>
+
+					</div>
+				</div>
 			</div>
+			<!-- //container -->
 		</div>
 	</div>
-	<!-- //container -->
 </body>
 </html>
