@@ -118,19 +118,24 @@
     font-weight: 600;
     /*  font-family: ''; */
     /* padding: 0 20px; */
-    weight: 400px;
-    padding: 15px;
+    weight: 450px;
+    /* padding: 15px; */
 }
 
+/* .left_menu_se>nav1{
+	background-color: #1b639e;
+} */
+
 #nav1 {
+	background-color: #1b639e;
 	border-bottom: 1px solid #1b639e;
 	margin-top: px;
-	width: 172px;
+	width: 183px;
 }
 
 #nav2 {
 	border-bottom: 1px solid #1b639e;
-	width: 172px;
+	width: 183px;
 }
 
 .m_order{
