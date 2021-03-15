@@ -17,7 +17,7 @@
 <body>
 	<div class="wrap">
 		<div class="header">
-			<div>
+			<div  class="row">
 				<h1 class="col-sm-6 logo">
 					<a> <img id="logoName-img"
 						src="${pageContext.request.contextPath}/assets/image/logo_learnwhale_01.png">
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 
-			<div>
+			<div  class="row">
 				<div class="col-sm-12" id="header-imgArea">
 					<img id="background-img" src="${pageContext.request.contextPath}/assets/image/header_image.png">
 				</div>

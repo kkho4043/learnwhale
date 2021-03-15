@@ -37,7 +37,7 @@ table {
 		<div class="row">
 			<c:import url="/ktu/myclass-aside.jsp"></c:import>
 
-			<div class="col-xs-10 body">
+			<div class="col-xs-9 body">
 
 				<!-- 내용 -->
 				<div id="content">

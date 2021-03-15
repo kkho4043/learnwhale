@@ -14,24 +14,9 @@
 
 </head>
 <body>
-	<div class="container-fluid">
-		<c:import url="/ktu/header.jsp"></c:import>
-		<!-- 헤더 -->
-
-		<div class="row">
-			<div class="col-xs-12 middle">
-				<div class="row">
-					<c:import url="/ktu/myclass-aside.jsp"></c:import>
-					<div class="col-xs-9 body">
-						<!-- 내용 -->dddd
-					</div>
-				</div>
-			</div>
-			<!-- //body -->
-			<div class="col-md-xs footer">푸터</div>
-			<!-- //footer -->
-		</div>
-	</div>
+	<c:import url="/kka/blog.jsp"></c:import>
+	
+	내용
 
 </body>
 </html>
