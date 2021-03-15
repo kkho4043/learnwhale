@@ -30,14 +30,14 @@
 					<li class="nav"><a href="">OVERVIEW</a></li>
 					<li class="nav"><a href="">FEATURES</a></li>
 					<li class="nav"><a href="">SERVICE</a></li>
-					<li class="nav"><a><button type="submit" class="btn btn-default" id="myclass">마이클래스</button></a></li>
+					<li class="nav"><a><button type="submit" class="btn btn-default btn-h" id="myclass">마이클래스</button></a></li>
 				</ul>
 			</div>
 			
 			<div class="">
 				<div class="">
-					<button type="submit" class="btn btn-default rightmost" >로그인</button>
-					<button type="submit" class="btn btn-default rightmost" >회원가입</button>
+					<button type="button" class="btn rightmost btn-h" >로그인</button>
+					<button type="button" class="btn rightmost btn-h" >회원가입</button>
 				</div>
 			</div>
 			
@@ -52,12 +52,12 @@
 			<div class="col-xs-2 left_menu" style= "margin-left: 30px;">
 				<div>
 					<div class="left_menu_se">
-						<div id="nav1" style= "background-color: #1b639e;"><a href="">마이클래스</a></div>
+						<div id="nav1" style= "background-color: #1b639e;"><h1>마이홈></h1></div>
 						<div id="nav2"><a href="">문제관리</a></div>
 						<div id="nav2"><a href="">반관리</a>
 							<div>
-								<button type="button" class="btn m_order" id="">풀스탭 A</button>
-								<button type="button" class="btn m_order" id="">풀스탭 B</button>
+								<a><button type="button" class="btn m_order btn-h" id="">풀스탭 A</button></a>
+								<a><button type="button" class="btn m_order btn-h" id="">풀스탭 B</button></a>
 							</div>
 						</div>
 						<div id="nav2"><a href="">개인정보관리</a></div>

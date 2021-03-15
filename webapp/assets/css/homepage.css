@@ -57,9 +57,9 @@
 	width: 100px;
 }
 
-.btn{
+.btn-h{
 	background-color: #316898;
-	width: 100px;
+	/* width: 100px; */
 	font-size: 15px;
 	color: white;
 	font-weight: bold;
@@ -140,7 +140,7 @@
 
 .m_order{
 	width: 100px;
-	height: 35px;
+	/* height: 35px; */
 	background-color: #216ba3;
 	font-size: 15px;
 	color: #fff;
