@@ -49,10 +49,10 @@
 	<section class="wrap_container">
 		<div class="wrap_container_area">
 		
-			<div class="col-xs-2 left_menu">
+			<div class="col-xs-2 left_menu" style= "margin-left: 30px;">
 				<div>
 					<div class="left_menu_se">
-						<div id="nav1"><a href="">마이클래스</a></div>
+						<div id="nav1" style= "background-color: #1b639e;"><a href="">마이클래스</a></div>
 						<div id="nav2"><a href="">문제관리</a></div>
 						<div id="nav2"><a href="">반관리</a>
 							<div>

@@ -45,7 +45,7 @@
 
 		<section class="wrap_container">
 			<div class="wrap_container_area">
-				<div class="col-xs-2 left_menu">
+				<div class="col-xs-2 left_menu" style= "margin-left: 16px;">
 					<div id="userPackInfo" class="">
 						<div id="box">
 							<div>
