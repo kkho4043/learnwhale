@@ -15,20 +15,23 @@
 </head>
 <body>
 
-	<div id="">
+	<div id="content">
 
 		<div id="board">
 			<div id="list">
 				<form action="" method="">
 					<div id="content-head">
-					<h3>공지사항</h3>
-					<div class="form-group text-right">
-						<input type="text">
-						<button type="submit" id=btn_search>검색</button>
-					</div>
-					
+						<h3>공지사항</h3>					
 					</div>
 				</form>
+				<!-- //content-head -->
+				
+				
+				<div class="form-group text-right">
+					<input type="text">
+					<button type="submit" id=btn_search>검색</button>
+				</div>
+				
 				<table>
 					<thead>
 						<tr>
@@ -109,15 +112,9 @@
 			<!-- //list -->
 		</div>
 		<!-- //board -->
-
 		<div class="clear"></div>
 	  	
-	  
-	  
 	  </div>
 	  <!-- //content 끝 -->
-		
-	</div>
-	<!-- //wrap -->
 </body>
 </html>

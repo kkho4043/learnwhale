@@ -13,6 +13,12 @@
     /* padding: 5px 0px 5px 0px; */
 }
 
+#content {
+	float: left;
+	width: 820px;
+	background-color: #FFFFFF;
+}
+
 /****************************************************************/
 /* 게시판 리스트 ************************************************/
 /****************************************************************/
@@ -90,11 +96,68 @@
 	border: 1px solid #A6A6A6;
 	border-radius: 3px;
 	background-color: #63c4e6;
-	padding: 5px 10px 5px 10px;
+	padding: 5px 20px 5px 20px;
+	margin: 0px 0px 0px 10px;
 	font-size: 15px;
     color: #fff;
 	float: right;
+	cursor: pointer;
 }
+
+/****************************************************************/
+/* 게시판 글쓰기 ************************************************/
+/****************************************************************/
+#board #writeForm {
+	text-align: left;
+}
+
+/* 폼태그 라벨(제목) */
+#board #writeForm .form-group .form-text {
+    display: inline-block;  /* 인라인 요소 가로폭을 주려고 */
+    width: 30px;
+    text-align: left;
+    margin-right: 20px;
+}
+
+/* 폼태그(제목) */
+#board #writeForm .form-group #txt-title {
+    width: 761px;
+}
+
+
+/* 폼태그(내용) */
+#board #writeForm .form-group #txt-content {
+    width: 816px;
+    height: 400px;
+}
+
+/* 등록 버튼 */
+#board #writeForm #btn_add {
+	border: 1px solid #A6A6A6;
+	border-radius: 3px;
+	background-color: #63c4e6;
+	padding: 5px 20px 5px 20px;
+	margin: 0px 0px 0px 10px;
+	font-size: 15px;
+    color: #fff;
+	float: right;
+	cursor: pointer;
+}
+
+/* 취소 버튼 */
+#board #writeForm #btn_cancel {
+	border: 1px solid #A6A6A6;
+	border-radius: 3px;
+	background-color: #63c4e6;
+	padding: 5px 20px 5px 20px;
+	margin: 0px 0px 0px 10px;
+	font-size: 15px;
+    color: #fff;
+	float: right;
+	cursor: pointer;
+}
+
+
 
 /****************************************************************/
 /* 게시판 글수정 ************************************************/
@@ -121,28 +184,40 @@
 }
 
 
-
 /* 수정 버튼 */
 #board #modifyForm #btn_modify {
 	border: 1px solid #A6A6A6;
-	border-radius: 2px;
-	background-color: #E5E5E5;
+	border-radius: 3px;
+	background-color: #63c4e6;
 	padding: 5px 20px 5px 20px;
 	margin: 0px 0px 0px 10px;
-	font-size: 14px;
+	font-size: 15px;
+    color: #fff;
 	float: right;
 	cursor: pointer;
-	
+}
+
+#btn_modify {
+	border: 1px solid #A6A6A6;
+	border-radius: 3px;
+	background-color: #63c4e6;
+	padding: 5px 20px 5px 20px;
+	margin: 0px 0px 0px 10px;
+	font-size: 15px;
+    color: #fff;
+	float: right;
+	cursor: pointer;
 }
 
 /* 취소 버튼 */
 #board #modifyForm #btn_cancel {
 	border: 1px solid #A6A6A6;
-	border-radius: 2px;
-	background-color: #E5E5E5;
+	border-radius: 3px;
+	background-color: #63c4e6;
 	padding: 5px 20px 5px 20px;
 	margin: 0px 0px 0px 10px;
-	font-size: 14px;
+	font-size: 15px;
+    color: #fff;
 	float: right;
 	cursor: pointer;
 }
