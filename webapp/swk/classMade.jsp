@@ -14,7 +14,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
 
 
-<title>Insert title here</title>
+<title>반 생성</title>
 
 <style>
 body, div, ul, li, dl, dt, ol, h1, h2, h3, h4, h5, h6, input, fieldset, legend, p, select, table, th, td, tr, textarea, button, form {
