@@ -20,4 +20,15 @@ public class BnoticeController {
 		return "ban/notice/read";
 	}
 	
+	@RequestMapping(value ="/modifyForm", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm() {
+		System.out.println("[BnoticeController.modifyForm()]");
+		return "ban/notice/modifyForm";
+	}
+	
+	@RequestMapping(value ="/writeForm", method = {RequestMethod.GET, RequestMethod.POST})
+	public String writeForm() {
+		System.out.println("[BnoticeController.writeForm()]");
+		return "ban/notice/writeForm";
+	}
 }
