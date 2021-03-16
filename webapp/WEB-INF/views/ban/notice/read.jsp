@@ -25,25 +25,7 @@
 
 	<!-- head-Area -->
 	<c:import url="/WEB-INF/views/ban/include/header.jsp"></c:import>
-	<!-- //head-Area -->
-
-	<!-- top-banner -->
-	<div class="container">
-		<div class="row">
-			<div id="top-banner-area" class="col-xs-12">
-				<img id="top-banner" src="/learnwhale/assets/image/top-banner.jpg">
-				<p id="banName" class="text-center">2020 하이미디어 풀스택 B반 </p>
-				<div id="date-area" class="text-center">
-					<span class="banDate">2021-03-03</span>
-					<span class="banDate"> ~ </span>
-					<span class="banDate">2021-03-03</span>
-				</div>
-			</div>
-		</div>
-		<!-- //row -->
-	</div>
-	<!-- //top-banner -->
-	
+	<!-- //head-Area -->	
 	
 	<!-- content, container 영역-->
 	<div class="container">
@@ -78,79 +60,68 @@
 					
 					
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
-					<div id="main-content-area">
-					
-						<div id="report-area" class="col-xs-12">
-						
+					<div id="main-content-area">			
+														
 							<div class="row">
 								<div class="col-xs-12">
-
-									<div id="controll-area" class="row">
-										<div id="selecOpt" class="col-xs-6"></div>
-										<div class="col-xs-6"></div>
-									</div>
-
-									<div class="row">
-										<div class="col-xs-12">
-											<div id="board">
-												<div id="read">
-													<form action="#" method="get">
-														<!-- 작성자 -->
-														<div class="form-group">
-															<span class="form-text">작성자</span> <span
-																class="form-value">정우성</span>
-														</div>
-
-														<!-- 조회수 -->
-														<div class="form-group">
-															<span class="form-text">조회수</span> <span
-																class="form-value">123</span>
-														</div>
-
-														<!-- 작성일 -->
-														<div class="form-group">
-															<span class="form-text">작성일</span> <span
-																class="form-value">2020-03-02</span>
-														</div>
-
-														<!-- 제목 -->
-														<div class="form-group">
-															<span class="form-text">제 목</span> <span
-																class="form-value">여기에는 글제목이 출력됩니다.</span>
-														</div>
-
-														<!-- 내용 -->
-														<div id="txt-content">
-															<span class="form-value"> 여기에는 본문내용이 출력됩니다.<br>
-																여기에는 본문내용이 출력됩니다.<br> 여기에는 본문내용이 출력됩니다.<br>
-																여기에는 본문내용이 출력됩니다.<br> 여기에는 본문내용이 출력됩니다.<br>
-																여기에는 본문내용이 출력됩니다.<br> 
-															</span>
-														</div>
-
-														<a id="btn_modify" href="">수정</a>
-														<a id="btn_modify" href="">목록</a>
+																	
+									<div id="board">
+										<div id="read">
+											<form action="#" method="get">
+												<!-- 작성자 -->
+												<div class="form-group">
+													<span class="form-text">작성자</span>
+													<span class="form-value">정우성</span>
 												</div>
-											</div>
-
-
-											<div class="row">
-												<div class="col-xs-12 text-center">
-													<nav>
-								
+												
+												<!-- 조회수 -->
+												<div class="form-group">
+													<span class="form-text">조회수</span>
+													<span class="form-value">123</span>
+												</div>
+												
+												<!-- 작성일 -->
+												<div class="form-group">
+													<span class="form-text">작성일</span>
+													<span class="form-value">2020-03-02</span>
+												</div>
+												
+												<!-- 제목 -->
+												<div class="form-group">
+													<span class="form-text">제 목</span>
+													<span class="form-value">여기에는 글제목이 출력됩니다.</span>
+												</div>
+											
+												<!-- 내용 -->
+												<div id="txt-content">
+													<span class="form-value" >
+														여기에는 본문내용이 출력됩니다.<br>
+														여기에는 본문내용이 출력됩니다.<br>
+														여기에는 본문내용이 출력됩니다.<br>
+														여기에는 본문내용이 출력됩니다.<br>
+														여기에는 본문내용이 출력됩니다.<br>
+														여기에는 본문내용이 출력됩니다.<br>
+														여기에는 본문내용이 출력됩니다.<br>
+														여기에는 본문내용이 출력됩니다.<br>
+													</span>
+												</div>
+												
+												<a id="btn_modify" href="">수정</a>
+												<a id="btn_list" href="">목록</a>		
+							
 										</div>
+										<!-- //list -->
 									</div>
+									<!-- //board -->
+							
+													
 								</div>
-						<!-- //report-area -->
-						
-					
+							</div>
 					
 					</div>
 					<!-- //main-content-area -->
 					<!-- //여기서부터 각페이지에 맞게 코딩 끝 -->	
-					
-					
-					
+	
 			
 				</div>
 				<!-- //오른쪽 영역 -->
@@ -170,3 +141,7 @@
 	
 </body>
 </html>
+
+
+
+
