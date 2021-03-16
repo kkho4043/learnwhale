@@ -66,68 +66,77 @@
 
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="main-content-area">
-						<div class="row">
-							<div class="searchF form-group form-inline">
-								<input type="text" class="form-control input-sm" id="txtSearchKyword" placeholder="">
-								<button class="btn btn-default btn-sm" type="submit">검색</button>
-							</div>
 
-							<div class="addtest ">
+						<div id="student-list" class="col-xs-2">
+							<ol>
+								<c:forEach var="i" begin="1" end="20">
+									<li><a href="">유재석(제출)</a></li>
+								</c:forEach>
+							</ol>
+						</div>
+						<!-- //student-list -->
 
-								<button class="btn btn-primary btn-sm">시험출제</button>
+						<div id="report-area" class="col-xs-10">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-12">
+											<table class="table table-striped table-bordered table-hover">
+												<colgroup>
+													<col style="width: 10%;">
+													<col>
+													<col style="width: 15%;">
+													<col style="width: 15%;">
+												</colgroup>
+												<thead class="">
+													<tr>
+														<th>번호</th>
+														<th>문제명</th>
+														<th>오답여부</th>
+														<th>형식</th>
+														
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="i" begin="0" end="15">
+														<tr>
+															<td>105</td>
+															<td class="text-left"><a href="">별표찍기 마름모</a></td>
+															<td>O</td>
+															<td>주관식</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="col-xs-12 text-center">
+											<nav>
+												<ul class="pagination">
+													<li><a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+													</a></li>
+
+													<c:forEach var="i" begin="1" end="10">
+														<li><a href="#">${i}</a></li>
+													</c:forEach>
+
+													<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+													</a></li>
+												</ul>
+											</nav>
+										</div>
+									</div>
+
+
+								</div>
 							</div>
 						</div>
-						<div class="row">
-							<table class="table table-striped table-bordered table-hover">
-								<thead class="">
-									<tr>
-										<th>번호</th>
-										<th>시험제목</th>
-										<th>문항수</th>
-										<th>시작일</th>
-										<th>종료일</th>
-										<th>상태</th>
-										<th>참석자</th>
-										<th>형태</th>
-										<th>수정</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="i" begin="0" end="10">
-										<tr>
-											<td>1</td>
-											<td><a href="">자바 연산자 테스트</a></td>
-											<td>5</td>
-											<td>2020-01-01</td>
-											<td>2020-01-02</td>
-											<td>준비중</td>
-											<td>0/20</td>
-											<td>쪽지</td>
-											<td><button class="btn btn-default btn-xs">수정</button></td>
-										</tr>
-									</c:forEach>
-								</tbody>
+						<!-- //report-area -->
 
-							</table>
-						</div>
-						<div class="row">
-							<div class="col-xs-12 text-center">
-								<nav>
-									<ul class="pagination">
-										<li><a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										</a></li>
 
-										<c:forEach var="i" begin="1" end="10">
-											<li><a href="#">${i}</a></li>
-										</c:forEach>
-
-										<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										</a></li>
-									</ul>
-								</nav>
-							</div>
-
-						</div>
 
 					</div>
 					<!-- //main-content-area -->
