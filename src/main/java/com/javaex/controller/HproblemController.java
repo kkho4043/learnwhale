@@ -11,7 +11,7 @@ public class HproblemController {
 	@RequestMapping(value ="/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list() {
 		System.out.println("[ProblemController.list()]");
-		return "home/problem/list";
+		return "home/problem/list2";
 	}
 	
 
