@@ -28,8 +28,49 @@
 	text-decoration: none;
 }
 
+/******************************************
+* 게시판 헤더(성적 평균)                              *
+*******************************************/
 
 
+#boardHeader {width:655px; 
+			  height: 100px;
+			  background: #F4EBDD;
+			  margin-bottom: 30px;
+			  }
+			
+#boardHeader h3 {font-size: 18px;
+				 float: left;
+				 width: 370px;
+				 padding-right: 160px;
+				 margin-left: 8px;
+				}
+
+#boardHeader .list-inline{font-weight: 560;
+						  font-size: 15px;
+						  float: left;
+						  padding: 15px 0 0 10px;
+				  		  }
+
+#boardHeader #total {width:100px;
+					 height:100px;
+					 background: #D0DFF0;;
+					 display: inline-block;
+					 float: right;
+					 text-align: center;
+					 }
+
+#boardHeader #total ul {list-style: none;
+					    padding: 0 0 0 0;
+					    font-size: 16px;
+					    font-weight: 560;
+					    }
+
+#boardHeader #total ul li:nth-child(1) {padding-top: 20px;
+									   }
+
+#boardHeader #total ul li:nth-child(2) {padding-top: 10px;
+										}
 
 /******************************************
 * 시험리스트                              *
