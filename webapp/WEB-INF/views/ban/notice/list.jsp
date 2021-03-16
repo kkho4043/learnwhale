@@ -26,24 +26,6 @@
 	<!-- head-Area -->
 	<c:import url="/WEB-INF/views/ban/include/header.jsp"></c:import>
 	<!-- //head-Area -->
-
-	<!-- top-banner -->
-	<div class="container">
-		<div class="row">
-			<div id="top-banner-area" class="col-xs-12">
-				<img id="top-banner" src="/learnwhale/assets/image/top-banner.jpg">
-				<p id="banName" class="text-center">2020 하이미디어 풀스택 B반 </p>
-				<div id="date-area" class="text-center">
-					<span class="banDate">2021-03-03</span>
-					<span class="banDate"> ~ </span>
-					<span class="banDate">2021-03-03</span>
-				</div>
-			</div>
-		</div>
-		<!-- //row -->
-	</div>
-	<!-- //top-banner -->
-	
 	
 	<!-- content, container 영역-->
 	<div class="container">
