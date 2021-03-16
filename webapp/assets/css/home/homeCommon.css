@@ -1,0 +1,229 @@
+@charset "UTF-8";
+/******************************************
+* 공통                                *
+*******************************************/
+.container {
+	width: 1080px !important;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.table {
+	margin: 0px 0px 0px 0px;
+}
+
+.table > thead > tr > th, .table > tbody > tr > td {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left !important;
+}
+
+.text-right {
+	text-align: right !important;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+a:hover { text-decoration: none; }
+/******************************************
+* 해더영역                                *
+*******************************************/
+
+#header-Area {
+	border-bottom: 1px solid #bebebe;
+}
+
+#header {
+	margin: 17px 0px 0px 0px;
+}
+
+#logo-img {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	width: 200px;
+}
+
+.navbar{
+	margin: 5px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	list-style:none;
+}
+
+.navbar>.nav{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	float: left;
+	font-size: 20px;
+}
+
+.navbar>.nav>a{
+	margin: 0px 40px 0px 0px;
+	text-decoration: none;
+	color: #316898;
+	font-weight: bold
+	
+}
+
+.navbar>.nav>#myclass{
+	margin: 0px 0px 0px 0px;
+	padding: 5px 5px 5px 5px;
+	width: 100px;
+	font-weight: bold;
+	color: white;
+	background-color: #316898;
+	border: none;
+	
+}
+
+#btnLogin {
+	width: 60px;
+	margin: 5px 0px 0px 0px;
+}
+
+#btnJoin {
+	width: 60px;
+	margin: 5px 0px 0px 0px;
+}
+
+/******************************************
+* 컨텐츠영역(공통)                   *
+*******************************************/
+#content-Area {
+	 background: #efefef;
+}
+
+/******************************************
+* 컨텐츠영역 > 왼쪽메뉴                   *
+*******************************************/
+#left_menu {
+    background: #efefef;
+    min-height: 500px;
+}
+
+#left_menu_title {
+	margin: 15px 0px 0px 0px; 
+	padding: 20px 20px 20px 20px;
+	background-color: #316898;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.left_menu_se {
+    margin: 15px 0px 30px 0px; 
+	padding: 0px 0px 0px 0px;
+	border: 1px solid #bebebe;
+}
+
+.left_menu_se > ul {
+	margin: 0px 0px 0px 0px; 
+	padding: 0px 0px 0px 0px;
+	list-style:none;
+}
+
+.left_menu_se > ul > li {
+	padding: 10px 5px 10px 5px;
+	border-bottom: 1px solid #1b639e;
+}
+
+.left_menu_se > ul > li.last {
+	padding: 10px 5px 10px 5px;
+	border-bottom: none;
+}
+
+.left_menu_se > ul > li > a {
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+
+/******************************************
+* 컨텐츠영역 > 메인컨텐츠                   *
+*******************************************/
+#main {
+	border-left: 1px solid #bebebe;
+	background-color: #ffffff;
+}
+
+#content-title-area {
+	margin: 30px 0px 0px 0px; 
+	border-bottom: 1px solid #1b639e;
+}
+
+#content-title-area > #content-title {
+	padding: 0px 0px 0px 0px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#content-title-area > #content-title:before{
+	content: "::";
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#content-title-area #breadcrumb-area {
+	margin: 15px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+
+#content-title-area .breadcrumb {
+	padding: 0px 0px 0px 0px;
+	font-size: 12px;
+	background-color: #ffffff;
+}
+
+#content-body-area  {
+	margin: 15px 0px 15px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#content-body-area #main-area  #controll-area{
+	padding: 0px 0px 0px 0px;
+}
+
+
+
+/******************************************
+* 푸터영역                                *
+*******************************************/
+#footer-Area {
+	font-size: 12px;
+}
+
+#footer-Area #footer {
+	padding: 10px 10px 0px 10px;
+	border-top: 1px solid #bebebe;
+	border-bottom: 1px solid #bebebe;
+}
+
+#footer-Area #footer > ul {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	list-style:none;
+}
+
+#footer-Area #footer > ul > li{
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#footer-Area #footer > ul > li:after{
+	margin: 0px 10px 0px 10px;
+	content: "|";
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#footer-Area #footer > ul > li.last:after{
+	content: "";
+	margin: 0px 0px 0px 0px;
+}
+

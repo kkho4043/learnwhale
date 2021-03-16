@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/******************************************
+* 문제관리 css                                *
+*******************************************/
+
+
+/******************************************
+* 카테고리                               *
+*******************************************/
+#cate-area {
+	padding: 0px 15px 0px 0px;
+	
+}
+
+#cate-area #cate {
+	height: 770px;
+	padding: 3px 3px 3px 3px;
+	background-color: #efefef;
+}
+
+#cate-area #cate #cate-controller .btn {
+	margin: 4px 2px 4px 2px;
+}
+
+#cate-area #cate #cate-list {
+	padding: 5px 5px 5px 5px;
+}
+
+
+/******************************************
+* 문제리스트                               *
+*******************************************/
+
+
+#main-area #controll-area #txtSearchKyword {
+	width: 200px;
+}
+
+
+
+
+

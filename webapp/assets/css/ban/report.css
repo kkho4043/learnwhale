@@ -1,0 +1,66 @@
+@charset "UTF-8";
+/******************************************
+* 성적관리 css                                *
+*******************************************/
+
+
+/******************************************
+* 학생리트스                             *
+*******************************************/
+#main-area #main-content-area #student-list {
+	padding: 10px 10px 10px 10px;
+	background: #f7f7f7;
+	border: 1px solid #8e8e8e;
+	height: 635px;
+}
+
+
+#main-area #main-content-area ol{
+	padding: 0px 0px 0px 20px;
+	font-size: 14px;
+}
+
+#main-area #main-content-area ol > li{
+	padding: 3px 3px 3px 3px;
+}
+
+#main-area #main-content-area ol > li > a{
+	text-decoration: none;
+}
+
+
+
+
+/******************************************
+* 시험리스트                              *
+*******************************************/
+
+#main-area #main-content-area #report-area {
+	padding: 0px 0px 0px 15px;
+}
+
+#main-area #main-content-area #report-area #report-summary{
+	margin: 0px 0px 20px 0px;
+	background: #f7f7f7;
+	border: 1px solid #8e8e8e;
+}
+
+#main-area #main-content-area .form-group {
+	margin: 0px 0px 5px 0px;
+}
+
+#main-area #main-content-area #selecOpt > ul{
+	margin: 10px 0px 0px 0px;
+	list-style: none;
+}
+
+
+#main-area #main-content-area #selecOpt > ul > li{
+	float: left;
+	margin: 0px 0px 0px 5px;
+}
+
+#main-area #main-content-area #selecOpt > ul > li:after{
+	content: "|";
+	margin: 0px 0px 0px 5px;
+}
