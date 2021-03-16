@@ -26,9 +26,8 @@
 	<c:import url="/WEB-INF/views/ban/include/header.jsp"></c:import>
 	<!-- //head-Area -->
 
-
 	<!-- top-banner -->
-
+	
 	<!-- //top-banner -->
 	
 	
@@ -79,26 +78,7 @@
 					
 						<div id="report-area" class="col-xs-10">
 							
-							<div id="boardHeader">
-								<h3>정우성님 성적 평균점수</h3>
-								
-								<div id="total">
-									<ul>
-										<li>종합</li>
-										<li>80점</li>
-									</ul>
-								</div>
-								
-								<ul class="list-inline text-left">
-									<li>쪽지:  60점</li>
-									<li>과제:  70점</li>
-									<li>시험:  100점</li>
-								</ul>
-								
-							</div>
-							
-							
-							<!-- <div class="row">
+							<div class="row">
 								<div class="col-xs-12">
 									<div id="report-summary">
 										내용을 채우세요<br>
@@ -107,7 +87,7 @@
 										내용을 채우세요<br>
 									</div>
 								</div>
-							</div> -->
+							</div>
 							
 							<div class="row">
 								<div class="col-xs-12">
