@@ -31,7 +31,7 @@
 			</div>
 			<div id="child-folderDiv">
 				<div class="child-folder">
-					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"></span>연산자(5)</span>
+					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"></span> 연산자(5)</span>
 				</div>
 				<div class="child-folder">
 					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"></span>연산자(5)</span>

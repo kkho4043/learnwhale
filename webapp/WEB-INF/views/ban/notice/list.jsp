@@ -12,7 +12,8 @@
 <!-- css -->
 <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/ban/banCommon.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/ban/report.css" rel="stylesheet" type="text/css">
+
+<link href="${pageContext.request.contextPath}/assets/css/ban/notice.css" rel="stylesheet" type="text/css">
 
 
 <!-- js -->
@@ -25,12 +26,6 @@
 	<!-- head-Area -->
 	<c:import url="/WEB-INF/views/ban/include/header.jsp"></c:import>
 	<!-- //head-Area -->
-
-
-	<!-- top-banner -->
-
-	<!-- //top-banner -->
-	
 	
 	<!-- content, container 영역-->
 	<div class="container">
@@ -47,8 +42,7 @@
 					<!-- 위치 -->
 					<div id="breadcrumb-area">
 						<ol class="breadcrumb pull-right">
-           					<li class="breadcrumb-item">반</li>
-          					<li class="breadcrumb-item">성적관리</li>
+          					<li class="breadcrumb-item">공지사항</li>
           				</ol>
 					</div>
 					<!-- //위치 -->
@@ -57,7 +51,7 @@
 					<div id="main-title">
 						<div class="row">
 							<div class="col-xs-12">
-								<p>성적관리</p>
+								<p>공지사항</p>
 							</div>
 						</div>
 					</div>	
@@ -68,51 +62,15 @@
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="main-content-area">
 					
-						<div id="student-list" class="col-xs-2">
-							<ol>
-								<c:forEach var="i" begin="1" end="20">
-									<li><a href= "">유재석</a></li>
-								</c:forEach>
-							</ol>
-						</div>
-						<!-- //student-list -->
-					
-						<div id="report-area" class="col-xs-10">
-							
-							<div id="boardHeader">
-								<h3>정우성님 성적 평균점수</h3>
-								
-								<div id="total">
-									<ul>
-										<li>종합</li>
-										<li>80점</li>
-									</ul>
-								</div>
-								
-								<ul class="list-inline text-left">
-									<li>쪽지:  60점</li>
-									<li>과제:  70점</li>
-									<li>시험:  100점</li>
-								</ul>
-								
-							</div>
-							
-							
-							<!-- <div class="row">
-								<div class="col-xs-12">
-									<div id="report-summary">
-										내용을 채우세요<br>
-										내용을 채우세요<br>
-										내용을 채우세요<br>
-										내용을 채우세요<br>
-									</div>
-								</div>
-							</div> -->
-							
+						<div id="report-area" class="col-xs-12">
+						
 							<div class="row">
 								<div class="col-xs-12">
 								
 									<div id="controll-area" class="row">
+										<div id="selecOpt" class="col-xs-6">
+
+										</div>
 										<div class="col-xs-6">
 											<form>
 												<div class="form-group form-inline">
@@ -120,14 +78,6 @@
 													<button class="btn btn-default btn-sm" type="submit">검색</button>
 												</div>
 											</form>
-										</div>
-										<div id="selecOpt" class="col-xs-6">
-											<ul class="pull-right">
-												<li><a href="">전체</a></li>
-												<li><a href="">쪽지</a></li>
-												<li><a href="">시험</a></li>
-												<li><a href="">숙제</a></li>
-											</ul>
 										</div>
 									</div>
 									
@@ -144,26 +94,57 @@
 												<thead class="">
 													<tr>
 														<th>번호</th>
-														<th>문제명</th>
-														<th>형식</th>
+									   					<th>제목</th>
+														<th>글쓴이</th>
+														<th>조회수</th>
 														<th>작성일</th>
 														<th>관리</th>
 													</tr>
 												</thead>
 												<tbody>
-												<c:forEach var="i" begin="0" end="10">
-														<tr>
-															<td>105</td>
-															<td class="text-left"><a href="">별표찍기 마름모</a></td>
-															<td>주관식</td>
-															<td>2021-03-03</td>
-															<td>
-																<button class="btn btn-default btn-xs" >삭제</button>
-																<button class="btn btn-default btn-xs" >이동</button>
-															</td>
-														</tr>
-													</c:forEach>
-												</tbody>		
+													<tr>
+														<td>10</td>
+														<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
+														<td>과학</td>
+														<td>1232</td>
+														<td>2020-12-23</td>
+														<td><a href="">[삭제]</a></td>
+													</tr>
+													<tr>
+														<td>9</td>
+														<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
+														<td>수학</td>
+														<td>1232</td>
+														<td>2020-12-23</td>
+														<td><a href="">[삭제]</a></td>
+													</tr>
+													<tr>
+														<td>8</td>
+														<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
+														<td>국어</td>
+														<td>1232</td>
+														<td>2020-12-23</td>
+														<td><a href="">[삭제]</a></td>
+													</tr>
+													<tr>
+														<td>7</td>
+														<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
+														<td>국어</td>
+														<td>1232</td>
+														<td>2020-12-23</td>
+														<td><a href="">[삭제]</a></td>
+													</tr>
+													<tr class="last">
+														<td>6</td>
+														<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
+														<td>국어</td>
+														<td>1232</td>
+														<td>2020-12-23</td>
+														<td><a href="">[삭제]</a></td>
+														<!-- <button class="btn btn-default btn-xs" >삭제</button> -->
+													</tr>
+												</tbody>
+											
 											</table>
 										</div>
 									</div>
@@ -192,7 +173,9 @@
 											</nav>
 										</div>
 									</div>
+									<!-- //pagination 끝 -->
 									
+									<a id="btn_write" href="">글쓰기</a>
 								
 								</div>
 							</div>
@@ -226,7 +209,3 @@
 	
 </body>
 </html>
-
-
-
-
