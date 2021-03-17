@@ -144,7 +144,6 @@
 														<!-- <button class="btn btn-default btn-xs" >삭제</button> -->
 													</tr>
 												</tbody>
-											
 											</table>
 										</div>
 									</div>
