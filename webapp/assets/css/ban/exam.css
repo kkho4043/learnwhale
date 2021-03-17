@@ -34,7 +34,7 @@
 }
 
 .testoption {
-	margin-left:10px;
+	margin-left: 10px;
 	height: 200px;
 }
 
@@ -50,4 +50,96 @@
 
 .table input[type=text] {
 	width: 30px;
+}
+
+/*  문제 풀기  */
+.protitle div {
+	margin: 0px;
+	padding: 0px;
+}
+
+.testimg {
+	height: 200px;
+	background-color: blue;
+}
+
+.protype {
+	height: 300px;
+}
+
+.protype .multiple div {
+	margin: 10px;
+}
+
+.protype .OX {
+	margin: 25px 0px 0px 100px;
+}
+
+.protype .OX div {
+	margin: 25px;
+	height: 150px;
+	width: 150px;
+	float: left;
+}
+
+#O {
+	background-color: #62B5F8;
+}
+
+#X {
+	background-color: #F54F40;
+}
+
+.shortanswer {
+	margin-top: 50px;
+	padding-left: 50px;
+}
+
+.shortanswer textarea {
+	width: 500px;
+	height: 150px;
+}
+
+.prolist {
+	height: 450px;
+}
+
+.prolist table {
+	
+}
+
+.prolist ul {
+	text-align: center;
+}
+
+.prolist ul li {
+	list-style : none;
+	margin: 20px;
+	font-size: 20px;
+}
+
+.prolist table th {
+	text-align: center;
+}
+
+.prolist table td {
+	text-align: center;
+	margin-top: 5px;
+	font-size: 23px;
+}
+
+.answer {
+	border: solid 6px green;
+}
+
+.givescore {
+	padding-left: 250px;
+}
+
+.givescore input[type=text] {
+	width: 40px;
+}
+
+.prolistbtn {
+	padding: 15px 0px 0px 55px;
 }
