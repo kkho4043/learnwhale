@@ -17,15 +17,13 @@ public class HbanContorller {
 	@RequestMapping(value="/create", method= {RequestMethod.GET, RequestMethod.POST})
 	public String made() {
 		System.out.println("[HbanController.made()]");
-		return "home/ban/createForm";
-				
+		return "home/ban/createForm";			
 	}
 	
 	@RequestMapping(value="/modify", method= {RequestMethod.GET, RequestMethod.POST})
-	public String plist() {
+	public String modify() {
 		System.out.println("[HbanController.modify()]");
-		return "home/ban/modifyForm";
-				
+		return "home/ban/modifyForm";			
 	}
 	
 }

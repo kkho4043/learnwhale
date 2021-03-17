@@ -20,8 +20,11 @@ body{
 	margin-left:15px;
 }
 
-/* home > bancreate */
+/* home > createForm, modifyForm */
 .interval {
 	margin-top: 22px;
 }
 
+.text-right {
+	text-aline:center;
+}

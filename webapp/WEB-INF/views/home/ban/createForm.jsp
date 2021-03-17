@@ -65,45 +65,45 @@
 							<form id="createForm" action="" method="">
 								<div class="row interval">
 									<!-- 반이름 -->
-									<div class="col-xs-2">반이름</div>
-									<div class="col-xs-10">
+									<label class="col-xs-2 text-right" for="name">반이름</label>
+									<span class="col-xs-10">
 										<input type="text" class="form-control input-sm"
-											placeholder="반 이름을 입력해주세요" style="width: 600px;">
-									</div>
+											id="name" placeholder="반 이름을 입력해주세요" style="width: 600px;">
+									</span>
 								</div>
 
 								<div class="row interval">
-									<div class="col-xs-2">메인배너</div>
-									<div class="col-xs-9">
+									<label class="col-xs-2 text-right" for="banner">메인배너</label>
+									<span class="col-xs-9">
 										<input type="text" readonly  class="form-control input-sm"
-											placeholder="메인배너 이미지를 넣어주세요" style="width: 450px;">
-									</div>
-									<div class="col-xs-1">
-										<input type="file" class="btn btn-default btn-xs pull-right">
-									</div>
+											id="" placeholder="메인배너 이미지를 넣어주세요" style="width: 450px;">
+									</span>
+									<span class="col-xs-1">
+										<input type="file" id="banner" class="btn btn-default btn-xs pull-right">
+									</span>
 								</div>
 								<!-- //메인베너 -->
 
 								<div class="row interval">
-									<div class="col-xs-2">시작일</div>
-									<div class="col-xs-8">
+									<label class="col-xs-2 text-right" for="startDate">시작일</label>
+									<span class="col-xs-8">
 										<input type="datetime-local" class="form-control input-sm"
-											placeholder="" style="width: 600px;">
-									</div>
+											id="startDate" placeholder="" style="width: 600px;">
+									</span>
 								</div>
 								<!-- //시작일 -->
 
 								<div class="row interval">
-									<div class="col-xs-2">종료일</div>
-									<div class="col-xs-8">
+									<label class="col-xs-2 text-right" for="endDate">종료일</label>
+									<span class="col-xs-8">
 										<input type="datetime-local" class="form-control input-sm"
-											placeholder="" style="width: 600px;">
-									</div>
+											id="endDate" placeholder="" style="width: 600px;">
+									</span>
 								</div>
 								<!-- //종료일 -->
 
 								<div class="row interval">
-									<div class="col-xs-2">노출여부</div>
+									<label class="col-xs-2 text-right">노출여부</label>
 									<div class="radio col-xs-10">
 										<label> 
 											<input type="radio" name="chk_info" value="">보이기
@@ -116,14 +116,14 @@
 								<!-- //노출여부 -->
 
 								<div class="row interval">
-									<div class="col-xs-2">url</div>
-									<div class="col-xs-10">
+									<label class="col-xs-2 text-right" for="url">url</label>
+									<span class="col-xs-10">
 										<input type="text" class="form-control input-sm"
 											placeholder="해당 반(블로그) 개설을 위해 url을 입력해주세요 ex) a,b,c,,1,2,3,가,나,다"
-											style="width: 600px;">
+											id="url" style="width: 600px;">
 										<button class="btn btn-default btn-xs" id="btnCheck">중복체크</button>
 										※url의 경우 중복불가, 수정불가
-									</div>
+									</span>
 								</div>
 								<!-- //노출여부 -->
 
