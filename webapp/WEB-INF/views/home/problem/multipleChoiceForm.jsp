@@ -163,6 +163,47 @@
 															<input type="file">
 														</div>
 														<!-- //fileArea -->
+														
+														<!-- ox문제 시작 -->
+														<!-- <div class="row">
+															<div class="col-xs-12">
+																<h4>정답을 선택해주세요</h4>
+															</div>
+															//col-sm-12
+															<div class="col-xs-6">
+																<div>
+																	<input id="quizAnswerO" type="radio" name="radio-answer">
+																</div>
+																<div id="O">
+																	<label class="" for="quizAnswerO">O</label>
+																</div>
+															</div>
+															//col-sm-6
+															<div class="col-xs-6">
+																<div>
+																	<input id="quizAnswerX" type="radio" name="radio-answer">
+																</div>
+																<div id="X">
+																	<label class="" for="quizAnswerX">X</label>
+																</div>
+															</div>
+															//col-sm-6
+														</div>
+														//row -->
+														<!-- ox문제 끝 -->
+														
+														<!-- 주관식 문제 시작 -->
+														<div class="row answer-content">
+															<div class="col-sm-12">
+																<h4>정답을 적어주세요.</h4>
+															</div>
+															<div class="col-sm-12" id="last-input">
+																<input type="text" class="form-control" id="exampleInputEmail3" >
+															</div>
+														</div>
+														<!-- //answer-content -->
+														<!-- 주관식 문제 끝 -->
+														
 													</form>
 													<!-- //form -->
 												</div>

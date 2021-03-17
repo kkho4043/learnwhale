@@ -19,18 +19,6 @@ public class HproblemController {
 		return "home/problem/multipleChoiceForm";
 	}
 	
-	@RequestMapping(value ="/ox", method = { RequestMethod.GET, RequestMethod.POST })
-	public String ox() {
-		System.out.println("[ProblemController.list()]");
-		return "home/problem/oxForm";
-	}
-	
-	@RequestMapping(value ="/subjective", method = { RequestMethod.GET, RequestMethod.POST })
-	public String subjective() {
-		System.out.println("[ProblemController.list()]");
-		return "home/problem/subjectiveForm";
-	}
-	
 	@RequestMapping(value ="/mcView", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mcView() {
 		System.out.println("[ProblemController.list()]");
@@ -42,12 +30,5 @@ public class HproblemController {
 		System.out.println("[ProblemController.list()]");
 		return "home/problem/oxViewForm";
 	}
-	
-	@RequestMapping(value ="/main", method = { RequestMethod.GET, RequestMethod.POST })
-	public String subjectiveView() {
-		System.out.println("[ProblemController.list()]");
-		return "home/main/index";
-	}
-	
 
 }
