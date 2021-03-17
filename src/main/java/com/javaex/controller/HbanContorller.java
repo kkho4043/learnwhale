@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/Hban")
+@RequestMapping("/h")
 public class HbanContorller {
 
 	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
@@ -14,17 +14,17 @@ public class HbanContorller {
 		return "home/ban/list";
 	}
 	
-	@RequestMapping(value="/made", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/create", method= {RequestMethod.GET, RequestMethod.POST})
 	public String made() {
 		System.out.println("[HbanController.made()]");
-		return "home/ban/create";
+		return "home/ban/createForm";
 				
 	}
 	
-	@RequestMapping(value="/plist", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/modify", method= {RequestMethod.GET, RequestMethod.POST})
 	public String plist() {
-		System.out.println("[HbanController.list3()]");
-		return "home/problem/list3";
+		System.out.println("[HbanController.modify()]");
+		return "home/ban/modifyForm";
 				
 	}
 	
