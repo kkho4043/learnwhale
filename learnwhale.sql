@@ -536,4 +536,4 @@ ALTER TABLE notice
 		)
         on delete cascade;
 
-drop table table8;        
+       
