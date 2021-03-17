@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+/******************************************
+* 학생리스트 css                             *
+*******************************************/
+#board #gradeBoard {width:720px;
+							   }
+		
+#board #studentList thead {background-color:#a8ccda;	 
+									 }
+									 	
+#title-form .row {margin-left: 640px;
+				  padding-bottom: 5px;
+				 			  }
+			
+#page {text-align:center;
+	   width:820px;}
