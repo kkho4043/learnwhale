@@ -11,13 +11,13 @@ public class HbanContorller {
 	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String  list() {
 		System.out.println("[HbanController.list()]");
-		return "home/ban/Hban";
+		return "home/ban/list";
 	}
 	
 	@RequestMapping(value="/made", method= {RequestMethod.GET, RequestMethod.POST})
 	public String made() {
 		System.out.println("[HbanController.made()]");
-		return "home/ban/HbanMade";
+		return "home/ban/create";
 				
 	}
 	
