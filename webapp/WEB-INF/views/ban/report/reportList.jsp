@@ -27,11 +27,6 @@
 	<!-- //head-Area -->
 
 
-	<!-- top-banner -->
-
-	<!-- //top-banner -->
-	
-	
 	<!-- content, container 영역-->
 	<div class="container">
 		<div class="row">
