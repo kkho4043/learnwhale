@@ -11,13 +11,13 @@
 </head>
 <body>
 	<div id="cate-area" class="col-xs-3">
-		<div id="cate" style="overflow:auto;">
+		<div id="cate">
 			<div id="cate-controller" class="clearfix">
 				<a class="btn btn-primary btn-xs pull-left" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
-					id="manage-btn"> 관리 </a>
+					id="manage-btn">관리</a>
 
 				<div class="collapse" id="collapseExample">
-					<div class="well" style="padding: 0px; min-height: 32px;">
+					<div class="well" id="cateSub-btn">
 						<a class="btn btn-primary btn-xs pull-left" id="creating-btn">등록</a>
 						<button class="btn btn-primary btn-xs pull-left" id="modify-btn">수정</button>
 						<button class="btn btn-danger btn-xs pull-left" id="delete-btn">삭제</button>
@@ -31,7 +31,7 @@
 			</div>
 			<div id="child-folderDiv">
 				<div class="child-folder">
-					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"></span> 연산자(5)</span>
+					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close" id="subFolders"></span>연산자(5)</span>
 				</div>
 				<div class="child-folder">
 					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"></span>연산자(5)</span>
@@ -40,13 +40,13 @@
 					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"></span>연산자(5)</span>
 				</div>
 				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 배열
+					<img class="folder-img" src="/learnwhale/assets/image/folder.png">배열
 				</div>
 				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 클래스
+					<img class="folder-img" src="/learnwhale/assets/image/folder.png">클래스
 				</div>
 				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 리스트
+					<img class="folder-img" src="/learnwhale/assets/image/folder.png">리스트
 				</div>
 			</div>
 			<div class="parents-folder">

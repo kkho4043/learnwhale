@@ -22,6 +22,7 @@
 }
 #top-folder{
 	margin-top: 40px;
+	color: #FFD767;
 }
 #span-right{
 	float: right;
@@ -41,4 +42,15 @@
 }
 #manage {
 	float: right;
+}
+#cateSub-btn{
+	padding: 0px; 
+	min-height: 32px;
+}
+#cate{
+	overflow:auto;
+}
+#subFolders{
+	margin-right: 3px;
+	color: #FFD767;
 }

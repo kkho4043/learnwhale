@@ -49,7 +49,7 @@
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 
 					<div id="content-body-area" class="row">
-						<c:import url="/WEB-INF/views/home/problem/category.jsp"></c:import>
+						<c:import url="/WEB-INF/views/home/include/category.jsp"></c:import>
 
 						<!-- //col-xs-3 -->
 						<div id="main-area" class="col-xs-9">
