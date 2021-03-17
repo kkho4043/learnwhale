@@ -43,10 +43,10 @@ public class HproblemController {
 		return "home/problem/oxViewForm";
 	}
 	
-	@RequestMapping(value ="/subjectiveView", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value ="/main", method = { RequestMethod.GET, RequestMethod.POST })
 	public String subjectiveView() {
 		System.out.println("[ProblemController.list()]");
-		return "home/problem/subjectiveViewForm";
+		return "home/main/index";
 	}
 	
 
