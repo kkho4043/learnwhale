@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+#main-area #main-content-area{
+	padding: 10px 10px 10px 10px;
+}
+
+.searchF {
+	float: left;
+}
+
+.addtest {
+	float: right;
+}
+
+.test_table {
+	width: 100%;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.test_table th {
+	text-align: center;
+}
+
+.paging {
+	margin-top: 10px;
+	margin-left: 40%;
+}

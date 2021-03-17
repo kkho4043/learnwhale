@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+#category {
+    min-width: 250px;
+    background-color: #F2F2F2;
+    height: 687px;
+    width: 8%;
+    max-width: 195px;
+    border-right: 1px #cccccc solid;
+}
+.parents-folder{
+	margin-bottom: 10px;
+	cursor:pointer;
+}
+.child-folder{
+	margin-bottom: 5px;
+	margin-left: 30px;
+	font-size: 12px;
+}
+#child-folderDiv{
+	display: none;
+}
+#top-folder{
+	margin-top: 40px;
+	color: #FFD767;
+}
+#span-right{
+	float: right;
+	margin-right: 20px;
+}
+#category-title{
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 20px;
+}
+#border-line{
+	border-bottom: solid 2px #CFCFCF;
+}
+.folder-img{
+	width: 8px;
+	height: 10px;
+}
+#manage {
+	float: right;
+}
+#cateSub-btn{
+	padding: 0px; 
+	min-height: 32px;
+}
+#cate{
+	overflow:auto;
+}
+#subFolders{
+	margin-right: 3px;
+	color: #FFD767;
+}
