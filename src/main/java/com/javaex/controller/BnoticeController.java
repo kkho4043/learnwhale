@@ -26,6 +26,13 @@ public class BnoticeController {
 		return "ban/notice/modifyForm";
 	}
 	
+	@RequestMapping(value ="/modify", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modify() {
+		System.out.println("[BnoticeController.modify()]");
+		return "ban/notice/list";
+	}
+	
+	
 	@RequestMapping(value ="/writeForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String writeForm() {
 		System.out.println("[BnoticeController.writeForm()]");
