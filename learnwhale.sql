@@ -487,3 +487,53 @@ ALTER TABLE solve
 			join_no
 		)
         on delete set null;
+        
+----------------------------------------
+/* 공지사항 */
+CREATE TABLE notice (
+	notice_no NUMBER NOT NULL, /* 글번호 */
+	join_no NUMBER NOT NULL, /* 가입회원번호 */
+	title VARCHAR2(30 CHAR) NOT NULL, /* 제목 */
+	content VARCHAR2(500 CHAR), /* 내용 */
+	hit NUMBER, /* 조회수 */
+	reg_date DATE /* 등록일 */
+);
+
+COMMENT ON TABLE notice IS '공지사항';
+
+COMMENT ON COLUMN notice.notice_no IS '글번호';
+
+COMMENT ON COLUMN notice.join_no IS '가입회원번호';
+
+COMMENT ON COLUMN notice.title IS '제목';
+
+COMMENT ON COLUMN notice.content IS '내용';
+
+COMMENT ON COLUMN notice.hit IS '조회수';
+
+COMMENT ON COLUMN notice.reg_date IS '등록일';
+
+CREATE UNIQUE INDEX PK_notice
+	ON notice (
+		notice_no ASC
+	);
+
+ALTER TABLE notice
+	ADD
+		CONSTRAINT PK_notice
+		PRIMARY KEY (
+			notice_no
+		);
+
+ALTER TABLE notice
+	ADD
+		CONSTRAINT FK_join_users_TO_notice
+		FOREIGN KEY (
+			join_no
+		)
+		REFERENCES join_users (
+			join_no
+		)
+        on delete cascade;
+
+drop table table8;        
