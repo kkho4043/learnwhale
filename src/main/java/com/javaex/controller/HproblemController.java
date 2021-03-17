@@ -13,22 +13,16 @@ public class HproblemController {
 		return "home/problem/problem-Management";
 	}
 
-	@RequestMapping(value ="/multipleChoice", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value ="/creatingForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String multipleChoice() {
 		System.out.println("[ProblemController.list()]");
-		return "home/problem/multipleChoiceForm";
+		return "home/problem/creatingForm";
 	}
 	
-	@RequestMapping(value ="/mcView", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value ="/creating-ViewForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mcView() {
 		System.out.println("[ProblemController.list()]");
-		return "home/problem/mcViewForm";
-	}
-	
-	@RequestMapping(value ="/oxView", method = { RequestMethod.GET, RequestMethod.POST })
-	public String oxView() {
-		System.out.println("[ProblemController.list()]");
-		return "home/problem/oxViewForm";
+		return "home/problem/creating-ViewForm";
 	}
 
 }
