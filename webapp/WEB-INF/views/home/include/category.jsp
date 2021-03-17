@@ -80,8 +80,7 @@
 			} else {
 				submenu.slideDown();
 				console.log("클릭2");
-			}
-			;
+			};
 		});
 	});
 

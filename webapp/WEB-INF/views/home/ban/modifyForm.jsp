@@ -48,12 +48,13 @@
 
 				<div id="main" class="col-xs-10">
 					<div id="content-title-area" class="row">
-						<div id="content-title" class="col-xs-8">문제관리</div>
+						<div id="content-title" class="col-xs-8">반관리</div>
 						<div id="breadcrumb-area" class="col-xs-4">
 							<ol class="breadcrumb pull-right">
 								<li class="breadcrumb-item">홈</li>
 								<li class="breadcrumb-item">마이클래스</li>
 								<li class="breadcrumb-item">반관리</li>
+								<li class="breadcrumb-item">수정</li>
 							</ol>
 						</div>
 					</div>
