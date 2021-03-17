@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#main-area #main-content-area{
+#main-area #main-content-area {
 	padding: 10px 10px 10px 10px;
 }
 
@@ -25,4 +25,29 @@
 .paging {
 	margin-top: 10px;
 	margin-left: 40%;
+}
+
+.examsovle-informaion h2, .examsovle-informaion h3,
+	.examsovle-informaion>div {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.testoption {
+	margin-left:10px;
+	height: 200px;
+}
+
+.testoption>.row {
+	margin-top: 15px;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,
+	.table>tbody>tr>td, .table>tfoot>tr>td {
+	padding: 4px;
+	text-align: center;
+}
+
+.table input[type=text] {
+	width: 30px;
 }
