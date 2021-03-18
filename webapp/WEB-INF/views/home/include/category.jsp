@@ -221,5 +221,6 @@
 
 		//모달창 호출
 		$("#deleteModal").modal();
+	});	
 </script>
 </html>
