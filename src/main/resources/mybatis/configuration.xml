@@ -4,12 +4,12 @@
 <configuration>
 	<typeAliases>
 		<!-- <typeAlias alias="PostVo" type="com.javaex.vo.PostVo" /> -->
-
+		<typeAlias alias="CategoryVo" type="com.javaex.vo.CategoryVo" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatis/mappers/exam.xml" />
 		<mapper resource="mybatis/mappers/user.xml" />
-
+		<mapper resource="mybatis/mappers/category.xml" />
 	</mappers>
 </configuration>

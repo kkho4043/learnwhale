@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+	<select id="selectCategory" parameterType="int" resultType="CategoryVo">
+		<![CDATA[
+			select  cate_no cateNo,
+					user_no userNo,
+					cate_name cateName,
+					group_no groupNo,
+					order_no orderNo,
+					depth
+			from category
+		]]>
+	</select>
+</mapper>

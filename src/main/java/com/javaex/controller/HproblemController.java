@@ -1,15 +1,30 @@
 package com.javaex.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.javaex.service.ProblemService;
 
 @Controller
 @RequestMapping("/myclass/problem")
 public class HproblemController {
+	
+	@Autowired
+	private ProblemService proService;
+	
+	
+	
+	
 	@RequestMapping(value ="/problem-Management", method = { RequestMethod.GET, RequestMethod.POST })
-	public String problemManagement() {
-		System.out.println("[ProblemController.list()]");
+	public String problemManagement(Model model) {
+		System.out.println("[ProblemController.category()]");
+		proService.getCategory(2);
+		
+		model.addAttribute("cateList", proService.getCategory(2));
+			
 		return "home/problem/problem-Management";
 	}
 
@@ -25,11 +40,36 @@ public class HproblemController {
 		return "home/problem/creating-ViewForm";
 	}
 	
-	@RequestMapping(value ="/category", method = { RequestMethod.GET, RequestMethod.POST })
-	public String category() {
-		System.out.println("[ProblemController.list()]");
-		return "home/include/category";
-	}
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * @RequestMapping(value ="/category", method = { RequestMethod.GET,
+	 * RequestMethod.POST }) public String category(Model model) {
+	 * System.out.println("[ProblemController.category()]");
+	 * proService.getCategory(2);
+	 * 
+	 * model.addAttribute("cateList", proService.getCategory(2));
+	 * 
+	 * return "home/include/category"; }
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value ="/main", method = { RequestMethod.GET, RequestMethod.POST })
 	public String index() {
