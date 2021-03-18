@@ -152,7 +152,7 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modifyModal -->
-
+.....
 	<div class="modal fade" id="deleteModal">
 		<div class="modal-dialog">
 			<div class="modal-content">

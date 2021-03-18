@@ -41,12 +41,6 @@ public class HproblemController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 	/*
 	 * @RequestMapping(value ="/category", method = { RequestMethod.GET,
 	 * RequestMethod.POST }) public String category(Model model) {
@@ -58,19 +52,7 @@ public class HproblemController {
 	 * return "home/include/category"; }
 	 */
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@RequestMapping(value ="/main", method = { RequestMethod.GET, RequestMethod.POST })
 	public String index() {
 		System.out.println("[ProblemController.list()]");
