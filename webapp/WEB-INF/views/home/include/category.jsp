@@ -32,16 +32,18 @@
 
 			<c:forEach items="${cateList}" var="cateVo">
 				<c:choose>
+				
 					<c:when test="${cateVo.depth == 0}">
-						<div class="parents-folder parentsFolder" id="top-folder">
+						<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}">
 
 							<span class="glyphicon glyphicon-folder-close"></span>
 							<a> ${cateVo.cateName}</a>
 						</div>
 					</c:when>
+					
 					<c:otherwise>
 					
-						<div id="child-folderDiv">
+						<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}">
 							<div class="child-folder">
 								<span class="glyphicon glyphicon-menu-right">
 								<span class="glyphicon glyphicon-folder-close"> 
@@ -50,12 +52,14 @@
 						</div>
 					
 					</c:otherwise>
+					
 				</c:choose>
 			</c:forEach>
 
 			<div class="parents-folder parentsFolder" id="top-folder">
 				<span class="glyphicon glyphicon-folder-close"></span><a> 자바프로그래밍</a>
 			</div>
+			
 			<div id="child-folderDiv">
 				<div class="child-folder">
 					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close" id="subFolders"></span>연산자(5)
@@ -79,6 +83,7 @@
 					<img class="folder-img" src="/learnwhale/assets/image/folder.png">리스트
 				</div>
 			</div>
+			
 			<div class="parents-folder">
 				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 오라클
 			</div>
@@ -175,17 +180,23 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		console.log(${cateList});
+		
 		$(".parentsFolder").click(function() {
-			console.log("클릭");
-			var submenu = $(this).nextAll("#child-folderDiv");
+			
+			let parentNo = $(this).data("group");
+			let childNo = $("#child-folderDiv").data("group");
+			
+			console.log(childNo);
+			
+			
+			var submenu = $(this).nextAll("#"+parentNo);
 			console.log(submenu);
 			if (submenu.is(":visible")) {
 				submenu.slideUp();
-				console.log("클릭1");
+				
 			} else {
 				submenu.slideDown();
-				console.log("클릭2");
+				
 			}
 			;
 		});

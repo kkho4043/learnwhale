@@ -20,7 +20,7 @@ public class HproblemController {
 	
 	@RequestMapping(value ="/problem-Management", method = { RequestMethod.GET, RequestMethod.POST })
 	public String problemManagement(Model model) {
-		System.out.println("[ProblemController.category()]");
+		
 		proService.getCategory(2);
 		
 		model.addAttribute("cateList", proService.getCategory(2));
