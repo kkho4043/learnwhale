@@ -202,21 +202,21 @@
 		});
 	});
 	
-	$("#folderMade").on("click", function() {
+	$("#creating-btn").on("click", function() {
 		console.log("");
 
 		//모달창 호출
 		$("#madeModal").modal();
 	});
 
-	$("#folderModify").on("click", function() {
+	$("#modify-btn").on("click", function() {
 		console.log("");
 
 		//모달창 호출
 		$("#modifyModal").modal();
 	});
 
-	$("#folderDelete").on("click", function() {
+	$("#delete-btn").on("click", function() {
 		console.log("");
 
 		//모달창 호출
