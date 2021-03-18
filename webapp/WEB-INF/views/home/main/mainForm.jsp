@@ -14,7 +14,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
 
-<c:import url="/cms/header.jsp"></c:import>
+
 
 <title>Insert title here</title>
 
@@ -22,7 +22,7 @@
 <body>
 	<div id="position-parents">
 		<div>
-			<img id="img-Area" src="/learnwhale/assets/image/KakaoTalk22.jpg">
+			<img id="img-Area" src="/learnwhale/assets/image/main-background.jpg">
 		</div>
 		<div class="container-fluid" id="div-position">
 			<div class="row">
