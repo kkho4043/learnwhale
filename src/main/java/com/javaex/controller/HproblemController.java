@@ -20,9 +20,15 @@ public class HproblemController {
 	}
 	
 	@RequestMapping(value ="/creating-ViewForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mcView() {
+	public String creatingViewForm() {
 		System.out.println("[ProblemController.list()]");
 		return "home/problem/creating-ViewForm";
+	}
+	
+	@RequestMapping(value ="/category", method = { RequestMethod.GET, RequestMethod.POST })
+	public String category() {
+		System.out.println("[ProblemController.list()]");
+		return "home/include/category";
 	}
 
 }

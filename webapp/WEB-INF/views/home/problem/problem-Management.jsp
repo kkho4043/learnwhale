@@ -65,7 +65,7 @@
 											</form>
 										</div>
 										<div class="col-xs-6">
-											<button class="btn btn-primary btn-sm pull-right" type="button">문제등록</button>
+											<a href="${pageContext.request.contextPath}/myclass/problem/creatingForm"><button class="btn btn-primary btn-sm pull-right" type="button">문제등록</button></a>
 										</div>
 									</div>
 
