@@ -8,9 +8,9 @@
 <link
 	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
 	rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/category.css"
-	type="text/css">
+<link
+	href="${pageContext.request.contextPath}/assets/css/home/category.css"
+	rel="stylesheet" type="text/css">
 <link
 	href="${pageContext.request.contextPath}/assets/css/home/homeCommon.css"
 	rel="stylesheet" type="text/css">
@@ -27,16 +27,16 @@
 	<div id="cate-area" class="col-xs-3">
 		<div id="cate">
 			<div id="cate-controller" class="clearfix">
-				<a class="btn btn-primary btn-xs pull-left" data-toggle="collapse"
-					href="#collapseExample" aria-expanded="false"
-					aria-controls="collapseExample" id="manage-btn">관리</a>
+				<button class="btn btn-default btn-xs pull-right" type="button"
+					data-toggle="collapse" data-target="#collapseExample"
+					aria-expanded="false">관리</button>
 
 				<div class="collapse" id="collapseExample">
-					<div class="well" id="cateSub-btn">
-						<a class="btn btn-primary btn-xs pull-left" id="creating-btn">등록</a>
-						<button class="btn btn-primary btn-xs pull-left" id="modify-btn">수정</button>
-						<button class="btn btn-danger btn-xs pull-left" id="delete-btn">삭제</button>
-					</div>
+
+					<button class="btn btn-primary btn-xs pull-left" id="folderMade">등록</button>
+					<button class="btn btn-primary btn-xs pull-left" id="folderModify">수정</button>
+					<button class="btn btn-danger btn-xs pull-left" id="folderDelete">삭제</button>
+
 				</div>
 
 			</div>
@@ -187,21 +187,11 @@
 			} else {
 				submenu.slideDown();
 				console.log("클릭2");
-			};
+			}
+			;
 		});
 	});
 
-	$(document).ready(function() {
-		$("#delete-btn").hide();
-		$("#creating-btn").hide();
-		$("#modify-btn").hide();
-		$("#manage-btn").click(function() {
-			$("#delete-btn").show();
-			$("#creating-btn").show();
-			$("#modify-btn").show();
-		});
-	});
-	
 	$("#creating-btn").on("click", function() {
 		console.log("");
 
@@ -221,6 +211,6 @@
 
 		//모달창 호출
 		$("#deleteModal").modal();
-	});	
+	});
 </script>
 </html>
