@@ -193,7 +193,7 @@
 			console.log(submenu);
 			if (submenu.is(":visible")) {
 				submenu.slideUp();
-				
+				 
 			} else {
 				submenu.slideDown();
 				
