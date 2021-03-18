@@ -26,4 +26,15 @@ public class HbanContorller {
 		return "home/ban/modifyForm";			
 	}
 	
+	@RequestMapping(value="/list3", method= {RequestMethod.GET, RequestMethod.POST})
+	public String list3() {
+		System.out.println("[HbanController.list3()]");
+		return "home/problem/list3";			
+	}
+	
+	@RequestMapping(value="/category", method= {RequestMethod.GET, RequestMethod.POST})
+	public String category() {
+		System.out.println("[HbanController.category()]");
+		return "home/include/category";			
+	}
 }
