@@ -16,8 +16,6 @@ public class HproblemController {
 	private ProblemService proService;
 	
 	
-	
-	
 	@RequestMapping(value ="/problem-Management", method = { RequestMethod.GET, RequestMethod.POST })
 	public String problemManagement(Model model) {
 		
