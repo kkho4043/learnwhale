@@ -57,17 +57,17 @@
 
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 
-					<div id="content-body-area" class="row">
+					
 						<div id="cate-area" class="col-xs-3">
 							<div id="cate">
 								<div id="cate-controller" class="clearfix">
-									<div class="collapse" id="collapseExample">
-										<button class="btn btn-primary btn-xs pull-left"
-											id="folderMade">등록</button>
-										<button class="btn btn-primary btn-xs pull-left"
-											id="folderModify">수정</button>
-										<button class="btn btn-danger btn-xs pull-left"
-											id="folderDelete">삭제</button>
+									<div class="collapse" id="collapseExample">		
+											<button class="btn btn-primary btn-xs pull-left"
+												id="folderMade">등록</button>
+											<button class="btn btn-primary btn-xs pull-left"
+												id="folderModify">수정</button>
+											<button class="btn btn-danger btn-xs pull-left"
+												id="folderDelete">삭제</button>
 									</div>
 									<button class="btn btn-default btn-xs pull-right" type="button"
 										data-toggle="collapse" data-target="#collapseExample"

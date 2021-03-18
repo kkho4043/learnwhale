@@ -16,4 +16,9 @@ public class UserService {
 		return userDao.insert(userVo);
 		
 	}
+	
+	public UserVo login(UserVo userVo) {
+		System.out.println("Service - login");
+		return userDao.selectUser(userVo);
+	}
 }

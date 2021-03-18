@@ -5,6 +5,7 @@
 	<typeAliases>
 		<!-- <typeAlias alias="PostVo" type="com.javaex.vo.PostVo" /> -->
 		<typeAlias alias="CategoryVo" type="com.javaex.vo.CategoryVo" />
+		<typeAlias alias="UserVo" type="com.javaex.vo.UserVo" />
 	</typeAliases>
 
 	<mappers>
