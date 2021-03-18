@@ -186,7 +186,7 @@
 			let parentNo = $(this).data("group");
 			let childNo = $("#child-folderDiv").data("group");
 			
-			console.log(childNo);
+			console.log(childNo); 
 			
 			
 			var submenu = $(this).nextAll("#"+parentNo);
