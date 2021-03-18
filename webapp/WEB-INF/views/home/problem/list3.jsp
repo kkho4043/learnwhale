@@ -62,9 +62,12 @@
 							<div id="cate">
 								<div id="cate-controller" class="clearfix">
 									<div class="collapse" id="collapseExample">
-										<button class="btn btn-primary btn-xs pull-left" id="folderMade">등록</button>
-										<button class="btn btn-primary btn-xs pull-left" id="folderModify">수정</button>
-										<button class="btn btn-danger btn-xs pull-left" id="folderDelete">삭제</button>
+										<button class="btn btn-primary btn-xs pull-left"
+											id="folderMade">등록</button>
+										<button class="btn btn-primary btn-xs pull-left"
+											id="folderModify">수정</button>
+										<button class="btn btn-danger btn-xs pull-left"
+											id="folderDelete">삭제</button>
 									</div>
 									<button class="btn btn-default btn-xs pull-right" type="button"
 										data-toggle="collapse" data-target="#collapseExample"
@@ -177,18 +180,22 @@
 	<!-- footer-Area -->
 	<c:import url="/WEB-INF/views/home/include/footer.jsp"></c:import>
 	<!-- //footer-Area -->
-	
+
 	<div class="modal fade" id="madeModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<h4 class="modal-title">폴더 생성</h4>
 				</div>
 				<div class="modal-body">
-					<p><input type="text" placeholder="폴더 이름을 입력해주세요" style="width: 400px;"></p>
+					<p>
+						<input type="text" placeholder="폴더 이름을 입력해주세요"
+							style="width: 400px;">
+					</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -200,18 +207,22 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.madeModal -->
-	
+
 	<div class="modal fade" id="modifyModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<h4 class="modal-title">폴더 수정</h4>
 				</div>
 				<div class="modal-body">
-					<p><input type="text" placeholder="폴더 이름을 입력해주세요" style="width: 400px;"></p>
+					<p>
+						<input type="text" placeholder="폴더 이름을 입력해주세요"
+							style="width: 400px;">
+					</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -223,18 +234,21 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modifyModal -->
-	
+
 	<div class="modal fade" id="deleteModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<h4 class="modal-title">폴더 삭제</h4>
 				</div>
 				<div class="modal-body">
-					<p><input type="text" placeholder="" style="width: 400px;"></p>
+					<p>
+						<input type="text" placeholder="" style="width: 400px;">
+					</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
