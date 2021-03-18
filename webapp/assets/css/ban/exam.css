@@ -53,14 +53,15 @@
 }
 
 /*  문제 풀기  */
+
+.proimg{
+	height : 300px;
+	background-size: contain;
+}
+
 .protitle div {
 	margin: 0px;
 	padding: 0px;
-}
-
-.testimg {
-	height: 200px;
-	background-color: blue;
 }
 
 .protype {

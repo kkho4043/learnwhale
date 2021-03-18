@@ -78,8 +78,8 @@
 									<div class="col-xs-1">30초 타이머</div>
 								</div>
 								<div class="row">
-									<div class="testimg">
-										<img src="#">
+									<div>
+										<img src="${pageContext.request.contextPath}/assets/image/profile.jpg" class = "proimg">
 
 										<!--  <input type="button" value="첨부파일">  -->
 									</div>
@@ -122,11 +122,11 @@
 								<div class="row">
 									<div class="col-xs-5"></div>
 									<div class="col-xs-2">
-										<input type="button" value="점수 부여 확인">
+										<input type="button" value="점수 부여 확인" class="btn btn-primary">
 									</div>
 									<div class="col-xs-3"></div>
 									<div class="col-xs-2">
-										<input type="button" value="리스트">
+										<input type="button" value="리스트" class="btn btn-primary">
 									</div>
 								</div>
 
@@ -204,7 +204,7 @@
 
 								</div>
 								<div class="row prolistbtn">
-									<input type="button" value="이전"> <input type="button" value="다음">
+									<input type="button" value="이전" class="btn btn-primary"> <input type="button" value="다음" class="btn btn-primary">
 								</div>
 							</div>
 						</div>
