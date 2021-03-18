@@ -37,18 +37,7 @@ public class HproblemController {
 		System.out.println("[ProblemController.list()]");
 		return "home/problem/creating-ViewForm";
 	}
-	
-	
-	/*
-	 * @RequestMapping(value ="/category", method = { RequestMethod.GET,
-	 * RequestMethod.POST }) public String category(Model model) {
-	 * System.out.println("[ProblemController.category()]");
-	 * proService.getCategory(2);
-	 * 
-	 * model.addAttribute("cateList", proService.getCategory(2));
-	 * 
-	 * return "home/include/category"; }
-	 */
+	 
 	
 
 	@RequestMapping(value ="/main", method = { RequestMethod.GET, RequestMethod.POST })
