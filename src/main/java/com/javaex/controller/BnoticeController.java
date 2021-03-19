@@ -1,12 +1,17 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.NoticeService;
 import com.javaex.vo.NoticeVo;
@@ -18,36 +23,80 @@ public class BnoticeController {
 	@Autowired
 	NoticeService noticeService;
 
-	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Model model) {
-		System.out.println("[Controller]:list");
+	//리스트
+	@RequestMapping(value = "/list2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String list2(Model model) {
+		System.out.println("[Controller]:list2");
 		
-		List<NoticeVo> nList = noticeService.list();
+		List<NoticeVo> nList = noticeService.list2();
 		
 		model.addAttribute("nList", nList);
+		
+		return "ban/notice/list2";
+	}
+	
+	//리스트 + 검색 기능
+	@RequestMapping(value = "/list1", method = { RequestMethod.GET, RequestMethod.POST })
+	public String list1(@RequestParam(value="keyword", required= false, defaultValue="") String keyword, Model model) {
+		System.out.println("[Controller]:list1");
+		//System.out.println("keyword=" + keyword);
+		
+		List<NoticeVo> nList = noticeService.list1(keyword);
+		model.addAttribute("nList", nList);
+		
+		return "ban/notice/list1";
+	}
+	
+	//리스트 + 검색 기능 + 페이징
+	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
+	public String list(@RequestParam(value="keyword", required= false, defaultValue="") String keyword, 
+					   @RequestParam(value="crtPage", required= false, defaultValue="1") int crtPage,
+			           Model model) {
+		System.out.println("[Controller]:list");
+		//System.out.println("keyword=" + keyword);
+		//System.out.println("crtPage=" + crtPage);
+		
+		Map<String, Object> pMap = noticeService.list(keyword,crtPage);
+		System.out.println(pMap);
+		
+		model.addAttribute("pMap", pMap);
 		
 		return "ban/notice/list";
 	}
 	
-	@RequestMapping(value= "write", method = { RequestMethod.GET, RequestMethod.POST })
-	public String write() {
+	@RequestMapping(value= "/write", method = { RequestMethod.GET, RequestMethod.POST })
+	public String write(@ModelAttribute NoticeVo noticeVo) { //HttpSession session
 		System.out.println("[Controller]:write");
 		
-		noticeService.write();
+		/*
+		//세션에서 사용자 정보 가져오기
+		NoticeVo authVo = (NoticeVo)session.getAttribute("authUser");
 		
-		return "";
+		//Vo에 no담기
+		int no = authVo.getNo();
+		noticeVo.setNo(no);
+		
+		int count = noticeService.write(noticeVo);
+		*/
+		noticeService.write(noticeVo);
+		
+		return "redirect:/notice/list";
 	}
 	
 	@RequestMapping(value ="/writeForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String writeForm() {
-		System.out.println("[Controller.writeForm()]");
+		System.out.println("[Controller]:writeForm");
 		return "ban/notice/writeForm";
 	}
 
+	//http://localhost:8088/learnwhale/notice/remove?no=1
 	@RequestMapping(value ="/remove", method = {RequestMethod.GET, RequestMethod.POST})
-	public String remove() {
+	public String remove(int no) { //@RequestParam("no") 
+		System.out.println("[controller]:remove");
 		
-		return "";
+		noticeService.remove(no);
+		
+		return "redirect:/notice/list";
 	}
 
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })

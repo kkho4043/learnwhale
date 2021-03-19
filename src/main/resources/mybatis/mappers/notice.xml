@@ -4,7 +4,7 @@
 <mapper namespace="notice">
 
 <!-- list -->
-<select id="list" resultType="com.javaex.vo.NoticeVo">
+<select id="list2" resultType="com.javaex.vo.NoticeVo">
 <![CDATA[
 		select n.notice_no no,
 		       n.join_no,
@@ -19,11 +19,89 @@
 	]]>
 </select>
 
+<!-- list + 검색 -->
+<select id="list1" parameterType="string" resultType="com.javaex.vo.NoticeVo">
+<![CDATA[
+		select n.notice_no no,
+		       n.join_no,
+		       n.title,
+		       n.content,
+		       n.hit,
+		       n.reg_date,
+		       u.name
+		from users u, join_users j, notice n
+		where n.join_no = j.join_no 
+		and j.user_no = u.no
+		]]>
+		<if test="value !=null and value !='' "> 
+	      and title like '%' || #{keyword} || '%'  
+	 	</if>
+		<![CDATA[
+		order by reg_date desc 
+]]>
+</select>
+
+<!-- 리스트 + 검색 기능 + 페이징 -->
+<select id="list" parameterType="map" resultType="com.javaex.vo.NoticeVo">
+<![CDATA[
+		select r.rnum,
+		       r.no,
+		       r.name,
+		       r.title,
+		       r.hit,
+		       r.reg_date
+		       from (select rownum rnum,
+		                     o.no,
+		                     o.name,
+		                     o.title,
+		                     o.hit,
+		                     o.reg_date
+		                     from (select u.no,
+		                                  u.name,
+		                                  n.title,
+		                                  n.content,
+		                                  n.hit,
+		                                  n.reg_date
+		                            from users u, join_users j, notice n
+		                            where n.join_no = j.join_no 
+		                            and j.user_no = u.no               
+	  ]]>
+      <if test="value !=null and value !=''">
+	      and title like '%' || #{keyword} || '%'
+	  </if>
+      <![CDATA[
+		  order by no desc) o ) r
+		  where r.rnum >= #{startRNum}
+		  and r.rnum <= #{endRNum}
+	 ]]>
+</select>
+
+<!-- 전체 글갯수 가져오기 -->
+<select id="selectTotalCnt" parameterType ="string" resultType="int">
+		<![CDATA[
+				select count(*)
+				from users u, join_users j, notice n
+				where n.join_no = j.join_no 
+				and j.user_no = u.no
+		 ]]>
+		 <if test="value !=null and value !=''">
+		        and title like '%' || #{keyword} || '%'
+		 </if>
+</select>
+
 <!-- 등록 -->
 <insert id="insert" parameterType="com.javaex.vo.NoticeVo">
 <![CDATA[
 		insert into notice values(seq_notice_no.nextval, #{join_no}, #{title}, #{content}, default, sysdate)
 ]]>
 </insert>
+
+<!-- 삭제 -->
+<delete id="delete" parameterType="int">
+<![CDATA[
+		delete notice
+  	    where notice_no = #{no}
+]]>
+</delete>
 
 </mapper>

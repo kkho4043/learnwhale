@@ -15,6 +15,13 @@ public class NoticeVo {
 	//
 	public NoticeVo() {	}
 	
+
+	public NoticeVo(String title, String content, int no) {
+		this.no = no;
+		this.title = title;
+		this.content = content;
+	}
+
 	public NoticeVo(int no, int join_no, String title, String content, int hit, String reg_date, String name) {
 		this.no = no;
 		this.join_no = join_no;
