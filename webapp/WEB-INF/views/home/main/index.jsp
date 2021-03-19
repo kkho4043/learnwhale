@@ -222,7 +222,7 @@
 												</form>
 												
 											</div>
-											//col-sm-12
+										
 										</div>
 										<!-- //row -->
 
@@ -271,7 +271,7 @@
 </body>
 </html>
 
-<
+
 <script type="text/javascript">
 	
 </script>

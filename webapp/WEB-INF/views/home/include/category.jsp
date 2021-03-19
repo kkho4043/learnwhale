@@ -21,9 +21,9 @@
 				<button class="btn btn-default btn-xs pull-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
 					id="management-btn" aria-controls="collapseExample">관리</button>
 				<div class="collapse" id="collapseExample">
-					<form action="">
-						<button class="btn btn-primary btn-xs pull-left" id="creating-btn">등록</button>
-					</form>
+					
+					<button class="btn btn-primary btn-xs pull-left" id="creating-btn">등록</button>
+			
 					<button class="btn btn-primary btn-xs pull-left" id="modify-btn">수정</button>
 					<button class="btn btn-danger btn-xs pull-left" id="delete-btn">삭제</button>
 				</div>
@@ -58,32 +58,35 @@
 		</div>
 
 	</div>
-
-	<div class="modal fade" id="madeModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">폴더 생성</h4>
+	
+		<form method="get" action="${pageContext.request.contextPath}/myclass/problem/addMainFolder">
+			<div class="modal fade" id="madeModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title">폴더 생성</h4>
+						</div>
+						<div class="modal-body">
+								<label for="modalName">폴더이름</label> <input id="modalName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
+								<!-- no 히든으로 처리 -->
+								<input type="text" name="" value="">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+							<button type="submit" class="btn btn-primary">저장하기</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
 				</div>
-				<div class="modal-body">
-					<p>
-						<input type="text" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary">저장하기</button>
-				</div>
+				<!-- /.modal-dialog -->
 			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.madeModal -->
-
+			<!-- /.madeModal -->
+		</form>
+		<!-- /.addMainFolder-->
+	
 	<div class="modal fade" id="modifyModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -119,9 +122,7 @@
 					<h4 class="modal-title">폴더 삭제</h4>
 				</div>
 				<div class="modal-body">
-					<p>
-						<input type="text" placeholder="" style="width: 400px;">
-					</p>
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -155,15 +156,20 @@
 
 	
 	$(document).ready(function() {
-		$(".management-btn").click(function() {
+		$("#management-btn").click(function() {
 			console.log("관리버튼 클릭");
-	
+			if($(".collapse").is(":visible")){
+				$(".collapse").slideUp();
+			} else {
+				$(".collapse").slideDown();
+			}
+			
 
 		});
 	});
 	
 	$("#creating-btn").on("click", function() {
-		console.log("");
+		console.log("등록 버튼 클릭");
 
 		//모달창 호출
 		$("#madeModal").modal();
@@ -171,7 +177,7 @@
 
 	$("#modify-btn").on("click", function() {
 		console.log("");
-
+		
 		//모달창 호출
 		$("#modifyModal").modal();
 	});

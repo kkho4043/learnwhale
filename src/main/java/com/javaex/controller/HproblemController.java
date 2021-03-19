@@ -50,7 +50,7 @@ public class HproblemController {
 	@RequestMapping(value = "/addMainFolder", method = {RequestMethod.GET, RequestMethod.POST})
 	public String addMainFolder() {
 		System.out.println("[ProblemController.addMainFolder()]");
-		return "home/problem/problem-Management";
+		return "redirect:/myclass/problem/problem-Management";
 	}
 
 }
