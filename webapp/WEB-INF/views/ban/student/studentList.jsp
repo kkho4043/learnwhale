@@ -3,23 +3,34 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>학생리스트</title>
-
-<!-- css -->
-<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/ban/banCommon.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/ban/student.css" rel="stylesheet" type="text/css">
-
-<!-- js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
-
-
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>학생리스트</title>
+	
+		<!-- css -->
+		<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<link href="${pageContext.request.contextPath}/assets/css/ban/banCommon.css" rel="stylesheet" type="text/css">
+		<link href="${pageContext.request.contextPath}/assets/css/ban/student.css" rel="stylesheet" type="text/css">
+	
+		<!-- js -->
+		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
+		
+		<c:if test="${success eq 'fail'}">
+			
+			<script type="text/javascript">
+				
+				alert("가입 상태 업데이트에 실패했습니다.\n다시 시도해주세요");
+			</script>
+			
+		</c:if>
+		
+		
+		
+	
+	</head>
 <body>
 
 	<!-- head-Area -->
@@ -72,14 +83,21 @@
 			
 			
 					<!-- title -->
+					<form action="${pageContext.request.contextPath }/abc/student/approve" method="get">
+					
 					<div id="title-form">
 
 						<div class="row">
 						   
-						  <div class="btn-group" role="group" aria-label="...">
-							  <button type="button" class="btn btn-success">승인</button>
-							  <button type="button" class="btn btn-default">대기</button>
-							  <button type="button" class="btn btn-danger">탈퇴</button>
+						  <div class="btn-group" role="group" aria-label="submit">
+							  <button type="submit" class="btn btn-success">승인</button>
+							  
+							  <button type="submit" class="btn btn-default"
+							  formaction="${pageContext.request.contextPath }/abc/student/wait">대기</button>
+							  
+							  <button type="submit" class="btn btn-danger"
+							  formaction="${pageContext.request.contextPath }/abc/student/delete">탈퇴</button>
+							  
 						  </div>
 						
 						</div>
@@ -104,26 +122,29 @@
 								</tr>
 							</thead>
 							
-							<%-- <c:forEach items="joinList" var="userVo">
+							<c:forEach items="${joinList}" var="userVo" varStatus="status">
 							
 								<tbody>
 								
 									<tr>
-										<td>${userVo.no }</td>
-										<td>${userVo.name }</td>
-										<td>${userVo.email }</td>
-										<td>${userVo.phoneNum }</td>
-										<td>${userVo.no }</td>
-										<td><input type="checkbox"></td>
+										<td>${status.count }</td>
+										<td>${userVo.NAME }</td>
+										<td>${userVo.EMAIL }</td>
+										<td>${userVo.PHONENUM }</td>
+										<td>${userVo.APPROVAL }</td>
+										<td><input type="checkbox" name="userNo" value="${userVo.NO }"></td>
 									</tr>
 														
 								</tbody>
 								
-							</c:forEach> --%>
+							</c:forEach>
+							
 						</table>
-				
+						
 					</div>
 					<!-- board -->
+					
+					</form>
 					
 					<!-- page -->
 					<nav id="page">

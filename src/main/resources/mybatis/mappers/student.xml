@@ -3,27 +3,66 @@
 
 <mapper namespace="student">
 	
-	<select id="selectList" parameterType="int" resultType="UserVo">
+	<select id="selectList" parameterType="int" resultType="map">
 	
 		<![CDATA[
 		
-		
-			
 				select          no,
 				                name,
 				                email,
-				                phone_num phoneNum
-				from users u,   (select      user_no
-				                from        join_users
-				                where class_no = #{classNo}) join
-				where u.no = join.user_no		
-			
+				                phone_num phoneNum,
+				                join.approval approval
+				from users u,   (select      user_no,
+											 approval
+				                 from        join_users
+				                 where class_no = #{classNo}) join
+				where u.no = join.user_no				
 		]]>
 		
 		
 	</select>
 	
+	
+	<update id="updateApprove" parameterType="int">
+		
+		<![CDATA[
+			update		join_users
+			set			approval = '승인'
+		]]>	
+			where		user_no in
+			<foreach collection="array" item="no" separator="," open="(" close=")">
+				#{no}
+			</foreach>		
+			
+	</update>
 			 
+	<update id="updateWait" parameterType="int">
+		
+		<![CDATA[
+			update		join_users
+			set			approval = '대기'
+		]]>	
+			where		user_no in
+			<foreach collection="array" item="no" separator="," open="(" close=")">
+				#{no}
+			</foreach>		
+			
+	</update>
+	
+	
+	
+	<update id="updateDelete" parameterType="int">
+		
+		<![CDATA[
+			update		join_users
+			set			approval = '탈퇴'
+		]]>	
+			where		user_no in
+			<foreach collection="array" item="no" separator="," open="(" close=")">
+				#{no}
+			</foreach>		
+			
+	</update>
 	
 	
 	
