@@ -16,11 +16,5 @@ public class BreportController {
 		return "ban/report/reportList";
 	}
 	
-	@RequestMapping(value = "studentList", method = { RequestMethod.GET, RequestMethod.POST })
-	public String studentList() {
-		
-		System.out.println("studentList");
-		
-		return "ban/student/studentList";
-	}
+
 }

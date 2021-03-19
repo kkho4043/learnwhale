@@ -93,122 +93,33 @@
 					
 						<table id="studentList" class="table table-bordered table-hover">
 							
-							<thead>
+							<thead class="text-center">
 								<tr>
 									<td>번호</td>
 									<td>이름</td>
 									<td>이메일</td>
 									<td>핸드폰 번호</td>
-									<td>생년월일</td>
-									<td>성별</td>
 									<td>상태</td>
 									<td>선택</td>
 								</tr>
 							</thead>
 							
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>정우성</td>
-									<td>asdf@naver.com</td>
-									<td>010-1111-1111</td>
-									<td>1989.11.11</td>
-									<td>남</td>
-									<td>대기</td>
-									<td><input type="checkbox"></td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>정우성</td>
-									<td>asdf@naver.com</td>
-									<td>010-1111-1111</td>
-									<td>1989.11.11</td>
-									<td>남</td>
-									<td>대기</td>
-									<td><input type="checkbox"></td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>정우성</td>
-									<td>asdf@naver.com</td>
-									<td>010-1111-1111</td>
-									<td>1989.11.11</td>
-									<td>남</td>
-									<td>대기</td>
-									<td><input type="checkbox"></td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>정우성</td>
-									<td>asdf@naver.com</td>
-									<td>010-1111-1111</td>
-									<td>1989.11.11</td>
-									<td>남</td>
-									<td>대기</td>
-									<td><input type="checkbox"></td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>정우성</td>
-									<td>asdf@naver.com</td>
-									<td>010-1111-1111</td>
-									<td>1989.11.11</td>
-									<td>남</td>
-									<td>대기</td>
-									<td><input type="checkbox"></td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>정우성</td>
-									<td>asdf@naver.com</td>
-									<td>010-1111-1111</td>
-									<td>1989.11.11</td>
-									<td>남</td>
-									<td>대기</td>
-									<td><input type="checkbox"></td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td>정우성</td>
-									<td>asdf@naver.com</td>
-									<td>010-1111-1111</td>
-									<td>1989.11.11</td>
-									<td>남</td>
-									<td>대기</td>
-									<td><input type="checkbox"></td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td>정우성</td>
-									<td>asdf@naver.com</td>
-									<td>010-1111-1111</td>
-									<td>1989.11.11</td>
-									<td>남</td>
-									<td>대기</td>
-									<td><input type="checkbox"></td>
-								</tr>
-								<tr>
-									<td>9</td>
-									<td>정우성</td>
-									<td>asdf@naver.com</td>
-									<td>010-1111-1111</td>
-									<td>1989.11.11</td>
-									<td>남</td>
-									<td>대기</td>
-									<td><input type="checkbox"></td>
-								</tr>
-								<tr>
-									<td>10</td>
-									<td>정우성</td>
-									<td>asdf@naver.com</td>
-									<td>010-1111-1111</td>
-									<td>1989.11.11</td>
-									<td>남</td>
-									<td>대기</td>
-									<td><input type="checkbox"></td>
-								</tr>
-							</tbody>
+							<c:forEach begin="1" end="10">
 							
+								<tbody>
+								
+									<tr>
+										<td>1</td>
+										<td>정우성</td>
+										<td>asdf@naver.com</td>
+										<td>010-1111-1111</td>
+										<td>대기</td>
+										<td><input type="checkbox"></td>
+									</tr>
+														
+								</tbody>
+								
+							</c:forEach>
 						</table>
 				
 					</div>
