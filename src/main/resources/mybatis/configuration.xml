@@ -14,5 +14,7 @@
 		<mapper resource="mybatis/mappers/category.xml" />
 		<mapper resource="mybatis/mappers/notice.xml" />
 		<mapper resource="mybatis/mappers/student.xml" />
+		<mapper resource="mybatis/mappers/report.xml" />
 	</mappers>
+	
 </configuration>

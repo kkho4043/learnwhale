@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="report">
+	
+	<select id="selStudentList" parameterType="int" resultType="map">
+	
+		<![CDATA[
+			
+			select      u.name
+			
+			from users u, (select      class_no,
+	                            	   user_no
+	               		   from        join_users
+	               		   where       class_no = #{classNo} and approval = '승인'
+	                       and type= '학생') join
+	                       
+			where u.no = join.user_no
+		
+		]]>
+		
+	</select>
+	
+	
+</mapper>

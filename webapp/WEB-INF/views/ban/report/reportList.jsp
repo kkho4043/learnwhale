@@ -3,30 +3,31 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Insert title here</title>
-
-<!-- css -->
-<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/ban/banCommon.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/ban/report.css" rel="stylesheet" type="text/css">
-
-
-<!-- js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
-
-</head>
+	<head>
+	
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Insert title here</title>
+		
+		<!-- css -->
+		<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+		<link href="${pageContext.request.contextPath}/assets/css/ban/banCommon.css" rel="stylesheet" type="text/css">
+		<link href="${pageContext.request.contextPath}/assets/css/ban/report.css" rel="stylesheet" type="text/css">
+		
+		
+		<!-- js -->
+		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
+	
+	</head>
+	
 <body>
 
 	<!-- head-Area -->
 	<c:import url="/WEB-INF/views/ban/include/header.jsp"></c:import>
 	<!-- //head-Area -->
-
-
+	
 	<!-- content, container 영역-->
 	<div class="container">
 		<div class="row">
@@ -65,8 +66,8 @@
 					
 						<div id="student-list" class="col-xs-2">
 							<ol>
-								<c:forEach var="i" begin="1" end="20">
-									<li><a href= "">유재석</a></li>
+								<c:forEach items="${joinList }" var="userVo">
+									<li><a href= "">${userVo.NAME }</a></li>
 								</c:forEach>
 							</ol>
 						</div>
@@ -133,7 +134,8 @@
 													<col style="width: 10%;">
 													<col>
 													<col style="width: 10%;">
-													<col style="width: 15%;">
+													<col style="width: 7%;">
+													<col style="width: 10%;">
 													<col style="width: 15%;">
 												</colgroup>
 												<thead class="">
@@ -141,6 +143,7 @@
 														<th>번호</th>
 														<th>문제명</th>
 														<th>형식</th>
+														<th>점수</th>
 														<th>작성일</th>
 														<th>관리</th>
 													</tr>
@@ -151,6 +154,7 @@
 															<td>105</td>
 															<td class="text-left"><a href="">별표찍기 마름모</a></td>
 															<td>주관식</td>
+															<td>90</td>
 															<td>2021-03-03</td>
 															<td>
 																<button class="btn btn-default btn-xs" >삭제</button>
