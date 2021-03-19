@@ -11,9 +11,9 @@ public class StudentService {
 	@Autowired
 	private StudentDao stDao;
 	
-	public void getList() {
+	public void getList(int classNo) {
 		
-		stDao.selectList();
+		stDao.selectList(classNo);
 	}
 	
 	
