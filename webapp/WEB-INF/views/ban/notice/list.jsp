@@ -110,7 +110,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="${requestScope.nList}" var="nvo">
+													<c:forEach items="${requestScope.pMap.nList}" var="nvo">
 														<tr>
 															<td>${nvo.no}</td>
 															<td class="text-left"><a href="${pageContext.request.contextPath}/notice/read?no=${nvo.no}">${nvo.title}</a></td>
