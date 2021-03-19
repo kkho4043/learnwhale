@@ -11,10 +11,11 @@ public class StudentService {
 	@Autowired
 	private StudentDao stDao;
 	
-	public void getList(int classNo) {
-		
-		stDao.selectList(classNo);
-	}
+	
+	 public void getList(int classNo) {
+	  
+	 stDao.selectList(classNo); }
+	 
 	
 	
 	

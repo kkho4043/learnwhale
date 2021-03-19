@@ -4,8 +4,10 @@
 <mapper namespace="student">
 	
 	<select id="selectList" parameterType="int" resultType="UserVo">
-		
+	
 		<![CDATA[
+		
+		
 			
 				select          no,
 				                name,
@@ -18,6 +20,11 @@
 			
 		]]>
 		
+		
 	</select>
+	
+			 
+	
+	
 	
 </mapper>

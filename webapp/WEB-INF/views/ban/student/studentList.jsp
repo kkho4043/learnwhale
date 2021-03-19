@@ -104,22 +104,22 @@
 								</tr>
 							</thead>
 							
-							<c:forEach begin="1" end="10">
+							<%-- <c:forEach items="joinList" var="userVo">
 							
 								<tbody>
 								
 									<tr>
-										<td>1</td>
-										<td>정우성</td>
-										<td>asdf@naver.com</td>
-										<td>010-1111-1111</td>
-										<td>대기</td>
+										<td>${userVo.no }</td>
+										<td>${userVo.name }</td>
+										<td>${userVo.email }</td>
+										<td>${userVo.phoneNum }</td>
+										<td>${userVo.no }</td>
 										<td><input type="checkbox"></td>
 									</tr>
 														
 								</tbody>
 								
-							</c:forEach>
+							</c:forEach> --%>
 						</table>
 				
 					</div>

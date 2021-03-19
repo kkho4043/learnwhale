@@ -17,7 +17,7 @@ public class BstudentController {
 	@RequestMapping(value = "list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String studentList() {
 		
-		stService.getList(1);
+		stService.getList(1); 
 		
 		return "ban/student/studentList";
 	}

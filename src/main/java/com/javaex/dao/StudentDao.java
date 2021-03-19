@@ -10,9 +10,9 @@ public class StudentDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public void selectList(int classNo) {
-		
-		sqlSession.selectList("student.selectList", classNo);
-	}
+	  public void selectList(int classNo) {
+	  
+	  System.out.println(sqlSession.selectList("student.selectList", classNo)); }
+	 
 	
 }

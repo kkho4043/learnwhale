@@ -13,6 +13,6 @@
 		<mapper resource="mybatis/mappers/user.xml" />
 		<mapper resource="mybatis/mappers/category.xml" />
 		<mapper resource="mybatis/mappers/notice.xml" />
-		<mapper resource="mybatis/mappers/studnet.xml" />
+		<mapper resource="mybatis/mappers/student.xml" />
 	</mappers>
 </configuration>
