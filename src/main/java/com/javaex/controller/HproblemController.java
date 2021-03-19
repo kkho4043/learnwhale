@@ -3,10 +3,12 @@ package com.javaex.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.service.ProblemService;
+import com.javaex.vo.CategoryVo;
 
 @Controller
 @RequestMapping("/myclass/problem")
@@ -48,8 +50,16 @@ public class HproblemController {
 	
 	//메인폴더생성
 	@RequestMapping(value = "/addMainFolder", method = {RequestMethod.GET, RequestMethod.POST})
-	public String addMainFolder() {
+	public String addMainFolder(@ModelAttribute CategoryVo cateVo) {
 		System.out.println("[ProblemController.addMainFolder()]");
+		proService.addMainFolder(cateVo);
+		return "redirect:/myclass/problem/problem-Management";
+	}
+	
+	//하위폴더생성
+	@RequestMapping(value = "/addSubFolder", method = {RequestMethod.GET, RequestMethod.POST})
+	public String addSubFolder(@ModelAttribute CategoryVo cateVo) {
+		System.out.println("[ProblemController.addSubFolder()]");
 		return "redirect:/myclass/problem/problem-Management";
 	}
 

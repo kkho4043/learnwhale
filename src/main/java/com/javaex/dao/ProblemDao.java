@@ -25,4 +25,8 @@ public class ProblemDao {
 			return sqlSession.insert("category.addMainFolder", cateVo);
 		}
 		
+		public int addSubFolder(CategoryVo cateVo) {
+			System.out.println("CateDao- addSubFolder()");
+			return sqlSession.insert("category.addSubFolder", cateVo);
+		}
 }

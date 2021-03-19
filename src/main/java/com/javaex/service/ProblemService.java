@@ -25,6 +25,12 @@ public class ProblemService {
 			System.out.println("CateService- getcateVo");
 			return proDao.addMainFolder(cateVo);
 		}
-	
-	
+		
+		public int addSubFolder(CategoryVo cateVo) {
+			System.out.println("CateService- addSubFolder()");
+			return proDao.addSubFolder(cateVo);
+		}
 }
+	
+	
+

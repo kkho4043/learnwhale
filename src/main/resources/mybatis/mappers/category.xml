@@ -14,10 +14,19 @@
 		]]>
 	</select>
 	
+	<!--상위폴더생성  -->
 	<insert id="addMainFolder" parameterType="CategoryVo">
 		<![CDATA[
 			INSERT INTO category
-			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, #{groupNo}+1, seq_order_no.nextval, default);
+			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, seq_cate_no.CURRVAL, 1, 0)
+		]]>
+	</insert>
+	
+	<!-- 하위폴더 생성 -->
+	<insert id="addSubFolder" parameterType="CategoryVo">
+		<![CDATA[
+			INSERT INTO category
+			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, , seq_order_no.nextval, 1)
 		]]>
 	</insert> 
 	

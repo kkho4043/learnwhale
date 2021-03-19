@@ -72,7 +72,7 @@
 						<div class="modal-body">
 								<label for="modalName">폴더이름</label> <input id="modalName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 								<!-- no 히든으로 처리 -->
-								<input type="text" name="" value="">
+								<input type="text" name="userNo" value="1">
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -86,7 +86,35 @@
 			<!-- /.madeModal -->
 		</form>
 		<!-- /.addMainFolder-->
-	
+		
+		<form method="get" action="${pageContext.request.contextPath}/myclass/problem/addSubFolder">
+			<div class="modal fade" id="madeModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title">폴더 생성</h4>
+						</div>
+						<div class="modal-body">
+								<label for="modalName">폴더이름</label> <input id="modalName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
+								<!-- no 히든으로 처리 -->
+								<input type="text" name="userNo" value="1">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+							<button type="submit" class="btn btn-primary">저장하기</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.madeModal -->
+		</form>
+		<!-- /.addSubFolder-->
+		
 	<div class="modal fade" id="modifyModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
