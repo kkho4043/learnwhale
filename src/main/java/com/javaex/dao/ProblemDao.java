@@ -19,6 +19,10 @@ public class ProblemDao {
 			
 			return sqlSession.selectList("category.selectCategory", userNo);
 		}
-	
+		
+		public int addMainFolder(CategoryVo cateVo) {
+			System.out.println("CateDao- getcateVo");
+			return sqlSession.insert("category.addMainFolder", cateVo);
+		}
 		
 }

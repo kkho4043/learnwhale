@@ -45,5 +45,12 @@ public class HproblemController {
 		System.out.println("[ProblemController.list()]");
 		return "home/main/mainForm";
 	}
+	
+	//메인폴더생성
+	@RequestMapping(value = "/addMainFolder", method = {RequestMethod.GET, RequestMethod.POST})
+	public String addMainFolder() {
+		System.out.println("[ProblemController.addMainFolder()]");
+		return "home/problem/problem-Management";
+	}
 
 }

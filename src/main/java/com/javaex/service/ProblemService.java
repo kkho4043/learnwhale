@@ -20,6 +20,11 @@ public class ProblemService {
 			return proDao.selectCategory(userNo);
 			
 		}
+		
+		public int addMainFolder(CategoryVo cateVo) {
+			System.out.println("CateService- getcateVo");
+			return proDao.addMainFolder(cateVo);
+		}
 	
 	
 }

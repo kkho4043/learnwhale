@@ -18,45 +18,43 @@
 	<div id="cate-area" class="col-xs-3">
 		<div id="cate">
 			<div id="cate-controller" class="clearfix">
-				<button class="btn btn-default btn-xs pull-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false">관리</button>
-
+				<button class="btn btn-default btn-xs pull-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+					id="management-btn" aria-controls="collapseExample">관리</button>
 				<div class="collapse" id="collapseExample">
-
-					<a href="${pageContext.request.contextPath}/myclass/problem/category"><button class="btn btn-primary btn-xs pull-left" id="folderMade">등록</button></a>
-					<button class="btn btn-primary btn-xs pull-left" id="folderModify">수정</button>
-					<button class="btn btn-danger btn-xs pull-left" id="folderDelete">삭제</button>
-
+					<form action="">
+						<button class="btn btn-primary btn-xs pull-left" id="creating-btn">등록</button>
+					</form>
+					<button class="btn btn-primary btn-xs pull-left" id="modify-btn">수정</button>
+					<button class="btn btn-danger btn-xs pull-left" id="delete-btn">삭제</button>
 				</div>
 
+				
 			</div>
 
 			<c:forEach items="${cateList}" var="cateVo">
 				<c:choose>
-				
+
 					<c:when test="${cateVo.depth == 0}">
 						<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}">
 
-							<span class="glyphicon glyphicon-folder-close"></span>
-							<a> ${cateVo.cateName}</a>
+							<span class="glyphicon glyphicon-folder-close"></span> <a> ${cateVo.cateName}</a>
 						</div>
 					</c:when>
-					
+
 					<c:otherwise>
-					
+
 						<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}" class="child-group">
 							<div class="child-folder">
-								<span class="glyphicon glyphicon-menu-right">
-								<span class="glyphicon glyphicon-folder-close"> 
-								</span>${cateVo.cateName}</span>
+								<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"> </span>${cateVo.cateName}</span>
 							</div>
 						</div>
-					
+
 					</c:otherwise>
-					
+
 				</c:choose>
 			</c:forEach>
 
-			
+
 		</div>
 
 	</div>
@@ -139,22 +137,31 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(".parentsFolder").click(function() {
-			
+
 			console.log("click1번");
 			let parentNo = $(this).data("group");
-		
-			var submenu = $(this).nextAll("#"+parentNo);
+
+			var submenu = $(this).nextAll("#" + parentNo);
 			console.log(submenu);
 			if (submenu.is(":visible")) {
 				submenu.slideUp();
 			} else {
 				submenu.slideDown();
-				
+
 			}
 			;
 		});
 	});
 
+	
+	$(document).ready(function() {
+		$(".management-btn").click(function() {
+			console.log("관리버튼 클릭");
+	
+
+		});
+	});
+	
 	$("#creating-btn").on("click", function() {
 		console.log("");
 

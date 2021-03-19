@@ -13,4 +13,12 @@
 			from category
 		]]>
 	</select>
+	
+	<insert id="addMainFolder" parameterType="CategoryVo">
+		<![CDATA[
+			INSERT INTO category
+			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, #{groupNo}+1, seq_order_no.nextval, default);
+		]]>
+	</insert> 
+	
 </mapper>

@@ -60,6 +60,8 @@
 					
 						<div id="cate-area" class="col-xs-3">
 							<div id="cate">
+								
+								
 								<div id="cate-controller" class="clearfix">
 									<div class="collapse" id="collapseExample">		
 											<button class="btn btn-primary btn-xs pull-left"
@@ -73,6 +75,8 @@
 										data-toggle="collapse" data-target="#collapseExample"
 										aria-expanded="false">관리</button>
 								</div>
+								
+								
 								<div id="cate-list">리스트 만드세요</div>
 							</div>
 
