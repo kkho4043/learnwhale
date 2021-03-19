@@ -43,7 +43,7 @@
 					
 					<c:otherwise>
 					
-						<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}">
+						<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}" class="child-group">
 							<div class="child-folder">
 								<span class="glyphicon glyphicon-menu-right">
 								<span class="glyphicon glyphicon-folder-close"> 
@@ -56,49 +56,7 @@
 				</c:choose>
 			</c:forEach>
 
-			<div class="parents-folder parentsFolder" id="top-folder">
-				<span class="glyphicon glyphicon-folder-close"></span><a> 자바프로그래밍</a>
-			</div>
 			
-			<div id="child-folderDiv">
-				<div class="child-folder">
-					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close" id="subFolders"></span>연산자(5)
-					</span>
-				</div>
-				<div class="child-folder">
-					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"></span>연산자(5)
-					</span>
-				</div>
-				<div class="child-folder">
-					<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"></span>연산자(5)
-					</span>
-				</div>
-				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png">배열
-				</div>
-				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png">클래스
-				</div>
-				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png">리스트
-				</div>
-			</div>
-			
-			<div class="parents-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 오라클
-			</div>
-			<div class="parents-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> jsp/servlet
-			</div>
-			<div class="parents-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> spring
-			</div>
-			<div class="parents-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 리눅스
-			</div>
-			<div class="parents-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 프로젝트
-			</div>
 		</div>
 
 	</div>
@@ -180,20 +138,15 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		
 		$(".parentsFolder").click(function() {
 			
+			console.log("click1번");
 			let parentNo = $(this).data("group");
-			let childNo = $("#child-folderDiv").data("group");
-			
-			console.log(childNo); 
-			
-			
+		
 			var submenu = $(this).nextAll("#"+parentNo);
 			console.log(submenu);
 			if (submenu.is(":visible")) {
 				submenu.slideUp();
-				
 			} else {
 				submenu.slideDown();
 				
