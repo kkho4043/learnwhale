@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -93,23 +94,42 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="i" begin="0" end="10">
+									<c:forEach items="${elist}" var="vo" varStatus="status">
+										<jsp:useBean id="now" class="java.util.Date" />
+										<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="nowDate" />
+
+
 										<tr>
-											<td>1</td>
-											<td><a href="">자바 연산자 테스트</a></td>
-											<td>5</td>
-											<td>2020-01-01</td>
-											<td>2020-01-02</td>
-											<td>준비중</td>
-											<td>0/20</td>
-											<td>쪽지</td>
+											<td>${vo.examNo}</td>
+											<td><a href="">${vo.examTitle}</a></td>
+											<td>${vo.problemAmount}</td>
+											<td>${vo.startDate}</td>
+											<td>${vo.endDate}</td>
+											<td><c:choose>
+													<c:when test="${nowDate > vo.startDate && nowDate > vo.endDate}">
+														완료
+													</c:when>
+
+													<c:when test="${nowDate > vo.startDate && nowDate < vo.endDate}">
+														진행중
+													</c:when>
+
+													<c:otherwise>
+														준비중
+													</c:otherwise>
+
+												</c:choose></td>
+											<td>${vo.numSubmit}/${vo.attendNum}</td>
+											<td>${vo.examType}</td>
 											<td><button class="btn btn-default btn-xs">수정</button></td>
 										</tr>
 									</c:forEach>
+
 								</tbody>
 
 							</table>
 						</div>
+						
 						<div class="row">
 							<div class="col-xs-12 text-center">
 								<nav>

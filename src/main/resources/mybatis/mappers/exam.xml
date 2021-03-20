@@ -2,17 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="exam">
-	<insert id="examinsert">
+	<select id="examList" resultType="ExamVo" parameterType="int">
 	<![CDATA[
-			insert into users 
-			VALUES( 
-			2,
-			'아',
-			'자',
-			'차',
-			'카',
-			'타')
+			SELECT
+			    e.class_no classNo,
+			    e.exam_no examNo,
+			    e.exam_title examTitle,
+			    cn.count problemAmount,
+			    e.start_date startDate,
+			    e.end_date endDate,
+			    can.count numSubmit,
+			    at.count attendNum,
+			    e.exam_type examType
+			FROM exam e,(select
+			                exam_no,
+			                count(*) count
+			             from question
+			             group by exam_no)cn,(select  
+			                                    cn.exam_no,
+			                                    count(cn.join_no) count
+			                                 from (select 
+			                                              j.join_no,
+			                                              q.exam_no,
+			                                              count(q.question_no) count
+			                                        from join_users j, solve s ,question q
+			                                        where j.join_no = s.join_no
+			                                        and s.question_no = q.question_no
+			                                        and (s.status = '제출' or s.status = '완료')
+			                                        group by j.join_no , q.exam_no
+			                                        order by j.join_no , q.exam_no)cn,(select
+			                                                                                  exam_no,
+			                                                                                  count(*) count
+			                                                                           from question
+			                                                                           group by exam_no) ca
+			                                 where cn.count = ca.count
+			                                 group by cn.exam_no)can ,(select 
+			                                                               c.class_no,
+			                                                               count(join_no) count
+			                                                            from class c, join_users j
+			                                                            where c.class_no = j.class_no
+			                                                            group by c.class_no)at
+			where e.exam_no = can.exam_no
+			and e.exam_no = cn.exam_no
+			and at.class_no = e.class_no
+			and e.class_no = #{classno}
+			order by e.exam_regdate
 		]]>
 
-	</insert>
+	</select>
 </mapper>
