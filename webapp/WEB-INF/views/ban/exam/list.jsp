@@ -94,7 +94,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${elist}" var="vo" varStatus="status">
+									<c:forEach items="${eMap.elist}" var="vo" varStatus="status">
 										<jsp:useBean id="now" class="java.util.Date" />
 										<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="nowDate" />
 
@@ -129,20 +129,26 @@
 
 							</table>
 						</div>
-						
+
 						<div class="row">
 							<div class="col-xs-12 text-center">
 								<nav>
 									<ul class="pagination">
-										<li><a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										</a></li>
+										<c:if test="${eMap.prev == true}">
+											<li><a href="${pageContext.request.contextPath}/abc/list?crtPage=${pMap.startPageBtnNo-1}&keyward=${param.keyward}">◀</a></li>
+										</c:if>
 
-										<c:forEach var="i" begin="1" end="10">
-											<li><a href="#">${i}</a></li>
-										</c:forEach>
+									
+											<c:forEach begin="${eMap.startPageBtnNo}" end="${eMap.endPageBtnNo}" step="1" var="page">
+												<li><a href="${pageContext.request.contextPath}/abc/exam/list?crtPage=${page}&keyward=${param.keyward}">${page}</a></li>
+											</c:forEach>
+									
 
-										<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										</a></li>
+
+
+										<c:if test="${eMap.next == true}">
+											<li><a href="${pageContext.request.contextPath}/abc/exam/list?crtPage=${pMap.endPageBtnNo+1}&keyward=${param.keyward}">▶</a></li>
+										</c:if>
 									</ul>
 								</nav>
 							</div>

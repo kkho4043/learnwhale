@@ -1,53 +1,113 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!--시험리스트  -->
 <mapper namespace="exam">
-	<select id="examList" resultType="ExamVo" parameterType="int">
+
+	<select id="examList" resultType="ExamVo" parameterType="map">
 	<![CDATA[
-			SELECT
-			    e.class_no classNo,
-			    e.exam_no examNo,
-			    e.exam_title examTitle,
-			    cn.count problemAmount,
-			    e.start_date startDate,
-			    e.end_date endDate,
-			    can.count numSubmit,
-			    at.count attendNum,
-			    e.exam_type examType
-			FROM exam e,(select
-			                exam_no,
-			                count(*) count
-			             from question
-			             group by exam_no)cn,(select  
-			                                    cn.exam_no,
-			                                    count(cn.join_no) count
-			                                 from (select 
-			                                              j.join_no,
-			                                              q.exam_no,
-			                                              count(q.question_no) count
-			                                        from join_users j, solve s ,question q
-			                                        where j.join_no = s.join_no
-			                                        and s.question_no = q.question_no
-			                                        and (s.status = '제출' or s.status = '완료')
-			                                        group by j.join_no , q.exam_no
-			                                        order by j.join_no , q.exam_no)cn,(select
-			                                                                                  exam_no,
-			                                                                                  count(*) count
-			                                                                           from question
-			                                                                           group by exam_no) ca
-			                                 where cn.count = ca.count
-			                                 group by cn.exam_no)can ,(select 
-			                                                               c.class_no,
-			                                                               count(join_no) count
-			                                                            from class c, join_users j
-			                                                            where c.class_no = j.class_no
-			                                                            group by c.class_no)at
-			where e.exam_no = can.exam_no
-			and e.exam_no = cn.exam_no
-			and at.class_no = e.class_no
-			and e.class_no = #{classno}
-			order by e.exam_regdate
+			select 
+        r.rnum,
+        r.classNo,
+        r.examNo,
+        r.examTitle,
+        r.problemAmount,
+        r.startDate,
+        r.endDate,
+        r.numSubmit,
+        r.attendNum,
+        r.examType
+from(select
+            rownum rnum,
+            o.classNo,
+            o.examNo,
+            o.examTitle,
+            o.problemAmount,
+            o.startDate,
+            o.endDate,
+            o.numSubmit,
+            o.attendNum,
+            o.examType
+            from(SELECT          
+                        e.class_no classNo,
+                        e.exam_no examNo,
+                        e.exam_title examTitle,
+                        cn.count problemAmount,
+                        e.start_date startDate,
+                        e.end_date endDate,
+                        can.count numSubmit,
+                        at.count attendNum,
+                        e.exam_type examType
+                FROM exam e,(select
+                                    e.exam_no,
+                                    count(*) count
+                                    from exam e LEFT OUTER join question j
+                                    on e.exam_no = j.exam_no
+                                    group by e.exam_no)cn,(select  
+                                                                cn.exam_no,
+                                                                count(cn.join_no) count
+                                                                from (select 
+                                                                            j.join_no,
+                                                                            q.exam_no,
+                                                                            count(q.question_no) count
+                                                                      from join_users j, solve s ,question q
+                                                                      where j.join_no = s.join_no
+                                                                      and s.question_no = q.question_no
+                                                                      and (s.status = '제출' or s.status = '완료')
+                                                                      group by j.join_no , q.exam_no
+                                                                      order by j.join_no , q.exam_no)cn,(select
+                                                                                                                  exam_no,
+                                                                                                                  count(*) count
+                                                                                                           from question
+                                                                                                           group by exam_no) ca
+                                                                                                           where cn.count = ca.count
+                                                                                                           group by cn.exam_no)can ,(select
+                                                                                                                                        c.class_no,
+                                                                                                                                        count(join_no) count
+                                                                                                                                        from class c, join_users j
+                                                                                                                                        where c.class_no = j.class_no
+                                                                                                                                        group by c.class_no)at
+                where e.exam_no= can.exam_no(+) 
+                and e.exam_no = cn.exam_no(+)
+                and at.class_no = e.class_no
+                and e.class_no = #{classNo}
+                order by e.exam_regdate desc)o)r
+                
+                where ]]>
+                
+                <if test="keyward != null and keyward != '' ">
+	
+					r.examTitle LIKE '%'||#{keyward}||'%'
+					
+					and
+				</if>
+                
+                <![CDATA[
+                r.rnum >= #{startNum}
+   		 		and r.rnum <= #{endNum}
+                
 		]]>
 
 	</select>
+	
+	<!--시험리스트갯수  -->
+	<select id="selectTotalCnt" resultType="int" parameterType="map">
+	 	<![CDATA[
+	 		select
+	 		count(*)
+			from exam e
+			where 
+		]]>
+		
+		<if test="value != null and value != '' ">
+			
+			(e.examTitle LIKE '%'||#{keyward}||'%')
+			and
+		</if>
+		
+		<![CDATA[		
+			e.class_no = #{classNo}
+	 	]]>
+	 	
+	</select>
+	
 </mapper>

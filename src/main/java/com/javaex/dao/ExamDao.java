@@ -1,5 +1,7 @@
 package com.javaex.dao;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,27 @@ public class ExamDao {
 	}
 
 	
-	public List<ExamVo> examList(int classNo){
+	public List<ExamVo> examList(int classNo ,String keyward, int startNum, int endNum){
 		System.out.println("[examDao.examList]");
-		return sqlSession.selectList("exam.examList",classNo);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("classNo",classNo);
+		
+		map.put("keyward",keyward);
+		map.put("startNum",startNum);
+		map.put("endNum",endNum);
+		
+		return sqlSession.selectList("exam.examList",map);
+	}
+	
+	public int selectTotalCnt(String keyward,int classNo) {
+		
+		Map <String ,Object> map = new HashMap<String,Object>();
+		
+		
+		map.put("classNo",classNo);
+		map.put("keyward",keyward);
+		
+		return sqlSession.selectOne("exam.selectTotalCnt" ,map);
 	}
 }
