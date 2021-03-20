@@ -22,6 +22,19 @@
 		
 	</select>
 	
+	<select id="selNo" parameterType="int" resultType="int">
+		
+		<![CDATA[
+			select      min(join_no)
+			from        join_users
+			where       class_no = #{classNo} and approval = '승인' and type= '학생'		
+		]]>
+		
+	</select>
+	
+	
+	
+	
 	
 	<update id="updateApprove" parameterType="int">
 		

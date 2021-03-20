@@ -12,14 +12,41 @@
 			from users u, (select      class_no,
 	                            	   user_no
 	               		   from        join_users
-	               		   where       class_no = #{classNo} and approval = '승인'
-	                       and type= '학생') join
+	               		   where       class_no = #{classNo} and approval = '승인' and type= '학생'
+	               		   order by join_no asc) join
 	                       
 			where u.no = join.user_no
+			
 		
 		]]>
 		
 	</select>
+	
+	
+	<select id="selExamList" parameterType="int" resultType="map">
+		
+		<![CDATA[
+					
+			select      exam_title examTitle,
+			            exam_type examType,
+			            exam_regDate examRegDate
+			            
+			from        exam
+			
+			where       exam_no in (select      exam_no
+			                        from        question
+			                        where       question_no in (select      question_no
+			                                                    from        solve
+			                                                    where       join_no = #{joinNo} and status = 'last'))
+			order by    exam_regdate desc
+		
+		]]>
+		
+	
+	</select>
+	
+	
+	
 	
 	
 </mapper>

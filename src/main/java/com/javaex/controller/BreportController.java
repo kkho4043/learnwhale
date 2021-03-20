@@ -18,7 +18,8 @@ public class BreportController {
 	@RequestMapping(value ="/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model) {
 		
-		model.addAttribute("joinList", reService.getStList(1));
+		model.addAttribute("joinList", reService.getList(1).get("joinList"));
+		model.addAttribute("exList", reService.getList(1).get("exList"));
 		
 		return "ban/report/reportList";
 	}

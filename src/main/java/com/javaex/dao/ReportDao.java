@@ -18,6 +18,9 @@ public class ReportDao {
 			return sqlSession.selectList("report.selStudentList", classNo);
 		}
 		
-		
+		public List<Map<String, Object>> selExamList(int joinNo) {
+			
+			return sqlSession.selectList("report.selExamList", joinNo);
+		}
 		
 }

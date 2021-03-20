@@ -149,9 +149,9 @@
 													</tr>
 												</thead>
 												<tbody>
-												<c:forEach var="i" begin="0" end="10">
+												<c:forEach items="${exList }" var="examVo">
 														<tr>
-															<td>105</td>
+															<td></td>
 															<td class="text-left"><a href="">별표찍기 마름모</a></td>
 															<td>주관식</td>
 															<td>90</td>
