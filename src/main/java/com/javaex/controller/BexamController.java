@@ -17,11 +17,11 @@ public class BexamController {
 	private ExamService examService;
 	
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(@RequestParam(value = "crtPage", required = false ,defaultValue = "0") int crtPage,
-					   @RequestParam(value = "keyward", required = false ,defaultValue = "") String keyward,
+	public String list(@RequestParam(value = "crtPage", required = false ,defaultValue = "1") int crtPage,
+						@RequestParam(value = "keyward",required = false,defaultValue = "") String keyward,
 						Model model) {
-		System.out.println("[BanExamController.list()]");
-		System.out.println(examService.examList(0,1,""));
+		System.out.println("[BanExamController.list()ddddddddddd]");
+		System.out.println("keyward = "+keyward);
 		
 		model.addAttribute("eMap", examService.examList(1,crtPage,keyward));
 		return "ban/exam/list";

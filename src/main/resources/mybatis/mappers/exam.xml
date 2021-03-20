@@ -76,7 +76,7 @@ from(select
                 
                 <if test="keyward != null and keyward != '' ">
 	
-					r.examTitle LIKE '%'||#{keyward}||'%'
+					r.examTitle LIKE '%'|| '${keyward}' ||'%'
 					
 					and
 				</if>
@@ -94,18 +94,18 @@ from(select
 	 	<![CDATA[
 	 		select
 	 		count(*)
-			from exam e
+			from exam 
 			where 
 		]]>
 		
-		<if test="value != null and value != '' ">
+		<if test="keyward != null and keyward != '' ">
 			
-			(e.examTitle LIKE '%'||#{keyward}||'%')
+			exam_Title LIKE '%'|| '${keyward}' ||'%'
 			and
 		</if>
 		
 		<![CDATA[		
-			e.class_no = #{classNo}
+			class_no = ${classNo}
 	 	]]>
 	 	
 	</select>

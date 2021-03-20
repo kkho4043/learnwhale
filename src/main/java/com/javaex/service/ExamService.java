@@ -31,7 +31,7 @@ public class ExamService {
 		
 		//전체 글 갯수
 		int totalCount =  examDao.selectTotalCnt(keyward , classNo);
-		
+		System.out.println("exam service total = : " + totalCount);
 		
 		//버튼번호
 		int pageBtnCount = 5;
