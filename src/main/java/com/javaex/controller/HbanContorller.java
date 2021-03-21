@@ -16,11 +16,10 @@ import com.javaex.vo.UserVo;
 @RequestMapping("/h")
 public class HbanContorller {
 
-	@Autowired
+	@Autowired 
 	private UserService userService;
-	
-	@Autowired
 	private ClassService classService;
+	
 	
 	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String  list() {
@@ -28,13 +27,13 @@ public class HbanContorller {
 		return "home/ban/list";
 	}
 	
-	@RequestMapping(value="/create", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/createForm", method= {RequestMethod.GET, RequestMethod.POST})
 	public String made() {
 		System.out.println("[HbanController.made()]");
 		return "home/ban/createForm";			
 	}
 	
-	@RequestMapping(value="/modify", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/modifyForm", method= {RequestMethod.GET, RequestMethod.POST})
 	public String modify() {
 		System.out.println("[HbanController.modify()]");
 		return "home/ban/modifyForm";			

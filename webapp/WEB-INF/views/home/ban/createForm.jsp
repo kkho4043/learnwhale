@@ -52,7 +52,7 @@
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="content-body-area" class="row">
 						<div class="col-xs-12">
-							<form id="createForm" action="" method="">
+							<form id="createForm" action="" method="post" enctype="multipart/form-data">
 								<div class="row interval">
 									<!-- 반이름 -->
 									<label class="col-xs-2 text-right" for="name">반이름</label> <span class="col-xs-10"> <input type="text" class="form-control input-sm"

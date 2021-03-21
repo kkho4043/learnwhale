@@ -70,7 +70,7 @@
 							</div>
 							<div class="col-xs-6 text-right">
 								<button type="submit" id=btn_produce>
-									<a href="${pageContext.request.contextPath}/h/create">반생성</a>
+									<a href="${pageContext.request.contextPath}/h/createForm">반생성</a>
 								</button>
 							</div>
 
@@ -98,7 +98,7 @@
 												<td>13/20명</td>
 												<td>진행중</td>
 												<td>보이기</td>
-												<td><a href="${pageContext.request.contextPath}/h/modify">[수정]</a> [삭제]</td>
+												<td><a href="${pageContext.request.contextPath}/h/modifyForm">[수정]</a> [삭제]</td>
 											</tr>
 
 											<tr>
