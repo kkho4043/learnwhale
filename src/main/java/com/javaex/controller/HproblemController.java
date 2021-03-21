@@ -62,5 +62,18 @@ public class HproblemController {
 		System.out.println("[ProblemController.addSubFolder()]");
 		return "redirect:/myclass/problem/problem-Management";
 	}
+	
+	//문제관리 리스트
+	@RequestMapping(value = "problemList", method = {RequestMethod.GET, RequestMethod.POST})
+	public String problemList(Model model, int cateNo) {
+		System.out.println("[ProblemController.problemList()]");
+		model.addAttribute("cateList", proService.getCategory(2));
+		
+		model.addAttribute("proList", proService.getProblem(cateNo));
+		
+		return "home/problem/problemList";
+	}
+	
+	
 
 }

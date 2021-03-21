@@ -37,7 +37,7 @@
 					<c:when test="${cateVo.depth == 0}">
 						<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}">
 
-							<span class="glyphicon glyphicon-folder-close"></span> <a> ${cateVo.cateName}</a>
+							<span class="glyphicon glyphicon-folder-close"></span> <a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}"> ${cateVo.cateName}</a>
 						</div>
 					</c:when>
 
@@ -162,6 +162,7 @@
 	<!-- /.deleteModal -->
 </body>
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		$(".parentsFolder").click(function() {
 			$("#creating-btn").on("click", function() {
