@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--시험리스트  -->
+<!--시험리스트 -->
 <mapper namespace="exam">
 
 	<select id="examList" resultType="ExamVo" parameterType="map">
@@ -73,13 +73,13 @@ from(select
                 order by e.exam_regdate desc)o)r
                 
                 where ]]>
-                
-                <if test="keyward != null and keyward != '' ">
-	
-					r.examTitle LIKE '%'|| '${keyward}' ||'%'
-					
-					and
-				</if>
+
+		<if test="keyward != null and keyward != '' ">
+
+			r.examTitle LIKE '%'|| '#{keyward}' ||'%'
+
+			and
+		</if>
                 
                 <![CDATA[
                 r.rnum >= #{startNum}
@@ -88,8 +88,8 @@ from(select
 		]]>
 
 	</select>
-	
-	<!--시험리스트갯수  -->
+
+	<!--시험리스트갯수 -->
 	<select id="selectTotalCnt" resultType="int" parameterType="map">
 	 	<![CDATA[
 	 		select
@@ -97,17 +97,63 @@ from(select
 			from exam 
 			where 
 		]]>
-		
+
 		<if test="keyward != null and keyward != '' ">
-			
-			exam_Title LIKE '%'|| '${keyward}' ||'%'
+
+			exam_Title LIKE '%'|| '#{keyward}' ||'%'
 			and
 		</if>
 		
 		<![CDATA[		
-			class_no = ${classNo}
+			class_no = #{classNo}
 	 	]]>
-	 	
+
+	</select>
+
+
+	<!-- 시험의 문제들 리스트 -->
+	<select id="examprolist" resultType="ProblemVo" parameterType="map">
+		<![CDATA[
+		select
+			q.order_num orderNum,
+			p.problem_title problemTitle,
+			
+			decode(p.answer,s.submit_answer,'O','X') result,
+			p.type type
+			
+			from solve s, question q, problem p 
+		where s.question_no = q.question_no
+		and p.problem_no = q.problem_no
+		and q.exam_no = #{examNo}
+		and s.join_no = #{joinNo}
+		]]>
 	</select>
 	
+	<!-- 시험의 사람 리스트 -->
+	<select id="examuserlist" resultType="JoinUserVo" parameterType="int">
+		<![CDATA[
+		select 
+			u.name username,
+			s.join_no joinNo,
+			decode(count(*),ec.ecount,'제출','진행중') result
+		
+		from join_users j ,users u , solve s , question q , (select 
+		                                                        exam_no,
+		                                                        count (*) ecount
+		                                                        from question
+		                                                    group by exam_no)ec
+		where u.no = j.user_no 
+		and j.join_no = s.join_no
+		and s.question_no = q.question_no
+		and q.exam_no = ec.exam_no
+		
+		and q.exam_no = #{examNo}
+		
+		and (s.status = '제출' or s.status = '완료')
+		group by u.name ,s.join_no,ec.ecount
+		]]>
+	</select>
+	
+	
+
 </mapper>

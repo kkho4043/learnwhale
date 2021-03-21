@@ -67,10 +67,13 @@
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="main-content-area">
 
-						<div id="student-list" class="col-xs-2">
+						<div id="student-list" class="col-xs-2" style ="padding-right: 0px; padding-left: 0px;"
+						>
 							<ol>
-								<c:forEach var="i" begin="1" end="20">
-									<li><a href="">유재석(제출)</a></li>
+								<c:forEach items="${upMap.eplist}" var="vo" varStatus="status">
+
+									<li><a href="${pageContext.request.contextPath}/abc/exam/problemlist?joinNo=${vo.joinNo}">${vo.username}(${vo.result})</a></li>
+
 								</c:forEach>
 							</ol>
 						</div>
@@ -94,7 +97,7 @@
 														<th>문제명</th>
 														<th>오답여부</th>
 														<th>형식</th>
-														
+
 													</tr>
 												</thead>
 												<tbody>

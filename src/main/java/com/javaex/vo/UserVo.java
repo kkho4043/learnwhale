@@ -9,6 +9,7 @@ public class UserVo {
 	private String email; // 이메일
 	private String phoneNum; // 핸드폰 번호
 
+
 	public UserVo() {
 		super();
 	}
@@ -22,6 +23,8 @@ public class UserVo {
 		this.email = email;
 		this.phoneNum = phoneNum;
 	}
+
+
 
 	// 메소드 g.s
 	public int getNo() {
@@ -72,6 +75,7 @@ public class UserVo {
 		this.phoneNum = phoneNum;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "UserVo [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", email=" + email

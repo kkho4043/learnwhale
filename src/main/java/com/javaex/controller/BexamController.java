@@ -28,8 +28,12 @@ public class BexamController {
 	}
 
 	@RequestMapping(value = "/problemlist", method = { RequestMethod.GET, RequestMethod.POST })
-	public String problemlist() {
+	public String problemlist(Model model,
+							@RequestParam(value = "examNo") int examNo,
+							@RequestParam(value = "joinNo", required = false ,defaultValue = "1") int joinNo) {
 		System.out.println("[BanExamController.problemlist()]");
+		
+		model.addAttribute("upMap", examService.examproList(examNo ,joinNo));
 		return "ban/exam/problemlist";
 	}
 

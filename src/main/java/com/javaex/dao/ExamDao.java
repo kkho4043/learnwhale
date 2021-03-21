@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.ExamVo;
+import com.javaex.vo.JoinUserVo;
+import com.javaex.vo.ProblemVo;
 
 @Repository
 public class ExamDao {
@@ -43,5 +45,17 @@ public class ExamDao {
 		map.put("keyward",keyward);
 		
 		return sqlSession.selectOne("exam.selectTotalCnt" ,map);
+	}
+	
+	public List<JoinUserVo> examuserList(int examNo) {
+		return sqlSession.selectList("exam.examuserlist" ,examNo);
+	}
+	
+	public List<ProblemVo> examproList(int examNo,int joinNo) {
+		Map <String ,Object> map = new HashMap<String,Object>();
+		map.put("examNo",examNo);
+		map.put("joinNo",joinNo);
+		
+		return sqlSession.selectList("exam.examuserlist" ,map);
 	}
 }

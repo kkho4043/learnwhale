@@ -8,6 +8,9 @@
 		<typeAlias alias="UserVo" type="com.javaex.vo.UserVo" />
 		<typeAlias alias="ExamVo" type="com.javaex.vo.ExamVo" />
 		<typeAlias alias="ClassVo" type="com.javaex.vo.ClassVo" />
+		<typeAlias alias="ProblemVo" type="com.javaex.vo.ProblemVo" />
+		
+		<typeAlias alias="JoinUserVo" type="com.javaex.vo.JoinUserVo" />
 	</typeAliases>
 
 	<mappers>
