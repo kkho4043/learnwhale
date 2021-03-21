@@ -95,9 +95,9 @@
 										<c:forEach items="${proList}" var="proVo">
 											<tr id="tr-center">
 												<th>${proVo.problemNo}</th>
-												<th><a href="">${proVo.problem_title}</a></th>
+												<th><a href="">${proVo.problemTitle}</a></th>
 												<th>${proVo.type}</th>
-												<th>${proVo.reg_date}</th>
+												<th>${proVo.regDate}</th>
 												<td>
 													<button class="btn btn-default btn-xs" id="delete-Btn">삭제</button>
 													<button class="btn btn-default btn-xs" id="move-Btn">이동</button>

@@ -6,9 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.ProblemService;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.ProblemVo;
 
 @Controller
 @RequestMapping("/myclass/problem")
@@ -33,13 +36,6 @@ public class HproblemController {
 		System.out.println("[ProblemController.list()]");
 		return "home/problem/creatingForm";
 	}
-	
-	@RequestMapping(value ="/creating-ViewForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String creatingViewForm() {
-		System.out.println("[ProblemController.list()]");
-		return "home/problem/creating-ViewForm";
-	}
-	 
 	
 
 	@RequestMapping(value ="/main", method = { RequestMethod.GET, RequestMethod.POST })
@@ -73,6 +69,24 @@ public class HproblemController {
 		
 		return "home/problem/problemList";
 	}
+	
+	//문제 작성폼
+	@RequestMapping(value ="/creating-ViewForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String creatingViewForm() {
+		System.out.println("[ProblemController.list()]");
+		return "home/problem/creating-ViewForm";
+	}
+	
+	//문제 작성
+	@RequestMapping(value ="/creating", method = { RequestMethod.GET, RequestMethod.POST})
+	public String creating(@ModelAttribute ProblemVo proVo, @RequestParam("file")MultipartFile file){
+		System.out.println("[ProblemController.creating()]");
+		
+		proService.ProblemInsert(file, proVo);
+		
+		return "redirect:/home/problem/problemList";
+	}
+	 
 	
 	
 

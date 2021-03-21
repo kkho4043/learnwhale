@@ -2,8 +2,10 @@ package com.javaex.vo;
 
 public class ProblemVo {
 
-	private int problemNo, cateNo, choiceNo;
-	private String type, problemTitle, content, contentImage, description, answer, regDate, choiceContent, attachmentFile, orderNo;
+	private int problemNo, cateNo;
+	private String type, problemTitle, content, contentImage, description, answer, regDate;
+	
+	
 	public int getProblemNo() {
 		return problemNo;
 	}
@@ -15,12 +17,6 @@ public class ProblemVo {
 	}
 	public void setCateNo(int cateNo) {
 		this.cateNo = cateNo;
-	}
-	public int getChoiceNo() {
-		return choiceNo;
-	}
-	public void setChoiceNo(int choiceNo) {
-		this.choiceNo = choiceNo;
 	}
 	public String getType() {
 		return type;
@@ -64,30 +60,12 @@ public class ProblemVo {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public String getChoiceContent() {
-		return choiceContent;
-	}
-	public void setChoiceContent(String choiceContent) {
-		this.choiceContent = choiceContent;
-	}
-	public String getAttachmentFile() {
-		return attachmentFile;
-	}
-	public void setAttachmentFile(String attachmentFile) {
-		this.attachmentFile = attachmentFile;
-	}
-	public String getOrderNo() {
-		return orderNo;
-	}
-	public void setOrderNo(String orderNo) {
-		this.orderNo = orderNo;
-	}
+	
 	@Override
 	public String toString() {
-		return "ProblemVo [problemNo=" + problemNo + ", cateNo=" + cateNo + ", choiceNo=" + choiceNo + ", type=" + type
-				+ ", problemTitle=" + problemTitle + ", content=" + content + ", contentImage=" + contentImage
-				+ ", description=" + description + ", answer=" + answer + ", regDate=" + regDate + ", choiceContent="
-				+ choiceContent + ", attachmentFile=" + attachmentFile + ", orderNo=" + orderNo + "]";
+		return "ProblemVo [problemNo=" + problemNo + ", cateNo=" + cateNo + ", type=" + type + ", problemTitle="
+				+ problemTitle + ", content=" + content + ", contentImage=" + contentImage + ", description="
+				+ description + ", answer=" + answer + ", regDate=" + regDate + "]";
 	}
 	
 	

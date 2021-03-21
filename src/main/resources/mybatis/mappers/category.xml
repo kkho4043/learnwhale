@@ -34,13 +34,30 @@
 		<![CDATA[
 			select  c.cate_no cateNo,
 			         p.problem_no problemNo,
-			         p.problem_title problem_title,
+			         p.problem_title problemTitle,
 			         p.type type,
-			         p.reg_date reg_date
+			         p.reg_date regDate
 			from problem p, category c
 			where p.cate_no = c.cate_no
 			and p.cate_no = #{cate_no}
 		]]>
 	</select>
+	
+	<insert id="problemInsert" parameterType="ProblemVo">
+		<![CDATA[
+			insert into problem
+			values(
+			    seq_problem_no.currval,
+			    #{cateNo},
+			    #{type},
+			    #{problemTitle},
+			    #{content},
+			    #{contentImage},
+			    #{description},
+			    #{answer},
+			    to_char(sysdate, 'YYYY-MM-DD')
+			)
+		]]>
+	</insert>
 	
 </mapper>
