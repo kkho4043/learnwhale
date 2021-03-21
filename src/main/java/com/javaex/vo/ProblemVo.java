@@ -5,6 +5,8 @@ public class ProblemVo {
 	private int problemNo, cateNo;
 	private String type, problemTitle, content, contentImage, description, answer, regDate;
 	
+	private String result;
+	
 	
 	public int getProblemNo() {
 		return problemNo;
@@ -60,6 +62,13 @@ public class ProblemVo {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
+	
 	
 	@Override
 	public String toString() {
