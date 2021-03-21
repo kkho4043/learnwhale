@@ -83,7 +83,7 @@
 									</colgroup>
 									<thead>
 										<tr>
-											<th>번호</th>
+											<th class="th-center">번호</th>
 											<th>문제 제목</th>
 											<th>문제 유형</th>
 											<th>만든 날짜</th>

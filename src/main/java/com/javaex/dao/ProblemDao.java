@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.ProblemVo;
 
 @Repository
 public class ProblemDao {
@@ -29,4 +30,12 @@ public class ProblemDao {
 			System.out.println("CateDao- addSubFolder()");
 			return sqlSession.insert("category.addSubFolder", cateVo);
 		}
+		
+		public List<ProblemVo>selectProblem(int cateNo){
+			System.out.println("ProDao- selectProblem");
+			
+			return sqlSession.selectList("category.selectProblem", cateNo);
+		}
+		
+		
 }

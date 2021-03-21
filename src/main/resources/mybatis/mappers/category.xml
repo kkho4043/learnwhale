@@ -30,4 +30,17 @@
 		]]>
 	</insert> 
 	
+	<select id="selectProblem" parameterType="int" resultType="com.javaex.vo.ProblemVo">
+		<![CDATA[
+			select  c.cate_no cateNo,
+			         p.problem_no problemNo,
+			         p.problem_title problem_title,
+			         p.type type,
+			         p.reg_date reg_date
+			from problem p, category c
+			where p.cate_no = c.cate_no
+			and p.cate_no = #{cate_no}
+		]]>
+	</select>
+	
 </mapper>

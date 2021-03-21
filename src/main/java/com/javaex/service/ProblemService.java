@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.javaex.dao.ProblemDao;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.ProblemVo;
 
 @Service
 public class ProblemService {
@@ -30,6 +31,13 @@ public class ProblemService {
 			System.out.println("CateService- addSubFolder()");
 			return proDao.addSubFolder(cateVo);
 		}
+		
+		public List<ProblemVo> getProblem(int cateNo){
+			System.out.println("ProblemService- getProblem");
+			
+			return proDao.selectProblem(cateNo);
+		}
+		
 }
 	
 	
