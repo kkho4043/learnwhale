@@ -56,6 +56,6 @@ public class ExamDao {
 		map.put("examNo",examNo);
 		map.put("joinNo",joinNo);
 		
-		return sqlSession.selectList("exam.examuserlist" ,map);
+		return sqlSession.selectList("exam.examprolist" ,map);
 	}
 }

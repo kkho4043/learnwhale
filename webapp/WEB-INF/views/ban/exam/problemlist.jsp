@@ -70,9 +70,9 @@
 						<div id="student-list" class="col-xs-2" style ="padding-right: 0px; padding-left: 0px;"
 						>
 							<ol>
-								<c:forEach items="${upMap.eplist}" var="vo" varStatus="status">
+								<c:forEach items="${upMap.eulist}" var="vo" varStatus="status">
 
-									<li><a href="${pageContext.request.contextPath}/abc/exam/problemlist?joinNo=${vo.joinNo}">${vo.username}(${vo.result})</a></li>
+									<li><a href="${pageContext.request.contextPath}/abc/exam/problemlist?examNo=${param.examNo}&joinNo=${vo.joinNo}">${vo.username}(${vo.result})</a></li>
 
 								</c:forEach>
 							</ol>
@@ -101,12 +101,12 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="i" begin="0" end="15">
+													<c:forEach items="${upMap.eplist}" var="vo" varStatus="status">
 														<tr>
-															<td>105</td>
-															<td class="text-left"><a href="">별표찍기 마름모</a></td>
-															<td>O</td>
-															<td>주관식</td>
+															<td>${vo.orderNum}</td>
+															<td class="text-left"><a href="">${vo.problemTitle}</a></td>
+															<td>${vo.result}</td>
+															<td>${vo.type}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

@@ -8,8 +8,12 @@ public class ProblemVo {
 	private String result;// 오답여부
 	private int orderNum; // 시험 관리 >> 문제리스트 문제순서
 
+	
+	
+	public ProblemVo() {
+	}
+
 	public ProblemVo(String type, String problemTitle, String result, int orderNum) {
-		super();
 		this.type = type;
 		this.problemTitle = problemTitle;
 		this.result = result;

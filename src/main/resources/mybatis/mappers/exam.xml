@@ -39,9 +39,9 @@ from(select
                         e.exam_type examType
                 FROM exam e,(select
                                     e.exam_no,
-                                    count(*) count
-                                    from exam e LEFT OUTER join question j
-                                    on e.exam_no = j.exam_no
+                                    count(q.exam_no) count
+                                     from exam e , question q
+                                    where e.exam_no = q.exam_no(+)
                                     group by e.exam_no)cn,(select  
                                                                 cn.exam_no,
                                                                 count(cn.join_no) count
@@ -67,7 +67,7 @@ from(select
                                                                                                                                         where c.class_no = j.class_no
                                                                                                                                         group by c.class_no)at
                 where e.exam_no= can.exam_no(+) 
-                and e.exam_no = cn.exam_no(+)
+                and e.exam_no = cn.exam_no
                 and at.class_no = e.class_no
                 and e.class_no = #{classNo}
                 order by e.exam_regdate desc)o)r
@@ -133,24 +133,33 @@ from(select
 	<select id="examuserlist" resultType="JoinUserVo" parameterType="int">
 		<![CDATA[
 		select 
-			u.name username,
-			s.join_no joinNo,
-			decode(count(*),ec.ecount,'제출','진행중') result
-		
-		from join_users j ,users u , solve s , question q , (select 
-		                                                        exam_no,
-		                                                        count (*) ecount
-		                                                        from question
-		                                                    group by exam_no)ec
-		where u.no = j.user_no 
-		and j.join_no = s.join_no
-		and s.question_no = q.question_no
-		and q.exam_no = ec.exam_no
-		
-		and q.exam_no = #{examNo}
-		
-		and (s.status = '제출' or s.status = '완료')
-		group by u.name ,s.join_no,ec.ecount
+			uj.name username,
+			uj.join_no joinNo,
+			decode(al.count,cl.count,'제출','진행중') result
+		from (select 
+		          u.name,
+		          j.join_no
+		       from exam e,class c,join_users j,users u
+		       where e.class_no = c.class_no
+		       and c.class_no = j.class_no
+		       and u.no = j.user_no
+		       and e.exam_no = #{examNo}
+		      )uj,(select
+                         s.join_no,
+                         count(*) count
+                   from question q , solve s
+                   where q.question_no(+) = s.question_no
+                   
+                   group by s.join_no)al,( select
+                                                 s.join_no,
+                                                 count(*) count
+                                           from question q , solve s
+                                           where q.question_no(+) = s.question_no
+                                          
+                                           and (s.status = '제출' or s.status ='완료')
+                                           group by s.join_no)cl
+		where uj.join_no = al.join_no(+)
+		and  uj.join_no = cl.join_no(+)
 		]]>
 	</select>
 	
