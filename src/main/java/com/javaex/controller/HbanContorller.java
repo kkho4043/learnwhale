@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.javaex.service.ClassService;
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
@@ -17,6 +18,9 @@ public class HbanContorller {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ClassService classService;
 	
 	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String  list() {
@@ -34,18 +38,6 @@ public class HbanContorller {
 	public String modify() {
 		System.out.println("[HbanController.modify()]");
 		return "home/ban/modifyForm";			
-	}
-	
-	@RequestMapping(value="/list3", method= {RequestMethod.GET, RequestMethod.POST})
-	public String list3() {
-		System.out.println("[HbanController.list3()]");
-		return "home/problem/list3";			
-	}
-	
-	@RequestMapping(value="/category", method= {RequestMethod.GET, RequestMethod.POST})
-	public String category() {
-		System.out.println("[HbanController.category()]");
-		return "home/include/category";			
 	}
 	
 	//회원가입
