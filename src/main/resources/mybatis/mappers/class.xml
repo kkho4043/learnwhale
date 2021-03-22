@@ -2,16 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="class">
+
+	<!-- 반생성 url 체크 -->
+	<select id="selectByUrl" parameterType="String" resultType="int">
+		<![CDATA[
+			SELECT c.class_url classUrl
+			FROM class c
+			where c.class_url = #{classUrl}
+		]]>
 	
-	<!--반생성-->
+	</select>
+	
+	
+	<!--반생성 -->
 	<insert id="insert" parameterType="ClassVo">
 	<![CDATA[
-	
+		INSERT INTO class
+		VALUES (seq_class_no.nextval, #{classUrl}, #{className}, #{filepath}, TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'), TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'), #{hidden})
+		
 		]]>
 	</insert>
-	
 
-	
-	
-	
+	<!-- 전체리스트 가져오기 -->
+	<select id="selectList" resultType="ClassVo">
+	    <![CDATA[
+	        select c.class_no classNo,
+       			   c.class_name className,
+        		   c.logo_file logoFile,
+        		   TO_CHAR(c.start_date,'yyyy-mm-dd hh:mi') startDate,
+        		   TO_CHAR(c.end_date,'yyyy-mm-dd hh:mi') endDate,
+        	       c.hidden hidden,
+        		   c.class_url classUrl
+		   from class c, join_users j
+		   where c.class_no = j.class_no
+		   and TO_CHAR(c.start_date,'yyyy-mm-dd hh:mi') <= TO_CHAR(c.end_date,'yyyy-mm-dd hh:mi')
+		   order by startDate desc
+	    ]]>
+	</select>
+
+
+
+
 </mapper>

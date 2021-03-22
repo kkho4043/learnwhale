@@ -1,61 +1,70 @@
 package com.javaex.controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.ClassService;
-import com.javaex.service.UserService;
-import com.javaex.vo.UserVo;
+import com.javaex.vo.ClassVo;
 
 @Controller
 @RequestMapping("/h")
 public class HbanContorller {
 
-	@Autowired 
-	private UserService userService;
+	@Autowired
 	private ClassService classService;
-	
-	
-	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
-	public String  list() {
+
+	//반 리스트
+	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
+	public String list(Model model) {
 		System.out.println("[HbanController.list()]");
+		List<ClassVo> classList = classService.list();
+		model.addAttribute("classList", classList);
 		return "home/ban/list";
 	}
-	
-	@RequestMapping(value="/createForm", method= {RequestMethod.GET, RequestMethod.POST})
-	public String made() {
-		System.out.println("[HbanController.made()]");
-		return "home/ban/createForm";			
-	}
-	
-	@RequestMapping(value="/modifyForm", method= {RequestMethod.GET, RequestMethod.POST})
+
+	//반 수정
+	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modify() {
 		System.out.println("[HbanController.modify()]");
-		return "home/ban/modifyForm";			
+		return "home/ban/modifyForm";
 	}
 	
-	//회원가입
-	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
-	public String join(@ModelAttribute UserVo userVo) {
-		System.out.println("[HomeMain()-join]");
-		
-		System.out.println(userVo);
-		userService.join(userVo);
-		
-		return "home/main/index";
+	//반생성 url 중복체크
+	@ResponseBody
+	@RequestMapping(value="/urlcheck", method = {RequestMethod.GET, RequestMethod.POST})
+	public String urlcheck(@RequestParam("classUrl") String classUrl) {
+		System.out.println("[HbanController.urlcheck()]");
+		System.out.println("classUrl = " + classUrl);
+		String result = classService.urlcheck(classUrl);
+		return result;
 	}
 	
-	//로그인
-	@RequestMapping(value="login", method = {RequestMethod.GET, RequestMethod.POST })
-	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
-		System.out.println("[HomeMain()-login]");
-		
-		UserVo authUser = userService.login(userVo);
-		return "redirect:/";	
+	 // 반생성폼
+	 @RequestMapping(value = "/createForm", method = { RequestMethod.GET,
+	 RequestMethod.POST }) public String made() {
+	 System.out.println("[HbanController.createForm()]"); 
+	 return "home/ban/createForm"; 
+	 }
+	 
+	 //반생성
+	@RequestMapping(value = "/create", method = { RequestMethod.GET, RequestMethod.POST })
+	public String create(@ModelAttribute ClassVo classVo,
+						 @RequestParam(value = "logoFile",required = false,defaultValue = "") MultipartFile file) {
+		System.out.println("[HbanController.create()]");
+		System.out.println(classVo);
+		classService.create(classVo, file);
+		return "home/ban/list";
+
 	}
+
+
 }

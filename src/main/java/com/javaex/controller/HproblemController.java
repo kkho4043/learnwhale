@@ -103,7 +103,7 @@ public class HproblemController {
 		map.put("file4",file4);
 		
 		
-		proService.ProblemInsert(file, proVo,map);
+		proService.ProblemInsert(file, proVo, map);
 		
 		return "redirect:/myclass/problem/problemList?cateNo="+proVo.getCateNo();
 	}

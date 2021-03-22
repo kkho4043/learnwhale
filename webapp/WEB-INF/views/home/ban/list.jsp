@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -76,7 +77,8 @@
 
 							<div class="row">
 								<div class="col-xs-11">
-									<table class="table table-striped table-hover table-bordered" style="margin-left:15px;">
+									<table class="table table-striped table-hover table-bordered"
+										style="margin-left: 15px;">
 										<thead>
 											<tr>
 												<th>번호</th>
@@ -85,87 +87,28 @@
 												<th>종료일</th>
 												<th>인원</th>
 												<th>상태</th>
-												<th>관리</th>
-												<th>관리</th>
+												<th class="col-xs-3">관리</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>105</td>
-												<td><a href="">하이미디어 자바 풀스택 B반</a></td>
-												<td>2021-03-03</td>
-												<td>2021-12-31</td>
-												<td>13/20명</td>
-												<td>진행중</td>
-												<td>보이기</td>
-												<td><a href="${pageContext.request.contextPath}/h/modifyForm">[수정]</a> [삭제]</td>
-											</tr>
+											<c:forEach items="${classList}" var="vo">
+												<tr>
+													<td>${vo.no }</td>
+													<td><a href="">${vo.className}</a></td>
+													<td>${vo.startDate }</td>
+													<td>${vo.endDate }</td>
+													<td>13/20명</td>
+												
+													<td>진행중</td>
+															
+													<td>보이기</td>
 
-											<tr>
-												<td>105</td>
-												<td><a href="">하이미디어 자바 풀스택 B반</a></td>
-												<td>2021-03-03</td>
-												<td>2021-12-31</td>
-												<td>13/20명</td>
-												<td>진행중</td>
-												<td>숨기기</td>
-												<td><a href="">[수정]</a> [삭제]</td>
-											</tr>
-											
-											<tr>
-												<td>105</td>
-												<td><a href="">하이미디어 자바 풀스택 B반</a></td>
-												<td>2021-03-03</td>
-												<td>2021-12-31</td>
-												<td>13/20명</td>
-												<td>진행중</td>
-												<td>숨기기</td>
-												<td><a href="">[수정]</a> [삭제]</td>
-											</tr>
-											
-											<tr>
-												<td>105</td>
-												<td><a href="">하이미디어 자바 풀스택 B반</a></td>
-												<td>2021-03-03</td>
-												<td>2021-12-31</td>
-												<td>13/20명</td>
-												<td>진행중</td>
-												<td>숨기기</td>
-												<td><a href="">[수정]</a> [삭제]</td>
-											</tr>
-											
-											<tr>
-												<td>105</td>
-												<td><a href="">하이미디어 자바 풀스택 B반</a></td>
-												<td>2021-03-03</td>
-												<td>2021-12-31</td>
-												<td>13/20명</td>
-												<td>진행중</td>
-												<td>숨기기</td>
-												<td><a href="">[수정]</a> [삭제]</td>
-											</tr>
-											
-											<tr>
-												<td>105</td>
-												<td><a href="">하이미디어 자바 풀스택 B반</a></td>
-												<td>2021-03-03</td>
-												<td>2021-12-31</td>
-												<td>13/20명</td>
-												<td>진행중</td>
-												<td>숨기기</td>
-												<td><a href="">[수정]</a> [삭제]</td>
-											</tr>
-											
-											<tr>
-												<td>105</td>
-												<td><a href="">하이미디어 자바 풀스택 B반</a></td>
-												<td>2021-03-03</td>
-												<td>2021-12-31</td>
-												<td>13/20명</td>
-												<td>진행중</td>
-												<td>숨기기</td>
-												<td><a href="">[수정]</a> [삭제]</td>
-											</tr>
+													<td><a
+														href="${pageContext.request.contextPath}/h/modifyForm">[수정]</a>
+														[삭제]</td>
+												</tr>
+											</c:forEach>
+
 										</tbody>
 									</table>
 
