@@ -138,6 +138,9 @@ public class NoticeService {
 	public NoticeVo read(int no) {
 		System.out.println("[Service]:read");
 		
+		noticeDao.updateHit(no);
+		System.out.println("[Service]:read"+noticeDao.toString());
+		
 		NoticeVo nVo = noticeDao.selectOne(no);
 		System.out.println("[Service]:read" + nVo.toString());
 		

@@ -59,12 +59,18 @@ public class NoticeDao {
 		return sqlSession.update("notice.update", noticeVo);
 	}
 	
-	//가져오기
+	//1개 불러오기
 	public NoticeVo selectOne(int no) {
 		System.out.println("[dao]:selectOne");
 		
 		NoticeVo noticeVo = sqlSession.selectOne("notice.selectOne", no);
 		return noticeVo;
+	}
+	
+	//조회수 +1
+	public int updateHit(int no) {
+		System.out.println("[dao]:updateHit");
+		return sqlSession.update("notice.updateHit", no);
 	}
 	
 	public int insert(NoticeVo noticeVo) {

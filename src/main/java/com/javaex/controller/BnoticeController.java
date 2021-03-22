@@ -87,7 +87,6 @@ public class BnoticeController {
 		return "ban/notice/writeForm";
 	}
 
-	//http://localhost:8088/learnwhale/notice/remove?no=1
 	@RequestMapping(value ="/remove", method = {RequestMethod.GET, RequestMethod.POST})
 	public String remove(int no) { //@RequestParam("no") 
 		System.out.println("[controller]:remove");
@@ -99,7 +98,6 @@ public class BnoticeController {
 
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modify(@ModelAttribute NoticeVo noticeVo) {
-		System.out.println("[Controller]:modify");
 		System.out.println("[Controller]:modify");
 		noticeService.modify(noticeVo);
 		

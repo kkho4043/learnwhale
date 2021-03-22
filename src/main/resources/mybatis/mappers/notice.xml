@@ -61,7 +61,7 @@
 		                                  n.title,
 		                                  n.content,
 		                                  n.hit,
-		                                  n.reg_date
+		                                  to_char(n.reg_date, 'YYYY-MM-DD') as reg_date
 		                            from users u, join_users j, notice n
 		                            where n.join_no = j.join_no 
 		                            and j.user_no = u.no               
@@ -114,7 +114,7 @@
 ]]>
 </update>
 
-<!-- 1명 선택 -->
+<!-- 1명 불러오기 -->
 <select id="selectOne" parameterType="int" resultType="com.javaex.vo.NoticeVo">
 <![CDATA[
 		select n.notice_no no,
@@ -130,5 +130,12 @@
 ]]>
 </select>
 
+<update id="updateHit" parameterType="int">
+<![CDATA[
+	update notice
+	set hit = hit+1
+	where notice_no = #{no}
+]]>
+</update>
 
 </mapper>
