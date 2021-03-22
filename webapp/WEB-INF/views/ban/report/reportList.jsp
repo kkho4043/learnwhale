@@ -66,8 +66,8 @@
 					
 						<div id="student-list" class="col-xs-2">
 							<ol>
-								<c:forEach items="${joinList }" var="userVo">
-									<li><a href= "">${userVo.NAME }</a></li>
+								<c:forEach items="${joinList }" var="userVo" varStatus= "status">
+									<li><a href= "${pageContext.request.contextPath }/abc/report/list?type=all&joinNo=${userVo.JOINNO }">${userVo.NAME }</a></li>
 								</c:forEach>
 							</ol>
 						</div>
@@ -76,7 +76,22 @@
 						<div id="report-area" class="col-xs-10">
 							
 							<div id="boardHeader">
-								<h3>정우성님 성적 평균점수</h3>
+								<c:choose>
+									<c:when test="${empty param.joinNo }">
+										<h3>${joinList[0].NAME }님 성적 평균점수</h3>
+										
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${joinList }" var="userVo" varStatus="status">
+												
+											<c:if test="${status.current.JOINNO eq param.joinNo}">
+												<h3>${status.current.NAME }님 성적 평균점수</h3>
+											</c:if>
+	
+										</c:forEach>
+									
+									</c:otherwise>
+								</c:choose>
 								
 								<div id="total">
 									<ul>
@@ -119,10 +134,10 @@
 										</div>
 										<div id="selecOpt" class="col-xs-6">
 											<ul class="pull-right">
-												<li><a href="">전체</a></li>
-												<li><a href="">쪽지</a></li>
-												<li><a href="">시험</a></li>
-												<li><a href="">숙제</a></li>
+												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=all">전체</a></li>
+												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=quiz">쪽지</a></li>
+												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=test">시험</a></li>
+												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=homework">과제</a></li>
 											</ul>
 										</div>
 									</div>
@@ -131,11 +146,11 @@
 										<div class="col-xs-12">
 											<table class="table table-striped table-bordered table-hover">
 												<colgroup>
-													<col style="width: 10%;">
+													<col style="width: 8%;">
 													<col>
-													<col style="width: 10%;">
+													<col style="width: 12%;">
 													<col style="width: 7%;">
-													<col style="width: 10%;">
+													<col style="width: 12%;">
 													<col style="width: 15%;">
 												</colgroup>
 												<thead class="">
@@ -149,13 +164,13 @@
 													</tr>
 												</thead>
 												<tbody>
-												<c:forEach items="${exList }" var="examVo">
+												<c:forEach items="${exList }" var="examVo" varStatus="status">
 														<tr>
-															<td></td>
-															<td class="text-left"><a href="">별표찍기 마름모</a></td>
-															<td>주관식</td>
+															<td>${status.count }</td>
+															<td class="text-left"><a href="">${examVo.examTitle }</a></td>
+															<td>${examVo.examType }</td>
 															<td>90</td>
-															<td>2021-03-03</td>
+															<td>${examVo.regDate }</td>
 															<td>
 																<button class="btn btn-default btn-xs" >삭제</button>
 																<button class="btn btn-default btn-xs" >이동</button>

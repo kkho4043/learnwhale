@@ -7,13 +7,13 @@
 	
 		<![CDATA[
 			
-			select      u.name
-			
-			from users u, (select      class_no,
+			select      u.name,
+						join.join_no joinNo
+			from users u, (select      join_no,
 	                            	   user_no
 	               		   from        join_users
 	               		   where       class_no = #{classNo} and approval = '승인' and type= '학생'
-	               		   order by join_no asc) join
+	               		   order by    join_no asc) join
 	                       
 			where u.no = join.user_no
 			
@@ -23,24 +23,51 @@
 	</select>
 	
 	
-	<select id="selExamList" parameterType="int" resultType="map">
+	<select id="selExamList" parameterType="map" resultType="ExamVo">
 		
 		<![CDATA[
 					
-			select      exam_title examTitle,
-			            exam_type examType,
-			            exam_regDate examRegDate
-			            
-			from        exam
+			select e.exam_no examNo,
+			       exam_title examTitle,
+			       exam_type examType,
+			       grade,
+			       to_char(exam_regDate, 'yy-mm-dd') regDate
 			
-			where       exam_no in (select      exam_no
-			                        from        question
-			                        where       question_no in (select      question_no
-			                                                    from        solve
-			                                                    where       join_no = #{joinNo} and status = 'last'))
+			from exam e, (select exam_no,
+			                     sum(mypoint) grade
+			                
+			              from   (select   exam_no,
+			                               s.mypoint
+			                      from     question q, (select question_no,
+			                                                   mypoint
+			                                            from   solve
+			                                            where  join_no = #{joinNo} and status = '완료')s
+			                        
+			                     where  q.question_no = s.question_no)
+			                group by exam_no) solve
+			where e.exam_no = solve.exam_no
+			 ]]>            
+			
+			<choose>
+			
+				<when test=" type == 'quiz' ">
+				and	exam_type = '쪽지시험'
+				</when>
+				
+				<when test=" type == 'test' ">
+				and	exam_type = '시험'
+				</when>
+				
+				<when test=" type == 'homework' ">
+				and	exam_type = '과제'
+				</when>
+				
+			</choose>
+			
+			<![CDATA[			                                         
 			order by    exam_regdate desc
+			]]>
 		
-		]]>
 		
 	
 	</select>

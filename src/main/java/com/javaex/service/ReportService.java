@@ -18,14 +18,17 @@ public class ReportService {
 	@Autowired
 	private StudentDao stDao;
 	
-	public Map<String, Object> getList(int classNo) {
+	public Map<String, Object> getList(int classNo, String type, int joinNo) {
 		
-		int joinNo = stDao.selNo(classNo);
+		if(joinNo ==0) {
+			
+			joinNo = stDao.selNo(classNo);
+		}
 		
 		Map<String, Object> reMap = new HashMap<String, Object>();
 		reMap.put("joinList", reDao.selStudentList(classNo));
-		reMap.put("exList", reDao.selExamList(joinNo));
-		
+		reMap.put("exList", reDao.selExamList(joinNo, type));
+				
 		return reMap;
 	}
 	

@@ -13,7 +13,7 @@ public class ExamVo {
 	private int problemAmount; //문항수
 	private int numSubmit;  //체출인원
 	private int attendNum;  //참석인원
-	
+	private int grade;
 	
 	public ExamVo() {
 	}
@@ -34,7 +34,15 @@ public class ExamVo {
 		this.attendNum = attendNum;
 	}
 
+	public int getGrade() {
+		return grade;
+	}
 
+
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	
 	public int getExamNo() {
 		return examNo;
 	}

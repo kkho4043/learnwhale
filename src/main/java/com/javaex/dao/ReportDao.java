@@ -1,5 +1,6 @@
 package com.javaex.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,9 +19,13 @@ public class ReportDao {
 			return sqlSession.selectList("report.selStudentList", classNo);
 		}
 		
-		public List<Map<String, Object>> selExamList(int joinNo) {
+		public List<String> selExamList(int joinNo, String type) {
 			
-			return sqlSession.selectList("report.selExamList", joinNo);
+			Map<String, Object> exMap = new HashMap<>();
+			exMap.put("type", type);
+			exMap.put("joinNo", joinNo);
+		
+			return sqlSession.selectList("report.selExamList", exMap);
 		}
 		
 }

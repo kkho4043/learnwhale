@@ -20,8 +20,7 @@ public class StudentDao {
 	  }
 	 
 	  public int selNo(int classNo) {
-		  int no = sqlSession.selectOne("student.selNo", classNo);
-		  System.out.println(no);
+		  
 		  return sqlSession.selectOne("student.selNo", classNo);
 	  }
 	  
