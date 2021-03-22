@@ -43,7 +43,7 @@
 
 <!-- 리스트 + 검색 기능 + 페이징 -->
 <select id="list" parameterType="map" resultType="com.javaex.vo.NoticeVo">
-<![CDATA[
+	<![CDATA[
 		select r.rnum,
 		       r.no,
 		       r.name,
@@ -56,7 +56,7 @@
 		                     o.title,
 		                     o.hit,
 		                     o.reg_date
-		                     from (select u.no,
+		                     from (select n.notice_no no,
 		                                  u.name,
 		                                  n.title,
 		                                  n.content,
@@ -92,7 +92,7 @@
 <!-- 등록 -->
 <insert id="insert" parameterType="com.javaex.vo.NoticeVo">
 <![CDATA[
-		insert into notice values(seq_notice_no.nextval, #{join_no}, #{title}, #{content}, default, sysdate)
+		insert into notice values(seq_notice_no.nextval, #{join_no}, #{title}, #{content}, 0, sysdate)
 ]]>
 </insert>
 
@@ -103,5 +103,32 @@
   	    where notice_no = #{no}
 ]]>
 </delete>
+
+<!-- 수정 -->
+<update id="update" parameterType="com.javaex.vo.NoticeVo">
+<![CDATA[
+		update notice
+		set title = #{title},
+	   	    content = #{content}
+	    where notice_no = #{no}
+]]>
+</update>
+
+<!-- 1명 선택 -->
+<select id="selectOne" parameterType="int" resultType="com.javaex.vo.NoticeVo">
+<![CDATA[
+		select n.notice_no no,
+		       u.name,
+		       n.title,
+		       n.content,
+		       n.hit,
+		       n.reg_date
+		from users u, join_users j, notice n
+		where n.join_no = j.join_no 
+		and j.user_no = u.no
+		and notice_no = #{no}
+]]>
+</select>
+
 
 </mapper>

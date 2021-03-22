@@ -67,48 +67,42 @@
 																	
 									<div id="board">
 										<div id="read">
-											<form action="#" method="get">
+											<form action="${pageContext.request.contextPath}/notice" method="get">
 												<!-- 작성자 -->
 												<div class="form-group">
 													<span class="form-text">작성자</span>
-													<span class="form-value">정우성</span>
+													<span class="form-value">${nVo.name}</span>
 												</div>
 												
 												<!-- 조회수 -->
 												<div class="form-group">
 													<span class="form-text">조회수</span>
-													<span class="form-value">123</span>
+													<span class="form-value">${nVo.hit}</span>
 												</div>
 												
 												<!-- 작성일 -->
 												<div class="form-group">
 													<span class="form-text">작성일</span>
-													<span class="form-value">2020-03-02</span>
+													<span class="form-value">${nVo.reg_date}</span>
 												</div>
 												
 												<!-- 제목 -->
 												<div class="form-group">
 													<span class="form-text">제 목</span>
-													<span class="form-value">여기에는 글제목이 출력됩니다.</span>
+													<span class="form-value">${nVo.title}</span>
 												</div>
 											
 												<!-- 내용 -->
 												<div id="txt-content">
 													<span class="form-value" >
-														여기에는 본문내용이 출력됩니다.<br>
-														여기에는 본문내용이 출력됩니다.<br>
-														여기에는 본문내용이 출력됩니다.<br>
-														여기에는 본문내용이 출력됩니다.<br>
-														여기에는 본문내용이 출력됩니다.<br>
-														여기에는 본문내용이 출력됩니다.<br>
-														여기에는 본문내용이 출력됩니다.<br>
-														여기에는 본문내용이 출력됩니다.<br>
+														${nVo.content}
 													</span>
 												</div>
-												
-												<a id="btn_modify" href="">수정</a>
-												<a id="btn_list" href="">목록</a>		
+												                             <!-- 임의로 no넣어줌 : 미해결 -->
+												<a id="btn_modify" href="${pageContext.request.contextPath}/notice/modifyForm?no=${nVo.no}">수정</a>
+												<a id="btn_list" href="${pageContext.request.contextPath}/notice/list">목록</a>		
 							
+											</form>
 										</div>
 										<!-- //list -->
 									</div>

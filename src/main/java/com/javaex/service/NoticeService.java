@@ -106,15 +106,41 @@ public class NoticeService {
 		return pMap;
 	}
 	
+	//수정
+	public int modify(NoticeVo noticeVo) {
+		System.out.println("[Service]:modify");
+		
+		return noticeDao.update(noticeVo);
+	}
+	
+	//수정폼
+	public NoticeVo modifyForm(int no) {
+		System.out.println("[Service]:modifyForm");
+		
+		return noticeDao.selectOne(no);
+	}
+	
+	//등록
 	public int write(NoticeVo noticeVo) {
 		System.out.println("[Service]:write");
 		
 		return noticeDao.insert(noticeVo);
 	}
 	
+	//삭제
 	public int remove(int no) {
 		System.out.println("[Service]:remove");
 		
 		return noticeDao.delete(no);
+	}
+	
+	//글보기
+	public NoticeVo read(int no) {
+		System.out.println("[Service]:read");
+		
+		NoticeVo nVo = noticeDao.selectOne(no);
+		System.out.println("[Service]:read" + nVo.toString());
+		
+		return nVo;
 	}
 }

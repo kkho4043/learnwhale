@@ -65,19 +65,17 @@ public class BnoticeController {
 	}
 	
 	@RequestMapping(value= "/write", method = { RequestMethod.GET, RequestMethod.POST })
-	public String write(@ModelAttribute NoticeVo noticeVo) { //HttpSession session
+	public String write(@ModelAttribute NoticeVo noticeVo, HttpSession session) { //HttpSession session
 		System.out.println("[Controller]:write");
 		
 		/*
-		//세션에서 사용자 정보 가져오기
-		NoticeVo authVo = (NoticeVo)session.getAttribute("authUser");
-		
-		//Vo에 no담기
-		int no = authVo.getNo();
-		noticeVo.setNo(no);
-		
-		int count = noticeService.write(noticeVo);
-		*/
+		 * //세션에서 사용자 정보 가져오기 NoticeVo authVo =
+		 * (NoticeVo)session.getAttribute("authUser");
+		 * 
+		 * //Vo에 no담기 int no = authVo.getNo(); noticeVo.setNo(no);
+		 * 
+		 * int count = noticeService.write(noticeVo);
+		 */
 		noticeService.write(noticeVo);
 		
 		return "redirect:/notice/list";
@@ -100,21 +98,30 @@ public class BnoticeController {
 	}
 
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify() {
+	public String modify(@ModelAttribute NoticeVo noticeVo) {
 		System.out.println("[Controller]:modify");
+		System.out.println("[Controller]:modify");
+		noticeService.modify(noticeVo);
 		
-		return "";
+		return "redirect:/notice/list";
 	}
 	
 	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyForm() {
+	public String modifyForm(@RequestParam("no")int no, Model model) {
 		System.out.println("[Controller]:modifyForm");
+		
+		NoticeVo noticeVo = noticeService.modifyForm(no);
+		model.addAttribute("noticeVo", noticeVo);
 		return "ban/notice/modifyForm";
 	}
 	
 	@RequestMapping(value = "/read", method = { RequestMethod.GET, RequestMethod.POST })
-	public String read() {
+	public String read(@RequestParam("no")int no, Model model) {
 		System.out.println("[Controller]:read");
+		
+		NoticeVo noticeVo = noticeService.read(no);
+		model.addAttribute("nVo", noticeVo);
+		
 		return "ban/notice/read";
 	}
 

@@ -42,7 +42,6 @@ public class NoticeDao {
 		map.put("startRNum", startRNum);
 		map.put("endRNum", endRNum);
 		//System.out.println(map);
-		
 		return sqlSession.selectList("notice.list", map);
 	}
 	
@@ -51,6 +50,21 @@ public class NoticeDao {
 		System.out.println("[dao]:selectTotalCnt");
 		
 		return sqlSession.selectOne("notice.selectTotalCnt",keyword);
+	}
+	
+	//수정하기
+	public int update(NoticeVo noticeVo) {
+		System.out.println("[dao]:update");
+		
+		return sqlSession.update("notice.update", noticeVo);
+	}
+	
+	//가져오기
+	public NoticeVo selectOne(int no) {
+		System.out.println("[dao]:selectOne");
+		
+		NoticeVo noticeVo = sqlSession.selectOne("notice.selectOne", no);
+		return noticeVo;
 	}
 	
 	public int insert(NoticeVo noticeVo) {
@@ -67,4 +81,5 @@ public class NoticeDao {
 		
 		return sqlSession.delete("notice.delete", no);
 	}
+	
 }
