@@ -53,8 +53,8 @@ public class BnoticeController {
 					   @RequestParam(value="crtPage", required= false, defaultValue="1") int crtPage,
 			           Model model) {
 		System.out.println("[Controller]:list");
-		//System.out.println("keyword=" + keyword);
-		//System.out.println("crtPage=" + crtPage);
+		System.out.println("keyword=" + keyword);
+		System.out.println("crtPage=" + crtPage);
 		
 		Map<String, Object> pMap = noticeService.list(keyword,crtPage);
 		System.out.println(pMap);

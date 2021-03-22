@@ -48,13 +48,6 @@
 
 				<!-- 오른쪽 영역 -->
 				<div id="main-area" class="col-xs-10">
-					<!-- 위치 -->
-					<div id="breadcrumb-area">
-						<ol class="breadcrumb pull-right">
-							<li class="breadcrumb-item">공지사항</li>
-						</ol>
-					</div>
-					<!-- //위치 -->
 
 					<!-- 메인영역 타이틀 -->
 					<div id="main-title">
@@ -83,7 +76,6 @@
 												<div class="form-group form-inline">
 													<input type="text" class="form-control input-sm" name="keyword" id="txtSearchKyword" placeholder="">
 													<button class="btn btn-default btn-sm" type="submit">검색</button>
-													<input type="hidden" name="" value="search">
 												</div>
 											</form>
 										</div>
@@ -130,50 +122,6 @@
 														</tr>
 													</c:forEach>
 
-
-													<!--
-													<tr>
-														<td>10</td>
-														<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-														<td>과학</td>
-														<td>1232</td>
-														<td>2020-12-23</td>
-														<td><a href="">[삭제]</a></td>
-													</tr>
-													<tr>
-														<td>9</td>
-														<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-														<td>수학</td>
-														<td>1232</td>
-														<td>2020-12-23</td>
-														<td><a href="">[삭제]</a></td>
-													</tr>
-													<tr>
-														<td>8</td>
-														<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-														<td>국어</td>
-														<td>1232</td>
-														<td>2020-12-23</td>
-														<td><a href="">[삭제]</a></td>
-													</tr>
-													<tr>
-														<td>7</td>
-														<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-														<td>국어</td>
-														<td>1232</td>
-														<td>2020-12-23</td>
-														<td><a href="">[삭제]</a></td>
-													</tr>
-													<tr class="last">
-														<td>6</td>
-														<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-														<td>국어</td>
-														<td>1232</td>
-														<td>2020-12-23</td>
-														<td><a href="">[삭제]</a></td>
-														<button class="btn btn-default btn-xs" >삭제</button>
-													</tr>
-													-->
 												</tbody>
 											</table>
 										</div>
@@ -184,17 +132,25 @@
 										<div class="col-xs-12 text-center">
 											<nav>
 												<ul class="pagination">
-													<li><a href="#" aria-label="Previous"> <span
-															aria-hidden="true">&laquo;</span>
-													</a></li>
+													<c:if test="${pMap.prev == true}">
+														<li>
+															<a href="${pageContext.request.contextPath}/notice/list?crtPage=${pMap.startPageBtnNo-1}&keyword=${param.keyword}" aria-label="Previous">
+																<span aria-hidden="true">&laquo;</span>
+															</a>
+														</li>	
+													</c:if>
 
-													<c:forEach var="i" begin="1" end="10">
-														<li><a href="#">${i}</a></li>
+													<c:forEach begin="${pMap.startPageBtnNo}" end="${pMap.endPageBtnNo}" step="1"  var="page">
+														<li><a href="${pageContext.request.contextPath}/notice/list?crtPage=${page}&keyword=${param.keyword}">${page}</a></li>
 													</c:forEach>
 
-													<li><a href="#" aria-label="Next"> <span
-															aria-hidden="true">&raquo;</span>
-													</a></li>
+													<c:if test="${pMap.next == true}">
+														<li>
+															<a href="${pageContext.request.contextPath}/notice/list?crtPage=${pMap.endPageBtnNo+1}&keyword=${param.keyword}" aria-label="Next">
+																<span aria-hidden="true">&raquo;</span>
+															</a>
+														</li>
+													</c:if>
 												</ul>
 											</nav>
 										</div>
