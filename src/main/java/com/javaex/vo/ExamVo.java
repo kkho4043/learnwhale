@@ -158,8 +158,11 @@ public class ExamVo {
 		return "ExamVo [examNo=" + examNo + ", classNo=" + classNo + ", examTitle=" + examTitle + ", examType="
 				+ examType + ", time=" + time + ", startDate=" + startDate + ", endDate=" + endDate + ", regDate="
 				+ regDate + ", problemAmount=" + problemAmount + ", numSubmit=" + numSubmit + ", attendNum=" + attendNum
-				+ "]";
+				+ ", grade=" + grade + "]";
 	}
+
+
+	
 	
 	
 }

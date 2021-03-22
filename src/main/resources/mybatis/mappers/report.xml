@@ -27,53 +27,112 @@
 		
 		<![CDATA[
 					
-			select e.exam_no examNo,
-			       exam_title examTitle,
-			       exam_type examType,
-			       grade,
-			       to_char(exam_regDate, 'yy-mm-dd') regDate
+			select  r, 
+			        examNo,
+			        examTitle,
+			        examType,
+			        grade,
+			        regDate
+
+			from    (select  rownum r,
+					         ex.exam_no examNo,
+					         exam_title examTitle,
+					         exam_type examType,
+					         grade,
+					         to_char(exam_regDate, 'yy-mm-dd') regDate
+					from exam ex, (select  rownum, 
+					                       e.exam_no,
+					                       grade
+					                     
+					               from exam e, (select  exam_no,
+							                             sum(mypoint) grade
+							                                    
+							                     from    (select   exam_no,
+							                                       s.mypoint
+							                              from     question q, (select question_no,
+							                                                           mypoint
+							                                                    from   solve
+							                                                    where  join_no = 2 and status = '완료')s
+							                                
+							                             where  q.question_no = s.question_no)
+							                      group by exam_no) so
+					        where e.exam_no = so.exam_no
+					        order by exam_regDate desc
+					        ) sol
+			where ex.exam_no = sol.exam_no
+			)
 			
+			 ]]>            
+			
+			
+			<choose>
+				<when test=" keyword != null and keyword !='' ">
+					and exam_title like '%'||#{keyword}||'%'
+				</when>
+			
+				<when test=" type == 'quiz' ">
+					and	exam_type = '쪽지시험'
+				</when>
+				
+				<when test=" type == 'test' ">
+					and	exam_type = '시험'
+				</when>
+				
+				<when test=" type == 'homework' ">
+					and	exam_type = '과제'
+				</when>
+				
+			</choose>
+
+	</select>
+	
+	<select id="selAvgList" parameterType="int" resultType="ExamVo">
+		
+		<![CDATA[
+			
+			select  e.exam_no examNo,
+        			exam_type examType,
+        			sum(grade) grade
+                
 			from exam e, (select exam_no,
-			                     sum(mypoint) grade
-			                
+                     			 mypoint grade
+                
 			              from   (select   exam_no,
 			                               s.mypoint
 			                      from     question q, (select question_no,
 			                                                   mypoint
+			                                                   
 			                                            from   solve
 			                                            where  join_no = #{joinNo} and status = '완료')s
 			                        
 			                     where  q.question_no = s.question_no)
-			                group by exam_no) solve
+			             ) solve
 			where e.exam_no = solve.exam_no
-			 ]]>            
-			
-			<choose>
-			
-				<when test=" type == 'quiz' ">
-				and	exam_type = '쪽지시험'
-				</when>
-				
-				<when test=" type == 'test' ">
-				and	exam_type = '시험'
-				</when>
-				
-				<when test=" type == 'homework' ">
-				and	exam_type = '과제'
-				</when>
-				
-			</choose>
-			
-			<![CDATA[			                                         
-			order by    exam_regdate desc
-			]]>
+			group by exam_type, e.exam_no
+
+		]]>
 		
-		
-	
 	</select>
 	
+	<select id="selTotalPost" resultType="int">
+		
+		<![CDATA[
+		
+			select   count(exam_no)
+
+			from  	(select   exam_no
+			         
+			        from     question q, (select question_no
+			                                   
+			                              from   solve
+			                              where  join_no = 2 and status = '완료')s
+			        
+			        where  q.question_no = s.question_no
+			        group by exam_no)
+			        		
+		]]>
 	
-	
-	
+	</select>
+
 	
 </mapper>

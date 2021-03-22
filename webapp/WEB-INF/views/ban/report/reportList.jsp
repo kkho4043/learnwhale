@@ -96,48 +96,48 @@
 								<div id="total">
 									<ul>
 										<li>종합</li>
-										<li>80점</li>
+										<li>${avgList[0] }</li>
 									</ul>
 								</div>
 								
 								<ul class="list-inline text-left">
-									<li>쪽지:  60점</li>
-									<li>과제:  70점</li>
-									<li>시험:  100점</li>
+									<c:choose>
+										<c:when test="${empty avgList }">
+											<li>쪽지:  0</li>
+											<li>시험:  0</li>
+											<li>과제:  0</li>
+										</c:when>
+									
+									<c:otherwise>
+										<li>쪽지:  ${avgList[1] }</li>
+										<li>시험:  ${avgList[2] }</li>
+										<li>과제:  ${avgList[3] }</li>
+									</c:otherwise>
+									
+									</c:choose>
+							
 								</ul>
 								
 							</div>
-							
-							
-							<!-- <div class="row">
-								<div class="col-xs-12">
-									<div id="report-summary">
-										내용을 채우세요<br>
-										내용을 채우세요<br>
-										내용을 채우세요<br>
-										내용을 채우세요<br>
-									</div>
-								</div>
-							</div> -->
 							
 							<div class="row">
 								<div class="col-xs-12">
 								
 									<div id="controll-area" class="row">
 										<div class="col-xs-6">
-											<form>
+											<form action="${pageContext.request.contextPath }/abc/report/list">
 												<div class="form-group form-inline">
-													<input type="text" class="form-control input-sm" id="txtSearchKyword" placeholder="">
+													<input type="text" class="form-control input-sm" id="keyword" name="keyword" placeholder="">
 													<button class="btn btn-default btn-sm" type="submit">검색</button>
 												</div>
 											</form>
 										</div>
 										<div id="selecOpt" class="col-xs-6">
 											<ul class="pull-right">
-												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=all">전체</a></li>
-												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=quiz">쪽지</a></li>
-												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=test">시험</a></li>
-												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=homework">과제</a></li>
+												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=all&joinNo=${param.joinNo}">전체</a></li>
+												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=quiz&joinNo=${param.joinNo}">쪽지</a></li>
+												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=test&joinNo=${param.joinNo}">시험</a></li>
+												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=homework&joinNo=${param.joinNo}">과제</a></li>
 											</ul>
 										</div>
 									</div>
@@ -169,7 +169,7 @@
 															<td>${status.count }</td>
 															<td class="text-left"><a href="">${examVo.examTitle }</a></td>
 															<td>${examVo.examType }</td>
-															<td>90</td>
+															<td>${examVo.grade }</td>
 															<td>${examVo.regDate }</td>
 															<td>
 																<button class="btn btn-default btn-xs" >삭제</button>
@@ -193,8 +193,8 @@
 												      	</a>
 												    </li>
 												   
-												   	<c:forEach var="i" begin="1" end="10">
-														<li><a href="#">${i}</a></li>
+												   	<c:forEach var="i" begin="1" end="5">
+														<li><a href="${pageContext.request.contextPath }/abc/report/list?page=${i}">${i}</a></li>
 													</c:forEach>
 												   
 												    <li>
