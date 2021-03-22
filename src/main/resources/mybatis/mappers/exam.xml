@@ -114,55 +114,89 @@ from(select
 	<!-- 시험의 문제들 리스트 -->
 	<select id="examprolist" resultType="ProblemVo" parameterType="map">
 		<![CDATA[
-		select
-			q.order_num orderNum,
-			p.problem_title problemTitle,
-			
-			decode(p.answer,s.submit_answer,'O','X') result,
-			p.type type
-			
-			from solve s, question q, problem p 
-		where s.question_no = q.question_no
-		and p.problem_no = q.problem_no
-		and q.exam_no = #{examNo}
-		and s.join_no = #{joinNo}
+		select 
+			r.rnum,
+			r.ordernum,
+			r.problemtitle,
+			r.result,
+			r.type
+		from(select 
+				 rownum rnum,
+				 o.orderNum,
+				 o.problemTitle,
+				 o.result,
+				 o.type
+			 from(select
+						q.order_num orderNum,
+						p.problem_title problemTitle,
+						
+						decode(p.answer,s.submit_answer,'O','X') result,
+						p.type type
+						
+						from solve s, question q, problem p 
+					where s.question_no = q.question_no
+					and p.problem_no = q.problem_no
+					and q.exam_no = ${examNo}
+					and s.join_no = ${joinNo}
+			        order by q.order_num desc)o)r
+		where r.rnum >= #{startNum}
+	   	and r.rnum <= #{endNum}
+			        
 		]]>
 	</select>
-	
+
+	<!--시험리스트갯수 -->
+	<select id="selectproTotalCnt" resultType="int" parameterType="int">
+	 	<![CDATA[
+	 		
+			select 
+       			count(*) count 
+			FROM question q , exam e
+			where e.exam_no = q.exam_no
+			and e.exam_no = #{examNo}
+			group by e.exam_no
+	 	]]>
+
+	</select>
+		
 	<!-- 시험의 사람 리스트 -->
 	<select id="examuserlist" resultType="JoinUserVo" parameterType="int">
 		<![CDATA[
 		select 
-			uj.name username,
-			uj.join_no joinNo,
-			decode(al.count,cl.count,'제출','진행중') result
-		from (select 
-		          u.name,
-		          j.join_no
-		       from exam e,class c,join_users j,users u
-		       where e.class_no = c.class_no
-		       and c.class_no = j.class_no
-		       and u.no = j.user_no
-		       and e.exam_no = #{examNo}
-		      )uj,(select
-                         s.join_no,
-                         count(*) count
-                   from question q , solve s
-                   where q.question_no(+) = s.question_no
-                   
-                   group by s.join_no)al,( select
-                                                 s.join_no,
-                                                 count(*) count
-                                           from question q , solve s
-                                           where q.question_no(+) = s.question_no
-                                          
-                                           and (s.status = '제출' or s.status ='완료')
-                                           group by s.join_no)cl
-		where uj.join_no = al.join_no(+)
-		and  uj.join_no = cl.join_no(+)
+			al.join_no joinNo,
+		    u.name username,
+		    decode(al.count,cl.count,'제출','진행중') result
+
+		from users u ,(select 
+			                e.exam_no,
+			                j.user_no,
+			                j.join_no,
+			                count(*) count 
+		               FROM question q , exam e, class c , join_users j
+		               where e.exam_no = q.exam_no
+		               and e.class_no = c.class_no
+		               and j.class_no = c.class_no
+		               group by j.user_no,e.exam_no,j.join_no) al , (SELECT
+					                                                        e.exam_no,
+					                                                        j.user_no,
+					                                                        j.join_no,
+					                                                        count (*)  count
+				                                                     FROM question q , exam e, class c , join_users j ,solve s
+				                                                     where e.exam_no = q.exam_no
+				                                                     and e.class_no = c.class_no
+				                                                     and j.class_no = c.class_no
+				                                                     and j.join_no = s.join_no
+				                                                     and s.question_no = q.question_no
+				                                                     and (s.status = '제출' or s.status = '완료')
+		                                
+		                                                   			 group by j.user_no,e.exam_no,j.join_no)cl
+		where u.no = al.user_no
+		and u.no = cl.user_no
+		and al.exam_no = #{examNo}
+
 		]]>
 	</select>
-	
-	
+
+
 
 </mapper>

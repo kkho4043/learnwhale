@@ -71,8 +71,8 @@
 
 							<div class="searchF form-group form-inline">
 								<form action="${pageContext.request.contextPath}/abc/exam/list" method="get">
-									<input type="text" class="form-control input-sm" id="txtSearchKyword" name = "keyward" placeholder="">
-									<button type="submit" class="btn btn-default btn-sm" >검색</button>
+									<input type="text" class="form-control input-sm" id="txtSearchKyword" name="keyward" placeholder="">
+									<button type="submit" class="btn btn-default btn-sm">검색</button>
 								</form>
 							</div>
 

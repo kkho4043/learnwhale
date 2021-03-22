@@ -16,9 +16,10 @@
 	margin-bottom: 5px;
 	margin-left: 30px;
 	font-size: 12px;
-
 }
-
+#folder-color{
+	color: #FFD767;
+}
 .child-group{
 	display:none;
 }

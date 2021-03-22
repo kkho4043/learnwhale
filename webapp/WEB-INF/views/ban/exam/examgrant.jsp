@@ -14,7 +14,8 @@
 <link href="${pageContext.request.contextPath}/assets/css/ban/banCommon.css" rel="stylesheet" type="text/css">
 
 <link href="${pageContext.request.contextPath}/assets/css/ban/exam.css" rel="stylesheet" type="text/css">
-
+<link href="${pageContext.request.contextPath}/assets/css/home/category.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/home/problem.css" rel="stylesheet" type="text/css">
 
 <!-- js -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
@@ -193,8 +194,7 @@
 						</div>
 
 						<div class="row">
-							<div class="col-xs-5">
-							</div>
+							<div class="col-xs-5"></div>
 							<div class="col-xs-6">
 								<button type="button" class="btn btn-xs btn-primary">시험 출제</button>
 							</div>
@@ -249,18 +249,22 @@
 </body>
 
 <script type="text/javascript">
-	$('#myModal').on('shown.bs.modal', function() {
-		$('#myInput').focus()
-	})
-
+	
 	$(document).ready(function() {
-		$("#delete-btn").hide();
-		$("#creating-btn").hide();
-		$("#modify-btn").hide();
-		$("#manage-btn").click(function() {
-			$("#delete-btn").show();
-			$("#creating-btn").show();
-			$("#modify-btn").show();
+		$(".parentsFolder").click(function() {
+
+			console.log("click1번");
+			let parentNo = $(this).data("group");
+
+			var submenu = $(this).nextAll("#" + parentNo);
+			console.log(submenu);
+			if (submenu.is(":visible")) {
+				submenu.slideUp();
+			} else {
+				submenu.slideDown();
+
+			}
+			;
 		});
 	});
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.ExamService;
+import com.javaex.service.ProblemService;
 
 @Controller
 @RequestMapping("/abc/exam")
@@ -15,6 +16,9 @@ public class BexamController {
 	
 	@Autowired
 	private ExamService examService;
+	
+	@Autowired
+	private ProblemService proService;
 	
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(@RequestParam(value = "crtPage", required = false ,defaultValue = "1") int crtPage,
@@ -30,10 +34,11 @@ public class BexamController {
 	@RequestMapping(value = "/problemlist", method = { RequestMethod.GET, RequestMethod.POST })
 	public String problemlist(Model model,
 							@RequestParam(value = "examNo") int examNo,
-							@RequestParam(value = "joinNo", required = false ,defaultValue = "1") int joinNo) {
+							@RequestParam(value = "joinNo", required = false ,defaultValue = "1") int joinNo,
+							@RequestParam(value = "crtPage", required = false ,defaultValue = "1") int crtPage) {
 		System.out.println("[BanExamController.problemlist()]");
 		
-		model.addAttribute("upMap", examService.examproList(examNo ,joinNo));
+		model.addAttribute("upMap", examService.examproList(examNo ,joinNo ,crtPage));
 		return "ban/exam/problemlist";
 	}
 
@@ -62,8 +67,12 @@ public class BexamController {
 	}
 
 	@RequestMapping(value = "/grant", method = { RequestMethod.GET, RequestMethod.POST })
-	public String grant() {
+	public String grant(Model model ,@RequestParam(value = "cateNo", required = false ,defaultValue = "1") int cateNo) {
 		System.out.println("[BanExamController.grant()]");
+		
+		model.addAttribute("cateList", proService.getCategory(2));
+		
+		model.addAttribute("proList", proService.getProblem(cateNo));
 		return "ban/exam/examgrant";
 	}
 

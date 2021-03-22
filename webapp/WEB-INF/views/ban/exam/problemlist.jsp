@@ -67,8 +67,7 @@
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="main-content-area">
 
-						<div id="student-list" class="col-xs-2" style ="padding-right: 0px; padding-left: 0px;"
-						>
+						<div id="student-list" class="col-xs-2" style="padding-right: 0px; padding-left: 0px; margin-left: -15px; width: 145px; height: 352px;">
 							<ol>
 								<c:forEach items="${upMap.eulist}" var="vo" varStatus="status">
 
@@ -119,15 +118,19 @@
 										<div class="col-xs-12 text-center">
 											<nav>
 												<ul class="pagination">
-													<li><a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-													</a></li>
 
-													<c:forEach var="i" begin="1" end="10">
-														<li><a href="#">${i}</a></li>
+													<c:if test="${upMap.prev == true}">
+														<li><a
+															href="${pageContext.request.contextPath}/abc/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.startPageBtnNo-1}">◀</a></li>
+													</c:if>
+													
+													<c:forEach begin="${upMap.startPageBtnNo}" end="${upMap.endPageBtnNo}" step="1" var="page">
+														<li><a href="${pageContext.request.contextPath}/abc/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${page}">${page}</a></li>
 													</c:forEach>
 
-													<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-													</a></li>
+													<c:if test="${upMap.next == true}">
+														<li><a href="${pageContext.request.contextPath}/abc/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.endPageBtnNo+1}">▶</a></li>
+													</c:if>
 												</ul>
 											</nav>
 										</div>

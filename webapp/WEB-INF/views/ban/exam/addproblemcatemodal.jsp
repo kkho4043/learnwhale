@@ -1,117 +1,111 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <div class="row">
-	<div class="col-xs-3">
-		<div id="manage">
-			
-			<div class="parents-folder parentsFolder" id="top-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"><a>자바프로그래밍</a>
+	<div  class="row">
+		<div id="cate-area" class="col-xs-2" style="margin-left:20px;">
+			<div id="cate">
+		
+				<c:forEach items="${cateList}" var="cateVo">
+					<c:choose>
+
+						<c:when test="${cateVo.depth == 1}">
+							<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}">
+
+								<span class="glyphicon glyphicon-folder-close"></span> <a
+									href="#"> ${cateVo.cateName}</a>
+							</div>
+						</c:when>
+
+						<c:otherwise>
+
+							<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}" class="child-group">
+								<div class="child-folder">
+									<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close" id = "folder-color"> </span><a href="#">${cateVo.cateName}</a></span>
+								</div>
+							</div>
+
+						</c:otherwise>
+
+					</c:choose>
+				</c:forEach>
+
+
 			</div>
-			<div id="child-folderDiv">
-				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 연산자(5)
-				</div>
-				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 제어문(10)
-				</div>
-				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 반복문
-				</div>
-				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 배열
-				</div>
-				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 클래스
-				</div>
-				<div class="child-folder">
-					<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 리스트
+
+		</div>
+		<!-- //col-xs-3 -->
+		<div id="main-area" class="col-xs-9">
+			<div class="row">
+				<div id="controll-area" class="col-xs-12">
+					<div class="row">
+						<div class="col-xs-6">
+							<form>
+								<div class="form-group form-inline">
+									<input type="text" class="form-control input-sm" id="txtSearchKyword" placeholder="">
+									<button class="btn btn-default btn-sm" type="submit">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+
 				</div>
 			</div>
-			<div class="parents-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 오라클
+
+			<div class="row">
+				<table class="table table-striped table-bordered table-hover" style="width: 90%;">
+					<colgroup>
+						<col style="width: 10%;">
+						<col>
+						<col style="width: 15%;">
+						<col style="width: 15%;">
+						<col style="width: 20%;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th class="th-center">번호</th>
+							<th>문제 제목</th>
+							<th>문제 유형</th>
+							<th>만든 날짜</th>
+							<th id="thead-last">관리</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>105</th>
+							<th>if222222222222222222222222</th>
+							<th>객관식</th>
+							<th>2021-03-03</th>
+							<td>
+								<button class="btn btn-default btn-xs" id="delete-Btn">등록</button>
+							
+							</td>
+						</tr>
+						
+					</tbody>
+				</table>
 			</div>
-			<div class="parents-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> jsp/servlet
-			</div>
-			<div class="parents-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> spring
-			</div>
-			<div class="parents-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 리눅스
-			</div>
-			<div class="parents-folder">
-				<img class="folder-img" src="/learnwhale/assets/image/folder.png"> 프로젝트
+
+			<div class="row">
+				<div class="col-xs-12 text-center">
+					<nav>
+						<ul class="pagination">
+							<li><a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a></li>
+
+							<c:forEach var="i" begin="1" end="10">
+								<li><a href="#">${i}</a></li>
+							</c:forEach>
+
+							<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</ul>
+					</nav>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="col-xs-9">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>문제 제목</th>
-					<th>문제 유형</th>
-					<th>만든 날짜</th>
-					<th id="thead-last">문제 추가</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th>if222222222222222222222222</th>
-					<th>객관식</th>
-					<th>2021-03-03</th>
-					<th><button type="button" class="btn btn-danger" id="add-Btn">추가</button></th>
-				</tr>
-				<tr>
-					<th>컨트롤러에 대한 시험 문제</th>
-					<th>객관식</th>
-					<th>2021-03-03</th>
-					<th><button type="button" class="btn btn-danger" id="add-Btn">추가</button></th>
-				</tr>
-				<tr>
-					<th>Dao</th>
-					<th>OX문제</th>
-					<th>2021-03-03</th>
-					<th><button type="button" class="btn btn-danger" id="add-Btn">추가</button></th>
-				</tr>
-				<tr>
-					<th>Service</th>
-					<th>주관식</th>
-					<th>2021-03-03</th>
-					<th><button type="button" class="btn btn-danger" id="add-Btn">추가</button></th>
-				</tr>
-				<tr>
-					<th>Service</th>
-					<th>주관식</th>
-					<th>2021-03-03</th>
-					<th><button type="button" class="btn btn-danger" id="add-Btn">추가</button></th>
-				</tr>
-				<tr>
-					<th>Service</th>
-					<th>주관식</th>
-					<th>2021-03-03</th>
-					<th><button type="button" class="btn btn-danger" id="add-Btn">추가</button></th>
-				</tr>
-				<tr>
-					<th>Service</th>
-					<th>주관식</th>
-					<th>2021-03-03</th>
-					<th><button type="button" class="btn btn-danger" id="add-Btn">추가</button></th>
-				</tr>
-				<tr>
-					<th>Service</th>
-					<th>주관식</th>
-					<th>2021-03-03</th>
-					<th><button type="button" class="btn btn-danger" id="add-Btn">추가</button></th>
-				</tr>
-				<tr>
-					<th>Service</th>
-					<th>주관식</th>
-					<th>2021-03-03</th>
-					<th><button type="button" class="btn btn-danger" id="add-Btn">추가</button></th>
-				</tr>
-			</tbody>
-		</table>
-
 	</div>
 </div>
 <!-- //head -->
