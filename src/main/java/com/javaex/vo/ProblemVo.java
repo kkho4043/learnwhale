@@ -8,14 +8,28 @@ public class ProblemVo {
 	private String result;// 오답여부
 	private int orderNum; // 시험 관리 >> 문제리스트 문제순서
 
-	
-	
 	public ProblemVo() {
 	}
 
 	public ProblemVo(String type, String problemTitle, String result, int orderNum) {
 		this.type = type;
 		this.problemTitle = problemTitle;
+		this.result = result;
+		this.orderNum = orderNum;
+	}
+
+	public ProblemVo(int problemNo, int cateNo, String type, String problemTitle, String content, String contentImage,
+			String description, String answer, String regDate, String result, int orderNum) {
+
+		this.problemNo = problemNo;
+		this.cateNo = cateNo;
+		this.type = type;
+		this.problemTitle = problemTitle;
+		this.content = content;
+		this.contentImage = contentImage;
+		this.description = description;
+		this.answer = answer;
+		this.regDate = regDate;
 		this.result = result;
 		this.orderNum = orderNum;
 	}

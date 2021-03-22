@@ -13,41 +13,41 @@
 			from category
 		]]>
 	</select>
-	
-	<!--상위폴더생성  -->
+
+	<!--상위폴더생성 -->
 	<insert id="addMainFolder" parameterType="CategoryVo">
 		<![CDATA[
 			INSERT INTO category
 			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, seq_cate_no.CURRVAL, 1, 0)
 		]]>
 	</insert>
-	
+
 	<!-- 하위폴더 생성 -->
 	<insert id="addSubFolder" parameterType="CategoryVo">
 		<![CDATA[
 			INSERT INTO category
 			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, , seq_order_no.nextval, 1)
 		]]>
-	</insert> 
-	
+	</insert>
+
 	<select id="selectProblem" parameterType="int" resultType="com.javaex.vo.ProblemVo">
 		<![CDATA[
 			select  c.cate_no cateNo,
 			         p.problem_no problemNo,
 			         p.problem_title problemTitle,
 			         p.type type,
-			         p.reg_date regDate
+			         to_char(p.reg_date, 'YYYY-MM-DD') regDate
 			from problem p, category c
 			where p.cate_no = c.cate_no
 			and p.cate_no = #{cate_no}
 		]]>
 	</select>
-	
+
 	<insert id="problemInsert" parameterType="ProblemVo">
 		<![CDATA[
 			insert into problem
 			values(
-			    seq_problem_no.currval,
+			    seq_problem_no.nextval ,
 			    #{cateNo},
 			    #{type},
 			    #{problemTitle},
@@ -55,9 +55,23 @@
 			    #{contentImage},
 			    #{description},
 			    #{answer},
-			    to_char(sysdate, 'YYYY-MM-DD')
+			    sysdate
+			)
+		]]>
+		
+	</insert>
+
+	<insert id="ChoiceInsert" parameterType="map">
+		<![CDATA[
+			insert into choice
+			values(
+			     SEQ_CHOICE.nextval,
+			     seq_problem_no.currval,
+			     null,
+			     #{filepath},
+			     #{orderNo}
 			)
 		]]>
 	</insert>
-	
+
 </mapper>

@@ -1,10 +1,14 @@
 package com.javaex.dao;
 
+import java.io.FileOutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.ProblemVo;
@@ -44,7 +48,19 @@ public class ProblemDao {
 		//문제 작성
 		public int ProblemInsert(ProblemVo proVo) {
 			System.out.println("ProDao- ProblemInsert");
+			System.out.println("ProDao- ProblemInsert"+ proVo);
 			
 			return sqlSession.insert("category.problemInsert", proVo);
 		}
+		
+		public int ChoiceInsert(String filepath , int proNo , int orderNo) {
+			Map<String,Object> map = new HashMap<String,Object>();
+			
+			map.put("filepath",filepath);
+			map.put("proNo",proNo);
+			map.put("orderNo",orderNo);
+			
+			return sqlSession.insert("category.ChoiceInsert",map);
+		}
+		
 }

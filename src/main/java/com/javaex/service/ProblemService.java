@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +49,9 @@ public class ProblemService {
 		}
 		
 		//문제 작성
-		public int ProblemInsert(MultipartFile file,ProblemVo proVo) {
+		public int ProblemInsert(MultipartFile file,ProblemVo proVo , Map<String,Object> map) {
 			System.out.println("ProblemService- problemInsert");
-			System.out.println(file.getOriginalFilename());
+			System.out.println("파일이름" + file.getOriginalFilename());
 			
 			//db저장할 정보 수집
 			String saveDir = "C:\\javaStudy\\upload";
@@ -74,8 +75,43 @@ public class ProblemService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			System.out.println("service" + proVo);
+			proDao.ProblemInsert(proVo);
+			for(int i =  1 ;  i <= 4 ;i++) {
 			
-			return proDao.ProblemInsert(proVo);
+				file = (MultipartFile) map.get("file"+i);
+				exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+				
+				saveName = System.currentTimeMillis()+UUID.randomUUID().toString() + exName;
+				
+				filePath = saveDir + "\\" + saveName;
+				
+				proVo.setContentImage(saveName);
+				
+				try {
+					byte[] fileData = file.getBytes();
+					OutputStream out = new FileOutputStream(filePath);
+					BufferedOutputStream bos = new BufferedOutputStream(out);
+					
+					bos.write(fileData);
+					bos.close();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				proDao.ChoiceInsert(filePath,proVo.getProblemNo(), i);
+			}
+			
+			
+			
+			
+			
+			return 1;
+			
+			
+			
+			
 		}
 }
 	

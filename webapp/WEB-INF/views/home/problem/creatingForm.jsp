@@ -59,38 +59,41 @@
 
 
 										<div class="col-xs-9">
-											<div class="row col-xs-9">
-												<div class="col-sm-4 problemType">
-													<button type="button" class="btn btn-warning" id="mcF">객관식</button>
+											<form action="${pageContext.request.contextPath}/myclass/problem/creating" method="post" enctype="multipart/form-data">
+												<div class="row col-xs-9">
+													<div class="col-sm-4 problemType">
+														<button type="button" class="btn btn-warning" id="mcF" name="type" value="객관식">객관식</button>
+													</div>
+													<div class="col-sm-4 problemType">
+														<button type="button" class="btn btn-info" id="oxF" name="type" value="ox문제">OX문제</button>
+													</div>
+													<div class="col-sm-4 problemType">
+														<button type="button" class="btn btn-success" id="sjF" name="type" value="주관식">주관식</button>
+													</div>
 												</div>
-												<div class="col-sm-4 problemType">
-													<button type="button" class="btn btn-info" id="oxF">OX문제</button>
-												</div>
-												<div class="col-sm-4 problemType">
-													<button type="button" class="btn btn-success" id="sjF">주관식</button>
-												</div>
-											</div>
-											<!-- //row -->
+												<input type="hidden" name="type" value="객관식"> <input type="hidden" name="cateNo" value="${param.cateNo}"> <input
+													type="hidden" name="answer" value="1">
+												<!-- //row -->
 
 
-											<div class="row">
-												<div class="col-xs-9" id="make-problem">
-													<form action="#" method="post">
+												<div class="row">
+													<div class="col-xs-9" id="make-problem">
+
 
 														<div class="form-group">
-															<input type="text" class="form-control" placeholder="문제 제목을 입력해주세요.">
+															<input type="text" class="form-control" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="">
 														</div>
 														<div class="form-group">
-															<input type="text" class="form-control" placeholder="문제를 입력해주세요.">
+															<input type="text" class="form-control" placeholder="문제를 입력해주세요." name="content" value="">
 														</div>
 														<div class="form-group">
 															<input type="text" class="form-control" placeholder="이미지를 넣어주세요.">
 														</div>
 														<div class="form-group" id="img-file">
-															<input type="file">
+															<input type="file" name="Image" value="">
 														</div>
 														<div class="form-group" id="last-makeType">
-															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요.">
+															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description" value="">
 														</div>
 
 														<!-- //col-sm-12 -->
@@ -111,7 +114,7 @@
 															</div>
 															<!-- //answer-content -->
 															<div class="col-xs-12 fileArea">
-																<input type="file">
+																<input type="file" name="Image1">
 															</div>
 															<!-- //fileArea -->
 
@@ -128,7 +131,7 @@
 															</div>
 															<!-- //answer-content -->
 															<div class="col-xs-12 fileArea">
-																<input type="file">
+																<input type="file" name="Image2">
 															</div>
 															<!-- //fileArea -->
 
@@ -145,7 +148,7 @@
 															</div>
 															<!-- //answer-content -->
 															<div class="col-xs-12 fileArea">
-																<input type="file">
+																<input type="file" name="Image3">
 															</div>
 															<!-- //fileArea -->
 
@@ -159,11 +162,13 @@
 																<div class="col-xs-2">
 																	<input type="checkbox" id="check-fourth"> <label class="checkBox" for="check-fourth">정답체크</label>
 																</div>
+
+															</div>
+															<div class="col-xs-12 fileArea">
+																<input type="file" name="Image4">
 															</div>
 															<!-- //answer-content -->
-															<div class="col-xs-12 fileArea">
-																<input type="file">
-															</div>
+															<div class="col-xs-12 fileArea"></div>
 														</div>
 														<!-- //fileArea -->
 
@@ -207,22 +212,24 @@
 														<!-- //answer-content -->
 														<!-- 주관식 문제 끝 -->
 
-													</form>
-													<!-- //form -->
+
+													</div>
+													<!-- //col-sm-12 -->
 												</div>
-												<!-- //col-sm-12 -->
-											</div>
-											<!-- //row -->
+												<!-- //row -->
 
-											<div class="col-xs-4">
-												<a id="out" href="">나가기</a>
-											</div>
-											<div class="col-xs-5">
-												<button type="submit" class="btn btn-primary" id="save">저장하기</button>
-											</div>
-
+												<div class="col-xs-4">
+													<a id="out" href="">나가기</a>
+												</div>
+												<div class="col-xs-5">
+													<button type="submit" class="btn btn-primary" id="save">저장하기</button>
+												</div>
+											</form>
+											<!-- //form -->
 										</div>
+
 									</div>
+
 								</div>
 								<!-- //container -->
 							</div>
