@@ -17,8 +17,8 @@
 	<!--반생성 -->
 	<insert id="insert" parameterType="ClassVo">
 	<![CDATA[
-		INSERT INTO class
-		VALUES (seq_class_no.nextval, #{classUrl}, #{className}, #{filepath}, TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'), TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'), #{hidden})
+		INSERT INTO classs
+		VALUES (seq_class_no.nextval, #{classUrl}, #{className}, #{logoFile}, TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'), TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'), #{hidden})
 		
 		]]>
 	</insert>

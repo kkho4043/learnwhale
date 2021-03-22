@@ -23,13 +23,9 @@ public class ClassDao {
 	}
 	
 	//반생성
-	public int insert(ClassVo classVo, String filepath) {
+	public int insert(ClassVo classVo) {
 		System.out.println("[classDao.insert()]");
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("filepath", filepath);
-		map.put("classVo", classVo);
-		
-		return sqlSession.insert("class.insert", map);
+		return sqlSession.insert("class.insert", classVo);
 	}
 	
 	//리스트

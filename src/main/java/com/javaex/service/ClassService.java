@@ -48,48 +48,36 @@ public class ClassService {
 		classVo.setEndDate(classVo.getEndDate().replace("T", " "));
 		classVo.getEndDate().replace("T", " ");
 
+		System.out.println("파일이름" + file.getOriginalFilename());
+		
 		// db저정할 정보 수집
 		String saveDir = "C:\\javaStudy\\upload";
 
-		// 오리지널 파일이름
-		String orgName = file.getOriginalFilename();
-		System.out.println("orgName:" + orgName);
-
 		// 확장자
-		String exName = orgName.substring(orgName.lastIndexOf("."));
-		System.out.println("exName:" + exName);
+		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
 		// 서버 저장 파일 이름
-		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
-		System.out.println("savaName:" + saveName);
+		String saveName = System.currentTimeMillis()+UUID.randomUUID().toString() + exName;
 
 		// 서버 파일 패스 --> 저장경로
 		String filePath = saveDir + "\\" + saveName;
-		System.out.println("filePath:" + filePath);
-
+		
 		classVo.setLogoFile(saveName);
-		
-		// 파일 사이즈
-		long fileSize = file.getSize();
-		System.out.println("fileSize:" + fileSize);
-
-		
-		
 		// 서버 하드디스크 파일 저장
 		try {
 			byte[] fileData = file.getBytes();
 			OutputStream out = new FileOutputStream(filePath);
 			BufferedOutputStream bos = new BufferedOutputStream(out);
-
+			
 			bos.write(fileData);
 			bos.close();
-
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return classDao.insert(classVo, filePath);
+		System.out.println("saveName = " + saveName);
+		return classDao.insert(classVo);
 	};
 
 	// 리스트
