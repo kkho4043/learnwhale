@@ -21,13 +21,15 @@ public class ReportDao {
 			return sqlSession.selectList("report.selStudentList", classNo);
 		}
 		
-		public List<ExamVo> selExamList(int joinNo, String type, String keyword, int page) {
+		public List<ExamVo> selExamList(int joinNo, String type, String keyword, 
+										int startNum, int endNum) {
 			
 			Map<String, Object> exMap = new HashMap<>();
 			exMap.put("type", type);
 			exMap.put("joinNo", joinNo);
 			exMap.put("keyword", keyword);
-			exMap.put("page", page);
+			exMap.put("startNum", startNum);
+			exMap.put("endNum", endNum);
 			
 			return sqlSession.selectList("report.selExamList", exMap);
 		}
@@ -37,17 +39,13 @@ public class ReportDao {
 			return sqlSession.selectList("report.selAvgList", joinNo);
 		}
 		
-		public int selTotalPost() {
-			int n = sqlSession.selectOne("report.selTotalPost");
-			
-			System.out.println(n);
-			return sqlSession.selectOne("report.selTotalPost");
+		public int selTotalPost(int joinNo, String type, String keyword) {
+			Map<String, Object> map = new HashMap<>(5);
+			map.put("joinNo", joinNo);
+			map.put("type", type);
+			map.put("keyword", keyword);
+			return sqlSession.selectOne("report.selTotalPost", map);
 		}
-		
-		
-		
-		
-		
 		
 		
 }

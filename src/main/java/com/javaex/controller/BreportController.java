@@ -31,7 +31,8 @@ public class BreportController {
 		model.addAttribute("joinList", reMap.get("joinList"));
 		model.addAttribute("exList", reMap.get("exList"));
 		model.addAttribute("avgList", reMap.get("avgList"));
-				
+		model.addAttribute("paMap", reMap.get("paMap"));
+		
 		return "ban/report/reportList";
 	}
 	

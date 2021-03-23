@@ -127,8 +127,11 @@
 										<div class="col-xs-6">
 											<form action="${pageContext.request.contextPath }/abc/report/list">
 												<div class="form-group form-inline">
+												
 													<input type="text" class="form-control input-sm" id="keyword" name="keyword" placeholder="">
+													<input type="hidden" name="joinNo" value="${param.joinNo }">
 													<button class="btn btn-default btn-sm" type="submit">검색</button>
+												
 												</div>
 											</form>
 										</div>
@@ -193,8 +196,8 @@
 												      	</a>
 												    </li>
 												   
-												   	<c:forEach var="i" begin="1" end="5">
-														<li><a href="${pageContext.request.contextPath }/abc/report/list?page=${i}">${i}</a></li>
+												   	<c:forEach var="page" begin="${paMap.startPage }" end="${paMap.endPage }">
+														<li><a href="${pageContext.request.contextPath }/abc/report/list?page=${page }&keyword=${param.keyword}">${page }</a></li>
 													</c:forEach>
 												   
 												    <li>

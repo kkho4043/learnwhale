@@ -27,16 +27,42 @@ public class ReportService {
 			joinNo = stDao.selNo(classNo);
 		}
 
-		Map<String, Object> reMap = new HashMap<String, Object>();
+		Map<String, Object> reMap = new HashMap<String, Object>(5);
 		reMap.put("joinList", reDao.selStudentList(classNo));
-		reMap.put("exList", reDao.selExamList(joinNo, type, keyword, page));
-		/////////////////////
-		int postCnt = 7;
-	
+		
+		int postCnt = 5;
+		
 		int startNum = (page-1)*postCnt +1;
 		int endNum = page*postCnt;
+		reMap.put("exList", reDao.selExamList(joinNo, type, keyword, startNum, endNum));
+		
 		/////////////////////
+		int totalPost = reDao.selTotalPost(joinNo, type, keyword);
 		int pageCnt = 5;
+		System.out.println(totalPost);
+		int lastPage;
+		if((totalPost%postCnt)>0) {
+			lastPage = (totalPost/postCnt)+1;
+		}
+		else {
+			lastPage = (totalPost/postCnt);
+		}
+		
+		int startPage  = (((page-1)/pageCnt)*pageCnt)+1; 
+		int endPage = (startPage+pageCnt)-1;	
+		
+		endPage = (endPage>lastPage) ? lastPage : endPage; 
+		Map<String, Object> paMap = new HashMap<>(3);
+		
+		paMap.put("startPage", startPage);
+		paMap.put("endPage", endPage);
+		
+		reMap.put("paMap", paMap);
+		
+		
+		
+		
+		
 		
 		
 		
@@ -53,6 +79,7 @@ public class ReportService {
 			ArrayList<Integer> homeworkArr = new ArrayList<>();
 			
 			for(int i=0; i<exList.size(); i++) {
+				
 				String exType = exList.get(i).getExamType();
 				int grade = exList.get(i).getGrade();
 				

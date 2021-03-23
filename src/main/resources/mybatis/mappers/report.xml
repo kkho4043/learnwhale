@@ -52,7 +52,7 @@
 							                              from     question q, (select question_no,
 							                                                           mypoint
 							                                                    from   solve
-							                                                    where  join_no = 2 and status = '완료')s
+							                                                    where  join_no = #{joinNo} and status = '완료')s
 							                                
 							                             where  q.question_no = s.question_no)
 							                      group by exam_no) so
@@ -60,32 +60,47 @@
 					        order by exam_regDate desc
 					        ) sol
 			where ex.exam_no = sol.exam_no
-			)
-			
-			 ]]>            
-			
-			
+			]]>
+					
 			<choose>
 				<when test=" keyword != null and keyword !='' ">
-					and exam_title like '%'||#{keyword}||'%'
+					and ex.exam_title like '%'||#{keyword}||'%'
 				</when>
 			
 				<when test=" type == 'quiz' ">
-					and	exam_type = '쪽지시험'
+					<![CDATA[
+						and ex.exam_type = '쪽지시험' 
+					]]>
+					
 				</when>
 				
 				<when test=" type == 'test' ">
-					and	exam_type = '시험'
+					<![CDATA[
+						and ex.exam_type = '시험' 
+					]]>
 				</when>
 				
 				<when test=" type == 'homework' ">
-					and	exam_type = '과제'
+					<![CDATA[
+						and ex.exam_type = '과제' 
+					]]>
 				</when>
 				
 			</choose>
+				
+			
+			<![CDATA[
+			
+			)solve 
+			where r>= #{startNum} and r<= #{endNum}
+			
+			]]>
+			
+
+
 
 	</select>
-	
+				
 	<select id="selAvgList" parameterType="int" resultType="ExamVo">
 		
 		<![CDATA[
@@ -114,23 +129,57 @@
 		
 	</select>
 	
-	<select id="selTotalPost" resultType="int">
+	<select id="selTotalPost" parameterType="map" resultType="int">
 		
 		<![CDATA[
 		
-			select   count(exam_no)
-
-			from  	(select   exam_no
-			         
-			        from     question q, (select question_no
-			                                   
-			                              from   solve
-			                              where  join_no = 2 and status = '완료')s
-			        
-			        where  q.question_no = s.question_no
-			        group by exam_no)
+		select count(exam_no)        
+        
+		from (select  e.exam_no     
+		      from exam e,  (select   exam_no                      
+		               		from     question q, (select question_no
+		                                                           
+			                                      from   solve
+			                                      where  join_no = #{joinNo} and status = '완료'
+			                                      )s
+		                                        
+		                	where  q.question_no = s.question_no)q
+			 where e.exam_no = q.exam_no 
+		]]>	 
+			
+		<choose>
+				<when test=" keyword != null and keyword !='' ">
+					and exam_title like '%'||#{keyword}||'%'
+				</when>
+			
+				<when test=" type == 'quiz' ">
+					<![CDATA[
+						and exam_type = '쪽지시험' 
+					]]>
+					
+				</when>
+				
+				<when test=" type == 'test' ">
+					<![CDATA[
+						and exam_type = '시험' 
+					]]>
+				</when>
+				
+				<when test=" type == 'homework' ">
+					<![CDATA[
+						and exam_type = '과제' 
+					]]>
+				</when>
+				
+			</choose>	 
+			
+		<![CDATA[
+		group by e.exam_no 
+		)
+		]]>	 
+		
 			        		
-		]]>
+		
 	
 	</select>
 
