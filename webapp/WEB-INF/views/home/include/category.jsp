@@ -33,28 +33,14 @@
 
 			<c:forEach items="${cateList}" var="cateVo">
 				<c:choose>
-				
+
 					<c:when test="${cateVo.depth == 0}">
-					
-						<div  class="parents-folder parentsFolder" id="top-folder" 
-							   data-cate="${cateVo.cateNo }">
-							
-							<span class="glyphicon glyphicon-chevron-down" 
-								  data-group="${cateVo.groupNo}"></span>
-							
+						<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
 
 							<span class="glyphicon glyphicon-folder-close"></span> 
 							<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}"> ${cateVo.cateName}</a> 
-							
-							<span style= "cursor:pointer;" class="glyphicon glyphicon-plus subFolder-btn" 
-							aria-hidden="true" data-group="${cateVo.groupNo }"></span>
-						
-						<div class="parents-folder parentsFolder" id="top-folder" aria-hidden="true" data-group="${cateVo.groupNo}">
-							<span class="glyphicon glyphicon-menu-right"></span> <span class="glyphicon glyphicon-folder-close"></span> <a
-								href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}"> ${cateVo.cateName}</a> <span
-								class="glyphicon glyphicon-plus subFolder-btn" aria-hidden="true" data-group="${cateVo.groupNo}"></span>
+							<span class="glyphicon glyphicon-plus" aria-hidden="true" id="subFolder-btn"></span>
 						</div>
-						
 					</c:when>
 
 					<c:otherwise>
@@ -116,14 +102,10 @@
 					<div class="modal-body">
 						<label for="SubName">폴더이름</label> <input id="SubName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 						<!-- no 히든으로 처리 -->
-						<input type="text" name="userNo" value="1"><br>
-						<input type="text" name="groupNo" value="">
-						<input type="text" name="userNo" value="1"><input type="text" name="groupNo" value="">
+						<input type="text" name="userNo" value="1"> <input type="hidden" name="groupNo" value="">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">취소<
-						<input type="text" name="userNo" value="1"><input type="text" name="groupNo" value="">
-/button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 						<button type="submit" class="btn btn-primary">저장하기</button>
 					</div>
 				</div>
@@ -182,79 +164,33 @@
 	<!-- /.deleteModal -->
 </body>
 <script type="text/javascript">
-	
 	$(document).ready(function() {
-		
-		subMake();
-		visible();
-		
-	});
+		$("#subFolder-btn").click(function() {
+			console.log("서브등록 버튼 클릭");
 
-	
-/* 	$(".glyphicon-chevron-down").click(function() {
-		
-		var no = $(this).data("group");
-		
-		var submenu = $(this).nextAll("#"+no);
-		
-		if (submenu.is(":visible")) {
-			submenu.slideUp();
-		} 
-		else {
-			submenu.slideDown();
-		
-		subMake()
-		
-	});
-
-	function subMake() {
-
-		$(".subFolder-btn").click(function() {
-
-		}
-	}); */
-	
-	
-	
-	function subMake() {
-		
-		$(".subFolder-btn").click(function() {
-			
-			var groupNo = $(this).data("group");
-			$('input[name=groupNo]').val(groupNo);
-			var groupNo = $(this).data("group");
-			$('input[name=groupNo]').val(groupNo);
 			//서브모달창 호출
 			$("#addSubFolder").modal();
 
 		});
-	};
-	
-	
-	function visible(){
-		
-		
-	};
+	});
 
 	$(document).ready(function() {
 		$(".parentsFolder").click(function() {
 
+			console.log("click1번");
 			let parentNo = $(this).data("group");
 
 			var submenu = $(this).nextAll("#" + parentNo);
-			
+			console.log(submenu);
 			if (submenu.is(":visible")) {
 				submenu.slideUp();
-			} 
-			else {
+			} else {
 				submenu.slideDown();
 
 			}
-			
+			;
 		});
-	}
-	
-	
+	});
 
 	$(document).ready(function() {
 		$("#management-btn").click(function() {
