@@ -22,7 +22,6 @@ public class ClassService {
 
 	// 반생성 url 체크
 	public String urlcheck(String classUrl) {
-		System.out.println("[classService.urlcheck()]");
 
 		ClassVo classVo = classDao.selectOne(classUrl);
 		String result = "";

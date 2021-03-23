@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javaex.service.ClassService;
 import com.javaex.vo.ClassVo;
@@ -42,7 +43,6 @@ public class HbanContorller {
 	@ResponseBody
 	@RequestMapping(value="/urlcheck", method = {RequestMethod.GET, RequestMethod.POST})
 	public String urlcheck(@RequestParam("classUrl") String classUrl) {
-		System.out.println("[HbanController.urlcheck()]");
 		System.out.println("classUrl = " + classUrl);
 		String result = classService.urlcheck(classUrl);
 		return result;
@@ -51,7 +51,6 @@ public class HbanContorller {
 	 // 반생성폼
 	 @RequestMapping(value = "/createForm", method = { RequestMethod.GET,
 	 RequestMethod.POST }) public String made() {
-	 System.out.println("[HbanController.createForm()]"); 
 	 return "home/ban/createForm"; 
 	 }
 	 
@@ -60,8 +59,9 @@ public class HbanContorller {
 	public String create(@ModelAttribute ClassVo classVo,
 						 @RequestParam(value = "logoFile",required = false,defaultValue = "") MultipartFile file) {
 		System.out.println("[HbanController.create()]");
-		System.out.println(classVo);
+		System.out.println(file);
 		classService.create(classVo, file);
+		
 		return "home/ban/list";
 
 	}

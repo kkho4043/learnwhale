@@ -10,6 +10,19 @@ public class ClassVo {
 	}
 	
 	
+	
+	public ClassVo(int classNo, String classUrl, String className, String startDate, String endDate, String hidden) {
+		super();
+		this.classNo = classNo;
+		this.classUrl = classUrl;
+		this.className = className;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.hidden = hidden;
+	}
+
+
+
 	public ClassVo(int classNo, String classUrl, String className, String logoFile, String startDate, String endDate,
 			String hidden) {
 		super();

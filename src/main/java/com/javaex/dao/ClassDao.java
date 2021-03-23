@@ -18,7 +18,6 @@ public class ClassDao {
 	
 	//반생성 url 체크
 	public ClassVo selectOne(String classUrl) {
-		System.out.println("[classDao.selectOne()]");
 		return sqlSession.selectOne("class.selectByUrl", classUrl);
 	}
 	
