@@ -37,7 +37,7 @@
 					<c:when test="${cateVo.depth == 0}">
 					
 						<div  class="parents-folder parentsFolder" id="top-folder" 
-							   data-cate="${cateVo.cateNo }">
+							   data-cate="${cateVo.cateNo }"></div>
 							
 							<span class="glyphicon glyphicon-chevron-down" 
 								  data-group="${cateVo.groupNo}"></span>
