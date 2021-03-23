@@ -35,9 +35,11 @@
 				<c:choose>
 
 					<c:when test="${cateVo.depth == 0}">
-						<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}">
+						<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
 
-							<span class="glyphicon glyphicon-folder-close"></span> <a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}"> ${cateVo.cateName}</a>
+							<span class="glyphicon glyphicon-folder-close"></span> 
+							<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}"> ${cateVo.cateName}</a> 
+							<span class="glyphicon glyphicon-plus" aria-hidden="true" id="subFolder-btn"></span>
 						</div>
 					</c:when>
 
@@ -162,20 +164,16 @@
 	<!-- /.deleteModal -->
 </body>
 <script type="text/javascript">
-
 	$(document).ready(function() {
-		$(".parentsFolder").click(function() {
-			$("#creating-btn").on("click", function() {
-				console.log("서브등록 버튼 클릭");
+		$("#subFolder-btn").click(function() {
+			console.log("서브등록 버튼 클릭");
 
-				//서브모달창 호출
-				$("#addSubFolder").modal();
-			});	
-			
-			
+			//서브모달창 호출
+			$("#addSubFolder").modal();
+
 		});
 	});
-	
+
 	$(document).ready(function() {
 		$(".parentsFolder").click(function() {
 
@@ -186,7 +184,7 @@
 			console.log(submenu);
 			if (submenu.is(":visible")) {
 				submenu.slideUp();
-			} else { 
+			} else {
 				submenu.slideDown();
 
 			}
