@@ -1,6 +1,5 @@
 package com.javaex.controller;
 
-import java.awt.List;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,6 +62,15 @@ public class HproblemController {
 		proService.addSubFolder(cateVo);
 		return "redirect:/myclass/problem/problem-Management";
 	}
+	
+	@RequestMapping(value = "/updateFolder", method = { RequestMethod.GET, RequestMethod.POST })
+	public String updateFolder(@ModelAttribute CategoryVo cateVo) {
+		System.out.println("[ProblemController.updateFolder()]");
+		proService.updateFolder(cateVo);
+		
+		return "redirect:/myclass/problem/problem-Management";
+	}
+	
 
 	// 문제관리 리스트
 	@RequestMapping(value = "problemList", method = { RequestMethod.GET, RequestMethod.POST })

@@ -1,6 +1,5 @@
 package com.javaex.dao;
 
-import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +7,6 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.ProblemVo;
@@ -36,6 +34,12 @@ public class ProblemDao {
 		public int addSubFolder(CategoryVo cateVo) {
 			System.out.println("CateDao- addSubFolder()");
 			return sqlSession.insert("category.addSubFolder", cateVo);
+		}
+		
+		public int updateFolder(CategoryVo cateVo) {
+			System.out.println("CateDao- updateFolder()");
+			
+			return sqlSession.update("category.updateFolder", cateVo);
 		}
 		
 		//문제 리스트

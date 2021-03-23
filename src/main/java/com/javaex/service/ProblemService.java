@@ -41,6 +41,13 @@ public class ProblemService {
 			return proDao.addSubFolder(cateVo);
 		}
 		
+		//폴더 수정
+		public int updateFolder(CategoryVo cateVo) {
+			System.out.println("CateService- updateFolder()");
+			
+			return proDao.updateFolder(cateVo);
+		}
+		
 		//문제 리스트
 		public List<ProblemVo> getProblem(int cateNo){
 			System.out.println("ProblemService- getProblem");
