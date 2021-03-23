@@ -60,6 +60,7 @@ public class HproblemController {
 	@RequestMapping(value = "/addSubFolder", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addSubFolder(@ModelAttribute CategoryVo cateVo) {
 		System.out.println("[ProblemController.addSubFolder()]");
+		proService.addSubFolder(cateVo);
 		return "redirect:/myclass/problem/problem-Management";
 	}
 

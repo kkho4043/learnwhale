@@ -18,7 +18,7 @@
 	<insert id="addMainFolder" parameterType="CategoryVo">
 		<![CDATA[
 			INSERT INTO category
-			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, seq_cate_no.CURRVAL, 1, 0)
+			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, seq_cate_no.nextval, 1, 0)
 		]]>
 	</insert>
 
@@ -26,7 +26,7 @@
 	<insert id="addSubFolder" parameterType="CategoryVo">
 		<![CDATA[
 			INSERT INTO category
-			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, , seq_order_no.nextval, 1)
+			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, #{groupNo}, seq_order_no.nextval, 1)
 		]]>
 	</insert>
 

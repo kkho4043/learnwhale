@@ -81,8 +81,7 @@
 										class="form-control input-sm" id=""
 										placeholder="메인배너 이미지를 넣어주세요" style="width: 450px;">
 									</span> <span class="col-xs-1"> <input type="file" id="banner"
-										class="btn btn-default btn-xs pull-right" name="logoFile"
-										value="">
+										class="btn btn-default btn-xs pull-right" name="logoFile">
 									</span>
 								</div>
 								<!-- //메인베너 -->
@@ -225,15 +224,23 @@
 		}
 		
 		//보이기 숨기기 체크
-	 	var check = $("#hidden:agree").is(":checked");
+	 	var check = $("input[name=hidden]:checked").val();
 		console.log(check);
 		
 		if(!check){
-		
 			alert("생성 중인 반의 노출여부를 선택해주세요.");
 			return false;
 		} 
 		
+		//url 체크
+		var url =$("#url").val();
+		console.log(url);
+		
+		if(url.length < 1){
+			alert("url을 입력하고 중복체크를 눌러주세요.");
+			return false;
+		}
+			
 		return ture;
 	});
 </script>

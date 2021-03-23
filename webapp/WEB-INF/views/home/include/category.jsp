@@ -35,11 +35,11 @@
 				<c:choose>
 
 					<c:when test="${cateVo.depth == 0}">
-						<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
 
-							<span class="glyphicon glyphicon-folder-close"></span> 
-							<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}"> ${cateVo.cateName}</a> 
-							<span class="glyphicon glyphicon-plus" aria-hidden="true" id="subFolder-btn"></span>
+						<div class="parents-folder parentsFolder" id="top-folder" aria-hidden="true" data-group="${cateVo.groupNo}">
+							<span class="glyphicon glyphicon-menu-right"></span> <span class="glyphicon glyphicon-folder-close"></span> <a
+								href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}"> ${cateVo.cateName}</a> <span
+								class="glyphicon glyphicon-plus subFolder-btn" aria-hidden="true" data-group="${cateVo.groupNo}"></span>
 						</div>
 					</c:when>
 
@@ -102,7 +102,7 @@
 					<div class="modal-body">
 						<label for="SubName">폴더이름</label> <input id="SubName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 						<!-- no 히든으로 처리 -->
-						<input type="text" name="userNo" value="1"> <input type="hidden" name="groupNo" value="">
+						<input type="text" name="userNo" value="1"><input type="text" name="groupNo" value="">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -165,21 +165,30 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#subFolder-btn").click(function() {
-			console.log("서브등록 버튼 클릭");
+		
+		subMake()
+		
+	});
 
+	function subMake() {
+
+		$(".subFolder-btn").click(function() {
+
+			var groupNo = $(this).data("group");
+			$('input[name=groupNo]').val(groupNo);
 			//서브모달창 호출
 			$("#addSubFolder").modal();
 
 		});
-	});
+		
+	};
 
 	$(document).ready(function() {
 		$(".parentsFolder").click(function() {
 
 			console.log("click1번");
 			let parentNo = $(this).data("group");
-
+			console.log(parentNo);
 			var submenu = $(this).nextAll("#" + parentNo);
 			console.log(submenu);
 			if (submenu.is(":visible")) {
