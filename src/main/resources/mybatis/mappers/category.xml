@@ -5,12 +5,13 @@
 	<select id="selectCategory" parameterType="int" resultType="CategoryVo">
 		<![CDATA[
 			select  cate_no cateNo,
-					user_no userNo,
-					cate_name cateName,
-					group_no groupNo,
-					order_no orderNo,
-					depth
+			         user_no userNo,
+			         cate_name cateName,
+			         group_no groupNo,
+			         order_no orderNo,
+			         depth
 			from category
+			order by group_no asc, order_no asc
 		]]>
 	</select>
 
@@ -29,6 +30,14 @@
 			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, #{groupNo}, seq_order_no.nextval, 1)
 		]]>
 	</insert>
+	
+	<update id="updateFolder" parameterType="CategoryVo">
+		<![CDATA[
+			update category
+			set cate_name = #{cateName}
+			where cate_no = #{cateNo};
+		]]>
+	</update>
 
 	<select id="selectProblem" parameterType="int" resultType="com.javaex.vo.ProblemVo">
 		<![CDATA[
@@ -58,7 +67,7 @@
 			    sysdate
 			)
 		]]>
-		
+
 	</insert>
 
 	<insert id="ChoiceInsert" parameterType="map">
