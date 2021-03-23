@@ -75,7 +75,7 @@
 							<div class="row">
 								<table class="table table-striped table-bordered table-hover">
 									<colgroup>
-										<col style="width: 10%;">
+										<col style="width: 15%;">
 										<col>
 										<col style="width: 15%;">
 										<col style="width: 15%;">
@@ -83,7 +83,7 @@
 									</colgroup>
 									<thead>
 										<tr>
-											<th>번호</th>
+											<th>문제 번호</th>
 											<th>문제 제목</th>
 											<th>문제 유형</th>
 											<th>만든 날짜</th>
@@ -95,7 +95,7 @@
 										<c:forEach items="${proList}" var="proVo">
 											<tr id="tr-center">
 												<th>${proVo.problemNo}</th>
-												<th><a href="">${proVo.problemTitle}</a></th>
+												<th><a href="${pageContext.request.contextPath}/myclass/problem/creating-ViewForm?proNo=${proVo.problemNo}">${proVo.problemTitle}</a></th>
 												<th>${proVo.type}</th>
 												<th>${proVo.regDate}</th>
 												<td>

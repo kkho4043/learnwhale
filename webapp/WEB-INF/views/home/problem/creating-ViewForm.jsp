@@ -48,7 +48,6 @@
 					<!-- //content-title-area -->
 
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
-
 					<div id="content-body-area" class="row">
 						<c:import url="/WEB-INF/views/home/include/category.jsp"></c:import>
 						<div class="container-fluid">
@@ -57,42 +56,45 @@
 									<div class="row">
 										<div class="col-xs-9" id="Creat-Title">문제 작성지</div>
 
-
 										<div class="col-xs-9">
-											<div class="row col-xs-9">
-												<div class="col-sm-4 problemType">
-													<button type="button" class="btn btn-warning" id="mcF">객관식</button>
+											<form action="${pageContext.request.contextPath}/myclass/problem/creating" method="post" enctype="multipart/form-data">
+												<div class="row col-xs-9">
+													<div class="col-sm-4 problemType">
+														<button type="button" class="btn btn-warning" id="mcF" name="type" value="객관식">객관식</button>
+													</div>
+													<div class="col-sm-4 problemType">
+														<button type="button" class="btn btn-info" id="oxF" name="type" value="ox문제">OX문제</button>
+													</div>
+													<div class="col-sm-4 problemType">
+														<button type="button" class="btn btn-success" id="sjF" name="type" value="주관식">주관식</button>
+													</div>
 												</div>
-												<div class="col-sm-4 problemType">
-													<button type="button" class="btn btn-info" id="oxF">OX문제</button>
-												</div>
-												<div class="col-sm-4 problemType">
-													<button type="button" class="btn btn-success" id="sjF">주관식</button>
-												</div>
-											</div>
-											<!-- //row -->
+												<input type="hidden" name="type" value="객관식"> <input type="hidden" name="cateNo" value="${param.cateNo}"> <input
+													type="hidden" name="answer" value="1">
+												<!-- //row -->
 
 
-											<div class="row">
-												<div class="col-xs-9" id="make-problem">
-													<form action="#" method="post">
+												<div class="row">
+													<div class="col-xs-9" id="make-problem">
+
+
 														<div class="form-group">
-															<input type="text" class="form-control" value="역사 시험" placeholder="문제 제목을 입력해주세요.">
+															<input type="text" class="form-control" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="${proVo.problemTitle}">
 														</div>
 														<div class="form-group">
-															<input type="text" class="form-control" value="다음 한글을 만든 인물은 누구인가?" placeholder="문제를 입력해주세요.">
+															<input type="text" class="form-control" placeholder="문제를 입력해주세요." name="content" value="${proVo.content}">
 														</div>
 														<div class="form-group">
-															<input type="text" class="form-control" placeholder="이미지를 넣어주세요.">
+															<input type="text" class="form-control" placeholder="이미지를 넣어주세요." value="${proVo.contentImage}">
 														</div>
 														<div class="form-group" id="img-file">
-															<input type="file">
+															<input type="file" name="Image" value="${proVo.contentImage}">
 														</div>
 														<div class="form-group" id="last-makeType">
-															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요.">
+															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description" value="${proVo.description}">
 														</div>
 
-														<!-- 객관식문제 시작 -->
+														<!-- //col-sm-12 -->
 														<div id="mc-Area">
 															<div class="row answer-content">
 																<div class="col-xs-12">
@@ -102,7 +104,7 @@
 																	<strong>1</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" value="이순신" placeholder="The first answer">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The first answer">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkbox" id="check-first"> <label class="checkBox" for="check-first">정답체크</label>
@@ -110,7 +112,7 @@
 															</div>
 															<!-- //answer-content -->
 															<div class="col-xs-12 fileArea">
-																<input type="file">
+																<input type="file" name="Image1">
 															</div>
 															<!-- //fileArea -->
 
@@ -119,7 +121,7 @@
 																	<strong>2</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" value="세종대왕" placeholder="The second answer">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The second answer">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkbox" id="check-second"> <label class="checkBox" for="check-second">정답체크</label>
@@ -127,7 +129,7 @@
 															</div>
 															<!-- //answer-content -->
 															<div class="col-xs-12 fileArea">
-																<input type="file">
+																<input type="file" name="Image2">
 															</div>
 															<!-- //fileArea -->
 
@@ -136,7 +138,7 @@
 																	<strong>3</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" value="장수왕" placeholder="The third answer">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The third answer">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkbox" id="check-third"> <label class="checkBox" for="check-third">정답체크</label>
@@ -144,7 +146,7 @@
 															</div>
 															<!-- //answer-content -->
 															<div class="col-xs-12 fileArea">
-																<input type="file">
+																<input type="file" name="Image3">
 															</div>
 															<!-- //fileArea -->
 
@@ -153,19 +155,20 @@
 																	<strong>4</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" value="유재석" placeholder="The fourth answer">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The fourth answer">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkbox" id="check-fourth"> <label class="checkBox" for="check-fourth">정답체크</label>
 																</div>
+
+															</div>
+															<div class="col-xs-12 fileArea">
+																<input type="file" name="Image4">
 															</div>
 															<!-- //answer-content -->
-															<div class="col-xs-12 fileArea">
-																<input type="file">
-															</div>
+															<div class="col-xs-12 fileArea"></div>
 														</div>
 														<!-- //fileArea -->
-														<!-- 객관식 문제 끝 -->
 
 														<!-- ox문제 시작 -->
 														<div class="row" id="ox-Area">
@@ -201,52 +204,49 @@
 																<h4>정답을 적어주세요.</h4>
 															</div>
 															<div class="col-sm-12" id="last-input">
-																<input type="text" class="form-control" id="exampleInputEmail3" value="이순신 장군">
+																<input type="text" class="form-control" id="exampleInputEmail3">
 															</div>
 														</div>
 														<!-- //answer-content -->
 														<!-- 주관식 문제 끝 -->
 
-													</form>
-													<!-- //form -->
+
+													</div>
+													<!-- //col-sm-12 -->
 												</div>
-												<!-- //col-sm-12 -->
-											</div>
-											<!-- //row -->
+												<!-- //row -->
 
-											<div class="col-xs-4">
-												<a id="out" href="">나가기</a>
-											</div>
-											<div class="col-xs-5">
-												<button type="submit" class="btn btn-primary" id="save">수정하기</button>
-											</div>
-
+												<div class="col-xs-4">
+													<a id="out" href="">나가기</a>
+												</div>
+												<div class="col-xs-5">
+													<button type="submit" class="btn btn-primary" id="save">저장하기</button>
+												</div>
+											</form>
+											<!-- //form -->
 										</div>
 									</div>
 								</div>
-								<!-- //container -->
 							</div>
+							<!-- //container -->
 						</div>
-
 					</div>
-					<!-- //col-xs-9 -->
 				</div>
-				<!-- //content-body-area -->
-
-				<!-- //여기서부터 각페이지에 맞게 코딩 끝 -->
-
 			</div>
-			<!-- //container-->
 		</div>
-		<!-- //row -->
 	</div>
+
+
+	<!-- //여기서부터 각페이지에 맞게 코딩 끝 -->
+
+
+	<!-- //row -->
 	<!-- //content-Area -->
 
 
 	<!-- footer-Area -->
 	<c:import url="/WEB-INF/views/home/include/footer.jsp"></c:import>
 	<!-- //footer-Area -->
-
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {

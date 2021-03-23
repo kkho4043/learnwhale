@@ -30,7 +30,7 @@
 			VALUES (seq_cate_no.nextval, #{userNo}, #{cateName}, #{groupNo}, seq_order_no.nextval, 1)
 		]]>
 	</insert>
-	
+
 	<update id="updateFolder" parameterType="CategoryVo">
 		<![CDATA[
 			update category
@@ -83,4 +83,16 @@
 		]]>
 	</insert>
 
+	<select id="problemView" parameterType="int" resultType="com.javaex.vo.ProblemVo">
+		<![CDATA[
+			select type,
+					problem_title problemTitle,
+					content,
+					content_image contentImage,
+					description,
+					answer
+			from problem
+			where problem_no = #{problemNo}
+		]]>
+	</select>
 </mapper>
