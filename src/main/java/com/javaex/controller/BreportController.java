@@ -18,7 +18,7 @@ public class BreportController {
 	
 	@Autowired
 	private ReportService reService;
-	
+	 
 	@RequestMapping(value ="/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(@RequestParam(value="type", required = false, defaultValue = "all") String type,
 					   @RequestParam(value="joinNo", required = false, defaultValue="0") int joinNo,

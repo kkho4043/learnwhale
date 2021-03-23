@@ -30,9 +30,7 @@
 
 
 			</div>
-<!-- style= "display:inline-block;" -->
-<%-- <div class="parentDiv" data-group="${cateVo.groupNo}"> --%>
-<!-- </div> -->
+
 			<c:forEach items="${cateList}" var="cateVo">
 				<c:choose>
 				
@@ -123,7 +121,9 @@
 						<input type="text" name="userNo" value="1"><input type="text" name="groupNo" value="">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">취소<
+						<input type="text" name="userNo" value="1"><input type="text" name="groupNo" value="">
+/button>
 						<button type="submit" class="btn btn-primary">저장하기</button>
 					</div>
 				</div>

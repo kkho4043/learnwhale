@@ -39,7 +39,7 @@ public class ReportService {
 		/////////////////////
 		int totalPost = reDao.selTotalPost(joinNo, type, keyword);
 		int pageCnt = 5;
-		System.out.println(totalPost);
+		
 		int lastPage;
 		if((totalPost%postCnt)>0) {
 			lastPage = (totalPost/postCnt)+1;
