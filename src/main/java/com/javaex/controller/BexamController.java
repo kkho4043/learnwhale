@@ -1,14 +1,23 @@
 package com.javaex.controller;
 
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.ExamService;
 import com.javaex.service.ProblemService;
+import com.javaex.vo.ExamVo;
+import com.javaex.vo.ProblemVo;
+import com.javaex.vo.QuestionVo;
 
 @Controller
 @RequestMapping("/abc/exam")
@@ -66,14 +75,32 @@ public class BexamController {
 		return "ban/exam/examend";
 	}
 
-	@RequestMapping(value = "/grant", method = { RequestMethod.GET, RequestMethod.POST })
-	public String grant(Model model ,@RequestParam(value = "cateNo", required = false ,defaultValue = "1") int cateNo) {
-		System.out.println("[BanExamController.grant()]");
+	@RequestMapping(value = "/grantform", method = { RequestMethod.GET, RequestMethod.POST })
+	public String grantform(Model model ,@RequestParam(value = "cateNo", required = false ,defaultValue = "1") int cateNo) {
+		System.out.println("[BanExamController.grantform()]");
 		
 		model.addAttribute("cateList", proService.getCategory(2));
 		
 		model.addAttribute("proList", proService.getProblem(cateNo));
-		return "ban/exam/examgrant";
+		return "ban/exam/examgrantform";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/grant", method = { RequestMethod.GET, RequestMethod.POST })
+	public String grant(@ModelAttribute ("examVo") ExamVo examVo,
+			@RequestParam ("qarr[]") String[] qarr) {
+		System.out.println("[BanExamController.grant()]");
+		
+		examService.examgrant(examVo, qarr);
+		return "";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/cateproList", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<ProblemVo> cateList(Model model ,@RequestParam(value = "cateNo", required = false ,defaultValue = "1") int cateNo) {
+		System.out.println("[BanExamController.cateproList()]");
+			
+		return proService.getProblem(cateNo);
 	}
 
 }

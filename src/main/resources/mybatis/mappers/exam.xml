@@ -3,6 +3,38 @@
 <!--시험리스트 -->
 <mapper namespace="exam">
 
+
+	<insert id="examinsert" parameterType="ExamVo">
+	<![CDATA[
+	insert into exam VALUES(
+						seq_exam_no.nextval,
+						1,
+						#{examTitle},
+						#{examType},
+						#{time},
+						TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'),
+						TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'),
+						sysdate
+						)
+	
+	]]>
+	</insert>
+	
+	<insert id="questioninsert" parameterType="map">
+	<![CDATA[
+	insert into question VALUES(
+						seq_question_no.nextval,
+						seq_exam_no.CURRVAL,
+						#{problemNo},
+						#{point},
+						#{order}
+						
+						)
+	
+	]]>
+	</insert>
+	
+	
 	<select id="examList" resultType="ExamVo" parameterType="map">
 	<![CDATA[
 			select 

@@ -2,18 +2,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="row">
-	<div  class="row">
-		<div id="cate-area" class="col-xs-2" style="margin-left:20px;">
+	<div class="row">
+		<div id="cate-area" class="col-xs-2" style="margin-left: 20px;">
 			<div id="cate">
-		
+
 				<c:forEach items="${cateList}" var="cateVo">
 					<c:choose>
 
 						<c:when test="${cateVo.depth == 1}">
 							<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}">
 
-								<span class="glyphicon glyphicon-folder-close"></span> <a
-									href="#"> ${cateVo.cateName}</a>
+								<span class="glyphicon glyphicon-folder-close"></span> <a href="#" class="cateNum" data-catno="${cateVo.cateNo}"> ${cateVo.cateName}</a>
 							</div>
 						</c:when>
 
@@ -21,7 +20,8 @@
 
 							<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}" class="child-group">
 								<div class="child-folder">
-									<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close" id = "folder-color"> </span><a href="#">${cateVo.cateName}</a></span>
+									<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close" id="folder-color"> </span><a href="#"
+										class="cateNum" data-catno="${cateVo.cateNo}">${cateVo.cateName}</a></span>
 								</div>
 							</div>
 
@@ -55,7 +55,7 @@
 			</div>
 
 			<div class="row">
-				<table class="table table-striped table-bordered table-hover" style="width: 90%;">
+				<table class="table table-striped table-bordered table-hover" style="width: 90%;" id = "proList">
 					<colgroup>
 						<col style="width: 10%;">
 						<col>
@@ -69,21 +69,11 @@
 							<th>문제 제목</th>
 							<th>문제 유형</th>
 							<th>만든 날짜</th>
-							<th id="thead-last">관리</th>
+							<th id="thead-last">문제등록</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<th>105</th>
-							<th>if222222222222222222222222</th>
-							<th>객관식</th>
-							<th>2021-03-03</th>
-							<td>
-								<button class="btn btn-default btn-xs" id="delete-Btn">등록</button>
-							
-							</td>
-						</tr>
-						
+					<tbody id="cate-problem">
+					
 					</tbody>
 				</table>
 			</div>
@@ -108,4 +98,5 @@
 		</div>
 	</div>
 </div>
+
 <!-- //head -->

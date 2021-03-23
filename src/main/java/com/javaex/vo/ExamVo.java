@@ -34,6 +34,17 @@ public class ExamVo {
 		this.attendNum = attendNum;
 	}
 
+	
+	
+	public ExamVo(String examTitle, String examType, String time, String startDate, String endDate) {
+		this.examTitle = examTitle;
+		this.examType = examType;
+		this.time = time;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
+
 	public int getGrade() {
 		return grade;
 	}

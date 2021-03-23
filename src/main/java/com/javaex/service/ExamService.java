@@ -1,17 +1,13 @@
 package com.javaex.service;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.ExamDao;
-import com.javaex.vo.ChoiceVo;
 import com.javaex.vo.ExamVo;
 
 @Service("/BlogBasicService")
@@ -20,10 +16,6 @@ public class ExamService {
 	@Autowired
 	ExamDao examDao;
 
-	public void examinsert() {
-		System.out.println("service");
-		examDao.examinsert();
-	}
 
 	public Map<String, Object> examList(int classNo, int crtPage, String keyward) {
 
@@ -108,11 +100,6 @@ public class ExamService {
 			prev = false;
 		}
 		
-		
-		
-			
-	
-		
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		pMap.put("eulist", examDao.examuserList(examNo));
 		pMap.put("eplist", examDao.examproList(examNo, joinNo , startNum,endNum));
@@ -121,6 +108,22 @@ public class ExamService {
 		pMap.put("endPageBtnNo", endPageBtnNo);
 		pMap.put("next", next);
 		return pMap;
+	}
+	
+	public void examgrant(ExamVo examVo,String[] arr) {
+		examVo.setStartDate(examVo.getStartDate().replace("T", " "));
+		examVo.setEndDate(examVo.getStartDate().replace("T", " "));
+		
+		examDao.examinsert(examVo);
+		
+		String split;
+		
+		for(int i = 0;i < arr.length;i++) {
+			split = arr[i];
+			String[] splitarr = split.split("/");
+			examDao.questioninsert(Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]),i+1);
+		}
+		
 	}
 
 }

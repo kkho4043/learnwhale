@@ -18,9 +18,16 @@ public class ExamDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public void examinsert() {
-		System.out.println("dao");
-		sqlSession.insert("exam.examinsert");
+	public void examinsert(ExamVo examVo) {
+		sqlSession.insert("exam.examinsert",examVo);
+		System.out.println("ExamDao.examinsert");
+	}
+	public void questioninsert(int problemNo,int point , int order) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("problemNo", problemNo);
+		map.put("point", point);
+		map.put("order", order);
+		sqlSession.insert("exam.questioninsert",map);
 	}
 
 	public List<ExamVo> examList(int classNo, String keyward, int startNum, int endNum) {
