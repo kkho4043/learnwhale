@@ -2,8 +2,8 @@ package com.javaex.vo;
 
 public class NoticeVo {
 
-	int no;
-	int user_no;//notice_no 글번호
+	int no;      //notice_no 글번호
+	int user_no; //user_no 유저넘버
 	int join_no;    //가입회원번호
 	String title;   //제목 
 	String content; //내용 
@@ -12,20 +12,7 @@ public class NoticeVo {
 	
 	String name;    //이름
 	
-	
-	
-	public int getUser_no() {
-		return user_no;
-	}
 
-
-	public void setUser_no(int user_no) {
-		this.user_no = user_no;
-	}
-
-
-	
-	
 	//
 	public NoticeVo() {	}
 	
@@ -53,12 +40,18 @@ public class NoticeVo {
 		return no;
 	}
 
-
 	public void setNo(int no) {
 		this.no = no;
 	}
 
+	public int getUser_no() {
+		return user_no;
+	}
 
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+	
 	public int getJoin_no() {
 		return join_no;
 	}

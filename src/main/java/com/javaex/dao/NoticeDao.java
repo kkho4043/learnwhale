@@ -67,7 +67,7 @@ public class NoticeDao {
 		return noticeVo;
 	}
 	
-	//1개 불러오기
+	//join_no 불러오기
 	public int selJoin(int no) {
 		System.out.println("[dao]:selectOne");
 		
