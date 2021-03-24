@@ -9,7 +9,7 @@
 		<typeAlias alias="ExamVo" type="com.javaex.vo.ExamVo" />
 		<typeAlias alias="ClassVo" type="com.javaex.vo.ClassVo" />
 		<typeAlias alias="ProblemVo" type="com.javaex.vo.ProblemVo" />
-		
+		<typeAlias alias="QuestionVo" type="com.javaex.vo.QuestionVo" />
 		<typeAlias alias="JoinUserVo" type="com.javaex.vo.JoinUserVo" />
 	</typeAliases>
 

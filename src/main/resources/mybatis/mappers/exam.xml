@@ -230,6 +230,38 @@ from(select
 
 		]]>
 	</select>
+	
+	<select id="selectexam" resultType="ExamVo" parameterType="int">
+		<![CDATA[
+		select  
+	    	exam_no examNo,
+	    	exam_title examTitle,
+	    	exam_type examType,
+	   	 	time,
+	   	 	
+	   	 	TO_CHAR(start_date,'yyyy-MM-dd hh:mm:ss') startDate,
+			TO_CHAR(end_date,'yyyy-MM-dd hh:mm:ss') endDate
+			
+		from exam
+		where exam_no = #{examNo}
+
+		]]>
+	</select>
+	
+	<select id="selectquestion" resultType="QuestionVo" parameterType="int">
+		<![CDATA[
+		select
+    		p.problem_no problemNo,
+    		p.problem_title problemTitle,
+    		p.type problemType,
+    		q.point point
+		from question q, problem p
+		where q.problem_no = p.problem_no
+		and q.exam_no = #{examNo}
+		order by q.order_num
+
+		]]>
+	</select>
 
 
 

@@ -125,5 +125,18 @@ public class ExamService {
 		}
 		
 	}
+	public Map<String, Object> exammodify(int examNo) {
+		
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		ExamVo examVo = examDao.selectExam(examNo);
+		
+		examVo.setStartDate(examVo.getStartDate().replace(" ","T"));
+		examVo.setEndDate(examVo.getEndDate().replace(" ","T"));
+		pMap.put("examVo",examVo);
+		
+		pMap.put("qList",examDao.selectquestion(examNo));
+		
+		return pMap;
+	}
 
 }

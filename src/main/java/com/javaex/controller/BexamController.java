@@ -100,7 +100,7 @@ public class BexamController {
 		System.out.println("[BanExamController.exammodifyform()]");
 		
 		model.addAttribute("cateList", proService.getCategory(2));//유저번호를 주면 그에해당하는 카테고리를 준다~
-		
+		model.addAttribute("pMap",examService.exammodify(examNo));
 		
 		return "ban/exam/exammodifyform";
 	}
