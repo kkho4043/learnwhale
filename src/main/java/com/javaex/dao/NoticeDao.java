@@ -67,6 +67,14 @@ public class NoticeDao {
 		return noticeVo;
 	}
 	
+	//1개 불러오기
+	public int selJoin(int no) {
+		System.out.println("[dao]:selectOne");
+		
+		 
+		return sqlSession.selectOne("notice.sel", no);
+	}
+	
 	//조회수 +1
 	public int updateHit(int no) {
 		System.out.println("[dao]:updateHit");

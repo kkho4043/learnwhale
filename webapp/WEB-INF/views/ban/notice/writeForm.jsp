@@ -67,8 +67,8 @@
 									<div id="writeForm">
 										<form action="${pageContext.request.contextPath}/notice/write" method="get">
 										
-											<input type="text" id="" name="no" value="">
-											<input type="text" id="" name="join_no" value="10">
+											<input type="text" id="" name="user_no" value="${authUser.no }">
+											
 											<!-- 제목 -->
 											<div class="form-group">
 												<label class="form-text" for="txt-title">제목</label>

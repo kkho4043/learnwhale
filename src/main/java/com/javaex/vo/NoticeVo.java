@@ -2,7 +2,8 @@ package com.javaex.vo;
 
 public class NoticeVo {
 
-	int no;         //notice_no 글번호
+	int no;
+	int user_no;//notice_no 글번호
 	int join_no;    //가입회원번호
 	String title;   //제목 
 	String content; //내용 
@@ -10,6 +11,19 @@ public class NoticeVo {
 	String reg_date; //등록일
 	
 	String name;    //이름
+	
+	
+	
+	public int getUser_no() {
+		return user_no;
+	}
+
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+
+
 	
 	
 	//
@@ -104,12 +118,14 @@ public class NoticeVo {
 		this.name = name;
 	}
 
-	//메소드 기본
+
 	@Override
 	public String toString() {
-		return "NoticeVo [no=" + no + ", join_no=" + join_no + ", title=" + title + ", content=" + content + ", hit="
-				+ hit + ", reg_date=" + reg_date + ", name=" + name + "]";
+		return "NoticeVo [no=" + no + ", user_no=" + user_no + ", join_no=" + join_no + ", title=" + title
+				+ ", content=" + content + ", hit=" + hit + ", reg_date=" + reg_date + ", name=" + name + "]";
 	}
+
+	
 	
 	
 	

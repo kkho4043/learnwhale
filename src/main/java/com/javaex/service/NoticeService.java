@@ -120,10 +120,13 @@ public class NoticeService {
 		return noticeDao.selectOne(no);
 	}
 	
-	//등록
+	//등록 + join_no
 	public int write(NoticeVo noticeVo) {
 		System.out.println("[Service]:write");
-		
+	
+		//noticeVo.setJoin_no(join_no);
+		System.out.println(noticeDao.selJoin(noticeVo.getUser_no()));
+		noticeVo.setJoin_no(noticeDao.selJoin(noticeVo.getUser_no()));
 		return noticeDao.insert(noticeVo);
 	}
 	

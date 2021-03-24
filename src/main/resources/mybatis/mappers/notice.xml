@@ -19,6 +19,22 @@
 	]]>
 </select>
 
+<select id="sel" parameterType="int" resultType="int">
+	<![CDATA[
+	
+		select join_no
+		       
+		from join_users j, users u
+		where u.no = #{no} and u.no = j.user_no
+
+
+	]]>
+</select>
+
+
+
+
+
 <!-- list + 검색 -->
 <select id="list1" parameterType="string" resultType="com.javaex.vo.NoticeVo">
 <![CDATA[
