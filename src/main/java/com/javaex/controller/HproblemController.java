@@ -27,7 +27,7 @@ public class HproblemController {
 	@RequestMapping(value = "/problem-Management", method = { RequestMethod.GET, RequestMethod.POST })
 	public String problemManagement(Model model) {
 
-		model.addAttribute("cateList", proService.getCategory(2));
+		model.addAttribute("cateList", proService.getCategory(1));
 
 		return "home/problem/problem-Management";
 	}
@@ -73,7 +73,7 @@ public class HproblemController {
 	@RequestMapping(value = "problemList", method = { RequestMethod.GET, RequestMethod.POST })
 	public String problemList(Model model, int cateNo) {
 		System.out.println("[ProblemController.problemList()]");
-		model.addAttribute("cateList", proService.getCategory(2));
+		model.addAttribute("cateList", proService.getCategory(1));
 
 		model.addAttribute("proList", proService.getProblem(cateNo));
 
@@ -112,7 +112,7 @@ public class HproblemController {
 	public String creatingViewForm(Model model, int proNo) {
 		System.out.println("[ProblemController.view()]");
 		
-		model.addAttribute("cateList", proService.getCategory(2));
+		model.addAttribute("cateList", proService.getCategory(1));
 		
 		model.addAttribute("proVo", proService.view(proNo));
 		return "home/problem/creating-ViewForm";
