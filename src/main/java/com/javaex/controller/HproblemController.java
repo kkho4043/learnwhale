@@ -33,8 +33,11 @@ public class HproblemController {
 	}
 
 	@RequestMapping(value = "/creatingForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String multipleChoice() {
+	public String multipleChoice(Model model) {
 		System.out.println("[ProblemController.creatingForm()]");
+		
+		model.addAttribute("cateList", proService.getCategory(1));
+		
 		return "home/problem/creatingForm";
 	}
 
@@ -85,6 +88,7 @@ public class HproblemController {
 	// 문제 작성
 	@RequestMapping(value = "/creating", method = { RequestMethod.GET, RequestMethod.POST })
 	public String creating(@ModelAttribute ProblemVo proVo, MultipartHttpServletRequest request,
+			@RequestParam(value = "choiceContent", required = false, defaultValue = "") String choiceContent,
 			@RequestParam(value = "Image", required = false, defaultValue = "") MultipartFile file,
 			@RequestParam(value = "Image1", required = false, defaultValue = "") MultipartFile file1,
 			@RequestParam(value = "Image2", required = false, defaultValue = "") MultipartFile file2,
@@ -94,15 +98,15 @@ public class HproblemController {
 		System.out.println("controller" + proVo.toString());
 		System.out.println(file);
 		System.out.println(file1 + "," + file2 + "," + file3 + "," + file4);
-
+		System.out.println("초이스 스트링"+choiceContent);
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		map.put("choiceContent", choiceContent);
 		map.put("file1", file1);
 		map.put("file2", file2);
 		map.put("file3", file3);
 		map.put("file4", file4);
 
-		proService.ProblemInsert(file, proVo, map);
+		proService.ProblemInsert(file, proVo, choiceContent,map);
 
 		return "redirect:/myclass/problem/problemList?cateNo=" + proVo.getCateNo();
 	}
@@ -139,7 +143,7 @@ public class HproblemController {
 		map.put("file3", file3);
 		map.put("file4", file4);
 
-		proService.ProblemInsert(file, proVo, map);
+		//proService.ProblemInsert(file, proVo, map);
 
 		return "redirect:/myclass/problem/problemList?cateNo=" + proVo.getCateNo();
 	}

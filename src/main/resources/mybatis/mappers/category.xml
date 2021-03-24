@@ -49,6 +49,7 @@
 			from problem p, category c
 			where p.cate_no = c.cate_no
 			and p.cate_no = #{cate_no}
+			order by problem_no asc
 		]]>
 	</select>
 
@@ -56,12 +57,12 @@
 		<![CDATA[
 			insert into problem
 			values(
-			    seq_problem_no.nextval ,
+			    seq_problem_no.nextval,
 			    #{cateNo},
 			    #{type},
 			    #{problemTitle},
 			    #{content},
-			    #{contentImage},
+			    #{contentImage, jdbcType=VARCHAR},
 			    #{description},
 			    #{answer},
 			    sysdate
@@ -76,7 +77,7 @@
 			values(
 			     SEQ_CHOICE.nextval,
 			     seq_problem_no.currval,
-			     null,
+			     #{choiceContent},
 			     #{filepath},
 			     #{orderNo}
 			)

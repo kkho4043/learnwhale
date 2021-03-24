@@ -58,9 +58,10 @@ public class ProblemDao {
 	}
 
 	// 보기 파일 넣기
-	public int ChoiceInsert(String filepath, int proNo, int orderNo) {
+	public int ChoiceInsert(String filepath,String choiceContent,int proNo, int orderNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		
+		map.put("choiceContent", choiceContent);
 		map.put("filepath", filepath);
 		map.put("proNo", proNo);
 		map.put("orderNo", orderNo);

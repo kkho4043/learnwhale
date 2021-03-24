@@ -59,20 +59,35 @@
 
 
 										<div class="col-xs-9">
-											<form action="${pageContext.request.contextPath}/myclass/problem/creating" method="post" enctype="multipart/form-data">
+											<form id="prblemForm" action="${pageContext.request.contextPath}/myclass/problem/creating" method="post" enctype="multipart/form-data">
 												<div class="row col-xs-9">
+													
 													<div class="col-sm-4 problemType">
-														<button type="button" class="btn btn-warning" id="mcF" name="type" value="객관식">객관식</button>
+														<input type="radio" class="mcF" id="typeMc" name="type" value="객관식" checked="checked">
 													</div>
 													<div class="col-sm-4 problemType">
-														<button type="button" class="btn btn-info" id="oxF" name="type" value="ox문제">OX문제</button>
+														<input type="radio" class="oxF" id="typeOx" name="type" value="OX문제">
 													</div>
 													<div class="col-sm-4 problemType">
-														<button type="button" class="btn btn-success" id="sjF" name="type" value="주관식">주관식</button>
+														<input type="radio" class="sjF" id="typeSj" name="type" value="주관식">
 													</div>
 												</div>
-												<input type="hidden" name="type" value="객관식"> <input type="hidden" name="cateNo" value="${param.cateNo}"> <input
-													type="hidden" name="answer" value="1">
+												
+												<div class="row col-xs-9">
+													<div class="col-sm-4 problemType radioArea">
+														<label for="typeMc" >객관식</label> 
+														
+													</div>
+													<div class="col-sm-4 problemType radioArea">
+														<label for="typeOx" >OX문제</label> 
+														
+													</div>
+													<div class="col-sm-4 problemType radioArea">
+														<label for="typeSj">주관식</label> 
+														
+													</div>
+												</div>
+												<input type="hidden" name="cateNo" value="${param.cateNo}">
 												<!-- //row -->
 
 
@@ -95,9 +110,11 @@
 														<div class="form-group" id="last-makeType">
 															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description" value="">
 														</div>
-
+														<div id = "div-mc">
+															
+														</div>
 														<!-- //col-sm-12 -->
-														<div id="mc-Area">
+														<div class="mc-Area">
 															<div class="row answer-content">
 																<div class="col-xs-12">
 																	<h4>각 문항에 내용을 입력해주세요.</h4>
@@ -106,10 +123,11 @@
 																	<strong>1</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The first answer">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The first answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkbox" id="check-first"> <label class="checkBox" for="check-first">정답체크</label>
+																	<input type="checkBox" name="answer" id="check-first"  value="1"> 
+																	<label for="check-first">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -123,10 +141,11 @@
 																	<strong>2</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The second answer">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The second answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkbox" id="check-second"> <label class="checkBox" for="check-second">정답체크</label>
+																	<input type="checkBox" name="answer" id="check-second"  value="2"> 
+																	<label for="check-second">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -140,10 +159,11 @@
 																	<strong>3</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The third answer">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The third answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkbox" id="check-third"> <label class="checkBox" for="check-third">정답체크</label>
+																	<input type="checkBox" name="answer" id="check-third"  value="3">
+																	<label for="check-third">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -157,10 +177,11 @@
 																	<strong>4</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The fourth answer">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The fourth answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkbox" id="check-fourth"> <label class="checkBox" for="check-fourth">정답체크</label>
+																	<input type="checkBox" name="answer" id="check-fourth"  value="4"> 
+																	<label for="check-fourth">정답체크</label>
 																</div>
 
 															</div>
@@ -173,26 +194,27 @@
 														<!-- //fileArea -->
 
 														<!-- ox문제 시작 -->
-														<div class="row" id="ox-Area">
+														<div class="row ox-Area">
 															<div class="col-xs-12">
 																<h4>정답을 선택해주세요</h4>
 															</div>
 															<!-- //col-sm-12 -->
 															<div class="col-xs-6">
 																<div>
-																	<input id="quizAnswerO" type="radio" name="radio-answer">
+																	<input id="quizAnswerO" type="radio" name="answer" value="O">
+																	
 																</div>
 																<div id="O">
-																	<label class="" for="quizAnswerO">O</label>
+																	<label for="quizAnswerO">O</label>
 																</div>
 															</div>
 															<!-- //col-sm-6 -->
 															<div class="col-xs-6">
 																<div>
-																	<input id="quizAnswerX" type="radio" name="radio-answer">
+																	<input id="quizAnswerX" type="radio" name="answer" value="X">
 																</div>
 																<div id="X">
-																	<label class="" for="quizAnswerX">X</label>
+																	<label for="quizAnswerX">X</label>
 																</div>
 															</div>
 															<!-- //col-sm-6 -->
@@ -201,12 +223,12 @@
 														<!-- ox문제 끝 -->
 
 														<!-- 주관식 문제 시작 -->
-														<div class="row answer-content" id="sj-Area">
+														<div class="row answer-content sj-Area">
 															<div class="col-sm-12">
 																<h4>정답을 적어주세요.</h4>
 															</div>
 															<div class="col-sm-12" id="last-input">
-																<input type="text" class="form-control" id="exampleInputEmail3">
+																<input type="text" class="form-control" id="exampleInputEmail3" name="answer" value="">
 															</div>
 														</div>
 														<!-- //answer-content -->
@@ -234,34 +256,7 @@
 								<!-- //container -->
 							</div>
 						</div>
-
-
-
-
-
-						<div class="modal fade" id="delete-Modal">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true"></span>
-										</button>
-										<h4 class="modal-title">문제 제목</h4>
-									</div>
-									<div class="modal-body">
-										<p>if문</p>
-									</div>
-									<div class="modal-footer">
-										<p style="float: left;">정말 삭제하시겠습니까?</p>
-										<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-										<button type="button" class="btn btn-danger">삭제</button>
-									</div>
-								</div>
-								<!-- /.modal-content -->
-							</div>
-							<!-- /.modal-dialog -->
-						</div>
-						<!-- /.modal -->
+						
 					</div>
 					<!-- //col-xs-9 -->
 				</div>
@@ -288,40 +283,78 @@
 
 </body>
 <script type="text/javascript">
-	$("#delete-Btn").on("click", function() {
-		console.log("삭제버튼 클릭");
+var cloneox = $(".ox-Area").clone();
+var clonesj = $(".sj-Area").clone();
+var clonemc = $(".mc-Area").clone();
 
-		$("#delete-Modal").modal();
+/* 시작할때 */
+$(document).ready(function() {
+	
+	//입력폼 모두 숨기기
+	$(".ox-Area").hide();
+	$(".sj-Area").hide();
+	$(".mc-Area").hide();
+	
+	/* $("#div-mc").empty(); */
+	
+	//객관식 입력폼 출력
+	$("#div-mc").html(clonemc);
+
+});
+
+
+/* OX문제방식 선택할때 */
+$(".oxF").on("click", function() {
+	formReset();
+	
+	$("#div-mc").html(cloneox);
+	$('.oxF').prop('checked', true);
+});
+
+
+/* 주관식문제방식 선택할때 */
+$(".sjF").click(function() {
+	formReset();
+	
+	$("#div-mc").html(clonesj);
+	$('.sjF').prop('checked', true);
+});
+
+
+/* 객관식문제방식 선택할때 */
+$(".mcF").click(function() {
+	
+	/* 폼초기화 */
+	formReset();
+	
+	/* 입력폼출력 */
+	
+	$("#div-mc").html(clonemc);
+	$('.mcF').prop('checked', true);
+});
+
+
+
+
+$("#delete-Btn").on("click", function() {
+	console.log("삭제버튼 클릭");
+
+	$("#delete-Modal").modal();
+});
+
+$("#move-Btn").on("click", function() {
+	console.log("이동버튼 클릭");
+	
+	$("#move-Modal").modal();
+});
+
+
+/* 문제입력폼 리셋 */
+function formReset(){
+	$("#prblemForm").each(function() {
+ 			this.reset();
 	});
+}
 
-	$("#move-Btn").on("click", function() {
-		console.log("이동버튼 클릭");
-
-		$("#move-Modal").modal();
-	});
-
-	$(document).ready(function() {
-		$("#ox-Area").hide();
-		$("#sj-Area").hide();
-
-		$("#oxF").click(function() {
-			$("#ox-Area").show();
-			$("#mc-Area").hide();
-			$("#sj-Area").hide();
-		});
-
-		$("#sjF").click(function() {
-			$("#ox-Area").hide();
-			$("#mc-Area").hide();
-			$("#sj-Area").show();
-		});
-
-		$("#mcF").click(function() {
-			$("#ox-Area").hide();
-			$("#mc-Area").show();
-			$("#sj-Area").hide();
-		});
-
-	});
 </script>
 </html>

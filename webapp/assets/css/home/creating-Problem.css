@@ -52,3 +52,6 @@ input[type=radio]{
 #last-input{
 	margin-bottom: 50px;
 }
+.radioArea{
+	margin-top: -41px;
+}

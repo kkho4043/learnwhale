@@ -56,37 +56,19 @@ public class ProblemService {
 	}
 
 	// 문제 작성
-	public int ProblemInsert(MultipartFile file, ProblemVo proVo, Map<String, Object> map) {
+	public int ProblemInsert(MultipartFile file, ProblemVo proVo, String choice, Map<String, Object> map) {
 		System.out.println("ProblemService- problemInsert");
 		System.out.println("파일이름" + file.getOriginalFilename());
+		String saveDir = "";
+		String exName;
+		String saveName;
+		String filePath;
 
-		// db저장할 정보 수집
-		String saveDir = "C:\\javaStudy\\upload";
+		if (proVo.getContentImage() != null) {
 
-		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+			// db저장할 정보 수집
+			saveDir = "C:\\javaStudy\\upload";
 
-		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
-
-		String filePath = saveDir + "\\" + saveName;
-
-		proVo.setContentImage(saveName);
-
-		try {
-			byte[] fileData = file.getBytes();
-			OutputStream out = new FileOutputStream(filePath);
-			BufferedOutputStream bos = new BufferedOutputStream(out);
-
-			bos.write(fileData);
-			bos.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println("service" + proVo);
-		proDao.ProblemInsert(proVo);
-		for (int i = 1; i <= 4; i++) {
-
-			file = (MultipartFile) map.get("file" + i);
 			exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
 			saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
@@ -94,7 +76,6 @@ public class ProblemService {
 			filePath = saveDir + "\\" + saveName;
 
 			proVo.setContentImage(saveName);
-
 			try {
 				byte[] fileData = file.getBytes();
 				OutputStream out = new FileOutputStream(filePath);
@@ -107,20 +88,53 @@ public class ProblemService {
 				e.printStackTrace();
 			}
 
-			proDao.ChoiceInsert(filePath, proVo.getProblemNo(), i);
+		}
+		System.out.println("service" + proVo);
+		proDao.ProblemInsert(proVo);
+
+		String[] arr = choice.split(",");
+		System.out.println(choice.length());
+		for (int i = 1; i <= 4; i++) {
+
+			if (choice.length() > 3) {
+
+				filePath = "";
+				proDao.ChoiceInsert(filePath, arr[i - 1], proVo.getProblemNo(), i);
+			} else {
+				file = (MultipartFile) map.get("file" + i);
+				exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+
+				saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+
+				filePath = saveDir + "\\" + saveName;
+
+				proVo.setContentImage(saveName);
+
+				try {
+					byte[] fileData = file.getBytes();
+					OutputStream out = new FileOutputStream(filePath);
+					BufferedOutputStream bos = new BufferedOutputStream(out);
+
+					bos.write(fileData);
+					bos.close();
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			proDao.ChoiceInsert(filePath, "", proVo.getProblemNo(), i);
 		}
 
 		return 1;
 	}
-	
-	//문제 보기
+
+	// 문제 보기
 	public ProblemVo view(int proNo) {
 		System.out.println("ProblemService- view");
-		
+
 		return proDao.problemView(proNo);
 	}
-	
-	
+
 	// 문제 수정
 	public int modify(MultipartFile file, ProblemVo proVo, Map<String, Object> map) {
 		System.out.println("ProblemService- modify");
