@@ -2,17 +2,19 @@ package com.javaex.vo;
 
 public class ClassVo {
 
-	private int classNo;
+	private int classNo, lCount, rCount;
 	private String classUrl, className, logoFile, startDate, endDate, hidden;
 
 	public ClassVo() {
 		super();
 	}
 
-	public ClassVo(int classNo, String classUrl, String className, String logoFile, String startDate, String endDate,
-			String hidden) {
+	public ClassVo(int classNo, int lCount, int rCount, String classUrl, String className, String logoFile,
+			String startDate, String endDate, String hidden) {
 		super();
 		this.classNo = classNo;
+		this.lCount = lCount;
+		this.rCount = rCount;
 		this.classUrl = classUrl;
 		this.className = className;
 		this.logoFile = logoFile;
@@ -27,6 +29,22 @@ public class ClassVo {
 
 	public void setClassNo(int classNo) {
 		this.classNo = classNo;
+	}
+
+	public int getlCount() {
+		return lCount;
+	}
+
+	public void setlCount(int lCount) {
+		this.lCount = lCount;
+	}
+
+	public int getrCount() {
+		return rCount;
+	}
+
+	public void setrCount(int rCount) {
+		this.rCount = rCount;
 	}
 
 	public String getClassUrl() {
@@ -79,9 +97,14 @@ public class ClassVo {
 
 	@Override
 	public String toString() {
-		return "ClassVo [classNo=" + classNo + ", classUrl=" + classUrl + ", className=" + className + ", logoFile="
-				+ logoFile + ", startDate=" + startDate + ", endDate=" + endDate + ", hidden=" + hidden + "]";
+		return "ClassVo [classNo=" + classNo + ", lCount=" + lCount + ", rCount=" + rCount + ", classUrl=" + classUrl
+				+ ", className=" + className + ", logoFile=" + logoFile + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", hidden=" + hidden + "]";
 	}
+
+	
+
+	
 
 	
 

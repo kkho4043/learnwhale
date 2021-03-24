@@ -76,18 +76,19 @@
 							</div>
 
 							<div class="row">
-								<div class="col-xs-11">
+								<div class="col-xs-12">
 									<table class="table table-striped table-hover table-bordered"
 										style="margin-left: 15px;">
 										<thead>
 											<tr>
-												<th class="col-xs-2">번호</th>
-												<th class="col-xs-2">반이름</th>
-												<th class="col-xs-2">시작일</th>
-												<th class="col-xs-2">종료일</th>
-												<th class="col-xs-2">인원</th>
-												<th class="col-xs-2">상태</th>
-												<th class="col-xs-2">관리</th>
+												<th>번호</th>
+												<th>반이름</th>
+												<th>시작일</th>
+												<th>종료일</th>
+												<th>인원</th>
+												<th>상태</th>
+												<th>관리</th>
+												<th>비고</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -98,7 +99,7 @@
 													<td>${vo.startDate}</td>
 													<td>${vo.endDate}</td>
 													
-													<td>13/20명</td>
+													<td>${vo.lCount} /${vo.rCount }명</td>
 												
 													<td>진행중</td>
 															

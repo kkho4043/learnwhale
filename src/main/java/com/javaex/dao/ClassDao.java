@@ -23,9 +23,19 @@ public class ClassDao {
 	}
 	
 	//반생성
-	public int insert(ClassVo classVo) {
-		System.out.println("[classDao.insert()]");
+	public int classInsert(ClassVo classVo) {
+		System.out.println("[classDao.classInsert()]");
 		return sqlSession.insert("class.insert", classVo);
+	}
+	
+	//반생성 후 선생님 join_user 테이블에 바로 insert
+	public int joinInsert(int classNo, int no) {
+		System.out.println("[classDao.joinInsert()]");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("classNo", classNo);
+		map.put("no", no);
+		System.out.println("Map"+ map);
+		return sqlSession.insert("class.self",map);
 	}
 	
 	//리스트
@@ -34,13 +44,4 @@ public class ClassDao {
 		return sqlSession.selectList("class.selectList", no);
 	}
 	
-	public int selectwaiting(ArrayList<Integer> arr) {
-		System.out.println("[classDao.selectwaiting()]");
-		return sqlSession.selectOne("class.waiting", arr);
-	}
-	
-	public int selectapproval(ArrayList<Integer> arr) {
-		System.out.println("[classDao.selectapproval()]");
-		return sqlSession.selectOne("class.approval", arr);
-	}
 }

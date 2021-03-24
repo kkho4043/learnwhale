@@ -16,53 +16,58 @@
 
 	<!--반생성 -->
 	<insert id="insert" parameterType="ClassVo">
+	<selectKey keyProperty="classNo" order="BEFORE" resultType="int">
+		select seq_class_no.nextval from dual
+	</selectKey>
 	<![CDATA[
 		INSERT INTO class
-		VALUES (seq_class_no.nextval, #{classUrl}, #{className}, #{logoFile}, TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'), TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'), #{hidden})
+		VALUES (#{classNo}, #{classUrl}, #{className}, #{logoFile}, TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'), TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'), #{hidden})
 		
+		]]>
+	</insert>
+	
+	<!--반생성 한후-->
+	<insert id="self" parameterType="map">
+	<![CDATA[
+		INSERT INTO join_users 
+		VALUES (seq_joinUsers_no.nextval, #{classNo}, #{no}, '승인', '선생님', sysdate)
 		]]>
 	</insert>
 
 	<!-- 전체리스트 가져오기 -->
 	<select id="selectList" resultType="ClassVo" parameterType="int">
 	    <![CDATA[
-	        select c.class_no classNo,
-       			   c.class_name className,
-        		   TO_CHAR(c.start_date,'yyyy-mm-dd') startDate,
-        	   	   TO_CHAR(c.end_date,'yyyy-mm-dd') endDate,
-        		   c.hidden hidden
-			from class c, join_users j, users u
-			where j.user_no = u.no and u.no = #{no}
-            and c.class_no = j.class_no 
-			order by c.class_no asc
+			select 
+			j.class_no classNo,
+			su.count lCount,
+			au.count rCount,
+			c.class_name className,
+			TO_CHAR(c.start_date,'yyyy-mm-dd') startDate,
+			TO_CHAR(c.end_date,'yyyy-mm-dd') endDate,
+			c.hidden hidden
+			from users u, join_users j , class c,(select
+			                                c.class_no,
+			                                count(*) count
+			                            from class c, join_users j
+			                            where c.class_no = j.class_no
+			                            and j.approval = '승인'
+			                            group by c.class_no
+			                            )su,(select
+			                                    c.class_no,
+			                                    count(*) count 
+			                                from class c, join_users j
+			                                where c.class_no = j.class_no
+			                                and (j.approval = '승인'or j.approval = '대기')
+			                                group by c.class_no
+			                                )au
+			where u.no = j.user_no and u.no='5'
+			and j.class_no = su.class_no
+			and j.class_no = au.class_no
+			and j.class_no = c.class_no
+			and j.type = '선생님'
 	    ]]>
 	</select>
-	
-	<select id="waiting" resultType="int">
-		 <![CDATA[
-	        SELECT count(join_no)
-			FROM join_users
-			where approval = '대기'
-			or approval = '승인'
-			and type= '학생'
-			
-			]]>
-			<foreach collection="list" item="classNo" separator="," open="(" close=")">
-				and class_no = #{classNo}
-			</foreach>
-	    	
-	</select>
-	
-	<select id="approval" resultType="int">
-		 <![CDATA[
-	        SELECT count(join_no)
-			FROM join_users
-			where approval = '승인'
-			and type= '학생'
-			and class_no = #{classNo}
-	    ]]>	
-	</select>
-	
+
 
 
 </mapper>

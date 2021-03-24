@@ -8,12 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.ClassDao;
 import com.javaex.vo.ClassVo;
+import com.javaex.vo.UserVo;
 
 @Service
 public class ClassService {
@@ -38,7 +41,7 @@ public class ClassService {
 	};
 
 	// 반생성
-	public int create(ClassVo classVo, MultipartFile file) {
+	public int create(ClassVo classVo, MultipartFile file, int no) {
 		System.out.println("[classService.create()]");
 
 		classVo.setStartDate(classVo.getStartDate().replace("T", " "));
@@ -75,29 +78,17 @@ public class ClassService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		System.out.println("saveName = " + saveName);
-		return classDao.insert(classVo);
+		classDao.classInsert(classVo);
+		int classNo = classVo.getClassNo();
+		System.out.println("classNo " + classNo);
+		System.out.println("no "+ no);
+		return classDao.joinInsert(classNo, no);
 	};
 
 	// 리스트
 	public List<ClassVo> list(int no) {
 		System.out.println("[classService.list()]");
-		List<ClassVo> list = classDao.selectList(no);
-		
-		ArrayList<Integer> arr = new ArrayList<Integer>();
-		
-		for(int i=0; i<list.size(); i++) {
-			arr.add(list.get(i).getClassNo());
-		}
-		
-		System.out.println(arr);
-		
-		classDao.selectapproval(arr);
-		classDao.selectwaiting(arr);
-		
-		
-		return list;
+		return classDao.selectList(no);
 	};
 	
 	
