@@ -1,5 +1,6 @@
 package com.javaex.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +29,18 @@ public class ClassDao {
 	}
 	
 	//리스트
-	public List<ClassVo> selectList(){
+	public List<ClassVo> selectList(int no){
 		System.out.println("[classDao.selectList()]");
-		return sqlSession.selectList("class.selectList");
+		return sqlSession.selectList("class.selectList", no);
+	}
+	
+	public int selectwaiting(ArrayList<Integer> arr) {
+		System.out.println("[classDao.selectwaiting()]");
+		return sqlSession.selectOne("class.waiting", arr);
+	}
+	
+	public int selectapproval(ArrayList<Integer> arr) {
+		System.out.println("[classDao.selectapproval()]");
+		return sqlSession.selectOne("class.approval", arr);
 	}
 }

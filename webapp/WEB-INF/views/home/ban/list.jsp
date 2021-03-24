@@ -81,27 +81,28 @@
 										style="margin-left: 15px;">
 										<thead>
 											<tr>
-												<th>번호</th>
-												<th>반이름</th>
-												<th>시작일</th>
-												<th>종료일</th>
-												<th>인원</th>
-												<th>상태</th>
-												<th class="col-xs-3">관리</th>
+												<th class="col-xs-2">번호</th>
+												<th class="col-xs-2">반이름</th>
+												<th class="col-xs-2">시작일</th>
+												<th class="col-xs-2">종료일</th>
+												<th class="col-xs-2">인원</th>
+												<th class="col-xs-2">상태</th>
+												<th class="col-xs-2">관리</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${classList}" var="vo">
 												<tr>
-													<td>${vo.no }</td>
+													<td>${vo.classNo}</td>
 													<td><a href="">${vo.className}</a></td>
-													<td>${vo.startDate }</td>
-													<td>${vo.endDate }</td>
+													<td>${vo.startDate}</td>
+													<td>${vo.endDate}</td>
+													
 													<td>13/20명</td>
 												
 													<td>진행중</td>
 															
-													<td>보이기</td>
+													<td>${vo.hidden}</td>
 
 													<td><a
 														href="${pageContext.request.contextPath}/h/modifyForm">[수정]</a>

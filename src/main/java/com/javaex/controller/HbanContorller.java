@@ -2,6 +2,8 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javaex.service.ClassService;
 import com.javaex.vo.ClassVo;
+import com.javaex.vo.UserVo;
 
 @Controller
 @RequestMapping("/h")
@@ -25,10 +28,14 @@ public class HbanContorller {
 
 	//반 리스트
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Model model) {
+	public String list(Model model, HttpSession session) {
 		System.out.println("[HbanController.list()]");
-		List<ClassVo> classList = classService.list();
+		
+		UserVo userVo = (UserVo)session.getAttribute("authUser");
+		List<ClassVo> classList = classService.list(userVo.getNo());
+		System.out.println(userVo.getNo());
 		model.addAttribute("classList", classList);
+		
 		return "home/ban/list";
 	}
 
@@ -57,10 +64,10 @@ public class HbanContorller {
 	 //반생성
 	@RequestMapping(value = "/create", method = { RequestMethod.GET, RequestMethod.POST })
 	public String create(@ModelAttribute ClassVo classVo,
-						 @RequestParam(value = "logoFile",required = false,defaultValue = "") MultipartFile file) {
+						 @RequestParam(value = "logo") MultipartFile file) {
 		System.out.println("[HbanController.create()]");
-		System.out.println(file);
-		classService.create(classVo, file);
+	
+		classService.create(classVo, file); 
 		
 		return "home/ban/list";
 

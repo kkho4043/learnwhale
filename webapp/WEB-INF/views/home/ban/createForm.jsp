@@ -81,7 +81,7 @@
 										class="form-control input-sm" id=""
 										placeholder="메인배너 이미지를 넣어주세요" style="width: 450px;">
 									</span> <span class="col-xs-1"> <input type="file" id="banner"
-										class="btn btn-default btn-xs pull-right" name="logoFile">
+										class="btn btn-default btn-xs pull-right" name="logo">
 									</span>
 								</div>
 								<!-- //메인베너 -->
@@ -107,7 +107,7 @@
 								<div class="row interval">
 									<label class="col-xs-2 text-right">노출여부</label>
 									<div class="radio col-xs-10">
-										<label> <input type="radio" id="hidden" name="hidden" value="no">보이기
+										<label> <input type="radio" id="hidden" name="hidden" value="no">보이기${authUser.no }
 										</label> <label> <input type="radio" id="hidden" name="hidden" value="yes">숨기기
 										</label>
 									</div>
@@ -123,7 +123,8 @@
 										<button type="button" class="btn btn-default btn-xs" id="btnCheck">중복체크</button>
 										<p id="msg" class="text-danger">
 											<!-- url 사용 가능 여부 메세지  -->
-										</p> <p class="text-warning">※url의 경우 중복불가, 수정불가</p>
+										</p> 
+										<p class="text-warning">※url의 경우 중복불가, 수정불가</p>
 									</span>
 								</div>
 								<!-- //노출여부 -->
@@ -178,15 +179,13 @@
 			type : "post",
 			/* contentType : "application/json", */
 			data : {classUrl:classUrl},
-
+		
 			dataType : "text",
 			success : function(result) {
 				/*성공시 처리해야될 코드 작성*/
 				if (result == 'can') {
-					console.log("can");
 					$("#msg").html("사용할수 있는 url 입니다.");
 				} else {
-					console.log("cant");
 					$('#msg').html("사용할수 없는 url 입니다.");
 				}
 			},
@@ -234,8 +233,7 @@
 		
 		//url 체크
 		var url =$("#url").val();
-		console.log(url);
-		
+
 		if(url.length < 1){
 			alert("url을 입력하고 중복체크를 눌러주세요.");
 			return false;

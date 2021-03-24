@@ -35,6 +35,14 @@ public class HuserController {
 		System.out.println("[HomeMain()-login]");
 
 		UserVo authUser = userService.login(userVo);
-		return "redirect:/";
+		if(authUser != null) {
+			System.out.println("login 성공");
+			session.setAttribute("authUser", authUser);
+			return "redirect:/";
+		}	else {
+			System.out.println("login 실패");
+			return "redirect:/user/loginForm?result=fail";
+		}
+		
 	}
 }

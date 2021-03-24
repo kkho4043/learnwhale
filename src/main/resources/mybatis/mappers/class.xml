@@ -10,37 +10,59 @@
 			FROM class c
 			where c.class_url = #{classUrl}
 		]]>
-	
+
 	</select>
-	
-	
+
+
 	<!--반생성 -->
 	<insert id="insert" parameterType="ClassVo">
 	<![CDATA[
-		INSERT INTO classs
+		INSERT INTO class
 		VALUES (seq_class_no.nextval, #{classUrl}, #{className}, #{logoFile}, TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'), TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'), #{hidden})
 		
 		]]>
 	</insert>
 
 	<!-- 전체리스트 가져오기 -->
-	<select id="selectList" resultType="ClassVo">
+	<select id="selectList" resultType="ClassVo" parameterType="int">
 	    <![CDATA[
 	        select c.class_no classNo,
        			   c.class_name className,
-        		   c.logo_file logoFile,
-        		   TO_CHAR(c.start_date,'yyyy-mm-dd hh:mi') startDate,
-        		   TO_CHAR(c.end_date,'yyyy-mm-dd hh:mi') endDate,
-        	       c.hidden hidden,
-        		   c.class_url classUrl
-		   from class c, join_users j
-		   where c.class_no = j.class_no
-		   and TO_CHAR(c.start_date,'yyyy-mm-dd hh:mi') <= TO_CHAR(c.end_date,'yyyy-mm-dd hh:mi')
-		   order by startDate desc
+        		   TO_CHAR(c.start_date,'yyyy-mm-dd') startDate,
+        	   	   TO_CHAR(c.end_date,'yyyy-mm-dd') endDate,
+        		   c.hidden hidden
+			from class c, join_users j, users u
+			where j.user_no = u.no and u.no = #{no}
+            and c.class_no = j.class_no 
+			order by c.class_no asc
 	    ]]>
 	</select>
-
-
+	
+	<select id="waiting" resultType="int">
+		 <![CDATA[
+	        SELECT count(join_no)
+			FROM join_users
+			where approval = '대기'
+			or approval = '승인'
+			and type= '학생'
+			
+			]]>
+			<foreach collection="list" item="classNo" separator="," open="(" close=")">
+				and class_no = #{classNo}
+			</foreach>
+	    	
+	</select>
+	
+	<select id="approval" resultType="int">
+		 <![CDATA[
+	        SELECT count(join_no)
+			FROM join_users
+			where approval = '승인'
+			and type= '학생'
+			and class_no = #{classNo}
+	    ]]>	
+	</select>
+	
 
 
 </mapper>

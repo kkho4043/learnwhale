@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -80,9 +81,25 @@ public class ClassService {
 	};
 
 	// 리스트
-	public List<ClassVo> list() {
+	public List<ClassVo> list(int no) {
 		System.out.println("[classService.list()]");
-		return classDao.selectList();
+		List<ClassVo> list = classDao.selectList(no);
+		
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		
+		for(int i=0; i<list.size(); i++) {
+			arr.add(list.get(i).getClassNo());
+		}
+		
+		System.out.println(arr);
+		
+		classDao.selectapproval(arr);
+		classDao.selectwaiting(arr);
+		
+		
+		return list;
 	};
+	
+	
 
 }
