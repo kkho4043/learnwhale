@@ -81,7 +81,7 @@ public class BexamController {
 		
 		model.addAttribute("cateList", proService.getCategory(2));
 		
-		model.addAttribute("proList", proService.getProblem(cateNo));
+		
 		return "ban/exam/examgrantform";
 	}
 	
@@ -92,8 +92,20 @@ public class BexamController {
 		System.out.println("[BanExamController.grant()]");
 		
 		examService.examgrant(examVo, qarr);
-		return "";
+		return "/abc/exam/list";
 	}
+	
+	@RequestMapping(value = "/exammodifyfrom", method = { RequestMethod.GET, RequestMethod.POST })
+	public String exammodifyform(Model model ,@RequestParam(value = "examNo") int examNo) {
+		System.out.println("[BanExamController.exammodifyform()]");
+		
+		model.addAttribute("cateList", proService.getCategory(2));//유저번호를 주면 그에해당하는 카테고리를 준다~
+		
+		
+		return "ban/exam/exammodifyform";
+	}
+	
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/cateproList", method = { RequestMethod.GET, RequestMethod.POST })

@@ -58,7 +58,7 @@
 					<div id="main-title">
 						<div class="row">
 							<div class="col-xs-12">
-								<p>시험 출제</p>
+								<p>시험 수정</p>
 							</div>
 						</div>
 					</div>
@@ -424,7 +424,7 @@
 
 		var remove = $(this);
 		remove.parents("tr").empty();
-		document.getElementById("#hapscore").innerHTML = 0;
+		document.getElementById("hapscore").innerHTML = 0;
 		rendersVo();
 	});
 

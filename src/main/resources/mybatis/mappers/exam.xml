@@ -19,7 +19,7 @@
 	
 	]]>
 	</insert>
-	
+
 	<insert id="questioninsert" parameterType="map">
 	<![CDATA[
 	insert into question VALUES(
@@ -33,8 +33,8 @@
 	
 	]]>
 	</insert>
-	
-	
+
+
 	<select id="examList" resultType="ExamVo" parameterType="map">
 	<![CDATA[
 			select 
@@ -92,6 +92,7 @@ from(select
                                                                                                            from question
                                                                                                            group by exam_no) ca
                                                                                                            where cn.count = ca.count
+                                                                                                           and cn.exam_no = ca.exam_no
                                                                                                            group by cn.exam_no)can ,(select
                                                                                                                                         c.class_no,
                                                                                                                                         count(join_no) count
@@ -190,11 +191,11 @@ from(select
 	 	]]>
 
 	</select>
-		
+
 	<!-- 시험의 사람 리스트 -->
 	<select id="examuserlist" resultType="JoinUserVo" parameterType="int">
 		<![CDATA[
-		select 
+		 select 
 			al.join_no joinNo,
 		    u.name username,
 		    decode(al.count,cl.count,'제출','진행중') result
@@ -222,8 +223,9 @@ from(select
 				                                                     and (s.status = '제출' or s.status = '완료')
 		                                
 		                                                   			 group by j.user_no,e.exam_no,j.join_no)cl
-		where u.no = al.user_no
-		and u.no = cl.user_no
+		where al.exam_no = cl.exam_no(+)
+        and al.user_no = cl.user_no(+)
+        and u.no =  al.user_no
 		and al.exam_no = #{examNo}
 
 		]]>
