@@ -1,5 +1,6 @@
 package com.javaex.dao;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ public class StudentDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	 
 	  public List<Map<String, Object>> selectList(int classNo) {
 	  
 	  return sqlSession.selectList("student.selectList", classNo); 

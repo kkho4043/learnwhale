@@ -13,7 +13,7 @@ public class StudentService {
 	
 	@Autowired
 	private StudentDao stDao;
-	
+	 
 	
 	 public List<Map<String, Object>> getList(int classNo) {
 	  
