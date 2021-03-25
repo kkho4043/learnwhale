@@ -91,4 +91,21 @@ public class ExamDao {
 	public List<QuestionVo> selectquestion(int examNo) {
 		return sqlSession.selectList("exam.selectquestion", examNo);
 	}
+	
+	public void examupdate(ExamVo examVo) {
+		sqlSession.update("exam.examupdate", examVo);
+	}
+	
+	public void qeustiondelete(int examNo) {
+		sqlSession.delete("exam.qeustiondelete", examNo);
+	}
+	public void questionupdate(int examNo, int problemNo,int point , int order) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("examNo", examNo);
+		map.put("problemNo", problemNo);
+		map.put("point", point);
+		map.put("order", order);
+		sqlSession.insert("exam.questionupdate", map);
+	}
 }

@@ -327,6 +327,7 @@
 		var startdate = document.getElementById("startdate").value;
 		var enddate = document.getElementById("enddate").value;
 		var etype = type;
+		var examNo = "${param.examNo}"
 		console.log(title, etype, time);
 		console.log(startdate, enddate);
 		var qarr = [];
@@ -369,10 +370,11 @@
 		}
 
 		$.ajax({
-			url : "${pageContext.request.contextPath}/abc/exam/grant",
+			url : "${pageContext.request.contextPath}/abc/exam/modify",
 			type : "post",
 			//contentType : "application/json",
 			data : {
+				examNo : examNo,
 				examTitle : title,
 				examType : etype,
 				time : time,

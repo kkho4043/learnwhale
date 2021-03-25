@@ -105,6 +105,16 @@ public class BexamController {
 		return "ban/exam/exammodifyform";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
+	public String exammodify(@ModelAttribute ("examVo") ExamVo examVo,
+			@RequestParam ("qarr[]") String[] qarr) {
+		System.out.println("[BanExamController.exammodify()]");
+		
+	
+		examService.exammodify(examVo, qarr);
+		return "/abc/exam/list";
+	}
 	
 	
 	@ResponseBody

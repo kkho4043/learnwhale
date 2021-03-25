@@ -262,6 +262,55 @@ from(select
 
 		]]>
 	</select>
+	
+	<update id="examupdate" parameterType="ExamVo">
+		<![CDATA[
+			update exam
+			
+			set exam_title = #{examTitle}
+			]]>
+				<if test="examType != null and examType != ''">
+					,
+					exam_type = #{examType}
+				</if>
+		<![CDATA[
+				,
+			    time = #{time}
+		]]>
+		
+		
+						
+			    <if test="startDate != null and startDate != ''">
+			    	,
+					start_date = TO_DATE(#{startDate},'yyyy-mm-dd hh:mi:ss')
+				</if>
+			    
+			     <if test="endDate != null and endDate != ''">
+			     	,
+					end_date = TO_DATE(#{endDate},'yyyy-mm-dd hh:mi:ss')
+				</if>
+			    
+		<![CDATA[
+			where exam_no = #{examNo}
+		]]>
+	</update>
+	
+	<delete id="qeustiondelete" parameterType="int">
+		delete 
+		from question
+		where exam_no = #{examNo}
+	</delete>
+	
+	<insert id="questionupdate" parameterType="QuestionVo">
+		insert into question VALUES(
+						seq_question_no.nextval,
+						#{examNo},
+						#{problemNo},
+						#{point},
+						#{order}
+						)	
+	
+	</insert>
 
 
 
