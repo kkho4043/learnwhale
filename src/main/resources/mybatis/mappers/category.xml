@@ -96,4 +96,13 @@
 			where problem_no = #{problemNo}
 		]]>
 	</select>
+	
+	<update id="ProblemModefy" parameterType="ProblemVo">
+		<![CDATA[
+			update problem
+			set problem_title = #{problemTitle}
+			where problem_no = #{problemNo}
+		]]>
+	</update>
+	
 </mapper>

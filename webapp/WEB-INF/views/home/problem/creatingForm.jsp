@@ -279,7 +279,10 @@ $(document).ready(function() {
 	$(".ox-Area").hide();
 	$(".sj-Area").hide();
 	
-
+	//console.log($(".ox-Area .answer").val());
+	
+	var a = $(".ox-Area .answer").attr("name", "none");
+	
 });
 
 /* OX문제방식 선택할때 */
@@ -292,6 +295,11 @@ $(".oxF").on("click", function() {
 	$(".mc-Area").hide();
 	$(".ox-Area").show();
 	$(".sj-Area").hide();
+	
+	
+	$(".mc-Area .answer").attr("name", "none");
+	$(".ox-Area .answer").attr("name", "answer");
+	
 	
 	$('.oxF').prop('checked', true);
 });
@@ -310,7 +318,6 @@ $(".sjF").on("click", function() {
 	$('.sjF').prop('checked', true);
 });
 
-
 /* 객관식문제방식 선택할때 */
 $(".mcF").on("click", function() {
 	
@@ -322,6 +329,9 @@ $(".mcF").on("click", function() {
 	$(".ox-Area").hide();
 	$(".sj-Area").hide();
 	
+	$(".ox-Area .answer").attr("name", "none");
+	$(".mc-Area .answer").attr("name", "answer");
+	
 	$('.mcF').prop('checked', true);
 });
 
@@ -330,8 +340,8 @@ $(".mcF").on("click", function() {
 	
 		 var problemTitle = $("#problemTitle").val();
 		 var content = $("#content").val();
-		 var answer = $("input[name='answer']").val();
-		 
+		 var answer = $("input[name=answer]");
+		 console.log()
 		 /* 문제제목 체크 */
 		 if(!problemTitle){
 			 alert("문제 제목을 입력해 주세요.");
@@ -345,7 +355,7 @@ $(".mcF").on("click", function() {
 		 }
 		 
 		 /* 정답 체크 */
-		 if(!answer){
+		 if(answer.is(":checked") ==false){
 			 alert("정답을 체크해 주세요.");
 			 return false;
 		 }

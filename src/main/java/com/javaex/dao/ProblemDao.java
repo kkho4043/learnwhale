@@ -81,18 +81,19 @@ public class ProblemDao {
 	public int ProblemModify(ProblemVo proVo) {
 		System.out.println("ProDao- ProblemModefy");
 
-		return sqlSession.insert("category.ProblemModefy", proVo);
+		return sqlSession.update("category.ProblemModefy", proVo);
 	}
 
 	// 보기 파일 수정
-	public int ChoiceModify(String filepath, int proNo, int orderNo) {
+	public int ChoiceModify(String filepath,String choiceContent,int proNo, int orderNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		
+		map.put("choiceContent", choiceContent);
 		map.put("filepath", filepath);
 		map.put("proNo", proNo);
-		map.put("orderNo", orderNo);
 
 		return sqlSession.insert("category.ChoiceModify", map);
 	}
+
 
 }
