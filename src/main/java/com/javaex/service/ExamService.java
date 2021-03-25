@@ -160,5 +160,10 @@ public class ExamService {
 		}
 		
 	}
+	
+	public void exammodify2(ExamVo examVo) {
+		System.out.println(examVo);
+		examDao.examupdate(examVo);
+	}
 
 }

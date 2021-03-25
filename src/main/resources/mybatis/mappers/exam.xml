@@ -267,8 +267,13 @@ from(select
 		<![CDATA[
 			update exam
 			
-			set exam_title = #{examTitle}
+			set 
 			]]>
+				<if test="examTitle != null and examTitle != ''">
+					
+					exam_title = #{examTitle}
+				</if>
+			
 				<if test="examType != null and examType != ''">
 					,
 					exam_type = #{examType}
