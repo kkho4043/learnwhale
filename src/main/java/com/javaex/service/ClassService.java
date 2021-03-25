@@ -91,6 +91,20 @@ public class ClassService {
 		return classDao.selectList(no, search);
 	};
 	
+	//수정폼 가져오기
+	public ClassVo selectOne(int classNo) {
+		return classDao.selectOne(classNo);
+	}
 	
+	//수정
+	public int update(ClassVo classVo) {
+		classVo.setStartDate(classVo.getStartDate().replace("T", " "));
+		classVo.getStartDate().replace("T", " ");
+		System.out.println(classVo.getStartDate().replace("T", " "));
+
+		classVo.setEndDate(classVo.getEndDate().replace("T", " "));
+		classVo.getEndDate().replace("T", " ");
+		return classDao.update(classVo);
+	}
 
 }

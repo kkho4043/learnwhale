@@ -40,13 +40,23 @@ public class HbanContorller {
 		return "home/ban/list";
 	}
 
-	//반 수정
+	//반 수정폼
 	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify(Model model, @RequestParam("no") int no) {
-		System.out.println("[HbanController.modify()]");
+	public String modifyForm(Model model, @RequestParam("classNo") int classNo) {
+		System.out.println("[HbanController.modifyForm()]");
 		
+		ClassVo classVo = classService.selectOne(classNo);
+		model.addAttribute("classVo", classVo);
 		
 		return "home/ban/modifyForm";
+	}
+	
+	//반 수정
+	@RequestMapping(value = "/modify", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modify(@ModelAttribute ClassVo classVo) {
+		System.out.println("[HbanController.modify()]");
+		classService.update(classVo);
+		return "redirect:list";
 	}
 	
 	//반생성 url 중복체크

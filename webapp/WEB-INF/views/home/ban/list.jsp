@@ -106,7 +106,7 @@
 													<td>${vo.hidden}</td>
 
 													<td><a
-														href="${pageContext.request.contextPath}/h/modifyForm?classNo=${vo.no}">[수정]</a>
+														href="${pageContext.request.contextPath}/h/modifyForm?classNo=${vo.classNo}">[수정]</a>
 														[삭제]</td>
 												</tr>
 											</c:forEach>

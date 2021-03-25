@@ -47,4 +47,15 @@ public class ClassDao {
 		return sqlSession.selectList("class.selectList", map);
 	}
 	
+	//수정폼 가져오기
+	public ClassVo selectOne(int classNo) {
+		return sqlSession.selectOne("class.selectOne", classNo);
+	}
+	
+	//수정
+	public int update(ClassVo classVo) {
+		System.out.println("[classDao.update()]");
+		return sqlSession.update("class.update", classVo);
+	}
+	
 }

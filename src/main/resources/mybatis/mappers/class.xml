@@ -68,7 +68,35 @@
 			order by cl.class_no desc
 	   	]]>
 	</select>
-
-
+	
+	<!-- 수정폼 -->
+	<select id = "selectOne" parameterType="int" resultType="classVo">
+		<![CDATA[
+			SELECT  class_url classUrl,
+			        class_name className,
+			        TO_CHAR(start_date,'yyyy-mm-dd HH24:mi') startDate,
+			        TO_CHAR(end_date,'yyyy-mm-dd HH24:mi') endDate,
+			        logo_file logoFile,
+			        hidden hidden
+			FROM class c, join_users j, users u
+			where c.class_no = j.class_no
+			and u.no = j.user_no
+			and c.class_no = #{classNo}
+			and j.type= '선생님'
+		]]>
+	</select>
+	
+	<!-- 수정 -->
+	<select id ="update" parameterType="classVo" resultType="classVo">
+		<![CDATA[
+			UPDATE class
+			SET class_name = #{className},
+			    logo_file = #{logoFile,jdbcType=VARCHAR},
+			    start_date = TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'),
+			    end_date = TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'),
+			    hidden = #{hidden}
+			where class_no = #{classNo}
+		]]>
+	</select>
 
 </mapper>
