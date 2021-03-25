@@ -99,7 +99,7 @@
 													<td>${vo.startDate}</td>
 													<td>${vo.endDate}</td>
 													
-													<td>${vo.lCount} /${vo.rCount }명</td>
+													<td>${vo.lCount} /${vo.rCount}명</td>
 												
 													<td>진행중</td>
 															

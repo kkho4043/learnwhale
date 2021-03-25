@@ -47,14 +47,14 @@
 			c.hidden hidden
 			from users u, join_users j , class c,(select
 			                                c.class_no,
-			                                count(*) count
+			                                count(*) lCount
 			                            from class c, join_users j
 			                            where c.class_no = j.class_no
 			                            and j.approval = '승인'
 			                            group by c.class_no
 			                            )su,(select
 			                                    c.class_no,
-			                                    count(*) count 
+			                                    count(*) rCount 
 			                                from class c, join_users j
 			                                where c.class_no = j.class_no
 			                                and (j.approval = '승인'or j.approval = '대기')
