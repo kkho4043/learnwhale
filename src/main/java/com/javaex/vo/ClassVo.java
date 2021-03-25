@@ -2,25 +2,26 @@ package com.javaex.vo;
 
 public class ClassVo {
 
-	private int classNo, lCount, rCount;
-	private String classUrl, className, logoFile, startDate, endDate, hidden;
+	private int classNo, total, approval;
+	private String classUrl, className, logoFile, startDate, endDate, hidden, state;
 
 	public ClassVo() {
 		super();
 	}
 
-	public ClassVo(int classNo, int lCount, int rCount, String classUrl, String className, String logoFile,
-			String startDate, String endDate, String hidden) {
+	public ClassVo(int classNo, int total, int approval, String classUrl, String className, String logoFile,
+			String startDate, String endDate, String hidden, String state) {
 		super();
 		this.classNo = classNo;
-		this.lCount = lCount;
-		this.rCount = rCount;
+		this.total = total;
+		this.approval = approval;
 		this.classUrl = classUrl;
 		this.className = className;
 		this.logoFile = logoFile;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.hidden = hidden;
+		this.state = state;
 	}
 
 	public int getClassNo() {
@@ -31,20 +32,20 @@ public class ClassVo {
 		this.classNo = classNo;
 	}
 
-	public int getlCount() {
-		return lCount;
+	public int getTotal() {
+		return total;
 	}
 
-	public void setlCount(int lCount) {
-		this.lCount = lCount;
+	public void setTotal(int total) {
+		this.total = total;
 	}
 
-	public int getrCount() {
-		return rCount;
+	public int getApproval() {
+		return approval;
 	}
 
-	public void setrCount(int rCount) {
-		this.rCount = rCount;
+	public void setApproval(int approval) {
+		this.approval = approval;
 	}
 
 	public String getClassUrl() {
@@ -95,13 +96,23 @@ public class ClassVo {
 		this.hidden = hidden;
 	}
 
-	@Override
-	public String toString() {
-		return "ClassVo [classNo=" + classNo + ", lCount=" + lCount + ", rCount=" + rCount + ", classUrl=" + classUrl
-				+ ", className=" + className + ", logoFile=" + logoFile + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", hidden=" + hidden + "]";
+	public String getState() {
+		return state;
 	}
 
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "ClassVo [classNo=" + classNo + ", total=" + total + ", approval=" + approval + ", classUrl=" + classUrl
+				+ ", className=" + className + ", logoFile=" + logoFile + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", hidden=" + hidden + ", state=" + state + "]";
+	}
+
+	
+	
 	
 
 	

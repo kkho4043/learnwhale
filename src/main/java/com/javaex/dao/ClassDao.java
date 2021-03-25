@@ -29,19 +29,22 @@ public class ClassDao {
 	}
 	
 	//반생성 후 선생님 join_user 테이블에 바로 insert
-	public int joinInsert(int classNo, int no) {
+	public int tInsert(int classNo, int no) {
 		System.out.println("[classDao.joinInsert()]");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("classNo", classNo);
 		map.put("no", no);
 		System.out.println("Map"+ map);
-		return sqlSession.insert("class.self",map);
+		return sqlSession.insert("class.tSelf",map);
 	}
 	
 	//리스트
-	public List<ClassVo> selectList(int no){
+	public List<ClassVo> selectList(int no, String search){
 		System.out.println("[classDao.selectList()]");
-		return sqlSession.selectList("class.selectList", no);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("no", no);
+		map.put("search", search);
+		return sqlSession.selectList("class.selectList", map);
 	}
 	
 }

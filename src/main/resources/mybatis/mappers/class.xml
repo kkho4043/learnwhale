@@ -27,7 +27,7 @@
 	</insert>
 	
 	<!--반생성 한후-->
-	<insert id="self" parameterType="map">
+	<insert id="tSelf" parameterType="map">
 	<![CDATA[
 		INSERT INTO join_users 
 		VALUES (seq_joinUsers_no.nextval, #{classNo}, #{no}, '승인', '선생님', sysdate)
@@ -37,35 +37,36 @@
 	<!-- 전체리스트 가져오기 -->
 	<select id="selectList" resultType="ClassVo" parameterType="int">
 	    <![CDATA[
-			select 
-			j.class_no classNo,
-			su.count lCount,
-			au.count rCount,
-			c.class_name className,
-			TO_CHAR(c.start_date,'yyyy-mm-dd') startDate,
-			TO_CHAR(c.end_date,'yyyy-mm-dd') endDate,
-			c.hidden hidden
-			from users u, join_users j , class c,(select
-			                                c.class_no,
-			                                count(*) lCount
-			                            from class c, join_users j
-			                            where c.class_no = j.class_no
-			                            and j.approval = '승인'
-			                            group by c.class_no
-			                            )su,(select
-			                                    c.class_no,
-			                                    count(*) rCount 
-			                                from class c, join_users j
-			                                where c.class_no = j.class_no
-			                                and (j.approval = '승인'or j.approval = '대기')
-			                                group by c.class_no
-			                                )au
-			where u.no = j.user_no and u.no='5'
-			and j.class_no = su.class_no
-			and j.class_no = au.class_no
-			and j.class_no = c.class_no
-			and j.type = '선생님'
-	    ]]>
+			select cl.class_no classNo,
+			       cl.class_name className,
+			       nvl2(total, total, 0) total,
+			       nvl2(approval, approval, 0) approval,
+			       TO_CHAR(cl.start_date,'yyyy-mm-dd') startDate,
+			       TO_CHAR(cl.end_date,'yyyy-mm-dd') endDate,
+			       cl.hidden hidden,
+			       CASE WHEN cl.start_date <= sysdate and sysdate <= cl.end_date THEN '진행중'
+			            WHEN sysdate < cl.start_date THEN '대기'
+			            ELSE '종료'
+			       END AS state
+			from class cl left outer join (select      j.class_no,
+			                                            count(j.class_no) total,
+			                                            count(case when type='학생' and approval = '승인' then 1 end) approval
+			                                from join_users j, (select class_no
+			                                                    from   join_users
+			                                                    where  user_no = #{no}) c
+			                                where type='학생' and (approval = '대기' or approval='승인')
+			                                and c.class_no = j.class_no
+			                                group by j.class_no
+			                                ) co
+			on cl.class_no = co.class_no
+		]]>
+			<if test="search != null and search !='' ">
+				where cl.class_name like '%' || #{search} || '%'
+			</if>	
+		<![CDATA[
+			
+			order by cl.class_no desc
+	   	]]>
 	</select>
 
 

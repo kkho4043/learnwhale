@@ -82,13 +82,13 @@ public class ClassService {
 		int classNo = classVo.getClassNo();
 		System.out.println("classNo " + classNo);
 		System.out.println("no "+ no);
-		return classDao.joinInsert(classNo, no);
+		return classDao.tInsert(classNo, no);
 	};
 
 	// 리스트
-	public List<ClassVo> list(int no) {
+	public List<ClassVo> list(int no, String search) {
 		System.out.println("[classService.list()]");
-		return classDao.selectList(no);
+		return classDao.selectList(no, search);
 	};
 	
 	

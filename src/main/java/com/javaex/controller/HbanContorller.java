@@ -27,12 +27,14 @@ public class HbanContorller {
 
 	//반 리스트
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Model model, HttpSession session) {
+	public String list(Model model, HttpSession session,
+						@RequestParam(value="search", required = false, defaultValue = "") String search) {
 		System.out.println("[HbanController.list()]");
 		
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
-		List<ClassVo> classList = classService.list(userVo.getNo());
-		System.out.println(userVo.getNo());
+		List<ClassVo> classList = classService.list(userVo.getNo(), search);
+		
+		
 		model.addAttribute("classList", classList);
 		
 		return "home/ban/list";
@@ -40,8 +42,10 @@ public class HbanContorller {
 
 	//반 수정
 	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify() {
+	public String modify(Model model, @RequestParam("no") int no) {
 		System.out.println("[HbanController.modify()]");
+		
+		
 		return "home/ban/modifyForm";
 	}
 	

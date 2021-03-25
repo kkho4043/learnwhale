@@ -54,7 +54,7 @@
 								<li class="breadcrumb-item">홈</li>
 								<li class="breadcrumb-item">마이클래스</li>
 								<li class="breadcrumb-item">반관리</li>
-								<li class="breadcrumb-item">수정</li>
+								<li class="breadcrumb-item">반생성</li>
 							</ol>
 						</div>
 					</div>
@@ -63,43 +63,43 @@
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="content-body-area" class="row">
 						<div class="col-xs-12">
-							<form id="modifyForm" action="" method="">
-								<!-- 반이름 -->
+							<form id="createForm"
+								action="${pageContext.request.contextPath}/h/modify"
+								method="post" enctype="multipart/form-data">
 								<div class="row interval">
-									<label class="col-xs-2 text-right" for="name">반이름</label>
-									<span class="col-xs-10">
-										<input type="text" class="form-control input-sm"
-											id="name" placeholder="반 이름을 입력해주세요" style="width: 600px;">
+									<!-- 반이름 -->
+									<label class="col-xs-2 text-right" for="name">반이름</label> <span
+										class="col-xs-10"> <input type="text"
+										class="form-control input-sm" name="className" id="name"
+										placeholder="${classVo.className }" style="width: 600px;">
 									</span>
 								</div>
-								
-								<!-- 메인배너 -->
+
 								<div class="row interval">
-									<label class="col-xs-2 text-right" for="banner">메인배너</label>
-									<span class="col-xs-9">
-										<input type="text" readonly  class="form-control input-sm"
-											id="" placeholder="메인배너 이미지를 넣어주세요" style="width: 450px;">
-									</span>
-									<span class="col-xs-1">
-										<input type="file" id="banner" class="btn btn-default btn-xs pull-right">
+									<label class="col-xs-2 text-right" for="banner">메인배너</label> <span
+										class="col-xs-9"> <input type="text" readonly
+										class="form-control input-sm" id=""
+										placeholder="메인배너 이미지를 넣어주세요" style="width: 450px;">
+									</span> <span class="col-xs-1"> <input type="file" id="banner"
+										class="btn btn-default btn-xs pull-right" name="logo">
 									</span>
 								</div>
 								<!-- //메인베너 -->
 
 								<div class="row interval">
 									<label class="col-xs-2 text-right" for="startDate">시작일</label>
-									<span class="col-xs-8">
-										<input type="datetime-local" class="form-control input-sm"
-											id="startDate" placeholder="" style="width: 600px;">
+									<span class="col-xs-8"> <input type="datetime-local"
+										name="startDate" class="form-control input-sm" id="startDate"
+										placeholder="${classVo.startDate }" style="width: 600px;">
 									</span>
 								</div>
 								<!-- //시작일 -->
 
 								<div class="row interval">
-									<label class="col-xs-2 text-right" for="endDate">종료일</label>
-									<span class="col-xs-8">
-										<input type="datetime-local" class="form-control input-sm"
-											id="endDate" placeholder="" style="width: 600px;">
+									<label class="col-xs-2 text-right" for="endDate">종료일</label> <span
+										class="col-xs-8"> <input type="datetime-local"
+										name="endDate" class="form-control input-sm" id="endDate"
+										placeholder="${classVo.endDate }" style="width: 600px;">
 									</span>
 								</div>
 								<!-- //종료일 -->
@@ -107,38 +107,39 @@
 								<div class="row interval">
 									<label class="col-xs-2 text-right">노출여부</label>
 									<div class="radio col-xs-10">
-										<label> 
-											<input type="radio" name="chk_info" value="">보이기
-										</label>
-										<label>			
-											<input type="radio" name="chk_info" value="">숨기기
+										<label> <input type="radio" id="hidden" name="hidden" value="보이기">보이기
+										</label> <label> <input type="radio" id="hidden" name="hidden" value="숨기기">숨기기
 										</label>
 									</div>
 								</div>
 								<!-- //노출여부 -->
 
 								<div class="row interval">
-									<label class="col-xs-2 text-right" for="url">url</label>
-									<span class="col-xs-10">
-										<input type="text" class="form-control input-sm"
-											placeholder="해당 반(블로그) 개설을 위해 url을 입력해주세요 ex) a,b,c,,1,2,3,가,나,다"
-											id="url" style="width: 600px;">
-										<button class="btn btn-default btn-xs">중복체크</button>
-										※url의 경우 중복불가, 수정불가
+									<label class="col-xs-2 text-right" for="url">url</label> <span
+										class="col-xs-10"> <input type="text" readonly
+										class="form-control input-sm"
+										placeholder="${classList.classUrl }"
+										id="url" style="width: 600px;">
+										<button type="button" class="btn btn-default btn-xs" id="btnCheck">중복체크</button>
+									
+										<p class="text-warning">※url의 경우 중복불가, 수정불가</p>
 									</span>
 								</div>
 								<!-- //노출여부 -->
 
 								<div class="row interval">
 									<div class="col-xs-6">
-										<button class="btn btn-default btn-xs pull-right" type="submit" id="btn-submit">저장</button>
+										<button type="submit"
+											class="btn btn-default btn-xs pull-right">저장</button>
 									</div>
 									<div class="col-xs-6">
-										<button class="btn btn-default btn-xs pull-right"><a href="${pageContext.request.contextPath}/h/list">취소</a></button>
+										<button class="btn btn-default btn-xs pull-right">
+											<a href="${pageContext.request.contextPath}/h/list">취소</a>
+										</button>
 									</div>
+									<input type="text" name="${classList.no}"
 								</div>
 							</form>
-							<!-- modifyForm -->
 						</div>
 						<!-- container밑 row -->
 					</div>
@@ -162,8 +163,49 @@
 	<!-- //footer-Area -->
 
 </body>
+
+
+<script type="text/javascript">
+	
+	//폼을 submit 할때 --> 
+	$("#createForm").on("submit", function(){
+		
+		//반이름 체크
+		var name = $("#name").val();
+		console.log(name.length);
+		
+		if(name.length < 1){
+			alert("반 이름을 수정하세요.");
+			return false;
+		}
+		
+		//시작일 체크
+		var startDate = $("#startDate").val();
+		console.log(startDate);
+		if(startDate.length < 1){
+			alert("달력 그림을 누르고 시작일을 수정하세요.");
+			return false;
+		}
+		
+		//종료일 체크
+		var endDate = $("#endDate").val();
+		if(endDate.length < 1){
+			alert("달력 그림을 누르고 종료일을 수정하세요.");
+			return false;
+		}
+		
+		//보이기 숨기기 체크
+	 	var check = $("input[name=hidden]:checked").val();
+		console.log(check);
+		
+		if(!check){
+			alert("생성 중인 반의 노출여부를 수정해주세요.");
+			return false;
+		} 	
+			
+		return ture;
+	});
+</script>
+
 </html>
-
-
-
-
+										

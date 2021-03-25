@@ -62,9 +62,9 @@
 					<div id="content-body-area" class="container-fluid row">
 						<div class="row">
 							<div class="col-xs-6 text-left">
-								<form action="" method="get">
+								<form action="${pageContext.request.contextPath}/h/list" method="get">
 									<div class="form-group text-left">
-										<input type="text">
+										<input type="text" name="search">
 										<button type="submit" id=btn_search>검색</button>
 									</div>
 								</form>
@@ -92,21 +92,21 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${classList}" var="vo">
+											<c:forEach items="${classList}" var="vo" varStatus="status">
 												<tr>
-													<td>${vo.classNo}</td>
+													<td>${status.count}</td>
 													<td><a href="">${vo.className}</a></td>
 													<td>${vo.startDate}</td>
 													<td>${vo.endDate}</td>
 													
-													<td>${vo.lCount} /${vo.rCount}명</td>
-												
-													<td>진행중</td>
+													<td>${vo.approval} /${vo.total}명</td>
+														
+													<td>${vo.state }</td>
 															
 													<td>${vo.hidden}</td>
 
 													<td><a
-														href="${pageContext.request.contextPath}/h/modifyForm">[수정]</a>
+														href="${pageContext.request.contextPath}/h/modifyForm?classNo=${vo.no}">[수정]</a>
 														[삭제]</td>
 												</tr>
 											</c:forEach>
