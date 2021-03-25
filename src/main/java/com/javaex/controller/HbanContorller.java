@@ -83,8 +83,14 @@ public class HbanContorller {
 		classService.create(classVo, file, userVo.getNo());
 		
 		return "redirect:list";
-
 	}
-
+	
+	//반 삭제
+	@RequestMapping(value = "/remove", method = {RequestMethod.GET, RequestMethod.POST})
+	public String remove(@RequestParam("classNo") int classNo) {
+		System.out.println("[HbanController.delete()]");
+		classService.remove(classNo);
+		return "";
+	}
 
 }

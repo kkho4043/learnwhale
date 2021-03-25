@@ -4,11 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.ClassDao;
 import com.javaex.vo.ClassVo;
-import com.javaex.vo.UserVo;
+import com.javaex.vo.JoinUserVo;
 
 @Service
 public class ClassService {
@@ -105,6 +102,15 @@ public class ClassService {
 		classVo.setEndDate(classVo.getEndDate().replace("T", " "));
 		classVo.getEndDate().replace("T", " ");
 		return classDao.update(classVo);
+	}
+	
+	//삭제
+	public int remove(int classNo) {
+		System.out.println("[classService.remove()]");
+		JoinUserVo joinVo;
+		joinVo.getJoinNo();
+		
+		return classDao.delete(classNo);
 	}
 
 }
