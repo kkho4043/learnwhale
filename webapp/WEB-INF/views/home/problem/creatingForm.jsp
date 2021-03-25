@@ -90,16 +90,14 @@
 												<input type="hidden" name="cateNo" value="${param.cateNo}">
 												<!-- //row -->
 
-
 												<div class="row">
 													<div class="col-xs-9" id="make-problem">
 
-
 														<div class="form-group">
-															<input type="text" class="form-control" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="">
+															<input type="text" class="form-control"  id ="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="">
 														</div>
 														<div class="form-group">
-															<input type="text" class="form-control" placeholder="문제를 입력해주세요." name="content" value="">
+															<input type="text" class="form-control" id="content" placeholder="문제를 입력해주세요." name="content" value="">
 														</div>
 														<div class="form-group">
 															<input type="text" class="form-control" placeholder="이미지를 넣어주세요.">
@@ -110,9 +108,7 @@
 														<div class="form-group" id="last-makeType">
 															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description" value="">
 														</div>
-														<div id = "div-mc">
-															
-														</div>
+														
 														<!-- //col-sm-12 -->
 														<div class="mc-Area">
 															<div class="row answer-content">
@@ -126,13 +122,13 @@
 																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The first answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" name="answer" id="check-first"  value="1"> 
+																	<input type="checkBox" class="answer" name="answer" id="check-first"  value="1"> 
 																	<label for="check-first">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
 															<div class="col-xs-12 fileArea">
-																<input type="file" name="Image1">
+																<input type="file" name="Image1" id="asd">
 															</div>
 															<!-- //fileArea -->
 
@@ -144,7 +140,7 @@
 																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The second answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" name="answer" id="check-second"  value="2"> 
+																	<input type="checkBox" class="answer" name="answer" id="check-second"  value="2"> 
 																	<label for="check-second">정답체크</label>
 																</div>
 															</div>
@@ -162,7 +158,7 @@
 																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The third answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" name="answer" id="check-third"  value="3">
+																	<input type="checkBox" class="answer" name="answer" id="check-third"  value="3">
 																	<label for="check-third">정답체크</label>
 																</div>
 															</div>
@@ -180,7 +176,7 @@
 																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The fourth answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" name="answer" id="check-fourth"  value="4"> 
+																	<input type="checkBox" class="answer" name="answer" id="check-fourth"  value="4"> 
 																	<label for="check-fourth">정답체크</label>
 																</div>
 
@@ -201,8 +197,7 @@
 															<!-- //col-sm-12 -->
 															<div class="col-xs-6">
 																<div>
-																	<input id="quizAnswerO" type="radio" name="answer" value="O">
-																	
+																	<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O">
 																</div>
 																<div id="O">
 																	<label for="quizAnswerO">O</label>
@@ -211,7 +206,7 @@
 															<!-- //col-sm-6 -->
 															<div class="col-xs-6">
 																<div>
-																	<input id="quizAnswerX" type="radio" name="answer" value="X">
+																	<input id="quizAnswerX" class="answer" type="radio" name="answer" value="X">
 																</div>
 																<div id="X">
 																	<label for="quizAnswerX">X</label>
@@ -228,7 +223,7 @@
 																<h4>정답을 적어주세요.</h4>
 															</div>
 															<div class="col-sm-12" id="last-input">
-																<input type="text" class="form-control" id="exampleInputEmail3" name="answer" value="">
+																<input type="text" class="form-control answer" id="exampleInputEmail3" name="answer" value="">
 															</div>
 														</div>
 														<!-- //answer-content -->
@@ -261,14 +256,6 @@
 					<!-- //col-xs-9 -->
 				</div>
 				<!-- //content-body-area -->
-
-				<!-- //여기서부터 각페이지에 맞게 코딩 끝 -->
-
-
-
-
-
-
 			</div>
 			<!-- //container-->
 		</div>
@@ -283,71 +270,87 @@
 
 </body>
 <script type="text/javascript">
-var cloneox = $(".ox-Area").clone();
-var clonesj = $(".sj-Area").clone();
-var clonemc = $(".mc-Area").clone();
 
 /* 시작할때 */
 $(document).ready(function() {
 	
-	//입력폼 모두 숨기기
+	/* 입력폼출력 */
+	$(".mc-Area").show();
 	$(".ox-Area").hide();
 	$(".sj-Area").hide();
-	$(".mc-Area").hide();
 	
-	/* $("#div-mc").empty(); */
-	
-	//객관식 입력폼 출력
-	$("#div-mc").html(clonemc);
 
 });
-
 
 /* OX문제방식 선택할때 */
 $(".oxF").on("click", function() {
-	formReset();
-	
-	$("#div-mc").html(cloneox);
-	$('.oxF').prop('checked', true);
-});
-
-
-/* 주관식문제방식 선택할때 */
-$(".sjF").click(function() {
-	formReset();
-	
-	$("#div-mc").html(clonesj);
-	$('.sjF').prop('checked', true);
-});
-
-
-/* 객관식문제방식 선택할때 */
-$(".mcF").click(function() {
 	
 	/* 폼초기화 */
 	formReset();
 	
 	/* 입력폼출력 */
+	$(".mc-Area").hide();
+	$(".ox-Area").show();
+	$(".sj-Area").hide();
 	
-	$("#div-mc").html(clonemc);
+	$('.oxF').prop('checked', true);
+});
+
+
+/* 주관식문제방식 선택할때 */
+$(".sjF").on("click", function() {
+	/* 폼초기화 */
+	formReset();
+	
+	/* 입력폼출력 */
+	$(".mc-Area").hide();
+	$(".ox-Area").hide();
+	$(".sj-Area").show();
+	
+	$('.sjF').prop('checked', true);
+});
+
+
+/* 객관식문제방식 선택할때 */
+$(".mcF").on("click", function() {
+	
+	/* 폼초기화 */
+	formReset();
+	
+	/* 입력폼출력 */
+	$(".mc-Area").show();
+	$(".ox-Area").hide();
+	$(".sj-Area").hide();
+	
 	$('.mcF').prop('checked', true);
 });
 
-
-
-
-$("#delete-Btn").on("click", function() {
-	console.log("삭제버튼 클릭");
-
-	$("#delete-Modal").modal();
-});
-
-$("#move-Btn").on("click", function() {
-	console.log("이동버튼 클릭");
+/* 빈칸 여부 체크하기 */
+ $("#prblemForm").on("submit", function(){
 	
-	$("#move-Modal").modal();
-});
-
+		 var problemTitle = $("#problemTitle").val();
+		 var content = $("#content").val();
+		 var answer = $("input[name='answer']").val();
+		 
+		 /* 문제제목 체크 */
+		 if(!problemTitle){
+			 alert("문제 제목을 입력해 주세요.");
+			 return false;
+		 }
+		 
+		 /* 문제지문 체크 */
+		 if(!content){
+			 alert("문제 지문을 입력해 주세요.");
+			 return false;
+		 }
+		 
+		 /* 정답 체크 */
+		 if(!answer){
+			 alert("정답을 체크해 주세요.");
+			 return false;
+		 }
+ });
+ 
 
 /* 문제입력폼 리셋 */
 function formReset(){

@@ -95,7 +95,7 @@ public class HproblemController {
 			@RequestParam(value = "Image3", required = false, defaultValue = "") MultipartFile file3,
 			@RequestParam(value = "Image4", required = false, defaultValue = "") MultipartFile file4) {
 		System.out.println("[ProblemController.creating()]");
-		System.out.println("controller" + proVo.toString());
+		System.out.println("controller: " + proVo.toString());
 		System.out.println(file);
 		System.out.println(file1 + "," + file2 + "," + file3 + "," + file4);
 		System.out.println("초이스 스트링"+choiceContent);
@@ -106,7 +106,7 @@ public class HproblemController {
 		map.put("file3", file3);
 		map.put("file4", file4);
 
-		proService.ProblemInsert(file, proVo, choiceContent,map);
+		proService.ProblemInsert(file, proVo, choiceContent, map);
 
 		return "redirect:/myclass/problem/problemList?cateNo=" + proVo.getCateNo();
 	}

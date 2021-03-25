@@ -56,7 +56,7 @@ public class ProblemService {
 	}
 
 	// 문제 작성
-	public int ProblemInsert(MultipartFile file, ProblemVo proVo, String choice, Map<String, Object> map) {
+	public void ProblemInsert(MultipartFile file, ProblemVo proVo, String choice, Map<String, Object> map) {
 		System.out.println("ProblemService- problemInsert");
 		System.out.println("파일이름" + file.getOriginalFilename());
 		String saveDir = "";
@@ -64,7 +64,11 @@ public class ProblemService {
 		String saveName;
 		String filePath;
 
+		System.out.println("asdasd :  " + choice);
+		System.out.println("asdasddddd:  " + choice.length());
+
 		if (proVo.getContentImage() != null) {
+			// 컨텐츠에 이미지가 있을때
 
 			// db저장할 정보 수집
 			saveDir = "C:\\javaStudy\\upload";
@@ -88,20 +92,32 @@ public class ProblemService {
 				e.printStackTrace();
 			}
 
+		} else {
+			// 이미지가 없을때
+			System.out.println("serviceddd" + proVo);
+			proVo.setAnswer(proVo.getAnswer().replace(",", ""));
+			proDao.ProblemInsert(proVo);
+
+			if (map == null) {
+				return;
+			} else if (file != null || proVo != null) {
+				return;
+			} 
 		}
-		System.out.println("service" + proVo);
-		proDao.ProblemInsert(proVo);
 
 		String[] arr = choice.split(",");
 		System.out.println(choice.length());
 		for (int i = 1; i <= 4; i++) {
 
+			// 이미지를 모두 들어와도 여긴 절대 못탄다.
 			if (choice.length() > 3) {
 
 				filePath = "";
 				proDao.ChoiceInsert(filePath, arr[i - 1], proVo.getProblemNo(), i);
 			} else {
+				// 이미지가 4개 모두 들어왔다면 여기를 탄다
 				file = (MultipartFile) map.get("file" + i);
+				System.out.println("exName: " + file.getOriginalFilename());
 				exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
 				saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
@@ -124,8 +140,6 @@ public class ProblemService {
 			}
 			proDao.ChoiceInsert(filePath, "", proVo.getProblemNo(), i);
 		}
-
-		return 1;
 	}
 
 	// 문제 보기
