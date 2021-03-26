@@ -62,7 +62,8 @@
 					<div id="content-body-area" class="container-fluid row">
 						<div class="row">
 							<div class="col-xs-6 text-left">
-								<form action="${pageContext.request.contextPath}/h/list" method="get">
+								<form action="${pageContext.request.contextPath}/h/list"
+									method="get">
 									<div class="form-group text-left">
 										<input type="text" name="search">
 										<button type="submit" id=btn_search>검색</button>
@@ -95,19 +96,21 @@
 											<c:forEach items="${classList}" var="vo" varStatus="status">
 												<tr>
 													<td>${status.count}</td>
-													<td><a href="${pageContext.request.contextPath}/${vo.classUrl}/exam/list">${vo.className}</a></td>
+													<td><a
+														href="${pageContext.request.contextPath}/${vo.classUrl}/exam/list">${vo.className}</a></td>
 													<td>${vo.startDate}</td>
 													<td>${vo.endDate}</td>
-													
-													<td>${vo.approval} /${vo.total}명</td>
-														
+
+													<td>${vo.approval}/${vo.total}명</td>
+
 													<td>${vo.state }</td>
-															
+
 													<td>${vo.hidden}</td>
 
-													<td><a
-														href="${pageContext.request.contextPath}/h/modifyForm?classNo=${vo.classNo}">[수정]</a>
-														[삭제]</td>
+													<td>
+													<a href="${pageContext.request.contextPath}/h/modifyForm?classNo=${vo.classNo}">[수정]</a>
+													<a href="${pageContext.request.contextPath}/h/remove?classNo=${vo.classNo}">[삭제]</a>
+													</td>
 												</tr>
 											</c:forEach>
 

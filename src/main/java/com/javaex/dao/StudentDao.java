@@ -15,9 +15,9 @@ public class StudentDao {
 	private SqlSession sqlSession;
 	
 	 
-	  public List<Map<String, Object>> selectList(int classNo) {
+	  public List<Map<String, Object>> selectList(String url) {
 	  
-	  return sqlSession.selectList("student.selectList", classNo); 
+	  return sqlSession.selectList("student.selectList", url); 
 	  
 	  }
 	 

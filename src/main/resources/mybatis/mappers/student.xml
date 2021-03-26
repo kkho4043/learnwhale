@@ -3,7 +3,16 @@
 
 <mapper namespace="student">
 	
-	<select id="selectList" parameterType="int" resultType="map">
+	<select id="">
+		<![CDATA[
+		
+		
+		]]>
+	</select>
+	
+	
+	
+	<select id="selectList" parameterType="string" resultType="map">
 	
 		<![CDATA[
 		
@@ -15,8 +24,11 @@
 				from users u,   (select      user_no,
 											 approval
 				                 from        join_users
-				                 where class_no = #{classNo} and type = '학생') join
-				where u.no = join.user_no				
+				                 where class_no = (select      class_no
+                                                   from        class
+                                                   where       class_url = #{url}) 
+                                       and type = '학생') join
+				where u.no = join.user_no			
 		]]>
 		
 		

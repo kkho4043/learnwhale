@@ -32,7 +32,7 @@ public class ClassService {
 			result = "can";
 		} else {
 			// 중복url, 사용할 수 없는 url
-			result = "";
+			result = "can't";
 		}
 		return result;
 	};
@@ -111,10 +111,9 @@ public class ClassService {
 	// 삭제
 	public int remove(int classNo) {
 		System.out.println("[classService.remove()]");
-		JoinUserVo joinVo;
-		joinVo.getJoinNo();
+		classDao.joinDelete(classNo);
 
-		return classDao.delete(classNo);
+		return classDao.classDelete(classNo);
 	}
 
 }

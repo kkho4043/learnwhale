@@ -131,15 +131,11 @@ public class BnoticeController {
 		return "home/main/join";
 	}
 
-	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/indexretry", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login() {
 		System.out.println("[login]");
-		return "home/main/login";
+		return "home/main/indexretry";
+		/* return "home/main/login"; */
 	}
 
-	@RequestMapping(value = "/intro", method = { RequestMethod.GET, RequestMethod.POST })
-	public String intro() {
-		System.out.println("[intro]");
-		return "home/main/intro";
-	}
 }
