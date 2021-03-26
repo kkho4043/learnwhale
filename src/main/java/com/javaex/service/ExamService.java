@@ -116,10 +116,12 @@ public class ExamService {
 		return pMap;
 	}
 	
-	public void examgrant(ExamVo examVo,String[] arr) {
+	public void examgrant(String url,ExamVo examVo,String[] arr) {
 		examVo.setStartDate(examVo.getStartDate().replace("T", " "));
 		examVo.setEndDate(examVo.getStartDate().replace("T", " "));
+		int classNo = classDao.getclassNo(url);
 		
+		examVo.setExamNo(classNo);
 		examDao.examinsert(examVo);
 		
 		String split;

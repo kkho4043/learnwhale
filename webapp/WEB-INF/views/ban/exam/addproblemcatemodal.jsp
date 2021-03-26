@@ -9,7 +9,7 @@
 				<c:forEach items="${cateList}" var="cateVo">
 					<c:choose>
 
-						<c:when test="${cateVo.depth == 1}">
+						<c:when test="${cateVo.depth == 0}">
 							<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}">
 
 								<span class="glyphicon glyphicon-folder-close"></span> <a href="#" class="cateNum" data-catno="${cateVo.cateNo}"> ${cateVo.cateName}</a>

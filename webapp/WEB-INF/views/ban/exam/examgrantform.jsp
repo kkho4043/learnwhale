@@ -284,7 +284,7 @@
 		}
 
 		$.ajax({
-			url : "${pageContext.request.contextPath}/abc/exam/grant",
+			url : "${pageContext.request.contextPath}/${url}/exam/grant",
 			type : "post",
 			//contentType : "application/json",
 			data : {
@@ -349,7 +349,7 @@
 		$("#cate-problem").empty();
 		console.log(cateNo);
 		$.ajax({
-			url : "${pageContext.request.contextPath}/abc/exam/cateproList",
+			url : "${pageContext.request.contextPath}/${url}/exam/cateproList",
 			type : "post",
 			//contentType : "application/json",
 			data : {
