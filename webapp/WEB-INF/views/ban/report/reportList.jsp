@@ -169,7 +169,7 @@
 												<tbody>
 												<c:forEach items="${exList }" var="examVo" varStatus="status">
 														<tr>
-															<td>${status.count }</td>
+															<td>${exList.size() - status.index}</td>
 															<td class="text-left"><a href="">${examVo.examTitle }</a></td>
 															<td>${examVo.examType }</td>
 															<td>${examVo.grade }</td>

@@ -119,7 +119,7 @@
 																	<strong>1</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The first answer" name="choiceContent">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The first answer" name="choiceContent1">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkBox" class="answer" name="answer" id="check-first"  value="1"> 
@@ -137,7 +137,7 @@
 																	<strong>2</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The second answer" name="choiceContent">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The second answer" name="choiceContent2">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkBox" class="answer" name="answer" id="check-second"  value="2"> 
@@ -155,7 +155,7 @@
 																	<strong>3</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The third answer" name="choiceContent">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The third answer" name="choiceContent3">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkBox" class="answer" name="answer" id="check-third"  value="3">
@@ -173,7 +173,7 @@
 																	<strong>4</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The fourth answer" name="choiceContent">
+																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The fourth answer" name="choiceContent4">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkBox" class="answer" name="answer" id="check-fourth"  value="4"> 
@@ -223,7 +223,7 @@
 																<h4>정답을 적어주세요.</h4>
 															</div>
 															<div class="col-sm-12" id="last-input">
-																<input type="text" class="form-control answer" id="exampleInputEmail3" name="answer" value="">
+																<input type="text" class="form-control answer" id="exampleInputEmail3" name="answer">
 															</div>
 														</div>
 														<!-- //answer-content -->
@@ -281,7 +281,7 @@ $(document).ready(function() {
 	
 	//console.log($(".ox-Area .answer").val());
 	
-	var a = $(".ox-Area .answer").attr("name", "none");
+	//var a = $(".ox-Area .answer").attr("name", "none");
 	
 });
 
@@ -297,8 +297,8 @@ $(".oxF").on("click", function() {
 	$(".sj-Area").hide();
 	
 	
-	$(".mc-Area .answer").attr("name", "none");
-	$(".ox-Area .answer").attr("name", "answer");
+	//$(".mc-Area .answer").attr("name", "none");
+	//$(".ox-Area .answer").attr("name", "answer");
 	
 	
 	$('.oxF').prop('checked', true);
@@ -319,77 +319,183 @@ $(".sjF").on("click", function() {
 });
 
 
-/* <!-- ox문제 시작 -->
-<div class="row ox-Area">
+/* <div class="mc-Area">
+<div class="row answer-content">
 	<div class="col-xs-12">
-		<h4>정답을 선택해주세요</h4>
+		<h4>각 문항에 내용을 입력해주세요.</h4>
 	</div>
-	<!-- //col-sm-12 -->
-	<div class="col-xs-6">
-		<div>
-			<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O">
-		</div>
-		<div id="O">
-			<label for="quizAnswerO">O</label>
-		</div>
+	<div class="col-sm-1 answer-num">
+		<strong>1</strong>
 	</div>
-	<!-- //col-sm-6 -->
-	<div class="col-xs-6">
-		<div>
-			<input id="quizAnswerX" class="answer" type="radio" name="answer" value="X">
-		</div>
-		<div id="X">
-			<label for="quizAnswerX">X</label>
-		</div>
+	<div class="col-xs-9">
+		<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The first answer" name="choiceContent">
 	</div>
-	<!-- //col-sm-6 -->
+	<div class="col-xs-2">
+		<input type="checkBox" class="answer" name="answer" id="check-first"  value="1"> 
+		<label for="check-first">정답체크</label>
+	</div>
 </div>
-<!-- //row -->
-<!-- ox문제 끝 --> */
+<!-- //answer-content -->
+<div class="col-xs-12 fileArea">
+	<input type="file" name="Image1" id="asd">
+</div>
+<!-- //fileArea -->
+
+<div class="row answer-content">
+	<div class="col-xs-1 answer-num">
+		<strong>2</strong>
+	</div>
+	<div class="col-xs-9">
+		<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The second answer" name="choiceContent">
+	</div>
+	<div class="col-xs-2">
+		<input type="checkBox" class="answer" name="answer" id="check-second"  value="2"> 
+		<label for="check-second">정답체크</label>
+	</div>
+</div>
+<!-- //answer-content -->
+<div class="col-xs-12 fileArea">
+	<input type="file" name="Image2">
+</div>
+<!-- //fileArea -->
+
+<div class="row answer-content">
+	<div class="col-xs-1 answer-num">
+		<strong>3</strong>
+	</div>
+	<div class="col-xs-9">
+		<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The third answer" name="choiceContent">
+	</div>
+	<div class="col-xs-2">
+		<input type="checkBox" class="answer" name="answer" id="check-third"  value="3">
+		<label for="check-third">정답체크</label>
+	</div>
+</div>
+<!-- //answer-content -->
+<div class="col-xs-12 fileArea">
+	<input type="file" name="Image3">
+</div>
+<!-- //fileArea -->
+
+<div class="row answer-content">
+	<div class="col-xs-1 answer-num">
+		<strong>4</strong>
+	</div>
+	<div class="col-xs-9">
+		<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The fourth answer" name="choiceContent">
+	</div>
+	<div class="col-xs-2">
+		<input type="checkBox" class="answer" name="answer" id="check-fourth"  value="4"> 
+		<label for="check-fourth">정답체크</label>
+	</div>
+
+</div>
+<div class="col-xs-12 fileArea">
+	<input type="file" name="Image4">
+</div>
+<!-- //answer-content -->
+<div class="col-xs-12 fileArea"></div>
+</div> */
 
 
 
-/* 객관식문제방식 선택할때 */
-$(".mcF").on("click", function() {
-	
-	/* 폼초기화 */
-	formReset();
-	
-	/* 입력폼출력 */
-	$(".mc-Area").show();
-	$(".ox-Area").hide();
-	$(".sj-Area").hide();
-	
-	$(".ox-Area .answer").attr("name", "none");
-	$(".mc-Area .answer").attr("name", "answer");
-	
-	$('.mcF').prop('checked', true);
-});
 
-/* 빈칸 여부 체크하기 */
- $("#prblemForm").on("submit", function(){
-	
-		 var problemTitle = $("#problemTitle").val();
-		 var content = $("#content").val();
-		 var answer = $("input[name=answer]");
-		 console.log()
-		 /* 문제제목 체크 */
-		 if(!problemTitle){
-			 alert("문제 제목을 입력해 주세요.");
-			 return false;
-		 }
+
+
+
+
+		/* 객관식문제방식 선택할때 */
+		$(".mcF").on("click", function() {
+			
+			/* 폼초기화 */
+			formReset();
+			
+			/* 입력폼출력 */
+			$(".mc-Area").show();
+			$(".ox-Area").hide();
+			$(".sj-Area").hide();
+			
+			//$(".ox-Area .answer").attr("name", "none");
+			//$(".mc-Area .answer").attr("name", "answer");
+			
+			$('.mcF').prop('checked', true);
+		});
+		
+		/* 빈칸 여부 체크하기 */
+		 $("#prblemForm").on("submit", function(){
+			 console.log($(".row answer-content sj-Area .answer").val());
+			 	
+				 var problemTitle = $("#problemTitle").val();
+				 var content = $("#content").val();
+				 var answer = $("input[name=answer]");
+				 
+				 if(!problemTitle){
+					 alert("문제 제목을 입력해 주세요.");
+					 return false;
+				 }
+				 
+				 /* 문제지문 체크 */
+				 if(!content){
+					 alert("문제 지문을 입력해 주세요.");
+					 return false;
+				 }
+				 
+				 //typeSj typeOx
+				 
+				 
+				 if($("#typeMc").is(":checked")==true){
+					 
+					 if(!$("input[name=choiceContent1]").val()){
+						alert("보기 1번 입력해주세요");
+						return false;
+					 }
+					 else if(!$("input[name=choiceContent2]").val()){
+						 alert("보기 2번 입력해주세요");
+						 return false;
+					 }
+					 else if(!$("input[name=choiceContent3]").val()){
+						 alert("보기 3번 입력해주세요");
+						 return false;
+					 }
+					 else if(!$("input[name=choiceContent4]").val()){
+						 alert("보기 4번 입력해주세요");
+						 return false;
+					 }
+					 else if($(".mc-Area .answer").is(":checked")==false){
+						 console.log("객관식");
+						 alert("정답을 체크해주세요");
+						 return false;
+					 }
+					 
+					 
+				 }
+				 
+				 if($("#typeOx").is(":checked")==true){
+					
+					 if($('input:radio[name=answer]').is(':checked')==false){
+						 console.log("ox");
+						 alert("정답을 체크해주세요");
+						 return false;
+					 }
+					 
+					 
+				 }
+				 
+				 
+				 if($("#typeSj").is(":checked")==true){
+						
+					 if(!$(".sj-Area .answer").val()){
+						 console.log("주관식")
+						 alert("정답을 입력해주세요");
+						 return false;
+					 }
+					 
+				 }
 		 
-		 /* 문제지문 체크 */
-		 if(!content){
-			 alert("문제 지문을 입력해 주세요.");
-			 return false;
-		 }
+				 
 		 
-		 /* 정답 체크 */
-		 if(answer.is(":checked") ==false){
-			 alert("정답을 체크해 주세요.");
-			 return false;
-		 }
+
+		
  });
  
 
