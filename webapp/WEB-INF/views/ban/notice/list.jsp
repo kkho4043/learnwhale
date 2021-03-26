@@ -72,7 +72,7 @@
 									<div id="controll-area" class="row">
 										<div id="selecOpt" class="col-xs-6"></div>
 										<div class="col-xs-6">
-											<form action="${pageContext.request.contextPath}/notice/list" method="get">
+											<form action="${pageContext.request.contextPath}/${url}/notice/list" method="get">
 												<div class="form-group form-inline">
 													<input type="text" class="form-control input-sm" name="keyword" id="txtSearchKyword" placeholder="">
 													<button class="btn btn-default btn-sm" type="submit">검색</button>
@@ -110,7 +110,7 @@
 															<td>${nvo.hit}</td>
 															<td>${nvo.reg_date}</td>
 
-															<td><a href="${pageContext.request.contextPath}/notice/remove?no=${nvo.no}">[삭제]</a></td>							
+															<td><a href="${pageContext.request.contextPath}/${url}/notice/remove?no=${nvo.no}">[삭제]</a></td>							
 															
 															<!-- 미해결
 															<td><c:if test="${authUser.no == nvo.join_no}">
@@ -157,7 +157,7 @@
 									</div>
 									<!-- //pagination 끝 -->
 
-									<a id="btn_write" href="${pageContext.request.contextPath}/notice/writeForm">글쓰기</a>
+									<a id="btn_write" href="${pageContext.request.contextPath}/${url}/notice/writeForm">글쓰기</a>
 
 								</div>
 							</div>

@@ -52,7 +52,7 @@ public class BnoticeController {
 
 	// 리스트 + 검색 기능 + 페이징
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(	@PathVariable("url") String url,
+	public String list(@PathVariable("url") String url,
 			           @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
 			           @RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage,
 			           Model model) {
@@ -69,7 +69,7 @@ public class BnoticeController {
 	}
 
 	@RequestMapping(value = "/write", method = { RequestMethod.GET, RequestMethod.POST })
-	public String write(@ModelAttribute NoticeVo noticeVo, HttpSession session) { // HttpSession session
+	public String write(@PathVariable("url") String url, @ModelAttribute NoticeVo noticeVo, HttpSession session) { // HttpSession session
 		System.out.println("[Controller]:write");
 
 		//세션에서 사용자 정보 가져오기
@@ -81,11 +81,11 @@ public class BnoticeController {
 
 		noticeService.write(noticeVo);
 
-		return "redirect:/notice/list";
+		return "redirect:/{url}/notice/list";
 	}
 
 	@RequestMapping(value = "/writeForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String writeForm(HttpSession session) {
+	public String writeForm(@PathVariable("url") String url, HttpSession session) {
 		System.out.println("[Controller]:writeForm");
 		
 		System.out.println(session.getAttribute("authUser"));
@@ -93,16 +93,16 @@ public class BnoticeController {
 	}
 
 	@RequestMapping(value = "/remove", method = { RequestMethod.GET, RequestMethod.POST })
-	public String remove(int no) { // @RequestParam("no")
+	public String remove(@PathVariable("url") String url, int no) { // @RequestParam("no")
 		System.out.println("[controller]:remove");
 
 		noticeService.remove(no);
 
-		return "redirect:/notice/list";
+		return "redirect:/{url}/notice/list";
 	}
 
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify(@ModelAttribute NoticeVo noticeVo) {
+	public String modify(@PathVariable("url") String url, @ModelAttribute NoticeVo noticeVo) {
 		System.out.println("[Controller]:modify");
 		noticeService.modify(noticeVo);
 
@@ -110,7 +110,7 @@ public class BnoticeController {
 	}
 
 	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyForm(@RequestParam("no") int no, Model model) {
+	public String modifyForm(@PathVariable("url") String url, @RequestParam("no") int no, Model model) {
 		System.out.println("[Controller]:modifyForm");
 
 		NoticeVo noticeVo = noticeService.modifyForm(no);
@@ -119,7 +119,7 @@ public class BnoticeController {
 	}
 
 	@RequestMapping(value = "/read", method = { RequestMethod.GET, RequestMethod.POST })
-	public String read(@RequestParam("no") int no, Model model) {
+	public String read(@PathVariable("url") String url, @RequestParam("no") int no, Model model) {
 		System.out.println("[Controller]:read");
 
 		NoticeVo noticeVo = noticeService.read(no);
