@@ -46,7 +46,7 @@ public class HuserController {
 		if(authUser != null) {
 			System.out.println("login 성공");
 			session.setAttribute("authUser", authUser);
-			return "redirect:loginForm";
+			return "redirect:/h/list";
 		}	else {
 			System.out.println("login 실패");
 			return "redirect:/user/loginForm?result=fail";
