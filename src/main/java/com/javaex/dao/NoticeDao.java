@@ -33,11 +33,12 @@ public class NoticeDao {
 	}
 	
 	//리스트 + 검색 기능 + 페이징
-	public List<NoticeVo> list(String keyword, int startRNum, int endRNum) {
+	public List<NoticeVo> list(int classNo, String keyword, int startRNum, int endRNum) {
 		System.out.println("[dao]:list");
 		//System.out.println("keyword=" + keyword);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("classNo", classNo);
 		map.put("keyword", keyword);
 		map.put("startRNum", startRNum);
 		map.put("endRNum", endRNum);
@@ -46,10 +47,14 @@ public class NoticeDao {
 	}
 	
 	//전체글 갯수 가져오기
-	public int selectTotalCnt(String keyword) {
+	public int selectTotalCnt(int classNo, String keyword) {
 		System.out.println("[dao]:selectTotalCnt");
 		
-		return sqlSession.selectOne("notice.selectTotalCnt",keyword);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("classNo", classNo);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne("notice.selectTotalCnt",map);
 	}
 	
 	//수정하기
