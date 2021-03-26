@@ -57,5 +57,10 @@ public class ClassDao {
 		System.out.println("[classDao.update()]");
 		return sqlSession.update("class.update", classVo);
 	}
+	//url입력시 classNo 반환
 	
+	public int getclassNo(String url) {
+		System.out.println("[classDao.update()]");
+		return sqlSession.selectOne("class.selectclassNo", url);
+	}
 }

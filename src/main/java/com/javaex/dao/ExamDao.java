@@ -92,13 +92,17 @@ public class ExamDao {
 		return sqlSession.selectList("exam.selectquestion", examNo);
 	}
 	
+	//시험 수정
 	public void examupdate(ExamVo examVo) {
 		sqlSession.update("exam.examupdate", examVo);
 	}
 	
+	//시험수정시 삭제
 	public void qeustiondelete(int examNo) {
 		sqlSession.delete("exam.qeustiondelete", examNo);
 	}
+	
+	//시험 수정시 업데이트(입력)
 	public void questionupdate(int examNo, int problemNo,int point , int order) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -107,5 +111,10 @@ public class ExamDao {
 		map.put("point", point);
 		map.put("order", order);
 		sqlSession.insert("exam.questionupdate", map);
+	}
+	
+	public ExamVo examstart(int examNo) {
+		
+		return sqlSession.selectOne("exam.qu", examNo);
 	}
 }

@@ -8,7 +8,7 @@
 	<![CDATA[
 	insert into exam VALUES(
 						seq_exam_no.nextval,
-						1,
+						#{examNo},
 						#{examTitle},
 						#{examType},
 						#{time},
@@ -301,21 +301,36 @@ from(select
 	</update>
 	
 	<delete id="qeustiondelete" parameterType="int">
-		delete 
-		from question
-		where exam_no = #{examNo}
-	</delete>
+		<![CDATA[
+			delete 
+			from question
+			where exam_no = #{examNo}
+			]]>
+		</delete>
 	
 	<insert id="questionupdate" parameterType="QuestionVo">
-		insert into question VALUES(
-						seq_question_no.nextval,
-						#{examNo},
-						#{problemNo},
-						#{point},
-						#{order}
-						)	
-	
+		<![CDATA[
+			insert into question VALUES(
+							seq_question_no.nextval,
+							#{examNo},
+							#{problemNo},
+							#{point},
+							#{order}
+							)	
+		]]>
 	</insert>
+	
+	<select id="examstart" parameterType="int" resultType="ExamVo">
+		<![CDATA[
+			select
+			    exam_no examNo,
+			    exam_title examTitle,
+			    exam_type examType,
+			    time
+			from exam
+			where exam_no = #{examNo}
+		]]>
+	</select>
 
 
 

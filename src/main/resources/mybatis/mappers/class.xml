@@ -99,5 +99,15 @@
 			where class_no = #{classNo}
 		]]>
 	</select>
+	
+	<select id="selectclassNo" resultType="int" parameterType="int">
+		<![CDATA[
+			select 
+				class_no
+			from class
+			where class_url = #{url}
+		]]>
+	
+	</select>
 
 </mapper>

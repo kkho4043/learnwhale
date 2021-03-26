@@ -78,7 +78,7 @@
 
 							<div class="addtest ">
 
-								<a href="${pageContext.request.contextPath}/abc/exam/grantform"><button class="btn btn-primary btn-sm">시험출제</button></a>
+								<a href="${pageContext.request.contextPath}/${url}/exam/grantform"><button class="btn btn-primary btn-sm">시험출제</button></a>
 							</div>
 						</div>
 						<div class="row">
@@ -104,7 +104,7 @@
 
 										<tr>
 											<td>${vo.examNo}</td>
-											<td><a href="${pageContext.request.contextPath}/abc/exam/problemlist?examNo=${vo.examNo}">${vo.examTitle}</a></td>
+											<td><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${vo.examNo}">${vo.examTitle}</a></td>
 											<td>${vo.problemAmount}</td>
 											<td>${vo.startDate}</td>
 											<td>${vo.endDate}</td>
@@ -124,7 +124,7 @@
 												</c:choose></td>
 											<td>${vo.numSubmit}/${vo.attendNum}</td>
 											<td>${vo.examType}</td>
-											<td><a href="${pageContext.request.contextPath}/abc/exam/exammodifyfrom?examNo=${vo.examNo}"><button class="btn btn-default btn-xs">수정</button></a></td>
+											<td><a href="${pageContext.request.contextPath}/${url}/exam/exammodifyfrom?examNo=${vo.examNo}"><button class="btn btn-default btn-xs">수정</button></a></td>
 										</tr>
 									</c:forEach>
 
