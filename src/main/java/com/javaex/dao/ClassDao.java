@@ -64,6 +64,12 @@ public class ClassDao {
 		return sqlSession.selectOne("class.selectclassNo", url);
 	}
 	
+	//학생 수 세기
+	public int sCount(int classNo) {
+		System.out.println("[classDao.sCount()]");
+		return sqlSession.selectOne("class.sCount", classNo);
+	}
+	
 	//join user 선생님 삭제
 	public int joinDelete(int classNo) {
 		System.out.println("[classDao.joinDelete()]");
@@ -71,9 +77,10 @@ public class ClassDao {
 		
 	}
 	
-	public int sCount(int classNo) {
-		System.out.println("[classDao.sCount()]");
-		return sqlSession.selectOne("class.sCount", classNo);
+	//class 삭제
+	public int classDelete(int classNo) {
+		System.out.println("[classDao.classDelete()]");
+		return sqlSession.delete("class.classDelete", classNo);
 	}
 	
 }

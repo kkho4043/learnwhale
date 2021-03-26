@@ -65,7 +65,7 @@
 
 								<div id="board">
 									<div id="writeForm">
-										<form action="${pageContext.request.contextPath}/notice/write" method="get">
+										<form action="${pageContext.request.contextPath}/${url}/notice/write" method="get">
 										
 											<input type="text" id="" name="user_no" value="${authUser.no }">
 											
@@ -80,7 +80,7 @@
 												<textarea id="txt-content" name="content"></textarea>
 											</div>
 											
-											<a id="btn_cancel" href="${pageContext.request.contextPath}/notice/list">취소</a>
+											<a id="btn_cancel" href="${pageContext.request.contextPath}/${url}/notice/list">취소</a>
 											<button id="btn_add"  type="submit" href="">등록</button>
 
 										</form>
