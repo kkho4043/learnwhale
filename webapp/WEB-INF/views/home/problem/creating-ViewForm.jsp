@@ -120,7 +120,7 @@
 																	<strong>1</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The first answer" name="choiceContent">
+																	<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="">
 																</div>
 																<div class="col-xs-2">
 																	<c:choose>
@@ -146,7 +146,7 @@
 																	<strong>2</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The second answer" name="choiceContent">
+																	<input type="text" class="form-control" placeholder="The second answer" name="choiceContent" value="${proVo.content}">
 																</div>
 																<div class="col-xs-2">
 																	<c:choose>
@@ -172,7 +172,7 @@
 																	<strong>3</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The third answer" name="choiceContent">
+																	<input type="text" class="form-control" placeholder="The third answer" name="choiceContent" value="${proVo.content}">
 																</div>
 																<div class="col-xs-2">
 																	<c:choose>
@@ -198,7 +198,7 @@
 																	<strong>4</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="exampleInputEmail3" placeholder="The fourth answer" name="choiceContent">
+																	<input type="text" class="form-control" placeholder="The fourth answer" name="choiceContent" value="${proVo.content}">
 																</div>
 																<div class="col-xs-2">
 																	<c:choose>
@@ -281,7 +281,7 @@
 																<h4>정답을 적어주세요.</h4>
 															</div>
 															<div class="col-sm-12" id="last-input">
-																<input type="text" class="form-control answer" id="exampleInputEmail3" name="answer" value="">
+																<input type="text" class="form-control answer" name="answer" value="">
 															</div>
 														</div>
 														<!-- //answer-content -->

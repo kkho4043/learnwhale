@@ -61,6 +61,8 @@ public class ProblemDao {
 	public int ChoiceInsert(String filepath,String choiceContent,int proNo, int orderNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		System.out.println("proDao = choiceContent: " + choiceContent);
+		
 		map.put("choiceContent", choiceContent);
 		map.put("filepath", filepath);
 		map.put("proNo", proNo);
@@ -87,6 +89,7 @@ public class ProblemDao {
 	// 보기 파일 수정
 	public int ChoiceModify(String filepath,String choiceContent,int proNo, int orderNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		
 		map.put("choiceContent", choiceContent);
 		map.put("filepath", filepath);

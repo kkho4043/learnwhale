@@ -3,6 +3,8 @@ package com.javaex.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,16 +27,20 @@ public class HproblemController {
 	private ProblemService proService;
 
 	@RequestMapping(value = "/problem-Management", method = { RequestMethod.GET, RequestMethod.POST })
-	public String problemManagement(Model model) {
-
+	public String problemManagement(Model model, HttpSession session) {
+		
+		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
+		
 		model.addAttribute("cateList", proService.getCategory(1));
 
 		return "home/problem/problem-Management";
 	}
 
 	@RequestMapping(value = "/creatingForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String multipleChoice(Model model) {
+	public String multipleChoice(Model model, HttpSession session) {
 		System.out.println("[ProblemController.creatingForm()]");
+		
+		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
 
 		model.addAttribute("cateList", proService.getCategory(1));
 
@@ -74,8 +80,11 @@ public class HproblemController {
 
 	// 문제관리 리스트
 	@RequestMapping(value = "problemList", method = { RequestMethod.GET, RequestMethod.POST })
-	public String problemList(Model model, int cateNo) {
+	public String problemList(Model model, int cateNo, HttpSession session) {
 		System.out.println("[ProblemController.problemList()]");
+		
+		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
+		
 		model.addAttribute("cateList", proService.getCategory(1));
 
 		model.addAttribute("proList", proService.getProblem(cateNo));
@@ -94,8 +103,7 @@ public class HproblemController {
 			@RequestParam(value = "Image4", required = false, defaultValue = "") MultipartFile file4) {
 		System.out.println("[ProblemController.creating()]");
 		System.out.println("controller: " + proVo.toString());
-		System.out.println(file);
-		System.out.println(file1 + "," + file2 + "," + file3 + "," + file4);
+
 		System.out.println("초이스 스트링" + choiceContent);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("choiceContent", choiceContent);
@@ -111,10 +119,12 @@ public class HproblemController {
 
 	// 문제 보기
 	@RequestMapping(value = "/creating-ViewForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String creatingViewForm(Model model, int proNo) {
+	public String creatingViewForm(Model model, int proNo, HttpSession session) {
 		System.out.println("[ProblemController.view()]");
-
-		model.addAttribute("cateList", proService.getCategory(1));
+		
+		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
+		
+		
 
 		model.addAttribute("proVo", proService.view(proNo));
 		return "home/problem/creating-ViewForm";
@@ -131,8 +141,7 @@ public class HproblemController {
 			@RequestParam(value = "Image4", required = false, defaultValue = "") MultipartFile file4) {
 		System.out.println("[ProblemController.modify()]");
 		System.out.println("controller: " + proVo.toString());
-		System.out.println(file);
-		System.out.println(file1 + "," + file2 + "," + file3 + "," + file4);
+
 		System.out.println("초이스 스트링" + choiceContent);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("choiceContent", choiceContent);

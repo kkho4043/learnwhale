@@ -3,7 +3,26 @@ package com.javaex.vo;
 public class ProblemVo {
 
 	private int problemNo, cateNo;
-	private String type, problemTitle, content, contentImage, description, answer, regDate;
+	private String type, problemTitle, content, contentImage, description, answer, regDate, choiceContent,
+			attachmentFile;
+
+	public ProblemVo(int problemNo, int cateNo, String type, String problemTitle, String content, String contentImage,
+			String description, String answer, String regDate, String choiceContent, String attachmentFile,
+			String result, int orderNum) {
+		this.problemNo = problemNo;
+		this.cateNo = cateNo;
+		this.type = type;
+		this.problemTitle = problemTitle;
+		this.content = content;
+		this.contentImage = contentImage;
+		this.description = description;
+		this.answer = answer;
+		this.regDate = regDate;
+		this.choiceContent = choiceContent;
+		this.attachmentFile = attachmentFile;
+		this.result = result;
+		this.orderNum = orderNum;
+	}
 
 	private String result;// 오답여부
 	private int orderNum; // 시험 관리 >> 문제리스트 문제순서
@@ -14,22 +33,6 @@ public class ProblemVo {
 	public ProblemVo(String type, String problemTitle, String result, int orderNum) {
 		this.type = type;
 		this.problemTitle = problemTitle;
-		this.result = result;
-		this.orderNum = orderNum;
-	}
-
-	public ProblemVo(int problemNo, int cateNo, String type, String problemTitle, String content, String contentImage,
-			String description, String answer, String regDate, String result, int orderNum) {
-
-		this.problemNo = problemNo;
-		this.cateNo = cateNo;
-		this.type = type;
-		this.problemTitle = problemTitle;
-		this.content = content;
-		this.contentImage = contentImage;
-		this.description = description;
-		this.answer = answer;
-		this.regDate = regDate;
 		this.result = result;
 		this.orderNum = orderNum;
 	}
@@ -106,6 +109,22 @@ public class ProblemVo {
 		this.regDate = regDate;
 	}
 
+	public String getChoiceContent() {
+		return choiceContent;
+	}
+
+	public void setChoiceContent(String choiceContent) {
+		this.choiceContent = choiceContent;
+	}
+
+	public String getAttachmentFile() {
+		return attachmentFile;
+	}
+
+	public void setAttachmentFile(String attachmentFile) {
+		this.attachmentFile = attachmentFile;
+	}
+
 	public String getResult() {
 		return result;
 	}
@@ -126,7 +145,9 @@ public class ProblemVo {
 	public String toString() {
 		return "ProblemVo [problemNo=" + problemNo + ", cateNo=" + cateNo + ", type=" + type + ", problemTitle="
 				+ problemTitle + ", content=" + content + ", contentImage=" + contentImage + ", description="
-				+ description + ", answer=" + answer + ", regDate=" + regDate + "]";
+				+ description + ", answer=" + answer + ", regDate=" + regDate + ", choiceContent=" + choiceContent
+				+ ", attachmentFile=" + attachmentFile + ", result=" + result + ", orderNum=" + orderNum + "]";
 	}
 
+	
 }

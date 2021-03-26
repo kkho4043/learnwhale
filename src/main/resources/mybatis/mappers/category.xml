@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="category">
+	
 	<select id="selectCategory" parameterType="int" resultType="CategoryVo">
 		<![CDATA[
 			select  cate_no cateNo,
@@ -86,13 +87,15 @@
 
 	<select id="problemView" parameterType="int" resultType="com.javaex.vo.ProblemVo">
 		<![CDATA[
-			select type,
-					problem_title problemTitle,
-					content,
-					content_image contentImage,
-					description,
-					answer
-			from problem
+			select  p.type type,
+					p.problem_title problemTitle,
+					p.content content,
+					p.content_image contentImage,
+					p.description description,
+					p.answer answer,
+					c.choice_content choiceContent,
+					c.attachment_file attachmentFile,
+			from problem p, choice c
 			where problem_no = #{problemNo}
 		]]>
 	</select>
