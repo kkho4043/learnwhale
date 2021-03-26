@@ -60,7 +60,7 @@ public class ClassDao {
 	//url입력시 classNo 반환
 	
 	public int getclassNo(String url) {
-		System.out.println("[classDao.update()]");
+		System.out.println("[classDao.dddd()]");
 		return sqlSession.selectOne("class.selectclassNo", url);
 	}
 	

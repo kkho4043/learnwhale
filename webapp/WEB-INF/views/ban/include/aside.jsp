@@ -17,10 +17,17 @@
 
 	<div id="menu-area">
 		<ul>
-			<li><span class="glyphicon glyphicon-stop"></span>시험관리</li>
-			<li><span class="glyphicon glyphicon-stop"></span>학생관리</li>
-			<li><span class="glyphicon glyphicon-stop"></span>성적관리</li>
+
+			<li><a href="${pageContext.request.contextPath}/${url}/exam/list"><span class="glyphicon glyphicon-stop"></span>시험관리</a></li>
+			<li><a href="${pageContext.request.contextPath}/${url}/student/list"><span class="glyphicon glyphicon-stop"></span>학생관리</a></li>
+			<li><a href="${pageContext.request.contextPath}/${url}/report/list"><span class="glyphicon glyphicon-stop"></span>성적관리</a></li>
 			<li class="last"><span class="glyphicon glyphicon-stop"></span>공지사항</li>
+
+			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/notice/list">시험관리</a></li>
+			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/notice/list">학생관리</a></li>
+			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/notice/list">성적관리</a></li>
+			<li class="last"><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/notice/list">공지사항</a></li>
+
 		</ul>
 	</div>
 </div>

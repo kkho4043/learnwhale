@@ -97,20 +97,20 @@ public class BexamController {
 	@RequestMapping(value = "/grant", method = { RequestMethod.GET, RequestMethod.POST })
 	public String grant(@ModelAttribute ("examVo") ExamVo examVo,@PathVariable("url") String url,
 			@RequestParam ("qarr[]") String[] qarr) {
-		System.out.println("[BanExamController.grant()]");
+		System.out.println("[BanExamController.grant().url  = ]"+ url);
 		
-		examService.examgrant(examVo, qarr);
-		return ""+url+"exam/list";
+		examService.examgrant(url,examVo, qarr);
+		return "/"+url+"/exam/list";
 	}
 	
 	@RequestMapping(value = "/exammodifyfrom", method = { RequestMethod.GET, RequestMethod.POST })
 	public String exammodifyform(Model model ,@RequestParam(value = "examNo") int examNo,@PathVariable("url") String url) {
 		System.out.println("[BanExamController.exammodifyform()]");
 		
-		model.addAttribute("cateList", proService.getCategory(2));//유저번호를 주면 그에해당하는 카테고리를 준다~
+		model.addAttribute("cateList", proService.getCategory(1));//유저번호를 주면 그에해당하는 카테고리를 준다~
 		model.addAttribute("pMap",examService.exammodify(examNo));
 		
-		return ""+url+"/exam/exammodifyform2";
+		return "ban/exam/exammodifyform2";
 	}
 	
 	@ResponseBody
