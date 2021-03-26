@@ -63,4 +63,17 @@ public class ClassDao {
 		System.out.println("[classDao.update()]");
 		return sqlSession.selectOne("class.selectclassNo", url);
 	}
+	
+	//join user 선생님 삭제
+	public int joinDelete(int classNo) {
+		System.out.println("[classDao.joinDelete()]");
+		return sqlSession.delete("class.joinDelete", classNo);
+		
+	}
+	
+	public int sCount(int classNo) {
+		System.out.println("[classDao.sCount()]");
+		return sqlSession.selectOne("class.sCount", classNo);
+	}
+	
 }
