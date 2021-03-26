@@ -124,49 +124,6 @@
 								<!-- //col-sm-12 -->
 							</div>
 							<!-- //row -->
-
-		<!-- //회원가입 화면 -->
-
-							<!-- 로그인 시 나오는 창 -->
-							<!-- <div class="row" id="input-Area">
-								<div id="joinform">
-									<span id="join">로그인</span>
-								</div>
-								<div class="col-sm-12">
-									<form class="form-inline">
-										<div class="col-sm-12 joinArea">
-											<div class="form-group">
-												<div class="col-sm-12">
-													<label for="id-margin" id="idArea">아이디</label>
-												</div>
-												<input type="text" class="form-control" id="id-margin" placeholder="아이디를 입력해 주세요.">
-											</div>
-											//form-group
-										</div>
-
-										<div class="col-sm-12 joinArea">
-											<div class="form-group">
-												<div class="col-sm-12">
-													<label for="password" id="pwArea">비밀번호</label>
-												</div>
-												<input type="text" class="form-control" id="password" placeholder="비밀번호를 입력해 주세요.">
-											</div>
-										</div>
-										<div class="col-sm-12">
-											<button type="button" class="btn btn-info Btn">로그인</button>
-										</div>
-										<div class="col-sm-12">
-											<button type="button" class="btn btn-info Btn">회원가입</button>
-										</div>
-										
-										//joinArea
-									</form>
-								//form
-								</div>
-								//col-sm-12
-							</div> -->
-							<!-- //row -->
-
 						</div>
 					</div>
 				</div>

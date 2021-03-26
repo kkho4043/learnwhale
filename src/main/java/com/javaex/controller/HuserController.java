@@ -22,8 +22,9 @@ public class HuserController {
 	@RequestMapping(value = "/joinForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String joinForm() {
 		System.out.println("user()-joinForm");
-		return 
+		return "home/main/joinForm";
 	}
+	
 	// 회원가입
 	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVo userVo) {
@@ -32,7 +33,7 @@ public class HuserController {
 		System.out.println(userVo);
 		userService.join(userVo);
 
-		return "home/main/join";
+		return "home/main/loginForm";
 	}
 
 	
