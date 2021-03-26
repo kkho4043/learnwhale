@@ -20,7 +20,7 @@
 			<li><span class="glyphicon glyphicon-stop"></span>시험관리</li>
 			<li><span class="glyphicon glyphicon-stop"></span>학생관리</li>
 			<li><span class="glyphicon glyphicon-stop"></span>성적관리</li>
-			<li class="last"><span class="glyphicon glyphicon-stop"></span>공지사항</li>
+			<li class="last"><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/notice/list">공지사항</a></li>
 		</ul>
 	</div>
 </div>
