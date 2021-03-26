@@ -11,7 +11,8 @@
 					#{password}, 
 					#{name},
 					#{email}, 
-					#{phoneNum} )	
+					#{phoneNum},
+					#{proFile} )	
 		]]>
 	</insert>
 	

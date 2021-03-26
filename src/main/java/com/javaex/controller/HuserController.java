@@ -18,6 +18,13 @@ public class HuserController {
 	@Autowired
 	private UserService userService;
 	
+	//joinOk
+	@RequestMapping(value = "/joinOk", method = {RequestMethod.GET, RequestMethod.POST})
+	public String joinOk() {
+		System.out.println("joinOk");
+		return "home/main/joinOk";
+	}
+	
 	//회원가입 폼
 	@RequestMapping(value = "/joinForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String joinForm() {
@@ -33,7 +40,7 @@ public class HuserController {
 		System.out.println(userVo);
 		userService.join(userVo);
 
-		return "home/main/loginForm";
+		return "home/main/joinOk";
 	}
 
 	

@@ -7,8 +7,9 @@
 	/* height: 900px; */
 }
 
-#form-control{
-	
+
+text-large{
+	padding-left:300px;	
 }
 
 #div-position{
@@ -20,7 +21,7 @@
 }
 
 #joinform{
-	margin-bottom: 24px;
+	margin-bottom: 10px;
 	font-size: 50px;	
 }
 #join{
@@ -109,7 +110,7 @@
 
 #join-area{
 	width: 600px;
-	
 }
+
 	
 	

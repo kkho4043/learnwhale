@@ -68,10 +68,10 @@
 											</div>
 										</div>
 										<div class="col-sm-12">
-											<button type="submit" class="btn btn-info Btn_i">로그인</button>
+											<button type="submit" class="btn btn-primary Btn_i">로그인</button>
 										</div>
 										<div class="col-sm-12">
-											<button type="button" class="btn btn-info Btn_i">회원가입</button>
+											<button type="button" class="btn btn-primary Btn_i">회원가입</button>
 										</div>
 										
 										<!-- //joinArea -->

@@ -88,7 +88,7 @@
 
 											<div class="col-sm-12">
 												<form class="form-inline" id="joinForm" method="get"
-													action="${pageContext.request.contextPath}/h/join">
+													action="${pageContext.request.contextPath}/user/join">
 													<div class="col-sm-12 joinArea">
 														<div class="form-group">
 															<div class="col-sm-12">
@@ -171,7 +171,7 @@
 													</div>
 
 													<div id="btnArea">
-														<button id="btnJoin" class="btn" type="submit">회원가입</button>
+														<button id="btnJoin" class="btn btn-primary" type="submit">회원가입</button>
 													</div>
 													<!-- //joinArea -->
 
