@@ -1,5 +1,8 @@
 package com.javaex.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +16,17 @@ public class BanmainService {
 
 	@Autowired
 	BanmainDao banmainDao;
-	
-	public JoinUserVo userInfo(String url,HttpSession session) {
+
+	public Map<String, Object> classInfo(String url, HttpSession session) {
+
+		int userNo = (int) session.getAttribute("authUser");
+		JoinUserVo jvo = banmainDao.selectuserInfo(url, userNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uname",jvo.getUsername());
+		map.put("utype", jvo.getType());
 		
 		
-		try {
-			int userNo = (int)session.getAttribute("authUser");
-			return banmainDao.selectuserInfo(url , userNo);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 		return null;
 	}
 }

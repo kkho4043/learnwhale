@@ -30,8 +30,10 @@ public class BmainController {
 						@RequestParam(value = "crtPage", required = false ,defaultValue = "1") int crtPage,
 						@RequestParam(value = "keyward",required = false,defaultValue = "") String keyward,Model model,HttpSession session) {
 		System.out.println("[BanExamController.list()]");
+		
 		model.addAttribute("eMap", examService.examList(url,crtPage,keyward));
-		model.addAttribute("juser", banmainService.userInfo(url, session));
+		
+		model.addAttribute("classInfo", banmainService.classInfo(url, session));
 
 		
 		return "ban/exam/list";
