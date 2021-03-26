@@ -109,5 +109,14 @@
 		]]>
 	
 	</select>
+	
+	<select id="sCount" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) count
+			FROM join_users
+			where class_no = #{classNo}
+			and type= '학생' and (approval= '승인' or approval = '대기')
+		]]>
+	</select>
 
 </mapper>

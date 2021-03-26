@@ -111,9 +111,16 @@ public class ClassService {
 	// 삭제
 	public int remove(int classNo) {
 		System.out.println("[classService.remove()]");
-		classDao.joinDelete(classNo);
+		int count = classDao.sCount(classNo);
+		
+		if(count == 0) {
+			classDao.joinDelete(classNo);
+			return classDao.classDe;
+		}else {
+			return 1;
+		}
 
 		return classDao.classDelete(classNo);
 	}
-
+	
 }

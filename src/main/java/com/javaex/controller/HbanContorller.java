@@ -91,6 +91,7 @@ public class HbanContorller {
 	public String remove(@RequestParam("classNo") int classNo) {
 		System.out.println("[HbanController.remove()]");
 		
+		
 		classService.remove(classNo);
 		return "";
 	}
