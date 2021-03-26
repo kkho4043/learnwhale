@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javaex.dao.ClassDao;
 import com.javaex.dao.ExamDao;
 import com.javaex.vo.ExamVo;
 
@@ -15,10 +16,15 @@ public class ExamService {
 
 	@Autowired
 	ExamDao examDao;
+	
+	@Autowired
+	ClassDao classDao;
 
 
-	public Map<String, Object> examList(int classNo, int crtPage, String keyward) {
 
+	public Map<String, Object> examList(String url, int crtPage, String keyward) {
+		int classNo = classDao.getclassNo(url);
+		
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
 
 		int listCnt = 10;
@@ -164,6 +170,11 @@ public class ExamService {
 	public void exammodify2(ExamVo examVo) {
 		System.out.println(examVo);
 		examDao.examupdate(examVo);
+	}
+	
+	public ExamVo examstart(int examNo) {
+		
+		return examDao.examstart(examNo);
 	}
 
 }

@@ -57,15 +57,10 @@ public class ClassDao {
 		System.out.println("[classDao.update()]");
 		return sqlSession.update("class.update", classVo);
 	}
+	//url입력시 classNo 반환
 	
-	//join 선생님삭제
-	public int joinDelete(int classNo) {
-		System.out.println("[classDao.joindelete()]");
-		return sqlSession.delete("class.joindelete", classNo);
-	}
-	
-	public int classDelete(int classNo) {
-		System.out.println("[classDao.classDelete()]");
-		return sqlSession.delete("class.classDelete", classNo);
+	public int getclassNo(String url) {
+		System.out.println("[classDao.update()]");
+		return sqlSession.selectOne("class.selectclassNo", url);
 	}
 }

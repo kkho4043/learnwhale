@@ -100,21 +100,14 @@
 		]]>
 	</select>
 	
-	<!-- join삭제 -->
-	<select id="joindelete" parameterType="int">
+	<select id="selectclassNo" resultType="int" parameterType="int">
 		<![CDATA[
-			delete join_users
-			where class_no = {classNo}
-			and type = '선생님'
+			select 
+				class_no
+			from class
+			where class_url = #{url}
 		]]>
-	</select>
 	
-	<!-- class삭제 -->
-	<select id="joindelete" parameterType="int">
-		<![CDATA[
-			delete join_users
-			where class_no = {classNo}
-			and type = '선생님'
-		]]>
 	</select>
+
 </mapper>
