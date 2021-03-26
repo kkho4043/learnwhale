@@ -99,5 +99,22 @@
 			where class_no = #{classNo}
 		]]>
 	</select>
-
+	
+	<!-- join삭제 -->
+	<select id="joindelete" parameterType="int">
+		<![CDATA[
+			delete join_users
+			where class_no = {classNo}
+			and type = '선생님'
+		]]>
+	</select>
+	
+	<!-- class삭제 -->
+	<select id="joindelete" parameterType="int">
+		<![CDATA[
+			delete join_users
+			where class_no = {classNo}
+			and type = '선생님'
+		]]>
+	</select>
 </mapper>

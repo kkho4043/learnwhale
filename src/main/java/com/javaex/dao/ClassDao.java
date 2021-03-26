@@ -58,4 +58,14 @@ public class ClassDao {
 		return sqlSession.update("class.update", classVo);
 	}
 	
+	//join 선생님삭제
+	public int joinDelete(int classNo) {
+		System.out.println("[classDao.joindelete()]");
+		return sqlSession.delete("class.joindelete", classNo);
+	}
+	
+	public int classDelete(int classNo) {
+		System.out.println("[classDao.classDelete()]");
+		return sqlSession.delete("class.classDelete", classNo);
+	}
 }

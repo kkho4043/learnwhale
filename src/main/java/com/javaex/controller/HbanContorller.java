@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.ClassService;
 import com.javaex.vo.ClassVo;
+import com.javaex.vo.JoinUserVo;
 import com.javaex.vo.UserVo;
 
 @Controller
@@ -33,8 +34,7 @@ public class HbanContorller {
 		
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
 		List<ClassVo> classList = classService.list(userVo.getNo(), search);
-		
-		
+
 		model.addAttribute("classList", classList);
 		
 		return "home/ban/list";
@@ -89,7 +89,8 @@ public class HbanContorller {
 	//반 삭제
 	@RequestMapping(value = "/remove", method = {RequestMethod.GET, RequestMethod.POST})
 	public String remove(@RequestParam("classNo") int classNo) {
-		System.out.println("[HbanController.delete()]");
+		System.out.println("[HbanController.remove()]");
+		
 		classService.remove(classNo);
 		return "";
 	}
