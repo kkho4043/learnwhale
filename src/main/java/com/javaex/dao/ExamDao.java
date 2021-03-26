@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.javaex.vo.ExamVo;
 import com.javaex.vo.JoinUserVo;
 import com.javaex.vo.ProblemVo;
+import com.javaex.vo.QuestionVo;
 
 @Repository
 public class ExamDao {
@@ -81,5 +82,30 @@ public class ExamDao {
 		map.put("endNum", endNum);
 
 		return sqlSession.selectList("exam.examprolist", map);
+	}
+	
+	public ExamVo selectExam(int examNo) {
+		return sqlSession.selectOne("exam.selectexam", examNo);
+	}
+	
+	public List<QuestionVo> selectquestion(int examNo) {
+		return sqlSession.selectList("exam.selectquestion", examNo);
+	}
+	
+	public void examupdate(ExamVo examVo) {
+		sqlSession.update("exam.examupdate", examVo);
+	}
+	
+	public void qeustiondelete(int examNo) {
+		sqlSession.delete("exam.qeustiondelete", examNo);
+	}
+	public void questionupdate(int examNo, int problemNo,int point , int order) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("examNo", examNo);
+		map.put("problemNo", problemNo);
+		map.put("point", point);
+		map.put("order", order);
+		sqlSession.insert("exam.questionupdate", map);
 	}
 }

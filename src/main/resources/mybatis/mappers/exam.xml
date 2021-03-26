@@ -230,6 +230,92 @@ from(select
 
 		]]>
 	</select>
+	
+	<select id="selectexam" resultType="ExamVo" parameterType="int">
+		<![CDATA[
+		select  
+	    	exam_no examNo,
+	    	exam_title examTitle,
+	    	exam_type examType,
+	   	 	time,
+	   	 	
+	   	 	TO_CHAR(start_date,'yyyy-MM-dd hh:mm:ss') startDate,
+			TO_CHAR(end_date,'yyyy-MM-dd hh:mm:ss') endDate
+			
+		from exam
+		where exam_no = #{examNo}
+
+		]]>
+	</select>
+	
+	<select id="selectquestion" resultType="QuestionVo" parameterType="int">
+		<![CDATA[
+		select
+    		p.problem_no problemNo,
+    		p.problem_title problemTitle,
+    		p.type problemType,
+    		q.point point
+		from question q, problem p
+		where q.problem_no = p.problem_no
+		and q.exam_no = #{examNo}
+		order by q.order_num
+
+		]]>
+	</select>
+	
+	<update id="examupdate" parameterType="ExamVo">
+		<![CDATA[
+			update exam
+			
+			set 
+			]]>
+				<if test="examTitle != null and examTitle != ''">
+					
+					exam_title = #{examTitle}
+				</if>
+			
+				<if test="examType != null and examType != ''">
+					,
+					exam_type = #{examType}
+				</if>
+		<![CDATA[
+				,
+			    time = #{time}
+		]]>
+		
+		
+						
+			    <if test="startDate != null and startDate != ''">
+			    	,
+					start_date = TO_DATE(#{startDate},'yyyy-mm-dd hh:mi:ss')
+				</if>
+			    
+			     <if test="endDate != null and endDate != ''">
+			     	,
+					end_date = TO_DATE(#{endDate},'yyyy-mm-dd hh:mi:ss')
+				</if>
+			    
+		<![CDATA[
+			where exam_no = #{examNo}
+		]]>
+	</update>
+	
+	<delete id="qeustiondelete" parameterType="int">
+		delete 
+		from question
+		where exam_no = #{examNo}
+	</delete>
+	
+	<insert id="questionupdate" parameterType="QuestionVo">
+		insert into question VALUES(
+						seq_question_no.nextval,
+						#{examNo},
+						#{problemNo},
+						#{point},
+						#{order}
+						)	
+	
+	</insert>
 
 
 

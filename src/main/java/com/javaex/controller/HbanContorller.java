@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javaex.service.ClassService;
 import com.javaex.vo.ClassVo;
@@ -28,22 +27,36 @@ public class HbanContorller {
 
 	//반 리스트
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Model model, HttpSession session) {
+	public String list(Model model, HttpSession session,
+						@RequestParam(value="search", required = false, defaultValue = "") String search) {
 		System.out.println("[HbanController.list()]");
 		
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
-		List<ClassVo> classList = classService.list(userVo.getNo());
-		System.out.println(userVo.getNo());
+		List<ClassVo> classList = classService.list(userVo.getNo(), search);
+		
+		
 		model.addAttribute("classList", classList);
 		
 		return "home/ban/list";
 	}
 
-	//반 수정
+	//반 수정폼
 	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify() {
-		System.out.println("[HbanController.modify()]");
+	public String modifyForm(Model model, @RequestParam("classNo") int classNo) {
+		System.out.println("[HbanController.modifyForm()]");
+		
+		ClassVo classVo = classService.selectOne(classNo);
+		model.addAttribute("classVo", classVo);
+		
 		return "home/ban/modifyForm";
+	}
+	
+	//반 수정
+	@RequestMapping(value = "/modify", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modify(@ModelAttribute ClassVo classVo) {
+		System.out.println("[HbanController.modify()]");
+		classService.update(classVo);
+		return "redirect:list";
 	}
 	
 	//반생성 url 중복체크
@@ -64,14 +77,21 @@ public class HbanContorller {
 	 //반생성
 	@RequestMapping(value = "/create", method = { RequestMethod.GET, RequestMethod.POST })
 	public String create(@ModelAttribute ClassVo classVo,
-						 @RequestParam(value = "logo") MultipartFile file) {
+						 @RequestParam(value = "logo", required = false, defaultValue = "" ) MultipartFile file 
+						 , HttpSession session) {
 		System.out.println("[HbanController.create()]");
-	
-		classService.create(classVo, file); 
+		UserVo userVo = (UserVo)session.getAttribute("authUser");
+		classService.create(classVo, file, userVo.getNo());
 		
-		return "home/ban/list";
-
+		return "redirect:list";
 	}
-
+	
+	//반 삭제
+	@RequestMapping(value = "/remove", method = {RequestMethod.GET, RequestMethod.POST})
+	public String remove(@RequestParam("classNo") int classNo) {
+		System.out.println("[HbanController.delete()]");
+		classService.remove(classNo);
+		return "";
+	}
 
 }

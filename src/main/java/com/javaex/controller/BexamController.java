@@ -60,7 +60,7 @@ public class BexamController {
 	@RequestMapping(value = "/examstart", method = { RequestMethod.GET, RequestMethod.POST })
 	public String examstart() {
 		System.out.println("[BanExamController.end()]");
-		return "ban/exam/examend";
+		return "ban/exam/examsolvestart";
 	}
 
 	@RequestMapping(value = "/examsolve", method = { RequestMethod.GET, RequestMethod.POST })
@@ -100,11 +100,30 @@ public class BexamController {
 		System.out.println("[BanExamController.exammodifyform()]");
 		
 		model.addAttribute("cateList", proService.getCategory(2));//유저번호를 주면 그에해당하는 카테고리를 준다~
+		model.addAttribute("pMap",examService.exammodify(examNo));
 		
-		
-		return "ban/exam/exammodifyform";
+		return "ban/exam/exammodifyform2";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
+	public String exammodify(@ModelAttribute ("examVo") ExamVo examVo,
+			@RequestParam ("qarr[]") String[] qarr) {
+		System.out.println("[BanExamController.exammodify()]");
+		
+	
+		examService.exammodify(examVo, qarr);
+		return "/abc/exam/list";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/modify2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String exammodify2(@ModelAttribute ("examVo") ExamVo examVo){
+		System.out.println("[BanExamController.exammodify2()]");
+		System.out.println(examVo);
+	
+		examService.exammodify2(examVo);
+		return "/abc/exam/list";
+	}
 	
 	
 	@ResponseBody

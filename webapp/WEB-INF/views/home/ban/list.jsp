@@ -62,9 +62,9 @@
 					<div id="content-body-area" class="container-fluid row">
 						<div class="row">
 							<div class="col-xs-6 text-left">
-								<form action="" method="get">
+								<form action="${pageContext.request.contextPath}/h/list" method="get">
 									<div class="form-group text-left">
-										<input type="text">
+										<input type="text" name="search">
 										<button type="submit" id=btn_search>검색</button>
 									</div>
 								</form>
@@ -76,36 +76,37 @@
 							</div>
 
 							<div class="row">
-								<div class="col-xs-11">
+								<div class="col-xs-12">
 									<table class="table table-striped table-hover table-bordered"
 										style="margin-left: 15px;">
 										<thead>
 											<tr>
-												<th class="col-xs-2">번호</th>
-												<th class="col-xs-2">반이름</th>
-												<th class="col-xs-2">시작일</th>
-												<th class="col-xs-2">종료일</th>
-												<th class="col-xs-2">인원</th>
-												<th class="col-xs-2">상태</th>
-												<th class="col-xs-2">관리</th>
+												<th>번호</th>
+												<th>반이름</th>
+												<th>시작일</th>
+												<th>종료일</th>
+												<th>인원</th>
+												<th>상태</th>
+												<th>관리</th>
+												<th>비고</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${classList}" var="vo">
+											<c:forEach items="${classList}" var="vo" varStatus="status">
 												<tr>
-													<td>${vo.classNo}</td>
-													<td><a href="">${vo.className}</a></td>
+													<td>${status.count}</td>
+													<td><a href="${pageContext.request.contextPath}/${vo.classUrl}/exam/list">${vo.className}</a></td>
 													<td>${vo.startDate}</td>
 													<td>${vo.endDate}</td>
 													
-													<td>13/20명</td>
-												
-													<td>진행중</td>
+													<td>${vo.approval} /${vo.total}명</td>
+														
+													<td>${vo.state }</td>
 															
 													<td>${vo.hidden}</td>
 
 													<td><a
-														href="${pageContext.request.contextPath}/h/modifyForm">[수정]</a>
+														href="${pageContext.request.contextPath}/h/modifyForm?classNo=${vo.classNo}">[수정]</a>
 														[삭제]</td>
 												</tr>
 											</c:forEach>

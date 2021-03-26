@@ -49,7 +49,7 @@
 					<div id="breadcrumb-area">
 						<ol class="breadcrumb pull-right">
 							<li class="breadcrumb-item">반</li>
-							<li class="breadcrumb-item">시험출제</li>
+							<li class="breadcrumb-item">시험수정</li>
 						</ol>
 					</div>
 					<!-- //위치 -->
@@ -73,20 +73,21 @@
 							<div class="row">
 								<div class="col-xs-2">제목</div>
 								<div class="col-xs-10">
-									<input type="text" id="examtitle">
+									<input type="text" id="examtitle" value="${pMap.examVo.examTitle}">
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="col-xs-2">시험 유형</div>
+
 								<div class="col-xs-2">
-									<input type="radio" name="testtype" value="쪽지시험" checked="checked" onclick="gettype(event)"><span>쪽지시험</span>
+									<input id="testtype-easy" type="radio" name="testtype" value="쪽지시험" checked="checked" onclick="gettype(event)"><span>쪽지시험</span>
 								</div>
 								<div class="col-xs-2">
-									<input type="radio" name="testtype" value="시험" onclick="gettype(event)"><span>시험</span>
+									<input id="testtype-test" type="radio" name="testtype" value="시험" onclick="gettype(event)"><span>시험</span>
 								</div>
 								<div class="col-xs-2">
-									<input type="radio" name="testtype" value="과제" onclick="gettype(event)"><span>과제</span>
+									<input id="testtype-home" type="radio" name="testtype" value="과제" onclick="gettype(event)"><span>과제</span>
 								</div>
 							</div>
 
@@ -95,13 +96,15 @@
 								<div class="col-xs-4">
 									<select name="testtime" id="timeselect">
 										<option value="">문제당 시간</option>
-										<option value="30">30초</option>
-										<option value="60">1분</option>
-										<option value="120">2분</option>
-										<option value="180">3분</option>
-										<option value="240">4분</option>
-										<option value="300">5분</option>
+										<option value="30" <c:if test="${pMap.examVo.time == '30'}"> selected="selected" </c:if>>30초</option>
+										<option value="60" <c:if test="${pMap.examVo.time == '60'}"> selected="selected" </c:if>>1분</option>
+										<option value="120" <c:if test="${pMap.examVo.time == '120'}"> selected="selected" </c:if>>2분</option>
+										<option value="180" <c:if test="${pMap.examVo.time == '180'}"> selected="selected" </c:if>>3분</option>
+										<option value="240" <c:if test="${pMap.examVo.time == '240'}"> selected="selected" </c:if>>4분</option>
+										<option value="300" <c:if test="${pMap.examVo.time == '300'}"> selected="selected" </c:if>>5분</option>
 									</select>
+
+
 								</div>
 							</div>
 
@@ -128,7 +131,7 @@
 							</div>
 
 							<div class="col-xs-3">
-								합산점수 <span id="hapscore">0</span> / 100
+								합산점수 <span id="hapscore">100</span> / 100
 							</div>
 						</div>
 
@@ -144,8 +147,7 @@
 									</tr>
 								</thead>
 								<tbody id="selectprolist">
-
-
+									
 								</tbody>
 							</table>
 						</div>
@@ -153,7 +155,7 @@
 						<div class="row">
 							<div class="col-xs-5"></div>
 							<div class="col-xs-6">
-								<button type="button" class="btn btn-xs btn-primary" id="examgrant">시험 출제</button>
+								<button type="button" class="btn btn-xs btn-primary" id="examgrant">시험 수정</button>
 							</div>
 						</div>
 
@@ -206,6 +208,87 @@
 </body>
 
 <script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						if ("${pMap.examVo.examType}" === "쪽지시험") {
+							document.getElementById("testtime").style.display = "block";
+							$('#testtype-easy').prop('checked', true);
+
+						} else {
+							document.getElementById("testtime").style.display = "none";
+							if ("${pMap.examVo.examType}" === "시험") {
+								$('#testtype-test').prop('checked', true);
+							} else {
+								$('#testtype-home').prop('checked', true);
+							}
+
+						}
+
+						document.getElementById("startdate").value = "${pMap.examVo.startDate}";
+						document.getElementById("enddate").value = "${pMap.examVo.endDate}";
+						
+						
+						console.log('${pMap.qList}');
+						var ar = '${pMap.qList}'.split("QuestionVo");
+						var proNos;var eq;var rut;var prono;var poi;var proti;var proty;
+						for(var i= 0 ;i < ar.length;i++){
+							
+							
+							proNos = ar[i].indexOf('problemNo');
+							if(proNos == -1){
+								continue;
+							}
+							eq = ar[i].indexOf('=',proNos);
+							rut = ar[i].indexOf(',',eq);
+							prono = ar[i].substring(eq+1,rut);
+							console.log("problemNo = " + prono);
+							
+							
+							proNos = ar[i].indexOf('point');
+							if(proNos == -1){
+								continue;
+							}
+							eq = ar[i].indexOf('=',proNos);
+							rut = ar[i].indexOf(',',eq);
+							poi = ar[i].substring(eq+1,rut);
+						
+							console.log("point = " + poi);
+							
+							
+							proNos = ar[i].indexOf('problemTitle');
+							if(proNos == -1){
+								continue;
+							}
+							eq = ar[i].indexOf('=',proNos);
+							rut = ar[i].indexOf(',',eq);
+							proti = ar[i].substring(eq+1,rut);
+						
+							console.log("problemTitle = " + proti);
+							
+							
+							proNos = ar[i].indexOf('problemType');
+							if(proNos == -1){
+								continue;
+							}
+							eq = ar[i].indexOf('=',proNos);
+							rut = ar[i].indexOf(']',eq);
+							proty = ar[i].substring(eq+1,rut-1);
+							
+							console.log("problemType = " + proty);
+							
+							
+							var vo = new Object();
+							vo.problemNo = prono;
+							vo.point = poi;
+							vo.problemTitle = proti;
+							vo.problemType = proty;
+							voarr.push(vo);
+						}
+					
+						rendersVo();
+						getscore();
+					});
 	//시험 유형
 	function gettype(event) {
 		type = event.target.value;
@@ -216,7 +299,9 @@
 		}
 
 	}
-	var type = "쪽지시험";
+	
+	var type ="${pMap.examVo.examType}" ;
+	
 
 	//점수 합산
 	function getscore() {
@@ -242,6 +327,7 @@
 		var startdate = document.getElementById("startdate").value;
 		var enddate = document.getElementById("enddate").value;
 		var etype = type;
+		var examNo = "${param.examNo}"
 		console.log(title, etype, time);
 		console.log(startdate, enddate);
 		var qarr = [];
@@ -284,10 +370,11 @@
 		}
 
 		$.ajax({
-			url : "${pageContext.request.contextPath}/abc/exam/grant",
+			url : "${pageContext.request.contextPath}/abc/exam/modify",
 			type : "post",
 			//contentType : "application/json",
 			data : {
+				examNo : examNo,
 				examTitle : title,
 				examType : etype,
 				time : time,
@@ -401,17 +488,15 @@
 	//등록버튼 클릭
 	$("#cate-problem").on("click", "button", function() {
 
-		var no = $(this).data("no");
+		var problemNo = $(this).data("no");
 		var title = $(this).data("title");
-		var type = $(this).data("type");
-
-		console.log(no, title, type);
+		var problemType = $(this).data("type");
 
 		var vo = new Object();
-		vo.problemNo = no;
+		vo.problemNo = problemNo;
 		vo.problemTitle = title;
-		vo.type = type;
-
+		vo.problemType = problemType;
+		vo.point = "";
 		voarr.push(vo);
 		rendersVo();
 	});
@@ -442,14 +527,14 @@
 		str += '<tr>';
 		str += '	<td>' + order + '</td>';
 		str += '	<td>' + Vo.problemTitle + '</td>';
-		str += '	<td>' + Vo.type + '</td>';
+		str += '	<td>' + Vo.problemType + '</td>';
 		str += '	<td><input type="text" id="score-' + (order - 1)
-				+ '" onchange = "getscore()" value="">점</td>';
+				+ '" onchange = "getscore()" value="'+Vo.point+'">점</td>';
 		str += '	<td>';
 		str += '			<input type="button" value="삭제" class="btn btn-xs btn-danger" data-order="'
 				+ (order - 1) + '">';
 		str += '	</td>';
-		str += '	<input type="hidden" value="'+Vo.no+'">';
+		str += '	<input type="hidden" value="'+Vo.problemNo+'">';
 		str += '</tr>';
 
 		$("#selectprolist").prepend(str);

@@ -125,5 +125,45 @@ public class ExamService {
 		}
 		
 	}
+	public Map<String, Object> exammodify(int examNo) {
+		
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		ExamVo examVo = examDao.selectExam(examNo);
+		
+		examVo.setStartDate(examVo.getStartDate().replace(" ","T"));
+		examVo.setEndDate(examVo.getEndDate().replace(" ","T"));
+		pMap.put("examVo",examVo);
+		
+		pMap.put("qList",examDao.selectquestion(examNo));
+		
+		return pMap;
+	}
+	
+	public void exammodify(ExamVo examVo,String[] arr) {
+		
+		
+		examVo.setStartDate(examVo.getStartDate().replace("T", " "));
+		examVo.setEndDate(examVo.getStartDate().replace("T", " "));
+		System.out.println(examVo);
+		
+		examDao.examupdate(examVo);
+		
+		examDao.qeustiondelete(examVo.getExamNo());
+		
+		
+		String split;
+		
+		for(int i = 0;i < arr.length;i++) {
+			split = arr[i];
+			String[] splitarr = split.split("/");
+			examDao.questionupdate(examVo.getExamNo(),Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]),i+1);
+		}
+		
+	}
+	
+	public void exammodify2(ExamVo examVo) {
+		System.out.println(examVo);
+		examDao.examupdate(examVo);
+	}
 
 }

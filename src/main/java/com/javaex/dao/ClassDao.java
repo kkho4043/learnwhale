@@ -18,29 +18,44 @@ public class ClassDao {
 	private SqlSession sqlSession;
 	
 	//반생성 url 체크
-	public ClassVo selectOne(String classUrl) {
+	public int selectOne(String classUrl) {
 		return sqlSession.selectOne("class.selectByUrl", classUrl);
 	}
 	
 	//반생성
-	public int insert(ClassVo classVo) {
-		System.out.println("[classDao.insert()]");
+	public int classInsert(ClassVo classVo) {
+		System.out.println("[classDao.classInsert()]");
 		return sqlSession.insert("class.insert", classVo);
 	}
 	
+	//반생성 후 선생님 join_user 테이블에 바로 insert
+	public int tInsert(int classNo, int no) {
+		System.out.println("[classDao.joinInsert()]");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("classNo", classNo);
+		map.put("no", no);
+		System.out.println("Map"+ map);
+		return sqlSession.insert("class.tSelf",map);
+	}
+	
 	//리스트
-	public List<ClassVo> selectList(int no){
+	public List<ClassVo> selectList(int no, String search){
 		System.out.println("[classDao.selectList()]");
-		return sqlSession.selectList("class.selectList", no);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("no", no);
+		map.put("search", search);
+		return sqlSession.selectList("class.selectList", map);
 	}
 	
-	public int selectwaiting(ArrayList<Integer> arr) {
-		System.out.println("[classDao.selectwaiting()]");
-		return sqlSession.selectOne("class.waiting", arr);
+	//수정폼 가져오기
+	public ClassVo selectOne(int classNo) {
+		return sqlSession.selectOne("class.selectOne", classNo);
 	}
 	
-	public int selectapproval(ArrayList<Integer> arr) {
-		System.out.println("[classDao.selectapproval()]");
-		return sqlSession.selectOne("class.approval", arr);
+	//수정
+	public int update(ClassVo classVo) {
+		System.out.println("[classDao.update()]");
+		return sqlSession.update("class.update", classVo);
 	}
+	
 }
