@@ -6,9 +6,9 @@
 	<!-- 반생성 url 체크 -->
 	<select id="selectByUrl" parameterType="String" resultType="int">
 		<![CDATA[
-			SELECT c.class_url classUrl
-			FROM class c
-			where c.class_url = #{classUrl}
+			SELECT class_url classUrl
+			FROM class
+			where class_url = #{classUrl}
 		]]>
 
 	</select>
