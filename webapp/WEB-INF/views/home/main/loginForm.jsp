@@ -48,13 +48,13 @@
 									<span id="join">로그인</span>
 								</div>
 								<div class="col-sm-12">
-									<form class="form-inline">
-										<div class="col-sm-12 joinArea">
+									<form class="form-inline" method="get" action="${pageContext.request.contextPath}/login">
+										<div class="col-sm-12 joinArea" >
 											<div class="form-group">
 												<div class="col-sm-12">
 													<label for="id-margin" id="idArea">아이디</label>
 												</div>
-												<input type="text" class="form-control" id="id-margin" placeholder="아이디를 입력해 주세요.">
+												<input type="text" class="form-control" id="id-margin"  name="id" placeholder="아이디를 입력해 주세요.">
 											</div>
 											<!-- //form-group -->
 										</div>
@@ -64,11 +64,11 @@
 												<div class="col-sm-12">
 													<label for="password" id="pwArea">비밀번호</label>
 												</div>
-												<input type="text" class="form-control" id="password" placeholder="비밀번호를 입력해 주세요.">
+												<input type="text" class="form-control" id="password" name="password" placeholder="비밀번호를 입력해 주세요.">
 											</div>
 										</div>
 										<div class="col-sm-12">
-											<button type="button" class="btn btn-info Btn_i">로그인</button>
+											<button type="submit" class="btn btn-info Btn_i">로그인</button>
 										</div>
 										<div class="col-sm-12">
 											<button type="button" class="btn btn-info Btn_i">회원가입</button>

@@ -18,7 +18,7 @@
 				</div>
 				
 				<div class="col-xs-2 text-right">
-					<button id="btnLogin" type="button" class="btn btn-default btn-xs" >로그인</button>
+					<button id="btnLogin" type="button" class="btn btn-default btn-xs" ><a href="${pageContext.request.contextPath}/loginForm">로그인</a></button>
 					<button id="btnJoin" type="button" class="btn btn-default btn-xs" >회원가입</button>
 				</div>
 			</div>
