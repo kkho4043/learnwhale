@@ -125,10 +125,10 @@ public class BnoticeController {
 		return "ban/notice/read";
 	}
 
-	@RequestMapping(value = "/main", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String main() {
-		System.out.println("[main]");
-		return "home/main/indexk";
+		System.out.println("[join]");
+		return "home/main/join";
 	}
 
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })

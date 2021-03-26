@@ -12,7 +12,7 @@ import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
 @Controller
-@RequestMapping("/h")
+@RequestMapping("/")
 public class HuserController {
 
 	@Autowired
@@ -26,11 +26,11 @@ public class HuserController {
 		System.out.println(userVo);
 		userService.join(userVo);
 
-		return "home/main/index";
+		return "home/main/join";
 	}
 
 	// 로그인
-	@RequestMapping(value = "login", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("[HomeMain()-login]");
 
@@ -38,7 +38,7 @@ public class HuserController {
 		if(authUser != null) {
 			System.out.println("login 성공");
 			session.setAttribute("authUser", authUser);
-			return "redirect:/";
+			return "redirect:/login";
 		}	else {
 			System.out.println("login 실패");
 			return "redirect:/user/loginForm?result=fail";
