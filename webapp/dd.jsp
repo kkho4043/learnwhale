@@ -59,7 +59,7 @@
 
 
 										<div class="col-xs-9">
-											<form id="prblemForm" action="${pageContext.request.contextPath}/myclass/problem/modify" method="post" enctype="multipart/form-data">
+											<form id="prblemForm" action="${pageContext.request.contextPath}/myclass/problem/creating" method="post" enctype="multipart/form-data">
 												<div class="row col-xs-9">
 
 													<div class="col-sm-4 problemType">
@@ -94,11 +94,10 @@
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
-															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle"
-																value="${proVo.problemTitle}">
+															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="">
 														</div>
 														<div class="form-group">
-															<input type="text" class="form-control" id="content" placeholder="문제를 입력해주세요." name="content" value="${proVo.content}">
+															<input type="text" class="form-control" id="content" placeholder="문제를 입력해주세요." name="content" value="">
 														</div>
 														<div class="form-group">
 															<input type="text" class="form-control" placeholder="이미지를 넣어주세요.">
@@ -107,7 +106,7 @@
 															<input type="file" name="Image" value="">
 														</div>
 														<div class="form-group" id="last-makeType">
-															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description" value="${proVo.description}">
+															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description" value="">
 														</div>
 
 														<!-- //col-sm-12 -->
@@ -120,19 +119,10 @@
 																	<strong>1</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="">
+																	<input type="text" class="form-control choiceContent" placeholder="The first answer" name="choiceContent1">
 																</div>
 																<div class="col-xs-2">
-																	<c:choose>
-																		<c:when test="${proVo.answer == '1'}">
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="1" checked="checked">
-																			<label for="check-second">정답체크</label>
-																		</c:when>
-																		<c:otherwise>
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="1">
-																			<label for="check-second">정답체크</label>
-																		</c:otherwise>
-																	</c:choose>
+																	<input type="checkBox" class="mc-answer" name="answer" id="check-first" value="1"> <label for="check-first">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -146,19 +136,10 @@
 																	<strong>2</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" placeholder="The second answer" name="choiceContent" value="${proVo.content}">
+																	<input type="text" class="form-control choiceContent" placeholder="The second answer" name="choiceContent2">
 																</div>
 																<div class="col-xs-2">
-																	<c:choose>
-																		<c:when test="${proVo.answer == '2'}">
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="2" checked="checked">
-																			<label for="check-second">정답체크</label>
-																		</c:when>
-																		<c:otherwise>
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="2">
-																			<label for="check-second">정답체크</label>
-																		</c:otherwise>
-																	</c:choose>
+																	<input type="checkBox" class="mc-answer" name="answer" id="check-second" value="2"> <label for="check-second">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -172,19 +153,10 @@
 																	<strong>3</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" placeholder="The third answer" name="choiceContent" value="${proVo.content}">
+																	<input type="text" class="form-control choiceContent" placeholder="The third answer" name="choiceContent3">
 																</div>
 																<div class="col-xs-2">
-																	<c:choose>
-																		<c:when test="${proVo.answer == '3'}">
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="3" checked="checked">
-																			<label for="check-second">정답체크</label>
-																		</c:when>
-																		<c:otherwise>
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="3">
-																			<label for="check-second">정답체크</label>
-																		</c:otherwise>
-																	</c:choose>
+																	<input type="checkBox" class="mc-answer" name="answer" id="check-third" value="3"> <label for="check-third">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -198,19 +170,10 @@
 																	<strong>4</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" placeholder="The fourth answer" name="choiceContent" value="">
+																	<input type="text" class="form-control choiceContent" placeholder="The fourth answer" name="choiceContent4">
 																</div>
 																<div class="col-xs-2">
-																	<c:choose>
-																		<c:when test="${proVo.answer == '4'}">
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="4" checked="checked">
-																			<label for="check-second">정답체크</label>
-																		</c:when>
-																		<c:otherwise>
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="4">
-																			<label for="check-second">정답체크</label>
-																		</c:otherwise>
-																	</c:choose>
+																	<input type="checkBox" class="mc-answer" name="answer" id="check-fourth" value="4"> <label for="check-fourth">정답체크</label>
 																</div>
 
 															</div>
@@ -229,46 +192,21 @@
 															</div>
 															<!-- //col-sm-12 -->
 															<div class="col-xs-6">
-																<c:choose>
-																	<c:when test="${proVo.answer == 'O' }">
-																		<div>
-																			<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O" checked="checked">
-																		</div>
-																		<div id="O">
-																			<label for="quizAnswerO">O</label>
-																		</div>
-																	</c:when>
-																	<c:otherwise>
-																		<div>
-																			<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O">
-																		</div>
-																		<div id="O">
-																			<label for="quizAnswerO">O</label>
-																		</div>
-																	</c:otherwise>
-																</c:choose>
+																<div>
+																	<input id="quizAnswerO" class="ox-answer" type="radio" name="answer" value="O">
+																</div>
+																<div id="O">
+																	<label for="quizAnswerO">O</label>
+																</div>
 															</div>
 															<!-- //col-sm-6 -->
-
 															<div class="col-xs-6">
-																<c:choose>
-																	<c:when test="${proVo.answer == 'X' }">
-																		<div>
-																			<input id="quizAnswerX" class="answer" type="radio" name="answer" value="X" checked="checked">
-																		</div>
-																		<div id="X">
-																			<label for="quizAnswerX">X</label>
-																		</div>
-																	</c:when>
-																	<c:otherwise>
-																		<div>
-																			<input id="quizAnswerX" class="answer" type="radio" name="answer" value="X">
-																		</div>
-																		<div id="X">
-																			<label for="quizAnswerX">X</label>
-																		</div>
-																	</c:otherwise>
-																</c:choose>
+																<div>
+																	<input id="quizAnswerX" class="ox-answer" type="radio" name="answer" value="X">
+																</div>
+																<div id="X">
+																	<label for="quizAnswerX">X</label>
+																</div>
 															</div>
 															<!-- //col-sm-6 -->
 														</div>
@@ -281,7 +219,7 @@
 																<h4>정답을 적어주세요.</h4>
 															</div>
 															<div class="col-sm-12" id="last-input">
-																<input type="text" class="form-control answer" name="answer" value="">
+																<input type="text" class="form-control sj-answer" name="answer" value="">
 															</div>
 														</div>
 														<!-- //answer-content -->
@@ -297,7 +235,7 @@
 													<a id="out" href="">나가기</a>
 												</div>
 												<div class="col-xs-5">
-													<button type="submit" class="btn btn-primary" id="save">수정하기	</button>
+													<button type="submit" class="btn btn-primary" id="save">저장하기</button>
 												</div>
 											</form>
 											<!-- //form -->
@@ -336,6 +274,10 @@
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
 
+		//console.log($(".ox-Area .answer").val());
+
+		//var a = $(".ox-Area .answer").attr("name", "none");
+
 	});
 
 	/* OX문제방식 선택할때 */
@@ -348,6 +290,9 @@
 		$(".mc-Area").hide();
 		$(".ox-Area").show();
 		$(".sj-Area").hide();
+
+		//$(".mc-Area .answer").attr("name", "none");
+		//$(".ox-Area .answer").attr("name", "answer");
 
 		$('.oxF').prop('checked', true);
 	});
@@ -376,18 +321,20 @@
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
 
+		//$(".ox-Area .answer").attr("name", "none");
+		//$(".mc-Area .answer").attr("name", "answer");
+
 		$('.mcF').prop('checked', true);
 	});
 
 	/* 빈칸 여부 체크하기 */
 	$("#prblemForm").on("submit", function() {
+		console.log($(".row answer-content sj-Area .answer").val());
 
 		var problemTitle = $("#problemTitle").val();
 		var content = $("#content").val();
-		var answer = $("input[name=answer]").is(":checked");
-		var choiceContent = $("input[name=choiceContent]").val();
+		var answer = $("input[name=answer]");
 
-		/* 문제제목 체크 */
 		if (!problemTitle) {
 			alert("문제 제목을 입력해 주세요.");
 			return false;
@@ -399,15 +346,48 @@
 			return false;
 		}
 
-		/* 정답 체크 */
-		if (!answer) {
-			alert("정답을 체크해 주세요.");
-			return false;
+		//typeSj typeOx
+
+		if ($("#typeMc").is(":checked") == true) {
+
+			if (!$("input[name=choiceContent1]").val()) {
+				alert("보기 1번 입력해주세요");
+				return false;
+			} else if (!$("input[name=choiceContent2]").val()) {
+				alert("보기 2번 입력해주세요");
+				return false;
+			} else if (!$("input[name=choiceContent3]").val()) {
+				alert("보기 3번 입력해주세요");
+				return false;
+			} else if (!$("input[name=choiceContent4]").val()) {
+				alert("보기 4번 입력해주세요");
+				return false;
+			} else if ($(".mc-Area .answer").is(":checked") == false) {
+				console.log("객관식");
+				alert("정답을 체크해주세요");
+				return false;
+			}
+
 		}
 
-		if (!choiceContent) {
-			alert("보기 내용을 입력해 주세요.");
-			return false;
+		if ($("#typeOx").is(":checked") == true) {
+
+			if ($('input:radio[name=answer]').is(':checked') == false) {
+				console.log("ox");
+				alert("정답을 체크해주세요");
+				return false;
+			}
+
+		}
+
+		if ($("#typeSj").is(":checked") == true) {
+
+			if (!$(".sj-Area .answer").val()) {
+				console.log("주관식")
+				alert("정답을 입력해주세요");
+				return false;
+			}
+
 		}
 
 	});

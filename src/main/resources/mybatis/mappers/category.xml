@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="category">
+	<resultMap type="com.javaex.vo.ProblemVo" id="resultMapProVo">
+	    <result column="type" property="type" />
+    	<result column="problem_title" property="problemTitle" />
+    	<result column="content" property="content" />
+    	<result column="content_image" property="contentImage" />
+    	<result column="description" property="description" />
+    	<result column="answer" property="answer" />
+    	<collection property="com.javaex.vo.ChoiceVo" resultMap="resultMapChoVo"></collection>
+	</resultMap>
+	
+	<resultMap type="com.javaex.vo.ChoiceVo" id="resultMapChoVo">
+    	<result column="choice_content" property="choiceContent" />
+    	<result column="attachment_file" property="attachmentFile" />
+	</resultMap>
 	
 	<select id="selectCategory" parameterType="int" resultType="CategoryVo">
 		<![CDATA[
@@ -94,7 +108,7 @@
 					p.description description,
 					p.answer answer,
 					c.choice_content choiceContent,
-					c.attachment_file attachmentFile,
+					c.attachment_file attachmentFile
 			from problem p, choice c
 			where problem_no = #{problemNo}
 		]]>

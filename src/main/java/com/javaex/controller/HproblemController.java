@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javaex.service.ProblemService;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.ChoiceVo;
 import com.javaex.vo.ProblemVo;
 
 @Controller
@@ -124,8 +125,6 @@ public class HproblemController {
 		
 		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
 		
-		
-
 		model.addAttribute("proVo", proService.view(proNo));
 		return "home/problem/creating-ViewForm";
 	}

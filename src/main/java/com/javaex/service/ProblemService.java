@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.ProblemDao;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.ChoiceVo;
 import com.javaex.vo.ProblemVo;
 
 @Service
@@ -142,12 +144,17 @@ public class ProblemService {
 	}
 
 	// 문제 보기
-	public ProblemVo view(int proNo) {
+	public Map<String, Object> view(int proNo, ChoiceVo chocieVo) {
 		System.out.println("ProblemService- view");
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+		ChoiceVo choiceVo =  proDao.problemView(proNo);
 		
+		map.put("choVo", choiceVo);
+
+		map.put("pMap", proDao.problemView(proNo));
 		
-		return proDao.problemView(proNo);
+		return map;
 	}
 
 	// 문제 수정
