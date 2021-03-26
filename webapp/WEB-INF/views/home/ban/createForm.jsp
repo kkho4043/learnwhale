@@ -183,7 +183,7 @@
 			dataType : "text",
 			success : function(result) {
 				/*성공시 처리해야될 코드 작성*/
-				if (result == 'can') {
+				if (result == "can") {
 					$("#msg").html("사용할수 있는 url 입니다.");
 				} else {
 					$('#msg').html("사용할수 없는 url 입니다.");

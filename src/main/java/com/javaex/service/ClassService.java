@@ -27,12 +27,12 @@ public class ClassService {
 		int flag = classDao.selectOne(classUrl);
 		String result = "";
 
-		if (flag == 1) {
+		if (flag == 0) {
 			// 사용할수 있는 url
 			result = "can";
 		} else {
 			// 중복url, 사용할 수 없는 url
-			result = "cant";
+			result = "";
 		}
 		return result;
 	};
@@ -48,6 +48,7 @@ public class ClassService {
 		classVo.setEndDate(classVo.getEndDate().replace("T", " "));
 		classVo.getEndDate().replace("T", " ");
 
+	
 		
 		// db저정할 정보 수집
 		
