@@ -14,6 +14,7 @@
 	</typeAliases>
 
 	<mappers>
+		<mapper resource="mybatis/mappers/banmian.xml" />
 		<mapper resource="mybatis/mappers/exam.xml" />
 		<mapper resource="mybatis/mappers/user.xml" />
 		<mapper resource="mybatis/mappers/category.xml" />

@@ -32,21 +32,6 @@ public class BexamController {
 	@Autowired
 	private ProblemService proService;
 	
-	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list( @PathVariable("url") String url,
-						@RequestParam(value = "crtPage", required = false ,defaultValue = "1") int crtPage,
-						@RequestParam(value = "keyward",required = false,defaultValue = "") String keyward,
-						Model model,HttpSession session
-						) {
-		System.out.println("[BanExamController.list()ddddddddddd]");
-		System.out.println("keyward = "+keyward);
-		
-		
-		
-		model.addAttribute("eMap", examService.examList(url,crtPage,keyward));
-		return "ban/exam/list";
-	}
-
 	@RequestMapping(value = "/problemlist", method = { RequestMethod.GET, RequestMethod.POST })
 	public String problemlist(Model model,@PathVariable("url") String url,
 							@RequestParam(value = "examNo") int examNo,

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--시험리스트 -->
+<mapper namespace="banmain">
+	<!--시험리스트갯수 -->
+	<select id="selectjoinuser" resultType="JoinUserVo" parameterType="map">
+	 	<![CDATA[
+	 		select 
+  				u.name username,
+				j.type 
+   			from join_users j, class c , users u
+   
+		    where j.class_no = c.class_no
+		    and j.user_no = u.no
+		    and c.class_url = #{url}
+		    and u.no = #{userNo}
+	 	]]>
+
+	</select>
+
+
+
+
+
+</mapper>

@@ -47,7 +47,8 @@
 
 						<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}" class="child-group">
 							<div class="child-folder">
-								<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"> </span>${cateVo.cateName}</span>
+								<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"> </span> <a
+								href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}"> ${cateVo.cateName}</a></span>
 							</div>
 						</div>
 
