@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javaex.dao.ClassDao;
 import com.javaex.dao.NoticeDao;
 import com.javaex.vo.NoticeVo;
 
@@ -15,6 +16,9 @@ public class NoticeService {
 	
 	@Autowired
 	NoticeDao noticeDao;
+	
+	@Autowired
+	ClassDao classDao;
 	
 	//리스트
 	public List<NoticeVo> list2() {
@@ -38,7 +42,8 @@ public class NoticeService {
 	}	
 	
 	//리스트 + 검색 기능 + 페이징
-	public Map<String, Object> list(String keyword, int crtPage) {
+	public Map<String, Object> list(String url, String keyword, int crtPage) {
+		int classNo = classDao.getclassNo(url);
 		System.out.println("[Service]:list");
 		//System.out.println("keyword=" + keyword);
 		
@@ -59,7 +64,7 @@ public class NoticeService {
 		//끝번호 endRNum
 		int endRNum = (startRNum + listCnt) -1;
 		
-		List<NoticeVo> nList = noticeDao.list(keyword,startRNum,endRNum);
+		List<NoticeVo> nList = noticeDao.list(classNo, keyword, startRNum, endRNum);
 		
 		////////////////////////////////////
 		//페이징 계산
@@ -69,7 +74,7 @@ public class NoticeService {
 		int pageBtnCount = 5;
 		
 		//전제 글갯수 구하기
-		int totalCount = noticeDao.selectTotalCnt(keyword);
+		int totalCount = noticeDao.selectTotalCnt(classNo, keyword);
 			
 		//마지막 버튼 번호
 		int endPageBtnNo = (int)Math.ceil(crtPage/(double)pageBtnCount) * pageBtnCount;  

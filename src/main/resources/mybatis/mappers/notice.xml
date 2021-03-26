@@ -64,7 +64,8 @@
 		                                  to_char(n.reg_date, 'YYYY-MM-DD') as reg_date
 		                            from users u, join_users j, notice n
 		                            where n.join_no = j.join_no 
-		                            and j.user_no = u.no               
+		                            and j.user_no = u.no 
+		                            and j.class_no = #{classNo}              
 	  ]]>
       <if test="value !=null and value !=''">
 	      and title like '%' || #{keyword} || '%'
@@ -77,16 +78,18 @@
 </select>
 
 <!-- 전체 글갯수 가져오기 -->
-<select id="selectTotalCnt" parameterType ="string" resultType="int">
+<select id="selectTotalCnt" parameterType ="map" resultType="int">
 		<![CDATA[
 				select count(*)
 				from users u, join_users j, notice n
 				where n.join_no = j.join_no 
 				and j.user_no = u.no
+				and j.class_no = #{classNo}  
 		 ]]>
 		 <if test="value !=null and value !=''">
 		        and title like '%' || #{keyword} || '%'
 		 </if>
+		 
 </select>
 
 <!-- join_no 불러오기 -->

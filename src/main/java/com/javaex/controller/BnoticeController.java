@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +19,7 @@ import com.javaex.vo.NoticeVo;
 import com.javaex.vo.UserVo;
 
 @Controller
-@RequestMapping("/notice")
+@RequestMapping("/{url}/notice")
 public class BnoticeController {
 
 	@Autowired
@@ -51,13 +52,15 @@ public class BnoticeController {
 
 	// 리스트 + 검색 기능 + 페이징
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
-			@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage, Model model) {
+	public String list(	@PathVariable("url") String url,
+			           @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+			           @RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage,
+			           Model model) {
 		System.out.println("[Controller]:list");
-		System.out.println("keyword=" + keyword);
-		System.out.println("crtPage=" + crtPage);
+		//System.out.println("keyword=" + keyword);
+		//System.out.println("crtPage=" + crtPage);
 
-		Map<String, Object> pMap = noticeService.list(keyword, crtPage);
+		Map<String, Object> pMap = noticeService.list(url, keyword, crtPage);
 		System.out.println(pMap);
 
 		model.addAttribute("pMap", pMap);
