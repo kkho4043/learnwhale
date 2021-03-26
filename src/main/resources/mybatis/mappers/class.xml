@@ -118,5 +118,23 @@
 			and type= '학생' and (approval= '승인' or approval = '대기')
 		]]>
 	</select>
+	
+	<select id="joinDelete" parameterType="int" resultType="int">
+		<![CDATA[
+			delete join_users
+			where class_no= #{classNo}
+			and type ='선생님'
+		]]>
+	</select>
+	
+	<select id="classDelete" parameterType="int" resultType="int">
+		<![CDATA[
+			delete class
+			where class_no= #{classNo}
+			and end_date <= sysdate
+			or start_date > sysdate
+		]]>
+	</select>
+	
 
 </mapper>

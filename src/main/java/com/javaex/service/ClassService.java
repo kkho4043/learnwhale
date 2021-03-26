@@ -27,7 +27,7 @@ public class ClassService {
 		int flag = classDao.selectOne(classUrl);
 		String result = "";
 
-		if (flag == 0) {
+		if (flag == 1) {
 			// 사용할수 있는 url
 			result = "can";
 		} else {
@@ -115,7 +115,7 @@ public class ClassService {
 		
 		if(count == 0) {
 			classDao.joinDelete(classNo);
-			return classDao.classDe;
+			
 		}else {
 			return 1;
 		}

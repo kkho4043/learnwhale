@@ -12,16 +12,22 @@ import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class HuserController {
 
 	@Autowired
 	private UserService userService;
 	
+	//회원가입 폼
+	@RequestMapping(value = "/joinForm", method = {RequestMethod.GET, RequestMethod.POST})
+	public String joinForm() {
+		System.out.println("user()-joinForm");
+		return 
+	}
 	// 회원가입
 	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVo userVo) {
-		System.out.println("[HomeMain()-join]");
+		System.out.println("[user()-join]");
 
 		System.out.println(userVo);
 		userService.join(userVo);
@@ -33,7 +39,7 @@ public class HuserController {
 	//로그인폼
 	@RequestMapping(value = "/loginForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String loginForm() {
-		System.out.println("[HomeMain()-loginForm]");
+		System.out.println("[user()-loginForm]");
 		return "home/main/loginForm";
 	}
 	
