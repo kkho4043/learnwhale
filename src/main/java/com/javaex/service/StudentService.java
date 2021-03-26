@@ -15,9 +15,9 @@ public class StudentService {
 	private StudentDao stDao;
 	 
 	
-	 public List<Map<String, Object>> getList(int classNo) {
+	 public List<Map<String, Object>> getList(String url) {
 	  
-	 return stDao.selectList(classNo); 
+	 return stDao.selectList(url); 
 	 
 	 }
 	 
