@@ -40,7 +40,7 @@ public class BstudentController {
 			int success = stService.approve(arr);
 		
 			if(success != arr.length) {
-			model.addAttribute("success", "fail");
+				model.addAttribute("success", "fail");
 			
 			}
 		
@@ -63,7 +63,7 @@ public class BstudentController {
 			int success = stService.waitStatus(arr);
 		
 			if(success != arr.length) {
-			model.addAttribute("success", "fail");
+				model.addAttribute("success", "fail");
 			
 			}
 		
