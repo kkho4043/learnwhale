@@ -21,7 +21,7 @@
 	</selectKey>
 	<![CDATA[
 		INSERT INTO class
-		VALUES (#{classNo}, #{classUrl}, #{className}, #{logoFile}, TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'), TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'), #{hidden})
+		VALUES (#{classNo}, #{classUrl}, #{className}, #{logoFile,jdbcType=VARCHAR}, TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'), TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'), #{hidden})
 		
 		]]>
 	</insert>
@@ -43,6 +43,7 @@
 			       nvl2(approval, approval, 0) approval,
 			       TO_CHAR(cl.start_date,'yyyy-mm-dd') startDate,
 			       TO_CHAR(cl.end_date,'yyyy-mm-dd') endDate,
+			       cl.class_url classUrl,
 			       cl.hidden hidden,
 			       CASE WHEN cl.start_date <= sysdate and sysdate <= cl.end_date THEN '진행중'
 			            WHEN sysdate < cl.start_date THEN '대기'

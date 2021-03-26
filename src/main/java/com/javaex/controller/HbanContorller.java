@@ -77,7 +77,8 @@ public class HbanContorller {
 	 //반생성
 	@RequestMapping(value = "/create", method = { RequestMethod.GET, RequestMethod.POST })
 	public String create(@ModelAttribute ClassVo classVo,
-						 @RequestParam(value = "logo") MultipartFile file, HttpSession session) {
+						 @RequestParam(value = "logo", required = false, defaultValue = "" ) MultipartFile file 
+						 , HttpSession session) {
 		System.out.println("[HbanController.create()]");
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
 		classService.create(classVo, file, userVo.getNo());

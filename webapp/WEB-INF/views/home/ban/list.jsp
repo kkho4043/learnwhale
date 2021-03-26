@@ -95,7 +95,7 @@
 											<c:forEach items="${classList}" var="vo" varStatus="status">
 												<tr>
 													<td>${status.count}</td>
-													<td><a href="">${vo.className}</a></td>
+													<td><a href="${pageContext.request.contextPath}/${vo.classUrl}/exam/list">${vo.className}</a></td>
 													<td>${vo.startDate}</td>
 													<td>${vo.endDate}</td>
 													

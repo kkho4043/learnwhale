@@ -24,10 +24,10 @@ public class ClassService {
 	// 반생성 url 체크
 	public String urlcheck(String classUrl) {
 
-		ClassVo classVo = classDao.selectOne(classUrl);
+		int flag = classDao.selectOne(classUrl);
 		String result = "";
 
-		if (classVo == null) {
+		if (flag == 1) {
 			// 사용할수 있는 url
 			result = "can";
 		} else {
@@ -48,37 +48,40 @@ public class ClassService {
 		classVo.setEndDate(classVo.getEndDate().replace("T", " "));
 		classVo.getEndDate().replace("T", " ");
 
-		System.out.println("파일이름" + file.getOriginalFilename());
 		
 		// db저정할 정보 수집
-		String saveDir = "C:\\javaStudy\\upload";
-
-		// 확장자
-		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-
-		// 서버 저장 파일 이름
-		String saveName = System.currentTimeMillis()+UUID.randomUUID().toString() + exName;
-
-		// 서버 파일 패스 --> 저장경로
-		String filePath = saveDir + "\\" + saveName;
 		
-		classVo.setLogoFile(saveName);
-		// 서버 하드디스크 파일 저장
-		try {
-			byte[] fileData = file.getBytes();
-			OutputStream out = new FileOutputStream(filePath);
-			BufferedOutputStream bos = new BufferedOutputStream(out);
-			
-			bos.write(fileData);
-			bos.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(file.getSize() > 0) {
+			String saveDir = "C:\\javaStudy\\upload";
+			// 확장자
+			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+
+			// 서버 저장 파일 이름
+			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+
+			// 서버 파일 패스 --> 저장경로
+			String filePath = saveDir + "\\" + saveName;
+			System.out.println(filePath);
+			classVo.setLogoFile(saveName);
+			// 서버 하드디스크 파일 저장
+			System.out.println(saveName);
+			try {
+				byte[] fileData = file.getBytes();
+				OutputStream out = new FileOutputStream(filePath);
+				BufferedOutputStream bos = new BufferedOutputStream(out);
+
+				bos.write(fileData);
+				bos.close();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 		classDao.classInsert(classVo);
 		int classNo = classVo.getClassNo();
 		System.out.println("classNo " + classNo);
-		System.out.println("no "+ no);
+		System.out.println("no " + no);
 		return classDao.tInsert(classNo, no);
 	};
 
@@ -87,13 +90,13 @@ public class ClassService {
 		System.out.println("[classService.list()]");
 		return classDao.selectList(no, search);
 	};
-	
-	//수정폼 가져오기
+
+	// 수정폼 가져오기
 	public ClassVo selectOne(int classNo) {
 		return classDao.selectOne(classNo);
 	}
-	
-	//수정
+
+	// 수정
 	public int update(ClassVo classVo) {
 		classVo.setStartDate(classVo.getStartDate().replace("T", " "));
 		classVo.getStartDate().replace("T", " ");
@@ -103,13 +106,13 @@ public class ClassService {
 		classVo.getEndDate().replace("T", " ");
 		return classDao.update(classVo);
 	}
-	
-	//삭제
+
+	// 삭제
 	public int remove(int classNo) {
 		System.out.println("[classService.remove()]");
 		JoinUserVo joinVo;
 		joinVo.getJoinNo();
-		
+
 		return classDao.delete(classNo);
 	}
 
