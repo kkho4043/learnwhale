@@ -15,7 +15,7 @@
 	/* background-color: #white; */
 	opacity: 0.9;
 	background-color: rgba(255, 255, 255);
-	margin-top: -1068px;
+	margin-top: -900px;
 	/* width: 1080px; */
 }
 
@@ -28,18 +28,9 @@
 	color: #294350;
 }
 
-.jointype-t{
-	margin-bottom: 25px;
-	padding-left: 227px;
-}
-
-.jointype-s{
-	margin-bottom: 25px;
-	padding-right: 240px;
-}
 
 .container-fluid{
-	background-color: #F5F6F7;
+	/* background-color: #F5F6F7; */
 }
 
 .joinArea{
@@ -68,7 +59,7 @@
 }
 
 #phoneArea{
-	margin-right: 126px;
+	margin-right: 148px;
 }
 #agreeArea{
 	margin-left: 2px;
@@ -97,18 +88,28 @@
 	margin-bottom: 109px;
 	margin-top: 100px;
 }
+
 #img-Area{
-	 width: 100%;
+	 /* width: 100%; */
 	 display: table-cell;
  	 height: 900px;
 }
 #input-Area{
 	text-align: center;
 }
-.Btn{
+
+.Btn_i{
 	width: 190px;
 	margin-bottom: 10px;
 }
+
 .joinType{
 	margin-bottom: 20px;
 }
+
+#join-area{
+	width: 600px;
+	
+}
+	
+	

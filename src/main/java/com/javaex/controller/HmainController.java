@@ -13,7 +13,7 @@ public class HmainController {
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String main() {
 		System.out.println("[HomeMain()]");
-		return "home/main/index";
+		return "home/main/indexk";
 	}
 
 }
