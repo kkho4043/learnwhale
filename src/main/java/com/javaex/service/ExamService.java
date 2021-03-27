@@ -221,9 +221,7 @@ public class ExamService {
 		Map.put("examVo", examVo);
 		
 		QuestionVo qeustionVo = examDao.startquestion(orderNum,examNo);
-		if(qeustionVo.getProblemNo() == 0) {
-			return null;
-		}
+		
 		Map.put("qeustionVo", qeustionVo);
 		
 		ProblemVo problemVo = examDao.selectproblem(qeustionVo.getProblemNo());
@@ -233,7 +231,14 @@ public class ExamService {
 			List<ChoiceVo> cList = examDao.selectchoice(qeustionVo.getProblemNo());
 			Map.put("cList", cList);
 		}
+		
+		if(examDao.startquestion(orderNum+1,examNo) == null) {
+			Map.put("endsolve", "endsolve");
+		}
+		
+		
 		return Map;
+		
 	}
 
 }

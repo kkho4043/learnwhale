@@ -44,23 +44,23 @@
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,
 	.table>tbody>tr>td, .table>tfoot>tr>td {
+	font-size :14px;
 	padding: 4px;
 	text-align: center;
 }
 
 .table input[type=text] {
-	width: 30px;
+	width: 50px;
 }
 
 /*  문제 풀기  */
-
-.proimg{
-	height : 300px;
+.proimg {
+	height: 300px;
 	background-size: contain;
 }
 
 .protitle div {
-	margin: 0px;
+	margin-left: 5px;
 	padding: 0px;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .protype .OX {
-	margin: 25px 0px 0px 100px;
+	margin: 25px 0px 0px 150px;
 }
 
 .protype .OX div {
@@ -84,11 +84,15 @@
 }
 
 #O {
-	background-color: #62B5F8;
+	font-size: 60px;
+	height: 150px;
+	width: 150px;
 }
 
 #X {
-	background-color: #F54F40;
+	font-size: 60px;
+	height: 150px;
+	width: 150px;
 }
 
 .shortanswer {
@@ -114,7 +118,7 @@
 }
 
 .prolist ul li {
-	list-style : none;
+	list-style: none;
 	margin: 20px;
 	font-size: 20px;
 }
@@ -144,7 +148,7 @@
 .prolistbtn {
 	padding: 15px 0px 0px 55px;
 }
-.modal-lg{
-	
+
+.modal-lg {
 	width: 1200px;
 }

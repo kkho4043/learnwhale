@@ -72,12 +72,13 @@
 							<div class="col-xs-10">
 								<div class="row protitle">
 									<div class="col-xs-1">${param.orderNum}번</div>
-									<div class="col-xs-8">${examInfo.problemVo.content}</div>
+									<div class="col-xs-7">${examInfo.problemVo.content}</div>
 									<div class="col-xs-1">(${examInfo.qeustionVo.point}점)</div>
 									<c:if test="${examInfo.examVo.time != null}">
-										<div class="col-xs-2">남은 시간 ${examInfo.examVo.time} 초</div>
+										<div class="col-xs-2" id="demo"></div>
 									</c:if>
 								</div>
+
 								<c:if test="${examInfo.problemVo.contentImage != null}">
 									<div class="row">
 										<div class="testimg">
@@ -95,34 +96,64 @@
 										</div>
 									</c:if>
 
-									<c:if test="${examInfo.problemVo.type == 'OX'}">
+									<c:if test="${examInfo.problemVo.type == 'OX문제'}">
 										<div class="OX">
-											<div id="O">O</div>
-											<div id="X">X</div>
+											<div>
+												<button id="O" class="btn btn-info">O</button>
+											</div>
+											<div>
+												<button id="X" class="btn btn-danger">X</button>
+											</div>
 										</div>
 									</c:if>
 									<c:if test="${examInfo.problemVo.type == '객관식'}">
 										<div class="multiple">
-				
-										<c:forEach items="${examInfo.cList}" var="vo" varStatus="status">
-											<div class="row">
-												<input type="button" value="${vo.orderNo}" class="btn btn-info"><span>${vo.choiceContent}</span>
-											</div>
-											
-										</c:forEach>
+
+											<c:forEach items="${examInfo.cList}" var="vo" varStatus="status">
+												<div class="row">
+													<input type="button" id="choice${vo.orderNo}" value="${vo.orderNo}" class="btn btn-info choicebtn"><span>${vo.choiceContent}</span>
+												</div>
+
+											</c:forEach>
 										</div>
-										
+
 									</c:if>
 								</div>
 
 								<div class="row">
 									<div class="col-xs-2">
-										<input type="button" value="이전문제" class="btn btn-primary">
+										<c:if test="${examInfo.examVo.examType != '쪽지시험'}">
+											<c:choose>
+
+												<c:when test="${param.orderNum-1 == 0}">
+													<a href="${pageContext.request.contextPath}/${url}/"><input type="button" value="리스트 로" class="btn btn-info"></a>
+												</c:when>
+												<c:otherwise>
+													<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum-1}"><input
+														type="button" value="이전문제" class="btn btn-primary"></a>
+												</c:otherwise>
+											</c:choose>
+										</c:if>
 									</div>
+
 									<div class="col-xs-8"></div>
+
+
+
+
 									<div class="col-xs-2">
-										<input type="button" value="다음문제" class="btn btn-primary">
+										<c:choose>
+											<c:when test="${examInfo.endsolve == 'endsolve'}">
+												<a href="${pageContext.request.contextPath}/${url}/examsolveend"><input type="button" value="시험 종료" class="btn btn-info"></a>
+											</c:when>
+											<c:otherwise>
+												<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum+1}"><input
+													type="button" value="다음문제" class="btn btn-primary"></a>
+											</c:otherwise>
+										</c:choose>
 									</div>
+
+
 								</div>
 
 
@@ -182,7 +213,73 @@
 </body>
 
 <script type="text/javascript">
-	
+	if ("${examInfo.examVo.examType}" == '쪽지시험') {
+		//${examInfo.examVo.time}
+		var time = 60;
+		var min = "";
+		var sec = "";
+
+		var x = setInterval(function() {
+
+			min = parseInt(time / 60);
+			sec = time % 60;
+			document.getElementById("demo").innerHTML ="남은시간" +min + "분" + sec + "초";
+			time--;
+			console.log(time);
+			if (time < 0) {
+				clearInterval(x);
+				document.getElementById("demo").innerHTML = "시간 초과";
+			}
+			
+
+		}, 1000);
+	}
+
+	$("#O").on("click", function() {
+		$('#O').removeClass('btn-info');
+		$('#O').addClass('btn-primary');
+		$('#O').addClass('active');
+
+		$('#X').removeClass('active');
+		$('#X').removeClass('btn-warning', 'active');
+		$('#X').addClass('btn-danger');
+	});
+
+	$("#X").on("click", function() {
+		$('#X').removeClass('btn-danger');
+		$('#X').addClass('btn-warning');
+		$('#X').addClass('active');
+
+		$('#O').removeClass('active');
+		$('#O').removeClass('btn-primary');
+		$('#O').addClass('btn-info');
+	});
+
+	$(".choicebtn").on("click", function() {
+
+		var clN = $(this).attr("class");
+
+		if (clN.indexOf("btn-info") != -1) {
+			$(this).removeClass('btn-info');
+			$(this).addClass('btn-primary');
+			$(this).addClass('active');
+		} else {
+			$(this).removeClass('btn-primary');
+			$(this).removeClass('active');
+			$(this).addClass('btn-info');
+		}
+
+		var answer = "";
+		const list = document.getElementsByClassName('active');
+		const list_length = list.length;
+		for (let i = 0; i < list_length; i++) {
+			answer = answer + list[i].value;
+			if (i + 1 < list.length) {
+				answer = answer + ",";
+			}
+		}
+		console.log(answer);
+	});
 </script>
 </html>
 
