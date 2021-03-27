@@ -2,7 +2,10 @@ package com.javaex.controller;
 
 
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.BanmainService;
 import com.javaex.service.ExamService;
 import com.javaex.service.ProblemService;
 import com.javaex.vo.ExamVo;
 import com.javaex.vo.ProblemVo;
-import com.javaex.vo.QuestionVo;
 
 @Controller
 @RequestMapping("/{url}/exam")
@@ -36,6 +39,21 @@ public class BexamController {
 	
 	@Autowired
 	private ProblemService proService;
+	
+	@ResponseBody
+	@RequestMapping(value = "/test", method = { RequestMethod.GET, RequestMethod.POST })
+	public String testuploadFiles(@RequestParam(value = "formData")MultipartFile[] uploadFiles) throws IOException{
+    
+        
+        System.out.println("파일"+uploadFiles);
+        
+     
+        
+        return "성공";
+        
+    }
+
+
 	
 	
 	@RequestMapping(value = "/title", method = { RequestMethod.GET, RequestMethod.POST })

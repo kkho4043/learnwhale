@@ -91,8 +91,8 @@
 								<div class="row protype">
 									<c:if test="${examInfo.problemVo.type == '주관식'}">
 										<div class="shortanswer">
-											<textarea></textarea>
-											<input type="file">
+											<textarea id = "shortans" onchange = "getsanswer()"></textarea>
+											<input id = "myFile" type="file"onclick="uploadFile()">
 										</div>
 									</c:if>
 
@@ -215,7 +215,7 @@
 <script type="text/javascript">
 	if ("${examInfo.examVo.examType}" == '쪽지시험') {
 		//${examInfo.examVo.time}
-		var time = 60;
+		var time = 6000;
 		var min = "";
 		var sec = "";
 
@@ -280,6 +280,50 @@
 		}
 		console.log(answer);
 	});
+	
+	
+	function getsanswer(){
+		//var shanswer = ("#shortans").val();
+		var x = document.getElementById("shortans").value;
+	
+		
+
+		console.log(x);
+		
+	}
+	
+	
+	 function uploadFile(){
+		 var files = document.getElementById("myFile").value;
+		 
+		
+		 console.log(files);
+		 $.ajax({
+		 		
+				url : "${pageContext.request.contextPath}/${url}/exam/test",
+				type : "post",
+				processData: false,
+				contentType: false,
+
+				data : {
+					formData : files
+				},
+				
+				//dataType : "json",
+				success : function(cateproList) {
+					if (cateproList == true) {
+						console.log("성공");
+					} else {
+						console.log("실패");
+					}
+
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+
+			}); 	   
+	 }
 </script>
 </html>
 
