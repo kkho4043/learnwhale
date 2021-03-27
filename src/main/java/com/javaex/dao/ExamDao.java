@@ -19,15 +19,16 @@ public class ExamDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public void examinsert(ExamVo examVo) {
+	public ExamVo examinsert(ExamVo examVo) {
 		sqlSession.insert("exam.examinsert",examVo);
-		System.out.println("ExamDao.examinsert");
+		return examVo; 
 	}
-	public void questioninsert(int problemNo,int point , int order) {
+	public void questioninsert(int problemNo,int point , int order,int examNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("problemNo", problemNo);
 		map.put("point", point);
 		map.put("order", order);
+		map.put("examNo", examNo);
 		sqlSession.insert("exam.questioninsert",map);
 	}
 

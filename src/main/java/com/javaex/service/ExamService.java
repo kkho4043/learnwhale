@@ -123,15 +123,15 @@ public class ExamService {
 		examVo.setEndDate(examVo.getStartDate().replace("T", " "));
 		int classNo = classDao.getclassNo(url);
 		
-		examVo.setExamNo(classNo);
-		examDao.examinsert(examVo);
+		examVo.setClassNo(classNo);
+		examVo = examDao.examinsert(examVo);
 		
 		String split;
 		
 		for(int i = 0;i < arr.length;i++) {
 			split = arr[i];
 			String[] splitarr = split.split("/");
-			examDao.questioninsert(Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]),i+1);
+			examDao.questioninsert(Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]),i+1,examVo.getExamNo());
 		}
 		
 	}

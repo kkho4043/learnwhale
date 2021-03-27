@@ -8,7 +8,7 @@
 	<![CDATA[
 	insert into exam VALUES(
 						seq_exam_no.nextval,
-						#{examNo},
+						#{classNo},
 						#{examTitle},
 						#{examType},
 						#{time},
@@ -16,15 +16,17 @@
 						TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'),
 						sysdate
 						)
-	
 	]]>
+		<selectKey keyProperty="examNo" resultType="int" order="AFTER">
+			SELECT seq_exam_no.CURRVAL FROM DUAL
+		</selectKey>
 	</insert>
 
 	<insert id="questioninsert" parameterType="map">
 	<![CDATA[
 	insert into question VALUES(
 						seq_question_no.nextval,
-						seq_exam_no.CURRVAL,
+						#{examNo},
 						#{problemNo},
 						#{point},
 						#{order}

@@ -298,7 +298,7 @@
 			},
 			success : function(url) {
 				console.log(url)
-				location.href = "${pageContext.request.contextPath}" + url;
+				location.href = "${pageContext.request.contextPath}/" +"${url}";
 
 				/* location.href = "http://www.example.com/ThankYou.html" */
 			},
