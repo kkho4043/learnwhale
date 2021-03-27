@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.javaex.service.BanmainService;
 import com.javaex.service.ExamService;
 import com.javaex.service.ProblemService;
 import com.javaex.vo.ExamVo;
@@ -30,7 +31,23 @@ public class BexamController {
 	private ExamService examService;
 	
 	@Autowired
+	private BanmainService banmainService;
+	
+	
+	@Autowired
 	private ProblemService proService;
+	
+	
+	@RequestMapping(value = "/title", method = { RequestMethod.GET, RequestMethod.POST })
+	public String title(Model model,@PathVariable("url") String url,
+							@RequestParam(value = "examNo") int examNo,
+							HttpSession session) {
+		
+		String where = examService.clicktitle(url,examNo,session);
+		model.addAttribute("classInfo", banmainService.classInfo(url, session));
+		
+		return "redirect:/"+url+"/exam/"+where;
+	}
 	
 	@RequestMapping(value = "/problemlist", method = { RequestMethod.GET, RequestMethod.POST })
 	public String problemlist(Model model,@PathVariable("url") String url,
@@ -40,6 +57,7 @@ public class BexamController {
 		System.out.println("[BanExamController.problemlist()]");
 		
 		model.addAttribute("upMap", examService.examproList(examNo ,joinNo ,crtPage));
+		
 		return "ban/exam/problemlist";
 	}
 
@@ -50,15 +68,29 @@ public class BexamController {
 	}
 
 	@RequestMapping(value = "/examstart", method = { RequestMethod.GET, RequestMethod.POST })
-	public String examstart(Model model ,@PathVariable("url") String url,@RequestParam(value = "examNo") int examNo) {
+	public String examstart(HttpSession session, Model model ,
+							@PathVariable("url") String url,
+							@RequestParam(value = "examNo") int examNo) {
 		System.out.println("[BanExamController.start()]");
-		model.addAttribute("ExamVo",examService.examstart(examNo));
+		
+		model.addAttribute("classInfo", banmainService.classInfo(url, session));
+		model.addAttribute("examVo",examService.examstart(examNo));
+		
+		
 		return "ban/exam/examsolvestart";
 	}
 
 	@RequestMapping(value = "/examsolve", method = { RequestMethod.GET, RequestMethod.POST })
-	public String examsolve(@PathVariable("url") String url) {
+	public String examsolve(HttpSession session, Model model,
+							@PathVariable("url") String url, 
+							@RequestParam(value = "orderNum") int orderNum,
+							@RequestParam(value = "examNo") int examNo){
 		System.out.println("[BanExamController.end()]");
+		
+		/*
+		 * model.addAttribute("classInfo", banmainService.classInfo(url, session));
+		 * model.addAttribute("examInfo", examService.examsolve(examNo,orderNum));
+		 */
 		return "ban/exam/examsolve";
 	}
 

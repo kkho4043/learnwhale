@@ -36,7 +36,6 @@
 	]]>
 	</insert>
 
-
 	<select id="examList" resultType="ExamVo" parameterType="map">
 	<![CDATA[
 			select 
@@ -322,18 +321,69 @@ from(select
 		]]>
 	</insert>
 	
+	<select id="getAttendance" parameterType="int" resultType="int">
+		<![CDATA[
+			select  
+				count(*)
+			from solve s ,question q
+			where s.question_no(+) = q.question_no
+			and q.exam_no = #{examNo}
+			and s.join_no = #{joinNo}
+			and (s.status = '제출' or s.status = '완료')
+		]]>
+	</select>
+	
+	<!-- 시험 풀기 시작시~~~~~~~~~~~~~ -->
 	<select id="examstart" parameterType="int" resultType="ExamVo">
 		<![CDATA[
 			select
-			    exam_no examNo,
-			    exam_title examTitle,
-			    exam_type examType,
-			    time
-			from exam
-			where exam_no = #{examNo}
+			    e.exam_no examNo,
+			    e.exam_title examTitle,
+			    e.exam_type examType,
+			    time,
+                qu.count problemAmount
+			from exam e,(select
+                            exam_no,
+                            count(*) count
+                         from question
+                         group by exam_no)qu
+            
+            where e.exam_no = qu.exam_no
+			and e.exam_no = #{examNo}
 		]]>
 	</select>
-
-
+	
+	
+	<select id="startquestion" parameterType="int" resultType="QuestionVo">
+		<![CDATA[
+			select
+				problem_no problemNo,
+				point
+			from question
+			where order_num = #{order_num}
+		]]>
+	</select>
+	
+	<select id="selectproblem" parameterType="int" resultType="QuestionVo">
+		<![CDATA[
+			select
+				problem_no problemNo,
+				point
+			from question
+			where order_num = #{order_num}
+		]]>
+	</select>
+	
+	<select id="selectchoice" parameterType="int" resultType="ChoiceVo">
+		<![CDATA[
+			select
+			    choice_content choiceContent,
+			    attachment_file attachmentFile,
+			    order_no orderNo
+			from choice
+			where problem_no = 80
+			order by order_no
+		]]>
+	</select>
 
 </mapper>

@@ -9,24 +9,32 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javaex.dao.BanmainDao;
 import com.javaex.dao.ClassDao;
 import com.javaex.dao.ExamDao;
+import com.javaex.vo.ChoiceVo;
 import com.javaex.vo.ExamVo;
+import com.javaex.vo.JoinUserVo;
+import com.javaex.vo.ProblemVo;
+import com.javaex.vo.QuestionVo;
+import com.javaex.vo.UserVo;
 
 @Service("/BlogBasicService")
 public class ExamService {
 
 	@Autowired
 	ExamDao examDao;
-	
+
 	@Autowired
 	ClassDao classDao;
 
+	@Autowired
+	BanmainDao banmainDao;
 
-
+	// 문제 리스트
 	public Map<String, Object> examList(String url, int crtPage, String keyward) {
 		int classNo = classDao.getclassNo(url);
-		
+
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
 
 		int listCnt = 10;
@@ -74,8 +82,9 @@ public class ExamService {
 		return pMap;
 	}
 
-	public Map<String, Object> examproList(int examNo , int joinNo,int crtPage) {
-		
+	// 시험클릭시 문제 리스트
+	public Map<String, Object> examproList(int examNo, int joinNo, int crtPage) {
+
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
 
 		int listCnt = 10;
@@ -107,78 +116,120 @@ public class ExamService {
 		} else {
 			prev = false;
 		}
-		
+
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		pMap.put("eulist", examDao.examuserList(examNo));
-		pMap.put("eplist", examDao.examproList(examNo, joinNo , startNum,endNum));
+		pMap.put("eplist", examDao.examproList(examNo, joinNo, startNum, endNum));
 		pMap.put("prev", prev);
 		pMap.put("startPageBtnNo", startPageBtnNo);
 		pMap.put("endPageBtnNo", endPageBtnNo);
 		pMap.put("next", next);
 		return pMap;
 	}
-	
-	public void examgrant(String url,ExamVo examVo,String[] arr) {
+
+	// 시험 출제
+	public void examgrant(String url, ExamVo examVo, String[] arr) {
 		examVo.setStartDate(examVo.getStartDate().replace("T", " "));
 		examVo.setEndDate(examVo.getStartDate().replace("T", " "));
 		int classNo = classDao.getclassNo(url);
-		
+
 		examVo.setClassNo(classNo);
 		examVo = examDao.examinsert(examVo);
-		
+
 		String split;
-		
-		for(int i = 0;i < arr.length;i++) {
+
+		for (int i = 0; i < arr.length; i++) {
 			split = arr[i];
 			String[] splitarr = split.split("/");
-			examDao.questioninsert(Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]),i+1,examVo.getExamNo());
+			examDao.questioninsert(Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]), i + 1,
+					examVo.getExamNo());
 		}
-		
+
 	}
+
+	// 시험 수정
 	public Map<String, Object> exammodify(int examNo) {
-		
+
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		ExamVo examVo = examDao.selectExam(examNo);
-		
-		examVo.setStartDate(examVo.getStartDate().replace(" ","T"));
-		examVo.setEndDate(examVo.getEndDate().replace(" ","T"));
-		pMap.put("examVo",examVo);
-		
-		pMap.put("qList",examDao.selectquestion(examNo));
-		
+
+		examVo.setStartDate(examVo.getStartDate().replace(" ", "T"));
+		examVo.setEndDate(examVo.getEndDate().replace(" ", "T"));
+		pMap.put("examVo", examVo);
+
+		pMap.put("qList", examDao.selectquestion(examNo));
+
 		return pMap;
 	}
-	
-	public void exammodify(ExamVo examVo,String[] arr) {
-		
-		
+
+	public void exammodify(ExamVo examVo, String[] arr) {
+
 		examVo.setStartDate(examVo.getStartDate().replace("T", " "));
 		examVo.setEndDate(examVo.getStartDate().replace("T", " "));
 		System.out.println(examVo);
-		
+
 		examDao.examupdate(examVo);
-		
+
 		examDao.qeustiondelete(examVo.getExamNo());
-		
-		
+
 		String split;
-		
-		for(int i = 0;i < arr.length;i++) {
+
+		for (int i = 0; i < arr.length; i++) {
 			split = arr[i];
 			String[] splitarr = split.split("/");
-			examDao.questionupdate(examVo.getExamNo(),Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]),i+1);
+			examDao.questionupdate(examVo.getExamNo(), Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]),
+					i + 1);
 		}
-		
+
 	}
-	
+
+	// 시험 수정 2
 	public void exammodify2(ExamVo examVo) {
 		System.out.println(examVo);
 		examDao.examupdate(examVo);
 	}
+
 	
-	public ExamVo examstart(int examNo) {
+
+	public String clicktitle(String url, int examNo, HttpSession session) {
 		
+		UserVo userVo = (UserVo) session.getAttribute("authUser");
+		
+		int userNo = userVo.getNo();
+		JoinUserVo jvo = banmainDao.selectuserInfo(url, userNo);
+		
+		if(jvo.getType().equals("선생님")) { // 선생님일때
+			return "examstart?examNo="+examNo;
+		}else {//학생일때
+			int flag = examDao.getAttendance(jvo.getJoinNo(),examNo);
+			if(flag > 0) { //문제를 풀었을때 
+				return "examstart?examNo="+examNo;
+			}else {
+				return "examstart?examNo="+examNo;
+			}
+			
+		}
+
+	}
+	public ExamVo examstart(int examNo) {
 		return examDao.examstart(examNo);
+	}
+	public Map<String, Object> examsolve(int examNo, int orderNum) {
+		Map<String, Object> Map = new HashMap<String, Object>();
+		
+		ExamVo examVo = examDao.examstart(examNo);
+		Map.put("examVo", examVo);
+		
+		QuestionVo qeustionVo = examDao.startquestion(orderNum);
+		Map.put("qeustionVo", qeustionVo);
+		
+		ProblemVo problemVo = examDao.selectproblem(qeustionVo.getProblemNo());
+		Map.put("problemVo", problemVo);
+		
+		if(problemVo.getType().equals("객관식")) {
+			List<ChoiceVo> choiceVo = examDao.selectchoice(qeustionVo.getProblemNo()); 
+		}
+		return null;
 	}
 
 }

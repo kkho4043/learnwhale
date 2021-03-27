@@ -87,17 +87,16 @@
 
 								<div class="row protype">
 
-									<!-- <div class="shortanswer">
+									<div class="shortanswer">
 										<textarea></textarea>
 										<input type="file">
-									</div> -->
+									</div> 
 
-									<!-- <div class="OX"> 
-						<div id ="O">O</div>
-						<div id ="X">X</div>
-					</div>  OX   -->
-
-									<div class="multiple">
+									<!--	 <div class="OX"> 
+										<div id ="O">O</div>
+										<div id ="X">X</div>
+										</div> 
+								<div class="multiple">
 										<div class="row">
 											<input type="button" value="1" class="btn btn-primary"><span>유관순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순</span>
 										</div>
@@ -110,7 +109,8 @@
 										<div class="row">
 											<input type="button" value="4" class="btn btn-primary"><span>세종대왕</span>
 										</div>
-									</div>
+									</div> -->
+									
 								</div>
 
 								<div class="row">

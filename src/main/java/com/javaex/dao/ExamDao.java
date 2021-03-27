@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javaex.vo.ChoiceVo;
 import com.javaex.vo.ExamVo;
 import com.javaex.vo.JoinUserVo;
 import com.javaex.vo.ProblemVo;
@@ -116,6 +117,23 @@ public class ExamDao {
 	
 	public ExamVo examstart(int examNo) {
 		
-		return sqlSession.selectOne("exam.qu", examNo);
+		return sqlSession.selectOne("exam.examstart", examNo);
 	}
+	public int getAttendance(int joinNo, int examNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("joinNo", joinNo);
+		map.put("examNo", examNo);
+		return sqlSession.selectOne("exam. getAttendance", map);
+	}
+	public QuestionVo startquestion(int orderNum) {
+		return sqlSession.selectOne("exam.startquestion",orderNum);
+	}
+	public ProblemVo selectproblem(int problemNo) {
+		return sqlSession.selectOne("exam.selectproblem",problemNo);
+	}
+	public List<ChoiceVo> selectchoice(int problemNo) {
+		return sqlSession.selectList("exam.selectchoice",problemNo);
+	}
+	
+	
 }

@@ -32,7 +32,6 @@ public class BanmainDao {
 	}
 	public UserVo selectclassteacher(int classNo) {
 		
-			
 		return sqlSession.selectOne("banmain.selectclassteacher",classNo);
 	}
 	

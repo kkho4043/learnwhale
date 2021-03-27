@@ -72,19 +72,19 @@
 							</div>
 
 							<div class="row">
-								<h3>풀스텍A반 월말 평가</h3>
+								<h3>${examVo.examTitle}</h3>
 							</div>
 
 							<div class="row">
 								<div class="col-xs-1"></div>
 								<div class="col-xs-4">
-									<span>문항수:</span><span>10개</span>
+									<span>문항수:</span><span>${examVo.problemAmount} 개</span>
 								</div>
 								<div class="col-xs-2">
-									<span>시험유형:</span><span>시험</span>
+									<span>시험유형:</span><span>${examVo.examType}</span>
 								</div>
 								<div class="col-xs-5">
-									<span>시간:</span><span>전체 30분</span>
+									<c:if test="${examVo.time != null}"><span>시간:</span><span>${examVo.time}</span></c:if>
 								</div>
 							</div>
 
@@ -94,7 +94,7 @@
 								</div>
 								<div class="col-xs-7"></div>
 								<div class="col-xs-2">
-									<button class="btn btn-primary btn-sm">시험풀기</button>
+									<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo&orderNum=1"><button class="btn btn-primary btn-sm">시험풀기</button></a>
 								</div>
 							</div>
 						</div>

@@ -104,7 +104,7 @@
 
 										<tr>
 											<td>${vo.examNo}</td>
-											<td><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${vo.examNo}">${vo.examTitle}</a></td>
+											<td><a href="${pageContext.request.contextPath}/${url}/exam/title?examNo=${vo.examNo}">${vo.examTitle}</a></td>
 											<td>${vo.problemAmount}</td>
 											<td>${vo.startDate}</td>
 											<td>${vo.endDate}</td>

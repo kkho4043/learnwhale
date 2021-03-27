@@ -9,6 +9,14 @@ public class ChoiceVo {
 					   attachmentFile; //첨부파일
 	
 	
+	
+	public ChoiceVo(int choiceNo, int problemNo, int orderNo, String choiceContent, String attachmentFile) {
+		this.choiceNo = choiceNo;
+		this.problemNo = problemNo;
+		this.orderNo = orderNo;
+		this.choiceContent = choiceContent;
+		this.attachmentFile = attachmentFile;
+	}
 	public int getChoiceNo() {
 		return choiceNo;
 	}
