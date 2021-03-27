@@ -11,6 +11,8 @@
 		<typeAlias alias="ProblemVo" type="com.javaex.vo.ProblemVo" />
 		<typeAlias alias="QuestionVo" type="com.javaex.vo.QuestionVo" />
 		<typeAlias alias="JoinUserVo" type="com.javaex.vo.JoinUserVo" />
+		<typeAlias alias="ChoiceVo" type="com.javaex.vo.ChoiceVo" />
+		
 	</typeAliases>
 
 	<mappers>

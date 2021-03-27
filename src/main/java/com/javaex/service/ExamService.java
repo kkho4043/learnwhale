@@ -221,15 +221,19 @@ public class ExamService {
 		Map.put("examVo", examVo);
 		
 		QuestionVo qeustionVo = examDao.startquestion(orderNum);
+		if(qeustionVo.getProblemNo() != 0) {
+			return null;
+		}
 		Map.put("qeustionVo", qeustionVo);
 		
 		ProblemVo problemVo = examDao.selectproblem(qeustionVo.getProblemNo());
 		Map.put("problemVo", problemVo);
 		
-		if(problemVo.getType().equals("객관식")) {
-			List<ChoiceVo> choiceVo = examDao.selectchoice(qeustionVo.getProblemNo()); 
+		if(problemVo.getType().equals("객관식")) { //객관식 보기
+			List<ChoiceVo> choiceVo = examDao.selectchoice(qeustionVo.getProblemNo());
+			Map.put("cList", choiceVo);
 		}
-		return null;
+		return Map;
 	}
 
 }

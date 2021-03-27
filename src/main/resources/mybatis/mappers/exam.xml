@@ -367,10 +367,11 @@ from(select
 	<select id="selectproblem" parameterType="int" resultType="QuestionVo">
 		<![CDATA[
 			select
-				problem_no problemNo,
-				point
-			from question
-			where order_num = #{order_num}
+				type type,
+				content,
+				content_image contentImage
+			from problem
+			where problem_no = #{problemNo}
 		]]>
 	</select>
 	
@@ -381,7 +382,7 @@ from(select
 			    attachment_file attachmentFile,
 			    order_no orderNo
 			from choice
-			where problem_no = 80
+			where problem_no = #{problemNo}
 			order by order_no
 		]]>
 	</select>

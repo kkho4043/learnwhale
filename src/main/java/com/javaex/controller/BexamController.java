@@ -87,10 +87,10 @@ public class BexamController {
 							@RequestParam(value = "examNo") int examNo){
 		System.out.println("[BanExamController.end()]");
 		
-		/*
-		 * model.addAttribute("classInfo", banmainService.classInfo(url, session));
-		 * model.addAttribute("examInfo", examService.examsolve(examNo,orderNum));
-		 */
+		
+		 model.addAttribute("classInfo", banmainService.classInfo(url, session));
+		 model.addAttribute("examInfo", examService.examsolve(examNo,orderNum));
+		 
 		return "ban/exam/examsolve";
 	}
 
