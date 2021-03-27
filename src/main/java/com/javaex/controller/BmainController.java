@@ -32,7 +32,7 @@ public class BmainController {
 		System.out.println("[BanExamController.list()]");
 		
 		model.addAttribute("eMap", examService.examList(url,crtPage,keyward));
-		
+	
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
 
 		

@@ -48,7 +48,7 @@
 									<span id="join">로그인</span>
 								</div>
 								<div class="col-sm-12">
-									<form class="form-inline" method="get" action="${pageContext.request.contextPath}/login">
+									<form class="form-inline" method="get" action="${pageContext.request.contextPath}/user/login">
 										<div class="col-sm-12 joinArea" >
 											<div class="form-group">
 												<div class="col-sm-12">
