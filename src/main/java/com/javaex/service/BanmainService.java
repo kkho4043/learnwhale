@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.javaex.dao.BanmainDao;
 import com.javaex.vo.ClassVo;
 import com.javaex.vo.JoinUserVo;
+import com.javaex.vo.UserVo;
 
 @Service("/BanmainService")
 public class BanmainService {
@@ -19,8 +20,9 @@ public class BanmainService {
 	BanmainDao banmainDao;
 
 	public Map<String, Object> classInfo(String url, HttpSession session) {
-
-		int userNo = (int) session.getAttribute("authUser");
+		System.out.println(session);
+		UserVo userVo = (UserVo) session.getAttribute("authUser");
+		int userNo = userVo.getNo();
 		JoinUserVo jvo = banmainDao.selectuserInfo(url, userNo);
 		
 		
@@ -28,18 +30,10 @@ public class BanmainService {
 		map.put("joinVo",jvo); //접속유저 정보
 		
 		ClassVo cvo = banmainDao.selectclassInfo(url);
+		map.put("cvo",cvo);
 		
-		map.put("ctitle","여기");
-		map.put("startdate","여기");
-		map.put("cenddate","여기");
-		
-		
-		map.put("cuname","여기");
-		map.put("cuid","여기");
-		map.put("cuemail","여기");
-		map.put("cuprofile","여기");
-		map.put("cuphoneNum","여기");
-		
-		return null;
+		map.put("cuVo", banmainDao.selectclassteacher(cvo.getClassNo()));
+	
+		return map;
 	}
 }

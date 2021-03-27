@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.ClassVo;
 import com.javaex.vo.JoinUserVo;
+import com.javaex.vo.UserVo;
 
 @Repository
 public class BanmainDao {
@@ -28,6 +29,11 @@ public class BanmainDao {
 		map.put("url",url);
 			
 		return sqlSession.selectOne("banmain.selectjoinclass",url);
+	}
+	public UserVo selectclassteacher(int classNo) {
+		
+			
+		return sqlSession.selectOne("banmain.selectclassteacher",classNo);
 	}
 	
 }

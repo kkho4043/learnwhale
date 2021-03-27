@@ -7,8 +7,8 @@
 	 	<![CDATA[
 	 		select 
   				u.name username,
-				j.type
-				u.blog 
+				j.type,
+				u.no
    			from join_users j, class c , users u
    
 		    where j.class_no = c.class_no
@@ -21,17 +21,32 @@
 	
 	<select id="selectjoinclass" resultType="ClassVo" parameterType="String">
 	 	<![CDATA[
-	 		select 
-  				class_name,
-				logo_file,
-				start_date,
-				end_date
+	 		select
+	 			class_no classNo,
+  				class_name className,
+				logo_file logoFile,
+				start_date startDate,
+				end_date endDate
    			from class
    	
-		    and c.class_url = #{url}
-		    
+		    where class_url = #{url}
 	 	]]>
-
+	</select>
+	
+		<select id="selectclassteacher" resultType="UserVo" parameterType="int">
+	 	<![CDATA[
+	 		select
+				u.name name,
+				u.id id,
+				u.email email,
+				u.phone_num phoneNum,
+				u.pro_file proFile
+			
+			from users u ,join_users j
+			where u.no = j.user_no
+			and j.type = '선생님'
+			and class_no = #{classNo};
+	 	]]>
 	</select>
 
 
