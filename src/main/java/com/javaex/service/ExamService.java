@@ -220,8 +220,8 @@ public class ExamService {
 		ExamVo examVo = examDao.examstart(examNo);
 		Map.put("examVo", examVo);
 		
-		QuestionVo qeustionVo = examDao.startquestion(orderNum);
-		if(qeustionVo.getProblemNo() != 0) {
+		QuestionVo qeustionVo = examDao.startquestion(orderNum,examNo);
+		if(qeustionVo.getProblemNo() == 0) {
 			return null;
 		}
 		Map.put("qeustionVo", qeustionVo);
@@ -230,8 +230,8 @@ public class ExamService {
 		Map.put("problemVo", problemVo);
 		
 		if(problemVo.getType().equals("객관식")) { //객관식 보기
-			List<ChoiceVo> choiceVo = examDao.selectchoice(qeustionVo.getProblemNo());
-			Map.put("cList", choiceVo);
+			List<ChoiceVo> cList = examDao.selectchoice(qeustionVo.getProblemNo());
+			Map.put("cList", cList);
 		}
 		return Map;
 	}

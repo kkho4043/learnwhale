@@ -94,7 +94,7 @@
 								</div>
 								<div class="col-xs-7"></div>
 								<div class="col-xs-2">
-									<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo&orderNum=1"><button class="btn btn-primary btn-sm">시험풀기</button></a>
+									<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examVo.examNo}&orderNum=1"><button class="btn btn-primary btn-sm">시험풀기</button></a>
 								</div>
 							</div>
 						</div>

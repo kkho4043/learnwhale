@@ -354,17 +354,18 @@ from(select
 	</select>
 	
 	
-	<select id="startquestion" parameterType="int" resultType="QuestionVo">
+	<select id="startquestion" parameterType="map" resultType="QuestionVo">
 		<![CDATA[
 			select
 				problem_no problemNo,
 				point
 			from question
-			where order_num = #{order_num}
+			where order_num = #{orderNum}
+            and exam_no = #{examNo}
 		]]>
 	</select>
 	
-	<select id="selectproblem" parameterType="int" resultType="QuestionVo">
+	<select id="selectproblem" parameterType="int" resultType="ProblemVo">
 		<![CDATA[
 			select
 				type type,
@@ -372,6 +373,7 @@ from(select
 				content_image contentImage
 			from problem
 			where problem_no = #{problemNo}
+			
 		]]>
 	</select>
 	

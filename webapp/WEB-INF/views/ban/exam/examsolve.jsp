@@ -71,46 +71,48 @@
 						<div class="row">
 							<div class="col-xs-10">
 								<div class="row protitle">
-									<div class="col-xs-1">2번</div>
-									<div class="col-xs-8">다음인물은 가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가</div>
-									<div class="col-xs-1">(5점)</div>
-									<div class="col-xs-1"></div>
-									<div class="col-xs-1">30초 타이머</div>
+									<div class="col-xs-1">${param.orderNum}번</div>
+									<div class="col-xs-8">${examInfo.problemVo.content}</div>
+									<div class="col-xs-1">(${examInfo.qeustionVo.point}점)</div>
+									<c:if test="${examInfo.examVo.time != null}">
+										<div class="col-xs-2">남은 시간 ${examInfo.examVo.time} 초</div>
+									</c:if>
 								</div>
-								<div class="row">
-									<div class="testimg">
-										<img src="#">
+								<c:if test="${examInfo.problemVo.contentImage != null}">
+									<div class="row">
+										<div class="testimg">
+											<img src="${examInfo.problemVo.contentImage}">
 
-										<!--  <input type="button" value="첨부파일">  -->
+											<!--  <input type="button" value="첨부파일">  -->
+										</div>
 									</div>
-								</div>
-
+								</c:if>
 								<div class="row protype">
+									<c:if test="${examInfo.problemVo.type == '주관식'}">
+										<div class="shortanswer">
+											<textarea></textarea>
+											<input type="file">
+										</div>
+									</c:if>
 
-									<div class="shortanswer">
-										<textarea></textarea>
-										<input type="file">
-									</div> 
-
-									<!--	 <div class="OX"> 
-										<div id ="O">O</div>
-										<div id ="X">X</div>
-										</div> 
-								<div class="multiple">
-										<div class="row">
-											<input type="button" value="1" class="btn btn-primary"><span>유관순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순</span>
+									<c:if test="${examInfo.problemVo.type == 'OX'}">
+										<div class="OX">
+											<div id="O">O</div>
+											<div id="X">X</div>
 										</div>
-										<div class="row">
-											<input type="button" value="2" class="btn btn-primary"><span>이순신</span>
+									</c:if>
+									<c:if test="${examInfo.problemVo.type == '객관식'}">
+										<div class="multiple">
+				
+										<c:forEach items="${examInfo.cList}" var="vo" varStatus="status">
+											<div class="row">
+												<input type="button" value="${vo.orderNo}" class="btn btn-info"><span>${vo.choiceContent}</span>
+											</div>
+											
+										</c:forEach>
 										</div>
-										<div class="row">
-											<input type="button" value="3" class="btn btn-primary"><span>강호동</span>
-										</div>
-										<div class="row">
-											<input type="button" value="4" class="btn btn-primary"><span>세종대왕</span>
-										</div>
-									</div> -->
-									
+										
+									</c:if>
 								</div>
 
 								<div class="row">

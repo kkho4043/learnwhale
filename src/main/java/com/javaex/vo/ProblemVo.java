@@ -3,8 +3,8 @@ package com.javaex.vo;
 public class ProblemVo {
 
 	private int problemNo, cateNo;
-	private String type, problemTitle, content, contentImage, description, answer, regDate, choiceContent,
-			attachmentFile;
+	private String type, problemTitle, content, contentImage, description, answer, regDate
+			;
 
 	public ProblemVo(int problemNo, int cateNo, String type, String problemTitle, String content, String contentImage,
 			String description, String answer, String regDate, String choiceContent, String attachmentFile,
@@ -18,8 +18,6 @@ public class ProblemVo {
 		this.description = description;
 		this.answer = answer;
 		this.regDate = regDate;
-		this.choiceContent = choiceContent;
-		this.attachmentFile = attachmentFile;
 		this.result = result;
 		this.orderNum = orderNum;
 	}

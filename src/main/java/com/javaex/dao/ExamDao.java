@@ -125,8 +125,11 @@ public class ExamDao {
 		map.put("examNo", examNo);
 		return sqlSession.selectOne("exam. getAttendance", map);
 	}
-	public QuestionVo startquestion(int orderNum) {
-		return sqlSession.selectOne("exam.startquestion",orderNum);
+	public QuestionVo startquestion(int orderNum,int examNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("orderNum",orderNum);
+		map.put("examNo", examNo);
+		return sqlSession.selectOne("exam.startquestion",map);
 	}
 	public ProblemVo selectproblem(int problemNo) {
 		return sqlSession.selectOne("exam.selectproblem",problemNo);
