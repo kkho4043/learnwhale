@@ -9,7 +9,7 @@
 			</div>
 
 			<div class="col-xs-9 text-right">
-				<span id="loginUserName">${juser.username} ${juser.type}</span>
+				<span id="loginUserName">${classInfo.joinVo.username} ${classInfo.joinVo.type}</span>
 			</div>
 		</div>
 		<!-- //header container-->
@@ -20,10 +20,10 @@
 <div class="container">
 	<div class="row">
 		<div id="top-banner-area" class="col-xs-12">
-			<img id="top-banner" src="/learnwhale/assets/image/top-banner.jpg">
-			<p id="banName" class="text-center">2020 하이미디어 풀스택 B반</p>
+			<img id="top-banner" <%-- src = "/img/${classInfo.cvo.logoFile}" --%> src="/learnwhale/assets/image/top-banner.jpg">
+			<p id="banName" class="text-center">${classInfo.cvo.className}</p>
 			<div id="date-area" class="text-center">
-				<span class="banDate">2021-03-03</span> <span class="banDate"> ~ </span> <span class="banDate">2021-03-03</span>
+				<span class="banDate">${classInfo.cvo.startDate}</span> <span class="banDate"> ~ </span> <span class="banDate">${classInfo.cvo.endDate}</span>
 			</div>
 		</div>
 	</div>

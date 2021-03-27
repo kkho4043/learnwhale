@@ -11,80 +11,128 @@ public class JoinUserVo {
 	public JoinUserVo() {
 	}
 
-	public JoinUserVo(int joinNo, String username, String result) {// 시험관리 리스트 시 사용
+	
+
+	public JoinUserVo(int joinNo, int classNo, int userNo, String approval, String type, String joinDate,
+			String username, String result) {
+		super();
 		this.joinNo = joinNo;
+		this.classNo = classNo;
+		this.userNo = userNo;
+		this.approval = approval;
+		this.type = type;
+		this.joinDate = joinDate;
 		this.username = username;
 		this.result = result;
 	}
+
+
+	
+	
 
 	public int getJoinNo() {
 		return joinNo;
 	}
 
+
+
 	public void setJoinNo(int joinNo) {
 		this.joinNo = joinNo;
 	}
+
+
 
 	public int getClassNo() {
 		return classNo;
 	}
 
+
+
 	public void setClassNo(int classNo) {
 		this.classNo = classNo;
 	}
+
+
 
 	public int getUserNo() {
 		return userNo;
 	}
 
+
+
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+
+
 
 	public String getApproval() {
 		return approval;
 	}
 
+
+
 	public void setApproval(String approval) {
 		this.approval = approval;
 	}
+
+
 
 	public String getType() {
 		return type;
 	}
 
+
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
+
 
 	public String getJoinDate() {
 		return joinDate;
 	}
 
+
+
 	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
-	
+
+
+
 	public String getUsername() {
 		return username;
 	}
+
+
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+
+
 	public String getResult() {
 		return result;
 	}
+
+
 
 	public void setResult(String result) {
 		this.result = result;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "JoinUserVo [joinNo=" + joinNo + ", classNo=" + classNo + ", userNo=" + userNo + ", approval=" + approval
-				+ ", type=" + type + ", joinDate=" + joinDate + "]";
+				+ ", type=" + type + ", joinDate=" + joinDate + ", username=" + username + ", result=" + result + "]";
 	}
+
+
+
 
 }

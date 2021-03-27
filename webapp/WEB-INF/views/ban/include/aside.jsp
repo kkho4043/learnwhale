@@ -7,10 +7,11 @@
 			<img src="/learnwhale/assets/image/profile.jpg" class="img-thumbnail">
 		</div>
 		<p id="teacherName" class="text-center">
-			<span>정우성</span><span>(abcde)</span> 강사님
+		
+			<span>${classInfo.cuVo.name}</span><span>(${classInfo.cuVo.id})</span> 선생님
 		</p>
-		<p class="profile-text">이메일:abced@gmail.com</p>
-		<p class="profile-text last">연락처:010-9999-9999</p>
+		<p class="profile-text">이메일:${classInfo.cuVo.email}</p>
+		<p class="profile-text last">연락처:${classInfo.cuVo.phoneNum}</p>
 
 		<button type="button" class="btn btn-primary btn-sm btn-block">가입신청</button>
 	</div>
@@ -18,7 +19,7 @@
 	<div id="menu-area">
 		<ul>
 
-			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/exam/list">시험관리</a></li>
+			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/">시험관리</a></li>
 			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/student/list">학생관리</a></li>
 			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/report/list">성적관리</a></li>
 			<li class="last"><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/notice/list">공지사항</a></li>
