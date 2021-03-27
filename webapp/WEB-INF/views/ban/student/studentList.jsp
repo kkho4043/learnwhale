@@ -18,11 +18,12 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 		
-		<c:if test="${success eq 'fail'}">
-			
+		<c:if test="${param.success eq 'fail'}">
+
 			<script type="text/javascript">
-				
-				alert("가입 상태 업데이트에 실패했습니다.\n다시 시도해주세요");
+
+					alert("가입 상태 업데이트에 실패했습니다.\n다시 시도해주세요");
+
 			</script>
 			
 		</c:if>
@@ -83,7 +84,7 @@
 			
 			
 					<!-- title -->
-					<form action="${pageContext.request.contextPath }/abc/student/approve" method="get">
+					<form action="${pageContext.request.contextPath }/${url}/student/approve" method="get">
 					
 					<div id="title-form">
 
@@ -93,10 +94,10 @@
 							  <button type="submit" class="btn btn-success">승인</button>
 							  
 							  <button type="submit" class="btn btn-default"
-							  formaction="${pageContext.request.contextPath }/abc/student/wait">대기</button>
+							  formaction="${pageContext.request.contextPath }/${url}/student/wait">대기</button>
 							  
 							  <button type="submit" class="btn btn-danger"
-							  formaction="${pageContext.request.contextPath }/abc/student/delete">탈퇴</button>
+							  formaction="${pageContext.request.contextPath }/${url}/student/delete">탈퇴</button>
 							  
 						  </div>
 						
@@ -110,7 +111,14 @@
 					<div id="board">
 					
 						<table id="studentList" class="table table-bordered table-hover">
-							
+							<colgroup>
+								<col style="width: 1%;">
+								<col style="width: 3%;">
+								<col style="width: 12%;">
+								<col style="width: 7%;">
+								<col style="width: 2%;">
+								<col style="width: 1%;">
+							</colgroup>
 							<thead class="text-center">
 								<tr>
 									<td>번호</td>
@@ -127,7 +135,7 @@
 								<tbody>
 								
 									<tr>
-										<td>${status.count }</td>
+										<td>${userVo.R }</td>
 										<td>${userVo.NAME }</td>
 										<td>${userVo.EMAIL }</td>
 										<td>${userVo.PHONENUM }</td>
@@ -150,19 +158,48 @@
 					<nav id="page">
 						  <ul class="pagination">
 						    <li>
-						      <a href="#" aria-label="Previous">
-						        <span aria-hidden="true">&laquo;</span>
-						      </a>
+						    	<c:choose>
+						    		<c:when test="${param.page <=1 }">
+						    			<a href="${pageContext.request.contextPath }/${url}/student/list?page=1" aria-label="Previous">
+							        		<span aria-hidden="true">&laquo;</span>
+							     	 	</a>
+						    		</c:when>
+						    		<c:otherwise>
+								     	 <a href="${pageContext.request.contextPath }/${url}/student/list?page=${param.page -1}" aria-label="Previous">
+								        	<span aria-hidden="true">&laquo;</span>
+								     	 </a>
+							     	 </c:otherwise>
+						     	 </c:choose>
 						    </li>
-						    <li><a href="#">1</a></li>
-						    <li><a href="#">2</a></li>
-						    <li><a href="#">3</a></li>
-						    <li><a href="#">4</a></li>
-						    <li style="margin-right:40px;"><a href="#">5</a></li>
+						    
+						    <c:forEach var="page" begin="${paMap.startPage }" end="${paMap.endPage }">
+						    	<c:choose>
+						    		<c:when test="${param.page eq page or (empty param.page and page==1)}">
+						    		
+						    			<li class= "active"><a href="${pageContext.request.contextPath }/${url}/student/list?page=${page}">${page }</a></li>
+						    			
+						    		</c:when>
+						    		<c:otherwise>
+						    		
+						    			<li><a href="${pageContext.request.contextPath }/${url}/student/list?page=${page}">${page }</a></li>
+						
+						    		</c:otherwise>
+						    	</c:choose>				    	
+						    </c:forEach>
+						    
 						    <li>
-						      <a href="#" aria-label="Next">
-						        <span aria-hidden="true">&raquo;</span>
-						      </a>
+						      <c:choose>
+						    		<c:when test="${param.page >= paMap.lastPage }">
+						    			<a href="${pageContext.request.contextPath }/${url}/student/list?page=${paMap.lastPage}" aria-label="Next">
+							        		<span aria-hidden="true">&raquo;</span>
+							     	 	</a>
+						    		</c:when>
+						    		<c:otherwise>
+								     	 <a href="${pageContext.request.contextPath }/${url}/student/list?page=${param.page +1}" aria-label="Next">
+								        	<span aria-hidden="true">&raquo;</span>
+								     	 </a>
+							     	 </c:otherwise>
+						     	 </c:choose>
 						    </li>
 						  </ul>
 					</nav>

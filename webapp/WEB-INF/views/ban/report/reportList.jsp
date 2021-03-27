@@ -67,7 +67,7 @@
 						<div id="student-list" class="col-xs-2">
 							<ol>
 								<c:forEach items="${joinList }" var="userVo" varStatus= "status">
-									<li><a href= "${pageContext.request.contextPath }/abc/report/list?type=all&joinNo=${userVo.JOINNO }">${userVo.NAME }</a></li>
+									<li><a href= "${pageContext.request.contextPath }/${url}/report/list?type=all&joinNo=${userVo.JOINNO }">${userVo.NAME }</a></li>
 								</c:forEach>
 							</ol>
 						</div>
@@ -125,7 +125,7 @@
 								
 									<div id="controll-area" class="row">
 										<div class="col-xs-6">
-											<form action="${pageContext.request.contextPath }/abc/report/list">
+											<form action="${pageContext.request.contextPath }/${url}/report/list">
 												<div class="form-group form-inline">
 												
 													<input type="text" class="form-control input-sm" id="keyword" name="keyword" placeholder="">
@@ -137,10 +137,10 @@
 										</div>
 										<div id="selecOpt" class="col-xs-6">
 											<ul class="pull-right">
-												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=all&joinNo=${param.joinNo}">전체</a></li>
-												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=quiz&joinNo=${param.joinNo}">쪽지</a></li>
-												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=test&joinNo=${param.joinNo}">시험</a></li>
-												<li><a href="${pageContext.request.contextPath }/abc/report/list?type=homework&joinNo=${param.joinNo}">과제</a></li>
+												<li><a href="${pageContext.request.contextPath }/${url}/report/list?type=all&joinNo=${param.joinNo}">전체</a></li>
+												<li><a href="${pageContext.request.contextPath }/${url}/report/list?type=quiz&joinNo=${param.joinNo}">쪽지</a></li>
+												<li><a href="${pageContext.request.contextPath }/${url}/report/list?type=test&joinNo=${param.joinNo}">시험</a></li>
+												<li><a href="${pageContext.request.contextPath }/${url}/report/list?type=homework&joinNo=${param.joinNo}">과제</a></li>
 											</ul>
 										</div>
 									</div>
@@ -191,19 +191,37 @@
 											<nav>
 												<ul class="pagination">
 												    <li>
-												    	<a href="#" aria-label="Previous">
-												        	<span aria-hidden="true">&laquo;</span>
-												      	</a>
+												    	<c:choose>
+												    		<c:when test="${param.page <=1 or empty param.page }">
+												    			<a href="${pageContext.request.contextPath }/${url}/report/list?page=1&keyword=${param.keyword}&joinNo=${param.joinNo}&type=${param.type}" aria-label="Previous">
+													        		<span aria-hidden="true">&laquo;</span>
+													     	 	</a>
+												    		</c:when>
+												    		<c:otherwise>
+														     	 <a href="${pageContext.request.contextPath }/${url}/report/list?page=${param.page -1}&keyword=${param.keyword}&joinNo=${param.joinNo}&type=${param.type}" aria-label="Previous">
+														        	<span aria-hidden="true">&laquo;</span>
+														     	 </a>
+													     	 </c:otherwise>
+												     	 </c:choose>
 												    </li>
 												   
 												   	<c:forEach var="page" begin="${paMap.startPage }" end="${paMap.endPage }">
-														<li><a href="${pageContext.request.contextPath }/abc/report/list?page=${page }&keyword=${param.keyword}">${page }</a></li>
+														<li><a href="${pageContext.request.contextPath }/${url}/report/list?page=${page }&keyword=${param.keyword}&joinNo=${param.joinNo}&type=${param.type}">${page }</a></li>
 													</c:forEach>
 												   
 												    <li>
-													    <a href="#" aria-label="Next">
-													    	<span aria-hidden="true">&raquo;</span>
-													    </a>
+													    <c:choose>
+												    		<c:when test="${param.page >= paMap.lastPage }">
+												    			<a href="${pageContext.request.contextPath }/${url}/report/list?page=${paMap.lastPage}&keyword=${param.keyword}&joinNo=${param.joinNo}&type=${param.type}" aria-label="Next">
+													        		<span aria-hidden="true">&raquo;</span>
+													     	 	</a>
+												    		</c:when>
+												    		<c:otherwise>
+														     	 <a href="${pageContext.request.contextPath }/${url}/report/list?page=${param.page +1}&keyword=${param.keyword}&joinNo=${param.joinNo}&type=${param.type}" aria-label="Next">
+														        	<span aria-hidden="true">&raquo;</span>
+														     	 </a>
+													     	</c:otherwise>
+												     	 </c:choose>
 												    </li>
 												</ul>
 											</nav>

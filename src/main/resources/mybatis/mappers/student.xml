@@ -3,89 +3,178 @@
 
 <mapper namespace="student">
 	
-	<select id="">
-		<![CDATA[
-		
-		
-		]]>
-	</select>
-	
-	
-	
-	<select id="selectList" parameterType="string" resultType="map">
-	
-		<![CDATA[
-		
-				select          no,
-				                name,
-				                email,
-				                phone_num phoneNum,
-				                join.approval approval
-				from users u,   (select      user_no,
-											 approval
-				                 from        join_users
-				                 where class_no = (select      class_no
-                                                   from        class
-                                                   where       class_url = #{url}) 
-                                       and type = '학생') join
-				where u.no = join.user_no			
-		]]>
-		
-		
-	</select>
-	
-	
-	<select id="selNo" parameterType="int" resultType="int">
+	<select id="selTotalPost" parameterType="string" resultType="int">
 		
 		<![CDATA[
-			select      min(join_no)
-			from        join_users
-			where       class_no = #{classNo} and approval = '승인' and type= '학생'		
+		
+				select      count(user_no)
+				            
+				from        join_users
+				where class_no = (select      class_no
+				                  from        class
+				                  where       class_url = #{url}
+				                  )
+				and type = '학생'
+		
 		]]>
 		
 	</select>
 	
+	<select id="selBlogInfo" parameterType="string" resultType="map">
+	
+		<![CDATA[
+			select      no,
+			            id,
+			            name,
+			            cl.type type,
+			            email,
+			            phone_num phoneNum,
+			            cl.class_no classNo,
+			            cl.class_name className,
+			            cl.logo_file logoFile,
+			            to_char(cl.start_date, 'yy-mm-dd') startDate,
+            			to_char(cl.end_date, 'yy-mm-dd') endDate
+			from        users u inner join (select     user_no,
+													   j.type,
+		                                               c.class_no,
+		                                               class_name,
+		                                               logo_file,
+		                                               start_date,
+		                                               end_date
+			                                                
+			                                from       join_users j, (select      class_no,
+		                                                                           class_name,
+		                                                                           logo_file,
+		                                                                           start_date,
+		                                                                           end_date
+		                                                                        
+		                                                                from        class
+		                                                                where       class_url = #{url}
+		                                                                ) c
+		                                                                where       c.class_no = j.class_no and type = '운영자') cl
+			on u.no = cl.user_no
+		]]>
+	
+	</select>
 	
 	
 	
 	
-	<update id="updateApprove" parameterType="int">
+	
+	<select id="selectList" parameterType="map" resultType="map">
+	
+		<![CDATA[
+		
+                select r,
+				       st.no,
+				       st.name,
+				       st.email,
+				       st.phoneNum,
+				       st.approval
+				
+				from  (select rownum r,
+				              no,
+				              name,
+				              email,
+				              phoneNum,
+				              approval
+				       from  (select            rownum,
+				                				no,
+				                				name,
+								                email,
+								                phone_num phoneNum,
+								                join.approval approval
+								from users u,   (select      user_no,
+															 approval
+								                 from        join_users
+								                 where class_no = (select      class_no
+				            
+				                                                   from        join_users
+				                                                   where       user_no = #{userNo} and class_no = (select      class_no
+				                                                                                           		  from        class
+				                                                                                           		  where       class_url = #{url}
+				                                                                                                   )
+				                                                   and type='운영자'
+				                                                   ) 
+				                                       and type = '학생'
+				                                       order by join_date asc
+				                                ) join
+								where u.no = join.user_no
+				            )s
+				)st	where r>= #{startNum} and r<= #{endNum}		
+		]]>
+		
+		
+	</select>
+	
+	
+	<update id="updateApprove" parameterType="map">
 		
 		<![CDATA[
 			update		join_users
 			set			approval = '승인'
-		]]>	
-			where		user_no in
-			<foreach collection="array" item="no" separator="," open="(" close=")">
-				#{no}
+	
+			where		class_no = (select      class_no
+            
+                                    from        join_users
+                                    where       user_no = #{no} and class_no = (select      class_no
+                                                                                from        class
+                                                                                where       class_url = #{url}
+                                                                               )
+                                    and type='운영자'
+                                    )
+                        and user_no in
+        ]]>                            
+			<foreach collection="userNo" item="usNo" separator="," open="(" close=")">
+				#{usNo}
 			</foreach>		
 			
 	</update>
 			 
-	<update id="updateWait" parameterType="int">
+	<update id="updateWait" parameterType="map">
 		
 		<![CDATA[
 			update		join_users
 			set			approval = '대기'
-		]]>	
-			where		user_no in
-			<foreach collection="array" item="no" separator="," open="(" close=")">
-				#{no}
+	
+			where		class_no = (select      class_no
+            
+                                    from        join_users
+                                    where       user_no = #{no} and class_no = (select      class_no
+                                                                                from        class
+                                                                                where       class_url = #{url}
+                                                                               )
+                                    and type='운영자'
+                                    ) 
+                        and user_no in
+        ]]>                            
+			<foreach collection="userNo" item="usNo" separator="," open="(" close=")">
+				#{usNo}
 			</foreach>		
 			
 	</update>
 	
 	
 	
-	<update id="updateDelete" parameterType="int">
+	<update id="updateDelete" parameterType="map">
 		
 		<![CDATA[
 			update		join_users
 			set			approval = '탈퇴'
-		]]>	
-			where		user_no in
-			<foreach collection="array" item="no" separator="," open="(" close=")">
-				#{no}
+	
+			where		class_no = (select      class_no
+            
+                                    from        join_users
+                                    where       user_no = #{no} and class_no = (select      class_no
+                                                                                from        class
+                                                                                where       class_url = #{url}
+                                                                               )
+                                    and type='운영자'
+                                    ) 
+                        and user_no in
+        ]]>                            
+			<foreach collection="userNo" item="usNo" separator="," open="(" close=")">
+				#{usNo}
 			</foreach>		
 			
 	</update>

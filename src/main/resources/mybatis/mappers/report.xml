@@ -3,21 +3,27 @@
 
 <mapper namespace="report">
 	
-	<select id="selStudentList" parameterType="int" resultType="map">
+	<select id="selStudentList" parameterType="map" resultType="map">
 	
 		<![CDATA[
 			
-			select      u.name,
-						join.join_no joinNo
+			select         u.name,
+						   join.join_no joinNo
 			from users u, (select      join_no,
 	                            	   user_no
 	               		   from        join_users
-	               		   where       class_no = #{classNo} and approval = '승인' and type= '학생'
-	               		   order by    join_no asc) join
-	                       
+	               		   where       class_no = (select      class_no
+				            
+                                                   from        join_users
+                                                   where       user_no = #{userNo} and class_no = (select      class_no
+                                                                                           		   from        class
+                                                                                           		   where       class_url = #{url}
+                                                                                                   )
+                                                   and type='운영자'
+				                                   ) and approval = '승인' and type= '학생'
+						   order by    join_no asc) join             
 			where u.no = join.user_no
 			
-		
 		]]>
 		
 	</select>
@@ -100,7 +106,22 @@
 
 
 	</select>
-				
+	
+			
+	<select id="selNo" parameterType="string" resultType="int">
+		
+		<![CDATA[
+			select      min(join_no)
+			from        join_users
+			where       class_no = (select      class_no
+				                    from        class
+				                    where       class_url = #{url}
+				                   )and approval = '승인' and type= '학생'		
+		]]>
+		
+	</select>			
+			
+						
 	<select id="selAvgList" parameterType="int" resultType="ExamVo">
 		
 		<![CDATA[

@@ -16,10 +16,21 @@ public class ReportDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-		public List<Map<String, Object>> selStudentList(int classNo) {
+		public List<Map<String, Object>> selStudentList(String url, int userNo) {
 			
-			return sqlSession.selectList("report.selStudentList", classNo);
+			Map<String, Object> map = new HashMap<>(3);
+			map.put("url", url);
+			map.put("userNo", userNo);
+			
+			return sqlSession.selectList("report.selStudentList", map);
 		}
+		
+		
+		public int selNo(String url) {
+			  
+			  return sqlSession.selectOne("report.selNo", url);
+		  }
+		
 		
 		public List<ExamVo> selExamList(int joinNo, String type, String keyword, 
 										int startNum, int endNum) {

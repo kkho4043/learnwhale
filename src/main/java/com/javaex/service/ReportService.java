@@ -17,20 +17,23 @@ public class ReportService {
 
 	@Autowired
 	private ReportDao reDao;
-	@Autowired
-	private StudentDao stDao;
+	
 
-	public Map<String, Object> getList(int classNo, String type, int joinNo, String keyword, int page) {
+	public Map<String, Object> getList(String url, String type, int joinNo, String keyword, int page, int userNo) {
 
 		if (joinNo == 0) {
-
-			joinNo = stDao.selNo(classNo);
+			
+			try{
+				joinNo = reDao.selNo(url);
+			}catch(NullPointerException e) {
+				joinNo = 0;
+			}
 		}
 
-		Map<String, Object> reMap = new HashMap<String, Object>(5);
-		reMap.put("joinList", reDao.selStudentList(classNo));
+		Map<String, Object> reMap = new HashMap<String, Object>(6);
+		reMap.put("joinList", reDao.selStudentList(url, userNo));
 		
-		int postCnt = 5;
+		int postCnt = 1;
 		
 		int startNum = (page-1)*postCnt +1;
 		int endNum = page*postCnt;
@@ -52,19 +55,13 @@ public class ReportService {
 		int endPage = (startPage+pageCnt)-1;	
 		
 		endPage = (endPage>lastPage) ? lastPage : endPage; 
-		Map<String, Object> paMap = new HashMap<>(3);
+		Map<String, Object> paMap = new HashMap<>(5);
 		
 		paMap.put("startPage", startPage);
 		paMap.put("endPage", endPage);
+		paMap.put("lastPage", lastPage);
 		
 		reMap.put("paMap", paMap);
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		List<ExamVo> exList = reDao.selAvgList(joinNo);
