@@ -28,13 +28,6 @@ public class ProblemVo {
 	public ProblemVo() {
 	}
 
-	public ProblemVo(String type, String problemTitle, String result, int orderNum) {
-		this.type = type;
-		this.problemTitle = problemTitle;
-		this.result = result;
-		this.orderNum = orderNum;
-	}
-
 	public int getProblemNo() {
 		return problemNo;
 	}
@@ -107,22 +100,6 @@ public class ProblemVo {
 		this.regDate = regDate;
 	}
 
-	public String getChoiceContent() {
-		return choiceContent;
-	}
-
-	public void setChoiceContent(String choiceContent) {
-		this.choiceContent = choiceContent;
-	}
-
-	public String getAttachmentFile() {
-		return attachmentFile;
-	}
-
-	public void setAttachmentFile(String attachmentFile) {
-		this.attachmentFile = attachmentFile;
-	}
-
 	public String getResult() {
 		return result;
 	}
@@ -143,9 +120,11 @@ public class ProblemVo {
 	public String toString() {
 		return "ProblemVo [problemNo=" + problemNo + ", cateNo=" + cateNo + ", type=" + type + ", problemTitle="
 				+ problemTitle + ", content=" + content + ", contentImage=" + contentImage + ", description="
-				+ description + ", answer=" + answer + ", regDate=" + regDate + ", choiceContent=" + choiceContent
-				+ ", attachmentFile=" + attachmentFile + ", result=" + result + ", orderNum=" + orderNum + "]";
+				+ description + ", answer=" + answer + ", regDate=" + regDate + ", result=" + result + ", orderNum="
+				+ orderNum + "]";
 	}
 
+	
+	
 	
 }
