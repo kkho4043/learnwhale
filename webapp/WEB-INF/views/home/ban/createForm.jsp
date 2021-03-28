@@ -175,7 +175,7 @@
 		//ajax데이터만 받을때
 		$.ajax({
 
-			url : "${pageContext.request.contextPath }/h/urlcheck",
+			url : "${pageContext.request.contextPath }/myclass/urlcheck",
 			type : "post",
 			/* contentType : "application/json", */
 			data : {classUrl:classUrl},
