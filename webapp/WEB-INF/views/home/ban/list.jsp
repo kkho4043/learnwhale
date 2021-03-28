@@ -97,7 +97,7 @@
 												<tr>
 													<td>${status.count}</td>
 													<td><a
-														href="${pageContext.request.contextPath}/${vo.classUrl}/exam/list">${vo.className}</a></td>
+														href="${pageContext.request.contextPath}/${vo.classUrl}">${vo.className}</a></td>
 													<td>${vo.startDate}</td>
 													<td>${vo.endDate}</td>
 

@@ -18,18 +18,17 @@
 	<selectKey keyProperty="classNo" order="BEFORE" resultType="int">
 		select seq_class_no.nextval from dual
 	</selectKey>
-	<![CDATA[
-		INSERT INTO class
-		VALUES (#{classNo}, #{classUrl}, #{className}, #{logoFile,jdbcType=VARCHAR}, TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'), TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'), #{hidden})
-		
+		<![CDATA[
+			INSERT INTO class
+			VALUES (#{classNo}, #{classUrl}, #{className}, #{logoFile,jdbcType=VARCHAR}, TO_DATE(#{startDate},'yyyy-mm-dd HH24:mi'), TO_DATE(#{endDate},'yyyy-mm-dd HH24:mi'), #{hidden})
 		]]>
 	</insert>
 	
 	<!--반생성 한후 선생님 등록하기-->
 	<insert id="tSelf" parameterType="map">
-	<![CDATA[
-		INSERT INTO join_users 
-		VALUES (seq_joinUsers_no.nextval, #{classNo}, #{no}, '승인', '선생님', sysdate)
+		<![CDATA[
+			INSERT INTO join_users 
+			VALUES (seq_joinUsers_no.nextval, #{classNo}, #{no}, '승인', '선생님', sysdate)
 		]]>
 	</insert>
 
@@ -72,17 +71,18 @@
 	<!-- 수정폼 -->
 	<select id = "selectOne" parameterType="int" resultType="ClassVo">
 		<![CDATA[
-			SELECT  class_url classUrl,
-			        class_name className,
-			        TO_CHAR(start_date,'yyyy-mm-dd HH24:mi') startDate,
-			        TO_CHAR(end_date,'yyyy-mm-dd HH24:mi') endDate,
-			        logo_file logoFile,
-			        hidden hidden
+			SELECT  c.class_no classNo,
+			        c.class_url classUrl,
+			        c.class_name className,
+			        TO_CHAR(c.start_date,'yyyy-mm-dd') startDate,
+			        TO_CHAR(c.end_date,'yyyy-mm-dd') endDate,
+			        c.logo_file logoFile,
+			        c.hidden hidden
 			FROM class c, join_users j, users u
 			where c.class_no = j.class_no
 			and u.no = j.user_no
 			and c.class_no = #{classNo}
-			and j.type= '선생님'
+			and j.type='선생님'
 		]]>
 	</select>
 	
@@ -130,8 +130,6 @@
 		<![CDATA[
 			delete class
 			where class_no= #{classNo}
-			and end_date <= sysdate
-			or start_date > sysdate
 		]]>
 	</select>
 	
