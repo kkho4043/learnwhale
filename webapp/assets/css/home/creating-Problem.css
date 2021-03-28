@@ -46,8 +46,6 @@ input[type=radio]{
 
 #out{
 	float:left;
-	font-size: 20px;
-	color: red;
 }
 #last-input{
 	margin-bottom: 50px;

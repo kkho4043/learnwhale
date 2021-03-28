@@ -232,7 +232,7 @@
 												<!-- //row -->
 
 												<div class="col-xs-4">
-													<a id="out" href="">나가기</a>
+													<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${param.cateNo}"><button type="button" id="out"  class="btn btn-danger">나가기</button></a>
 												</div>
 												<div class="col-xs-5">
 													<button type="submit" class="btn btn-primary" id="save">저장하기</button>

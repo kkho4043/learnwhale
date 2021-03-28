@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -53,6 +52,8 @@ public class ProblemService {
 	// 문제 리스트
 	public List<ProblemVo> getProblem(int cateNo) {
 		System.out.println("ProblemService- getProblem");
+		
+		System.out.println(proDao.selectProblem(cateNo) + "service");
 
 		return proDao.selectProblem(cateNo);
 	}
@@ -144,17 +145,17 @@ public class ProblemService {
 	}
 
 	// 문제 보기
-	public Map<String, Object> view(int proNo, ChoiceVo chocieVo) {
+	public ProblemVo Problemview(int proNo) {
 		System.out.println("ProblemService- view");
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		ChoiceVo choiceVo =  proDao.problemView(proNo);
+		return proDao.problemView(proNo);
+	}
+	
+	//객관식 보기
+	public List<ChoiceVo> ChoiceView (int proNo){
+		System.out.println("ChoiceView- view");
 		
-		map.put("choVo", choiceVo);
-
-		map.put("pMap", proDao.problemView(proNo));
-		
-		return map;
+		return proDao.choiceView(proNo);
 	}
 
 	// 문제 수정
@@ -243,4 +244,16 @@ public class ProblemService {
 			proDao.ChoiceModify(filePath, "", proVo.getProblemNo(), i);
 		}
 	}
+	
+	public int delete (ProblemVo proVo) {
+		
+		return proDao.delete(proVo);
+	}
+	
+	//객관식 보기
+		public List<CategoryVo> SubCategoryByGroupNo (CategoryVo cateVo){
+			System.out.println("SubCategoryByGroupNo");
+			
+			return proDao.SubCategoryByGroupNo(cateVo);
+		}
 }

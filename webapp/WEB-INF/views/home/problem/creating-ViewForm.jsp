@@ -61,31 +61,43 @@
 										<div class="col-xs-9">
 											<form id="prblemForm" action="${pageContext.request.contextPath}/myclass/problem/modify" method="post" enctype="multipart/form-data">
 												<div class="row col-xs-9">
-
-													<div class="col-sm-4 problemType">
-														<input type="radio" class="mcF" id="typeMc" name="type" value="객관식" checked="checked">
-													</div>
-													<div class="col-sm-4 problemType">
-														<input type="radio" class="oxF" id="typeOx" name="type" value="OX문제">
-													</div>
-													<div class="col-sm-4 problemType">
-														<input type="radio" class="sjF" id="typeSj" name="type" value="주관식">
-													</div>
+													<c:choose>
+														<c:when test="${proVo.type == '객관식'}">
+															<div class="col-sm-12 problemType">
+																<input type="radio" class="mcF" id="typeMc" name="type" value="객관식" checked="checked">
+															</div>
+														</c:when>
+														<c:when test="${proVo.type == 'OX문제'}">
+															<div class="col-sm-4 problemType">
+																<input type="radio" class="oxF" id="typeOx" name="type" value="OX문제">
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div class="col-sm-4 problemType">
+																<input type="radio" class="sjF" id="typeSj" name="type" value="주관식">
+															</div>
+														</c:otherwise>
+													</c:choose>
 												</div>
 
 												<div class="row col-xs-9">
-													<div class="col-sm-4 problemType radioArea">
-														<label for="typeMc">객관식</label>
-
-													</div>
-													<div class="col-sm-4 problemType radioArea">
-														<label for="typeOx">OX문제</label>
-
-													</div>
-													<div class="col-sm-4 problemType radioArea">
-														<label for="typeSj">주관식</label>
-
-													</div>
+													<c:choose>
+														<c:when test="${proVo.type == '객관식'}">
+															<div class="col-sm-4 problemType radioArea">
+																<label for="typeMc">객관식</label>
+															</div>
+														</c:when>
+														<c:when test="${proVo.type == 'OX문제'}">
+															<div class="col-sm-4 problemType radioArea">
+																<label for="typeOx">OX문제</label>
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div class="col-sm-4 problemType radioArea">
+																<label for="typeSj">주관식</label>
+															</div>
+														</c:otherwise>
+													</c:choose>
 												</div>
 												<input type="hidden" name="cateNo" value="${param.cateNo}">
 												<!-- //row -->
@@ -116,188 +128,118 @@
 																<div class="col-xs-12">
 																	<h4>각 문항에 내용을 입력해주세요.</h4>
 																</div>
-																<div class="col-sm-1 answer-num">
-																	<strong>1</strong>
-																</div>
-																<div class="col-xs-9">
-																	<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="">
-																</div>
-																<div class="col-xs-2">
+																<c:forEach items="${choVo}" var="choVo" varStatus="status">
+																	<div class="col-sm-1 answer-num">
+																		<strong>${status.count}</strong>
+																	</div>
+																	<div class="col-xs-9">
+																		<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="${choVo.choiceContent}">
+																	</div>
 																	<c:choose>
-																		<c:when test="${proVo.answer == '1'}">
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="1" checked="checked">
-																			<label for="check-second">정답체크</label>
+																		<c:when test="${proVo.answer == status.count}">
+																			<div class="col-xs-2">
+																				<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}" checked="checked"> <label
+																					for="check-second">정답체크</label>
+																			</div>
 																		</c:when>
 																		<c:otherwise>
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="1">
-																			<label for="check-second">정답체크</label>
+																			<div class="col-xs-2">
+																				<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}"> <label for="check-second">정답체크</label>
+																			</div>
 																		</c:otherwise>
 																	</c:choose>
-																</div>
+																	<div class="col-xs-12 fileArea">
+																		<input type="file" name="Image1" id="asd">
+																	</div>
+																</c:forEach>
 															</div>
 															<!-- //answer-content -->
-															<div class="col-xs-12 fileArea">
-																<input type="file" name="Image1" id="asd">
-															</div>
+
 															<!-- //fileArea -->
 
-															<div class="row answer-content">
-																<div class="col-xs-1 answer-num">
-																	<strong>2</strong>
+
+															<c:choose>
+																<c:when test="${proVo.type == 'OX문제'}">
+																	<!-- ox문제 시작 -->
+																	<div class="row ox-Area">
+																		<div class="col-xs-12">
+																			<h4>정답을 선택해주세요</h4>
+																		</div>
+																		<!-- //col-sm-12 -->
+																		<div class="col-xs-6">
+																			<c:choose>
+																				<c:when test="${proVo.answer == 'O' }">
+																					<div>
+																						<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O" checked="checked">
+																					</div>
+																					<div id="O">
+																						<label for="quizAnswerO">O</label>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+																					<div>
+																						<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O">
+																					</div>
+																					<div id="O">
+																						<label for="quizAnswerO">O</label>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>
+																		</div>
+																		<!-- //col-sm-6 -->
+
+																		<div class="col-xs-6">
+																			<c:choose>
+																				<c:when test="${proVo.answer == 'X' }">
+																					<div>
+																						<input id="quizAnswerX" class="answer" type="radio" name="answer" value="X" checked="checked">
+																					</div>
+																					<div id="X">
+																						<label for="quizAnswerX">X</label>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+																					<div>
+																						<input id="quizAnswerX" class="answer" type="radio" name="answer" value="X">
+																					</div>
+																					<div id="X">
+																						<label for="quizAnswerX">X</label>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>
+																		</div>
+																		<!-- //col-sm-6 -->
+																	</div>
+																	<!-- //row -->
+																	<!-- ox문제 끝 -->
+																</c:when>
+															</c:choose>
+
+															<!-- 주관식 문제 시작 -->
+															<div class="row answer-content sj-Area">
+																<div class="col-sm-12">
+																	<h4>정답을 적어주세요.</h4>
 																</div>
-																<div class="col-xs-9">
-																	<input type="text" class="form-control" placeholder="The second answer" name="choiceContent" value="${proVo.content}">
-																</div>
-																<div class="col-xs-2">
-																	<c:choose>
-																		<c:when test="${proVo.answer == '2'}">
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="2" checked="checked">
-																			<label for="check-second">정답체크</label>
-																		</c:when>
-																		<c:otherwise>
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="2">
-																			<label for="check-second">정답체크</label>
-																		</c:otherwise>
-																	</c:choose>
+																<div class="col-sm-12" id="last-input">
+																	<input type="text" class="form-control answer" name="answer" value="">
 																</div>
 															</div>
 															<!-- //answer-content -->
-															<div class="col-xs-12 fileArea">
-																<input type="file" name="Image2">
-															</div>
-															<!-- //fileArea -->
+															<!-- 주관식 문제 끝 -->
 
-															<div class="row answer-content">
-																<div class="col-xs-1 answer-num">
-																	<strong>3</strong>
-																</div>
-																<div class="col-xs-9">
-																	<input type="text" class="form-control" placeholder="The third answer" name="choiceContent" value="${proVo.content}">
-																</div>
-																<div class="col-xs-2">
-																	<c:choose>
-																		<c:when test="${proVo.answer == '3'}">
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="3" checked="checked">
-																			<label for="check-second">정답체크</label>
-																		</c:when>
-																		<c:otherwise>
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="3">
-																			<label for="check-second">정답체크</label>
-																		</c:otherwise>
-																	</c:choose>
-																</div>
-															</div>
-															<!-- //answer-content -->
-															<div class="col-xs-12 fileArea">
-																<input type="file" name="Image3">
-															</div>
-															<!-- //fileArea -->
 
-															<div class="row answer-content">
-																<div class="col-xs-1 answer-num">
-																	<strong>4</strong>
-																</div>
-																<div class="col-xs-9">
-																	<input type="text" class="form-control" placeholder="The fourth answer" name="choiceContent" value="">
-																</div>
-																<div class="col-xs-2">
-																	<c:choose>
-																		<c:when test="${proVo.answer == '4'}">
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="4" checked="checked">
-																			<label for="check-second">정답체크</label>
-																		</c:when>
-																		<c:otherwise>
-																			<input type="checkBox" class="answer" name="answer" id="check-second" value="4">
-																			<label for="check-second">정답체크</label>
-																		</c:otherwise>
-																	</c:choose>
-																</div>
-
-															</div>
-															<div class="col-xs-12 fileArea">
-																<input type="file" name="Image4">
-															</div>
-															<!-- //answer-content -->
-															<div class="col-xs-12 fileArea"></div>
 														</div>
-														<!-- //fileArea -->
-
-														<!-- ox문제 시작 -->
-														<div class="row ox-Area">
-															<div class="col-xs-12">
-																<h4>정답을 선택해주세요</h4>
-															</div>
-															<!-- //col-sm-12 -->
-															<div class="col-xs-6">
-																<c:choose>
-																	<c:when test="${proVo.answer == 'O' }">
-																		<div>
-																			<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O" checked="checked">
-																		</div>
-																		<div id="O">
-																			<label for="quizAnswerO">O</label>
-																		</div>
-																	</c:when>
-																	<c:otherwise>
-																		<div>
-																			<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O">
-																		</div>
-																		<div id="O">
-																			<label for="quizAnswerO">O</label>
-																		</div>
-																	</c:otherwise>
-																</c:choose>
-															</div>
-															<!-- //col-sm-6 -->
-
-															<div class="col-xs-6">
-																<c:choose>
-																	<c:when test="${proVo.answer == 'X' }">
-																		<div>
-																			<input id="quizAnswerX" class="answer" type="radio" name="answer" value="X" checked="checked">
-																		</div>
-																		<div id="X">
-																			<label for="quizAnswerX">X</label>
-																		</div>
-																	</c:when>
-																	<c:otherwise>
-																		<div>
-																			<input id="quizAnswerX" class="answer" type="radio" name="answer" value="X">
-																		</div>
-																		<div id="X">
-																			<label for="quizAnswerX">X</label>
-																		</div>
-																	</c:otherwise>
-																</c:choose>
-															</div>
-															<!-- //col-sm-6 -->
-														</div>
-														<!-- //row -->
-														<!-- ox문제 끝 -->
-
-														<!-- 주관식 문제 시작 -->
-														<div class="row answer-content sj-Area">
-															<div class="col-sm-12">
-																<h4>정답을 적어주세요.</h4>
-															</div>
-															<div class="col-sm-12" id="last-input">
-																<input type="text" class="form-control answer" name="answer" value="">
-															</div>
-														</div>
-														<!-- //answer-content -->
-														<!-- 주관식 문제 끝 -->
-
-
+														<!-- //col-sm-12 -->
 													</div>
-													<!-- //col-sm-12 -->
+													<!-- //row -->
 												</div>
-												<!-- //row -->
 
 												<div class="col-xs-4">
-													<a id="out" href="">나가기</a>
+													<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${proVo.cateNo}"><button type="button" id="out"
+															class="btn btn-danger">나가기</button></a>
 												</div>
 												<div class="col-xs-5">
-													<button type="submit" class="btn btn-primary" id="save">수정하기	</button>
+													<button type="submit" class="btn btn-primary" id="save">수정하기</button>
 												</div>
 											</form>
 											<!-- //form -->

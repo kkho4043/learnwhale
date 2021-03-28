@@ -3,20 +3,20 @@
 
 <mapper namespace="category">
 	<resultMap type="com.javaex.vo.ProblemVo" id="resultMapProVo">
-	    <result column="type" property="type" />
-    	<result column="problem_title" property="problemTitle" />
-    	<result column="content" property="content" />
-    	<result column="content_image" property="contentImage" />
-    	<result column="description" property="description" />
-    	<result column="answer" property="answer" />
-    	<collection property="com.javaex.vo.ChoiceVo" resultMap="resultMapChoVo"></collection>
+		<result column="type" property="type" />
+		<result column="problem_title" property="problemTitle" />
+		<result column="content" property="content" />
+		<result column="content_image" property="contentImage" />
+		<result column="description" property="description" />
+		<result column="answer" property="answer" />
+		<collection property="com.javaex.vo.ChoiceVo" resultMap="resultMapChoVo"></collection>
 	</resultMap>
-	
+
 	<resultMap type="com.javaex.vo.ChoiceVo" id="resultMapChoVo">
-    	<result column="choice_content" property="choiceContent" />
-    	<result column="attachment_file" property="attachmentFile" />
+		<result column="choice_content" property="choiceContent" />
+		<result column="attachment_file" property="attachmentFile" />
 	</resultMap>
-	
+
 	<select id="selectCategory" parameterType="int" resultType="CategoryVo">
 		<![CDATA[
 			select  cate_no cateNo,
@@ -63,7 +63,7 @@
 			         to_char(p.reg_date, 'YYYY-MM-DD') regDate
 			from problem p, category c
 			where p.cate_no = c.cate_no
-			and p.cate_no = #{cate_no}
+			and p.cate_no = #{cateNo}
 			order by problem_no asc
 		]]>
 	</select>
@@ -101,19 +101,29 @@
 
 	<select id="problemView" parameterType="int" resultType="com.javaex.vo.ProblemVo">
 		<![CDATA[
-			select  p.type type,
-					p.problem_title problemTitle,
-					p.content content,
-					p.content_image contentImage,
-					p.description description,
-					p.answer answer,
-					c.choice_content choiceContent,
-					c.attachment_file attachmentFile
-			from problem p, choice c
+			select cate_no cateNo, 
+					 type type,
+					 problem_title problemTitle,
+					 content content,
+					 content_image contentImage,
+					 description description,
+					 answer answer
+			from problem
 			where problem_no = #{problemNo}
 		]]>
 	</select>
-	
+
+	<select id="choiceView" parameterType="int" resultType="com.javaex.vo.ChoiceVo">
+		<![CDATA[
+			select  choice_content choiceContent,
+			         attachment_file attachmentFile,
+			         order_no orderNo
+			from choice
+			where problem_no = #{problemNo}
+			order by order_no
+		]]>
+	</select>
+
 	<update id="ProblemModefy" parameterType="ProblemVo">
 		<![CDATA[
 			update problem
@@ -121,5 +131,30 @@
 			where problem_no = #{problemNo}
 		]]>
 	</update>
-	
+
+	<update id="delete" parameterType="ProblemVo">
+		<![CDATA[
+			update problem
+			set problem_no = #{cateNo}
+			where problem_no = #{problemNo}
+		]]>
+	</update>
+
+	<select id="getSubCateByGroupNo" parameterType="CategoryVo" resultType="CategoryVo">
+		<![CDATA[
+			select  cate_no cateNo,
+			         user_no userNo,
+			         cate_name cateName,
+			         group_no groupNo,
+			         order_no orderNo,
+			         depth
+			from category
+			where group_no = #{groupNo}
+					AND user_no = #{userNo}
+					AND depth = 1
+			order by order_no asc
+			
+		]]>
+	</select>
+
 </mapper>

@@ -60,12 +60,15 @@
 											<form>
 												<div class="form-group form-inline">
 													<input type="text" class="form-control input-sm" id="txtSearchKyword" placeholder="">
-													<button class="btn btn-default btn-sm" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+													<button class="btn btn-default btn-sm" type="submit">
+														<span class="glyphicon glyphicon-search"></span>
+													</button>
 												</div>
 											</form>
 										</div>
 										<div class="col-xs-6">
-											<a href="${pageContext.request.contextPath}/myclass/problem/creatingForm?cateNo=${param.cateNo}"><button class="btn btn-primary btn-sm pull-right" type="button">문제등록</button></a>
+											<a href="${pageContext.request.contextPath}/myclass/problem/creatingForm?cateNo=${param.cateNo}"><button
+													class="btn btn-primary btn-sm pull-right" type="button">문제등록</button></a>
 										</div>
 									</div>
 
@@ -90,7 +93,7 @@
 											<th id="thead-last">관리</th>
 										</tr>
 									</thead>
-									
+
 									<tbody>
 										<c:forEach items="${proList}" var="proVo">
 											<tr id="tr-center">
@@ -99,8 +102,8 @@
 												<th>${proVo.type}</th>
 												<th>${proVo.regDate}</th>
 												<td>
-													<button class="btn btn-default btn-xs" id="delete-Btn">삭제</button>
-													<button class="btn btn-default btn-xs" id="move-Btn">이동</button>
+													<button class="btn btn-primary btn-xs delete-Btn" data-title="${proVo.problemTitle}">이동</button>
+													<button class="btn btn-danger btn-xs move-Btn">삭제</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -126,29 +129,43 @@
 								</div>
 							</div>
 
-							<div class="modal fade" id="delete-Modal">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true"></span>
-											</button>
-											<h4 class="modal-title">문제 제목</h4>
+							<form method="post" action="${pageContext.request.contextPath}/myclass/problem/delete">
+								<div class="modal fade" id="delete-Modal">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true"></span>
+												</button>
+												<h4 class="modal-title">문제 제목</h4>
+											</div>
+											<div class="modal-body">
+												<p id="proTitle"></p>
+												<select name="cateName" id="cateMainSelectBox">
+													<option selected disabled>폴더를 선택해 주세요</option>
+													<c:forEach items="${cateList}" var="cateList">
+														<c:choose>
+															<c:when test="${cateList.depth == 0}">
+																<option value="${cateList.groupNo}">${cateList.cateName}</option>
+															</c:when>
+														</c:choose>
+													</c:forEach>
+												</select> <select name="cateName" id="cateSubSelectBox" style="display: none">
+												</select>
+											</div>
+											<div class="modal-footer">
+												<p style="float: left;">정말 삭제하시겠습니까?</p>
+
+												<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+												<button type="submit" class="btn btn-danger">삭제</button>
+											</div>
 										</div>
-										<div class="modal-body">
-											<p>if문</p>
-										</div>
-										<div class="modal-footer">
-											<p style="float: left;">정말 삭제하시겠습니까?</p>
-											<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-											<button type="button" class="btn btn-danger">삭제</button>
-										</div>
+										<!-- /.modal-content -->
 									</div>
-									<!-- /.modal-content -->
+									<!-- /.modal-dialog -->
 								</div>
-								<!-- /.modal-dialog -->
-							</div>
-							<!-- /.modal -->
+								<!-- /.modal -->
+							</form>
 						</div>
 						<!-- //col-xs-9 -->
 					</div>
@@ -175,13 +192,47 @@
 
 </body>
 <script type="text/javascript">
-	$("#delete-Btn").on("click", function() {
+	$(".delete-Btn").on("click", function() {
 		console.log("삭제버튼 클릭");
+
+		var title = $(this).data("title");
+		document.getElementById("proTitle").innerHTML = "문제 제목 :  " + title;
 
 		$("#delete-Modal").modal();
 	});
 
-	$("#move-Btn").on("click", function() {
+	$("#cateMainSelectBox")
+			.change(
+					function() {
+						var groupNo = $(this).val();
+
+						$.ajax({
+									url : "${pageContext.request.contextPath }/myclass/problem/getSubCate",
+									type : "get",
+									contentType : "application/json",
+									data : {
+										groupNo : groupNo,
+									},
+									success : function(data) {
+										$("#cateSubSelectBox").css("display",
+												"");
+										$('#cateSubSelectBox').empty();
+
+										for (var i = 0; i < data.length; i++) {
+											$('#cateSubSelectBox').append(
+													'<option>'
+															+ data[i].cateName
+															+ '</option>');
+										}
+
+									},
+									error : function(XHR, status, error) {
+										console.error(status + " : " + error);
+									}
+								});
+					});
+
+	$(".move-Btn").on("click", function() {
 		console.log("이동버튼 클릭");
 
 		$("#move-Modal").modal();

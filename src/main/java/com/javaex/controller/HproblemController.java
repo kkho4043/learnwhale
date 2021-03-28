@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,12 +13,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javaex.service.ProblemService;
 import com.javaex.vo.CategoryVo;
-import com.javaex.vo.ChoiceVo;
 import com.javaex.vo.ProblemVo;
 
 @Controller
@@ -125,7 +126,8 @@ public class HproblemController {
 		
 		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
 		
-		model.addAttribute("proVo", proService.view(proNo));
+		model.addAttribute("choVo", proService.ChoiceView(proNo));
+		model.addAttribute("proVo", proService.Problemview(proNo));
 		return "home/problem/creating-ViewForm";
 	}
 
@@ -152,5 +154,33 @@ public class HproblemController {
 		proService.ProblemModify(file, proVo, choiceContent, map);
 
 		return "redirect:/myclass/problem/problemList?cateNo=" + proVo.getCateNo();
+	}
+	
+	//문제 삭제
+	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
+	public String delete(@ModelAttribute ProblemVo proVo) {
+		System.out.println("[ProblemController.delete()]");
+		
+		
+		return "redirect:/myclass/problem/problemList?cateNo=" + proVo.getCateNo();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getSubCate", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<CategoryVo> getSubCate (Model model, HttpSession session, @RequestParam("groupNo") int groupNo) {
+		System.out.println("[ProblemController.getSubCate()]");
+		
+		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
+		CategoryVo cateVo = new CategoryVo();
+		cateVo.setUserNo(1);
+		cateVo.setGroupNo(groupNo);
+		
+		List<CategoryVo> categoryVo = proService.SubCategoryByGroupNo(cateVo);
+		
+		System.out.println(categoryVo);
+
+		model.addAttribute("subCateList", categoryVo);
+
+		return categoryVo;
 	}
 }

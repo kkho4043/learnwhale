@@ -3,13 +3,12 @@ package com.javaex.vo;
 public class ChoiceVo {
 
 	private int choiceNo, // 보기 번호
-			problemNo, // 문제 번호
-			orderNo; // 번호
+				  problemNo, // 문제 번호
+				  orderNo; // 번호
 	private String choiceContent, // 보기 내용
-			attachmentFile; // 첨부파일
+					  attachmentFile; // 첨부파일
 	
 	public ChoiceVo() {
-		super();
 	}
 
 

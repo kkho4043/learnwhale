@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.ChoiceVo;
 import com.javaex.vo.ProblemVo;
 
 @Repository
@@ -78,6 +79,13 @@ public class ProblemDao {
 		return sqlSession.selectOne("category.problemView", proNo);
 	}
 	
+	//choice문제 보기
+	public List<ChoiceVo> choiceView(int proNo){
+		System.out.println("proDao -choiceView");
+		
+		return sqlSession.selectList("category.choiceView",proNo);
+	}
+	
 	
 	// 문제 수정
 	public int ProblemModify(ProblemVo proVo) {
@@ -97,6 +105,17 @@ public class ProblemDao {
 
 		return sqlSession.insert("category.ChoiceModify", map);
 	}
+	
+	public int delete(ProblemVo proVo) {
+		System.out.println("ProDao- delete");
+		
+		return sqlSession.update("category.delete", proVo);
+	}
 
+	// 서브 카테고리 조회
+		public List<CategoryVo> SubCategoryByGroupNo(CategoryVo cateVo) {
+			System.out.println("SubCategoryByGroupNo");
 
+			return sqlSession.selectList("category.getSubCateByGroupNo", cateVo);
+		}
 }
