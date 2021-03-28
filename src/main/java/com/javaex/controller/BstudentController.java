@@ -28,7 +28,7 @@ public class BstudentController {
 							  Model model) {
 		//UserVo authUser = (UserVo)session.getAttribute("authUser");
 		//authUser.getNo();
-		Map<String, Object> joinMap = stService.getList(1, url, page);
+		Map<String, Object> joinMap = stService.getList(3, url, page);
 		Map<String, Object> blMap = stService.getBlogInfo(url);
 		
 		model.addAttribute("joinList", joinMap.get("joinList")); 

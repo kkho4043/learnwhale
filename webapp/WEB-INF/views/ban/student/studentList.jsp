@@ -159,7 +159,7 @@
 						  <ul class="pagination">
 						    <li>
 						    	<c:choose>
-						    		<c:when test="${param.page <=1 }">
+						    		<c:when test="${param.page <=1 or empty param.page }">
 						    			<a href="${pageContext.request.contextPath }/${url}/student/list?page=1" aria-label="Previous">
 							        		<span aria-hidden="true">&laquo;</span>
 							     	 	</a>

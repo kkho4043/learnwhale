@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,10 @@ public class BreportController {
 					   @RequestParam(value="page", required = false, defaultValue = "1") int page,
 					   Model model) {
 		
-		Map<String, Object> reMap = reService.getList(url, type, joinNo, keyword, page, 1);
-		
 		//UserVo authUser = (UserVo)session.getAttribute("authUser");
 		//authUser.getNo();
+		Map<String, Object> reMap = reService.getList(url, type, joinNo, keyword, page, 3); 
+			
 		model.addAttribute("joinList", reMap.get("joinList"));
 		model.addAttribute("exList", reMap.get("exList"));
 		model.addAttribute("avgList", reMap.get("avgList"));

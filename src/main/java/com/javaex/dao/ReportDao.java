@@ -16,12 +16,10 @@ public class ReportDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-		public List<Map<String, Object>> selStudentList(String url, int userNo) {
-			
+		public List<Map<String, Object>> selStudentList(String url, int joinNo) {
 			Map<String, Object> map = new HashMap<>(3);
+			map.put("joinNo", joinNo);
 			map.put("url", url);
-			map.put("userNo", userNo);
-			
 			return sqlSession.selectList("report.selStudentList", map);
 		}
 		
@@ -29,7 +27,16 @@ public class ReportDao {
 		public int selNo(String url) {
 			  
 			  return sqlSession.selectOne("report.selNo", url);
-		  }
+		 }
+		
+		public Map<String, Object> selJoin(int userNo, String url) {
+			  
+			Map<String, Object> map = new HashMap<>(3);
+			map.put("userNo", userNo);
+			map.put("url", url);
+			
+			  return sqlSession.selectOne("report.selJoin", map);
+		 }
 		
 		
 		public List<ExamVo> selExamList(int joinNo, String type, String keyword, 

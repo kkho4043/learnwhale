@@ -20,20 +20,36 @@ public class ReportService {
 	
 
 	public Map<String, Object> getList(String url, String type, int joinNo, String keyword, int page, int userNo) {
-
-		if (joinNo == 0) {
-			
-			try{
-				joinNo = reDao.selNo(url);
-			}catch(NullPointerException e) {
-				joinNo = 0;
-			}
-		}
-
-		Map<String, Object> reMap = new HashMap<String, Object>(6);
-		reMap.put("joinList", reDao.selStudentList(url, userNo));
+		Map<String, Object> reMap = new HashMap<String, Object>(7);
+		Map<String, Object> joMap = reDao.selJoin(userNo, url);
 		
-		int postCnt = 1;
+		if(joinNo==0) {
+			
+			if("선생님".equals(joMap.get("TYPE"))) { 
+				
+				try{
+					joinNo = reDao.selNo(url);
+				}catch(NullPointerException e) {
+					joinNo = 0;
+				}
+				reMap.put("joinList", reDao.selStudentList(url, 0));
+				
+			}else {
+				joinNo = Integer.parseInt(String.valueOf(joMap.get("JOINNO")));
+				reMap.put("joinList", reDao.selStudentList(url, joinNo));
+			 }
+	
+		}
+		
+		if("선생님".equals(joMap.get("TYPE"))) {
+			reMap.put("joinList", reDao.selStudentList(url, 0));
+		}
+		else {
+			joinNo = Integer.parseInt(String.valueOf(joMap.get("JOINNO")));
+			reMap.put("joinList", reDao.selStudentList(url, joinNo));
+		}
+		
+		int postCnt = 5;
 		
 		int startNum = (page-1)*postCnt +1;
 		int endNum = page*postCnt;

@@ -51,7 +51,7 @@
 		                                                                from        class
 		                                                                where       class_url = #{url}
 		                                                                ) c
-		                                                                where       c.class_no = j.class_no and type = '운영자') cl
+		                                                                where       c.class_no = j.class_no and type = '선생님') cl
 			on u.no = cl.user_no
 		]]>
 	
@@ -94,10 +94,10 @@
 				                                                                                           		  from        class
 				                                                                                           		  where       class_url = #{url}
 				                                                                                                   )
-				                                                   and type='운영자'
+				                                                   and type='선생님'
 				                                                   ) 
 				                                       and type = '학생'
-				                                       order by join_date asc
+				                                       order by join_no asc
 				                                ) join
 								where u.no = join.user_no
 				            )s
@@ -121,7 +121,7 @@
                                                                                 from        class
                                                                                 where       class_url = #{url}
                                                                                )
-                                    and type='운영자'
+                                    and type='선생님'
                                     )
                         and user_no in
         ]]>                            
@@ -144,7 +144,7 @@
                                                                                 from        class
                                                                                 where       class_url = #{url}
                                                                                )
-                                    and type='운영자'
+                                    and type='선생님'
                                     ) 
                         and user_no in
         ]]>                            
@@ -169,7 +169,7 @@
                                                                                 from        class
                                                                                 where       class_url = #{url}
                                                                                )
-                                    and type='운영자'
+                                    and type='선생님'
                                     ) 
                         and user_no in
         ]]>                            

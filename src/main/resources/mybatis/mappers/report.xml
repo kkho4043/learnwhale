@@ -13,18 +13,21 @@
 	                            	   user_no
 	               		   from        join_users
 	               		   where       class_no = (select      class_no
-				            
-                                                   from        join_users
-                                                   where       user_no = #{userNo} and class_no = (select      class_no
-                                                                                           		   from        class
-                                                                                           		   where       class_url = #{url}
-                                                                                                   )
-                                                   and type='운영자'
-				                                   ) and approval = '승인' and type= '학생'
-						   order by    join_no asc) join             
-			where u.no = join.user_no
+                                                   from        class
+                                                   where       class_url = #{url}
+                                                   )
+                                       and approval = '승인' and type= '학생'
+           ]]>                            
+               <if test=" joinNo != 0 ">
+				 and join_no = #{joinNo} 
+			   </if>                        
 			
-		]]>
+			<![CDATA[			  
+						   order by    join_no asc) join             
+			where u.no = join.user_no 
+		
+			]]>	
+		
 		
 	</select>
 	
@@ -120,6 +123,36 @@
 		]]>
 		
 	</select>			
+			
+			
+	<select id="selJoin" parameterType="map" resultType="map">
+		
+		<![CDATA[
+			select      join_no joinNo,
+            			type
+			from        join_users
+			where       class_no = (select      class_no
+			                        from        class
+			                        where       class_url = #{url}
+			                        )
+			            and user_no = #{userNo}
+			union all
+			
+			select 0 as joinNo,
+			       null as type
+			from dual
+			where not exists (select      join_no joinNo,
+			                              type
+			                  from        join_users
+			                  where       class_no = (select      class_no
+			                                            from        class
+			                                            where       class_url = #{url}
+			                                            )
+			                  and user_no = #{userNo})
+		
+		]]>
+	
+	</select>	
 			
 						
 	<select id="selAvgList" parameterType="int" resultType="ExamVo">
