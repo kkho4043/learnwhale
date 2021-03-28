@@ -33,7 +33,7 @@ public class HbanContorller {
 		System.out.println("[HbanController.list()]");
 		
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
-		List<ClassVo> classList = classService.list(userVo.getNo(), search);
+		List<ClassVo> classList = classService.list(15, search);
 
 		model.addAttribute("classList", classList);
 		
@@ -46,6 +46,7 @@ public class HbanContorller {
 		System.out.println("[HbanController.modifyForm()]");
 		
 		ClassVo classVo = classService.selectOne(classNo);
+		System.out.println(classVo.getStartDate());
 		model.addAttribute("classVo", classVo);
 		
 		return "home/ban/modifyForm";
@@ -77,7 +78,7 @@ public class HbanContorller {
 	 //반생성
 	@RequestMapping(value = "/create", method = { RequestMethod.GET, RequestMethod.POST })
 	public String create(@ModelAttribute ClassVo classVo,
-						 @RequestParam(value = "logo", required = false, defaultValue = "" ) MultipartFile file 
+						 @RequestParam(value = "logo", required = false, defaultValue = "") MultipartFile file 
 						 , HttpSession session) {
 		System.out.println("[HbanController.create()]");
 		UserVo userVo = (UserVo)session.getAttribute("authUser");

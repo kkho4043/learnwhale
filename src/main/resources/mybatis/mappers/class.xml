@@ -70,12 +70,12 @@
 	</select>
 	
 	<!-- 수정폼 -->
-	<select id = "selectOne" parameterType="int" resultType="classVo">
+	<select id = "selectOne" parameterType="int" resultType="ClassVo">
 		<![CDATA[
 			SELECT  class_url classUrl,
 			        class_name className,
-			        TO_CHAR(start_date,'yyyy-mm-dd HH24:mi') startDate,
-			        TO_CHAR(end_date,'yyyy-mm-dd HH24:mi') endDate,
+			        TO_CHAR(start_date,'yyyy-mm-dd HH12:mi') startDate,
+			        TO_CHAR(end_date,'yyyy-mm-dd HH12:mi') endDate,
 			        logo_file logoFile,
 			        hidden hidden
 			FROM class c, join_users j, users u

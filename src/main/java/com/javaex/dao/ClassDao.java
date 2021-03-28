@@ -19,7 +19,7 @@ public class ClassDao {
 	private SqlSession sqlSession;
 	
 	//반생성 url 체크
-	public ClassVo selectOne(String classUrl) {
+	public ClassVo urlcheck(String classUrl) {
 		return sqlSession.selectOne("class.selectByUrl", classUrl);
 	}
 	

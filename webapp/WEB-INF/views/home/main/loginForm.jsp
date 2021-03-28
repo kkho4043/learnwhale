@@ -71,7 +71,7 @@
 													<p>로그인에 실패했습니다. 다시 로그인 해주세요</p>
 												</c:if>
 												<div class="col-sm-12">
-													<button type="submit" class="btn btn-defalut Btn_i"><a href="${pageContext.request.contextPath}/user/loginForm">로그인</a></button>
+													<button type="submit" class="btn btn-defalut Btn_i">로그인</button>
 												</div>
 												<div class="col-sm-12">
 													<button type="button" class="btn btn-defalut Btn_i"><a href="${pageContext.request.contextPath}/user/joinForm">회원가입</a></button>

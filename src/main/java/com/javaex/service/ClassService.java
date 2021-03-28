@@ -23,7 +23,7 @@ public class ClassService {
 	// 반생성 url 체크
 	public String urlcheck(String classUrl) {
 		
-		ClassVo classVo = classDao.selectOne(classUrl);
+		ClassVo classVo = classDao.urlcheck(classUrl);
 		String result = "";
 		
 		if (classVo == null) {
@@ -38,7 +38,6 @@ public class ClassService {
 
 	// 반생성
 	public int create(ClassVo classVo, MultipartFile file, int no) {
-		System.out.println("[classService.create()]");
 
 		classVo.setStartDate(classVo.getStartDate().replace("T", " "));
 		classVo.getStartDate().replace("T", " ");
@@ -93,7 +92,11 @@ public class ClassService {
 
 	// 수정폼 가져오기
 	public ClassVo selectOne(int classNo) {
-		return classDao.selectOne(classNo);
+		
+		ClassVo classVo= (ClassVo)classDao.selectOne(classNo);
+		classVo.setStartDate(classVo.getStartDate().replace(" ", "T"));
+		classVo.setEndDate(classVo.getEndDate().replace(" ", "T"));
+		return classVo;
 	}
 
 	// 수정
@@ -101,10 +104,13 @@ public class ClassService {
 		classVo.setStartDate(classVo.getStartDate().replace("T", " "));
 		classVo.getStartDate().replace("T", " ");
 		System.out.println(classVo.getStartDate().replace("T", " "));
-
+		
 		classVo.setEndDate(classVo.getEndDate().replace("T", " "));
 		classVo.getEndDate().replace("T", " ");
+
+
 		return classDao.update(classVo);
+		
 	}
 
 	// 삭제
