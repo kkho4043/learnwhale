@@ -21,4 +21,18 @@ public class UserService {
 		System.out.println("Service - login");
 		return userDao.selectUser(userVo);
 	}
+	
+	public String idcheck(String id) {
+		System.out.println("userService idCheck()");
+		UserVo userVo = userDao.selectOne(id);
+		String result = "";
+		if(userVo==null) {
+			//사용할수 있는 아이디
+			result = "can";
+		}else {
+			//중복 아이디, 사용할수 없는 아이디
+			result= "cant";
+		}
+		return result;
+	}
 }

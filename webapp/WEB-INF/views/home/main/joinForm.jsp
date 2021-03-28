@@ -61,16 +61,21 @@
 											<div class="col-sm-12">
 												<form class="form-inline" id="joinForm" method="get"
 													action="${pageContext.request.contextPath}/user/join">
-													<div class="col-sm-12 joinArea">
+													<div class="col-sm-12 joinArea" style="padding-left:90px;">
 														<div class="form-group">
 															<div class="col-sm-12">
 																<label for="id-margin" id="idArea">아이디</label>
 															</div>
 															<input type="text" name="id" class="form-control"
 																id="id-margin" placeholder="아이디를 입력해 주세요.">
+															<button type="button" id="btnCheck">중복체크</button>	
 														</div>
 														<!-- //form-group -->
 													</div>
+													
+													<p id="msg">
+														<!-- 아이디 사용가능 여부 메세지 -->
+													</p>
 
 													<div class="col-sm-12 joinArea">
 														<div class="form-group">
@@ -197,4 +202,37 @@
 	<!-- //footer-Area -->
 
 </body>
+<script type="text/javascript">
+	$("#btnCheck").on("click", function(){
+		console.log("중복체크 버튼 클릭");
+		var uid = $("#id-margin").val();
+		console.log(uid);
+	
+		//ajax데이터만 받을때
+		$.ajax({
+			
+			url : "${pageContext.request.contextPath }/user/idcheck",		
+			type : "post",
+			/* contentType : "application/json", */
+			data : {id:uid},
+			
+			dataType : "text", 
+			success : function(result){
+				/*성공시 처리해야될 코드 작성*/
+				if(result == 'can'){
+					console.log("can");
+					$("#msg").html("사용할수 있는 아이디 입니다.");
+				}else{
+					console.log("cant");
+					$('#msg').html("사용할수 없는 아이디 입니다.")
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+	});
+
+</script>
 </html>

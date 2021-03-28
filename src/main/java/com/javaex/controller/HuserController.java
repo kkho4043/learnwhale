@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -78,5 +80,14 @@ public class HuserController {
 		session.invalidate();
 		
 		return "redirect:/";
+	}
+	
+	//회원가입 아이디 체크
+	@ResponseBody
+	@RequestMapping(value="/idcheck", method = {RequestMethod.GET, RequestMethod.POST})
+	public String idcheck(@RequestParam("id") String id) {
+		System.out.println("/user/idcheck");
+		String result = userService.idcheck(id);
+		return result;
 	}
 }

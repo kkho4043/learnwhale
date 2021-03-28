@@ -15,7 +15,7 @@
 					#{proFile} )	
 		]]>
 	</insert>
-	
+
 	<!-- 로그인 -->
 	<select id="selectUser" parameterType="UserVo" resultType="UserVo">
 		<![CDATA[
@@ -25,9 +25,17 @@
 			where id = #{id}
 			and password = #{password}
 		]]>
-	
+
 	</select>
-	
-	
-	
+
+	<!-- 회원가입 아이디체크 -->
+	<select id="selectById" parameterType="string" resultType="com.javaex.vo.UserVo">
+		<![CDATA[
+			select id
+			from users
+			where id = #{id}
+		]]>
+	</select>
+
+
 </mapper>

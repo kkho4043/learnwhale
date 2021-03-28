@@ -22,4 +22,9 @@ public class UserDao {
 		System.out.println("UserDao-selectUser()");
 		return sqlSession.selectOne("user.selectUser", userVo);
 	}
+	
+	public UserVo selectOne(String id) {
+		System.out.println("UserDao-selectOne()");
+		return sqlSession.selectOne("user.selectById", id);
+	}
 }
