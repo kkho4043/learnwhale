@@ -33,7 +33,7 @@ public class HbanContorller {
 		System.out.println("[HbanController.list()]");
 		
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
-		List<ClassVo> classList = classService.list(15, search);
+		List<ClassVo> classList = classService.list(userVo.getNo(), search);
 
 		model.addAttribute("classList", classList);
 		
@@ -46,7 +46,6 @@ public class HbanContorller {
 		System.out.println("[HbanController.modifyForm()]");
 		
 		ClassVo classVo = classService.selectOne(classNo);
-		System.out.println(classVo.getStartDate());
 		model.addAttribute("classVo", classVo);
 		
 		return "home/ban/modifyForm";
@@ -91,10 +90,9 @@ public class HbanContorller {
 	@RequestMapping(value = "/remove", method = {RequestMethod.GET, RequestMethod.POST})
 	public String remove(@RequestParam("classNo") int classNo) {
 		System.out.println("[HbanController.remove()]");
-		
-		
+		System.out.println(classNo);
 		classService.remove(classNo);
-		return "";
+		return "redirect:list";
 	}
 
 }

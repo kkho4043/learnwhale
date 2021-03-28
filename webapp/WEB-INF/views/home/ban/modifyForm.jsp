@@ -112,7 +112,7 @@
 									</span>
 								</div>
 								<!-- //노출여부 -->
-								<input type="text" name="classNo" value="${param.classNo}">
+								<input type="text" name="classNo" value="${classVo.classNo}">
 								<div class="row interval">
 									<div class="col-xs-6">
 										<button type="submit" class="btn btn-default btn-xs pull-right">수정</button>

@@ -81,6 +81,7 @@ public class ClassService {
 		int classNo = classVo.getClassNo();
 		System.out.println("classNo " + classNo);
 		System.out.println("no " + no);
+		System.out.println(classDao.tInsert(classNo, no));
 		return classDao.tInsert(classNo, no);
 	};
 
@@ -92,10 +93,11 @@ public class ClassService {
 
 	// 수정폼 가져오기
 	public ClassVo selectOne(int classNo) {
-		
+		System.out.println("[classService.selectOne()]");
 		ClassVo classVo= (ClassVo)classDao.selectOne(classNo);
 		classVo.setStartDate(classVo.getStartDate().replace(" ", "T"));
 		classVo.setEndDate(classVo.getEndDate().replace(" ", "T"));
+		System.out.println("수정폼 가져오기"+classVo);
 		return classVo;
 	}
 
@@ -117,15 +119,17 @@ public class ClassService {
 	public int remove(int classNo) {
 		System.out.println("[classService.remove()]");
 		int count = classDao.sCount(classNo);
-		
+		System.out.println("학생수 세기" + count);
+		System.out.println(classNo);
 		if(count == 0) {
 			classDao.joinDelete(classNo);
-			
+			System.out.println(classNo);
 		}else {
 			return 1;
 		}
-
+		
 		return classDao.classDelete(classNo);
+		
 	}
 	
 }

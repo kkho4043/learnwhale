@@ -65,7 +65,7 @@
 						<div class="col-xs-12">
 							<form id="createForm"
 								action="${pageContext.request.contextPath}/h/create"
-								method="get" enctype="multipart/form-data">
+								method="post" enctype="multipart/form-data">
 								<div class="row interval">
 									<!-- 반이름 -->
 									<label class="col-xs-2 text-right" for="name">반이름</label> <span
@@ -239,7 +239,7 @@
 			return false;
 		}
 			
-		return ture;
+		return true;
 	});
 </script>
 
