@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.ClassDao;
 import com.javaex.vo.ClassVo;
-import com.javaex.vo.JoinUserVo;
 
 @Service
 public class ClassService {
@@ -23,11 +22,11 @@ public class ClassService {
 
 	// 반생성 url 체크
 	public String urlcheck(String classUrl) {
-
-		int flag = classDao.selectOne(classUrl);
+		
+		ClassVo classVo = classDao.selectOne(classUrl);
 		String result = "";
-
-		if (flag == 1) {
+		
+		if (classVo == null) {
 			// 사용할수 있는 url
 			result = "can";
 		} else {

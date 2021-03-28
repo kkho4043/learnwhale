@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.ClassVo;
+import com.javaex.vo.UserVo;
 
 @Repository
 public class ClassDao {
@@ -18,7 +19,7 @@ public class ClassDao {
 	private SqlSession sqlSession;
 	
 	//반생성 url 체크
-	public int selectOne(String classUrl) {
+	public ClassVo selectOne(String classUrl) {
 		return sqlSession.selectOne("class.selectByUrl", classUrl);
 	}
 	

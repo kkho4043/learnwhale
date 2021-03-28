@@ -25,13 +25,14 @@
 			where id = #{id}
 			and password = #{password}
 		]]>
-
 	</select>
 
 	<!-- 회원가입 아이디체크 -->
-	<select id="selectById" parameterType="string" resultType="com.javaex.vo.UserVo">
+	<select id="selectById" parameterType="string" resultType="UserVo">
 		<![CDATA[
-			select id
+			select id,
+					password,
+					name
 			from users
 			where id = #{id}
 		]]>

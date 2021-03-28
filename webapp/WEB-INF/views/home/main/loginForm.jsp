@@ -11,7 +11,7 @@
 <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/home/homeCommon.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/home/maink.css" rel="stylesheet" type="text/css">
-
+<link href="${pageContext.request.contextPath}/assets/css/home/homeBanList.css" rel="stylesheet" type="text/css">
 
 <!-- js -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
@@ -71,10 +71,10 @@
 													<p>로그인에 실패했습니다. 다시 로그인 해주세요</p>
 												</c:if>
 												<div class="col-sm-12">
-													<button type="submit" class="btn btn-primary Btn_i">로그인</button>
+													<button type="submit" class="btn btn-defalut Btn_i"><a href="${pageContext.request.contextPath}/user/loginForm">로그인</a></button>
 												</div>
 												<div class="col-sm-12">
-													<button type="button" class="btn btn-primary Btn_i">회원가입</button>
+													<button type="button" class="btn btn-defalut Btn_i"><a href="${pageContext.request.contextPath}/user/joinForm">회원가입</a></button>
 												</div>
 
 												<!-- //joinArea -->

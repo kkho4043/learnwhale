@@ -4,15 +4,14 @@
 <mapper namespace="class">
 
 	<!-- 반생성 url 체크 -->
-	<select id="selectByUrl" parameterType="String" resultType="int">
+	<select id="selectByUrl" parameterType="string" resultType="ClassVo">
 		<![CDATA[
-			SELECT class_url classUrl
+			SELECT class_url classUrl,
+					class_name className
 			FROM class
 			where class_url = #{classUrl}
 		]]>
-
 	</select>
-
 
 	<!--반생성 -->
 	<insert id="insert" parameterType="ClassVo">
