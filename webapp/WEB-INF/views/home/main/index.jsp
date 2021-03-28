@@ -17,6 +17,9 @@
 	rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/home/main.css"
 	rel="stylesheet" type="text/css">
+<link
+	href="${pageContext.request.contextPath}/assets/css/home/homeBanList.css"
+	rel="stylesheet" type="text/css">	
 <%-- 
 <link href="${pageContext.request.contextPath}/assets/css/home/problem.css" rel="stylesheet" type="text/css">
  --%>
