@@ -62,7 +62,7 @@
 					<div id="content-body-area" class="container-fluid row">
 						<div class="row">
 							<div class="col-xs-6 text-left">
-								<form action="${pageContext.request.contextPath}/h/list"
+								<form action="${pageContext.request.contextPath}/myclass/list"
 									method="get">
 									<div class="form-group text-left">
 										<input type="text" name="search">
@@ -72,7 +72,7 @@
 							</div>
 							<div class="col-xs-6 text-right">
 								<button type="submit" id=btn_produce>
-									<a href="${pageContext.request.contextPath}/h/createForm">반생성</a>
+									<a href="${pageContext.request.contextPath}/myclass/createForm">반생성</a>
 								</button>
 							</div>
 
@@ -108,8 +108,8 @@
 													<td>${vo.hidden}</td>
 
 													<td>
-													<a href="${pageContext.request.contextPath}/h/modifyForm?classNo=${vo.classNo}">[수정]</a>
-													<a href="${pageContext.request.contextPath}/h/remove?classNo=${vo.classNo}">[삭제]</a>
+													<a href="${pageContext.request.contextPath}/myclass/modifyForm?classNo=${vo.classNo}">[수정]</a>
+													<a href="${pageContext.request.contextPath}/myclass/remove?classNo=${vo.classNo}">[삭제]</a>
 													</td>
 												</tr>
 											</c:forEach>

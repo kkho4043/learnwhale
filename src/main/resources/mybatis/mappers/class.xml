@@ -74,8 +74,8 @@
 			SELECT  c.class_no classNo,
 			        c.class_url classUrl,
 			        c.class_name className,
-			        TO_CHAR(c.start_date,'yyyy-mm-dd') startDate,
-			        TO_CHAR(c.end_date,'yyyy-mm-dd') endDate,
+			        TO_CHAR(c.start_date,'yyyy-mm-dd HH24:mi') startDate,
+			        TO_CHAR(c.end_date,'yyyy-mm-dd HH24:mi') endDate,
 			        c.logo_file logoFile,
 			        c.hidden hidden
 			FROM class c, join_users j, users u

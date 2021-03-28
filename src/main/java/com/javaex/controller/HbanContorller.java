@@ -20,7 +20,7 @@ import com.javaex.vo.JoinUserVo;
 import com.javaex.vo.UserVo;
 
 @Controller
-@RequestMapping("/h")
+@RequestMapping("/myclass")
 public class HbanContorller {
 
 	@Autowired

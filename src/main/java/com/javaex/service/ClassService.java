@@ -38,7 +38,7 @@ public class ClassService {
 
 	// 반생성
 	public int create(ClassVo classVo, MultipartFile file, int no) {
-
+		
 		classVo.setStartDate(classVo.getStartDate().replace("T", " "));
 		classVo.getStartDate().replace("T", " ");
 		System.out.println(classVo.getStartDate().replace("T", " "));
@@ -81,7 +81,6 @@ public class ClassService {
 		int classNo = classVo.getClassNo();
 		System.out.println("classNo " + classNo);
 		System.out.println("no " + no);
-		System.out.println(classDao.tInsert(classNo, no));
 		return classDao.tInsert(classNo, no);
 	};
 

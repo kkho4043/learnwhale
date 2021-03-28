@@ -52,7 +52,7 @@
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="content-body-area" class="row">
 						<div class="col-xs-12">
-							<form id="createForm" action="${pageContext.request.contextPath}/h/modify" method="post" enctype="multipart/form-data">
+							<form id="createForm" action="${pageContext.request.contextPath}/myclass/modify" method="post" enctype="multipart/form-data">
 								<div class="row interval">
 									<!-- 반이름 -->
 									<label class="col-xs-2 text-right" for="name">반이름</label> <span class="col-xs-10"> <input type="text" class="form-control input-sm"
@@ -115,11 +115,11 @@
 								<input type="text" name="classNo" value="${classVo.classNo}">
 								<div class="row interval">
 									<div class="col-xs-6">
-										<button type="submit" class="btn btn-default btn-xs pull-right">수정</button>
+										<button type="submit" class="btn btn-primary btn-xs pull-right">수정</button>
 									</div>
 									<div class="col-xs-6">
-										<button class="btn btn-default btn-xs pull-right">
-											<a href="${pageContext.request.contextPath}/h/list">취소</a>
+										<button class="btn btn-primary btn-xs pull-right">
+											<a href="${pageContext.request.contextPath}/myclass/list">취소</a>
 										</button>
 									</div>
 
