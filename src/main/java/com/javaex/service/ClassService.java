@@ -118,11 +118,9 @@ public class ClassService {
 	public int remove(int classNo) {
 		System.out.println("[classService.remove()]");
 		int count = classDao.sCount(classNo);
-		System.out.println("학생수 세기" + count);
-		System.out.println(classNo);
+		
 		if(count == 0) {
 			classDao.joinDelete(classNo);
-			System.out.println(classNo);
 		}else {
 			return 1;
 		}

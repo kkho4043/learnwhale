@@ -83,18 +83,19 @@
 																<label for="password" id="pwArea">비밀번호</label>
 															</div>
 															<input type="text" class="form-control" id="password"
-																name="password" placeholder="비밀번호를 입력해 주세요.">
+																name="password" placeholder="비밀번호를 입력해 주세요."  onchange="check_pw()">
 														</div>
 													</div>
 													<!-- //joinArea -->
-
+													
 													<div class="col-sm-12 joinArea">
 														<div class="form-group">
-															<div class="col-sm-12">
-																<label for="pwCheck" id="pwArea">비밀번호</label>
+															<div class="col-sm-12" >
+																<label for="pwCheck" id="checkpw" style="padding-right:120px;">비밀번호 확인</label>
 															</div>
 															<input type="text" class="form-control" id="pwCheck"
-																name="" placeholder="비밀번호를 확인해 주세요.">
+																 placeholder="비밀번호를 확인해 주세요."  onchange="check_pw()">
+																<p id="check"></p>
 														</div>
 													</div>
 													<!-- //joinArea -->
@@ -109,7 +110,6 @@
 														</div>
 													</div>
 													<!-- //joinArea -->
-
 
 													<div class="col-sm-12 joinArea">
 														<div class="form-group">
@@ -180,25 +180,7 @@
 
 
 	<!-- footer-Area -->
-	<div id="footer-Area" class="container-fluid">
-		<div class="row">
-			<div id="" class="container">
-				<div id="footer" class="col-xs-12 text-left">
-					<ul class="clearfix">
-						<li>개인정보보호정책</li>
-						<li>이용약관</li>
-						<li>무단수집거부</li>
-						<li>찾아오시는 길</li>
-						<li class="last">관리자메일</li>
-					</ul>
-
-					<p>COPY RIGHT© 풀스택B반 시험조 ALL RIGHTS RESERVED</p>
-				</div>
-			</div>
-			<!-- //container-->
-		</div>
-		<!-- //row -->
-	</div>
+	<c:import url="/WEB-INF/views/home/include/footer.jsp"></c:import>
 	<!-- //footer-Area -->
 
 </body>
@@ -234,5 +216,59 @@
 		
 	});
 
+	function check_pw(){
+		var pw = document.getElementById('password').value;
+		
+		 if(document.getElementById('password').value !='' && document.getElementById('pwCheck').value!=''){
+             if(document.getElementById('password').value==document.getElementById('pwCheck').value){
+                 document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                 document.getElementById('check').style.color='blue';
+             }
+             else{
+                 document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                 document.getElementById('check').style.color='red';
+             }
+		 }
+	}
+	
+	$("#joinForm").on("submit", function(){
+		
+		//아이디 체크
+		var uid = $("#id-margin").val();
+		if(uid.length == 0){
+			alert("아이디를 입력하세요");
+			return false;
+		};
+		
+		//패스워드 체크
+		var pw = $("#password").val();
+		if(pw.length == 0){
+			alert("패스워드를 입력하세요.");
+			return false;
+		};
+		
+		//이름체크
+		var name = $("#name").val();
+		if(name.length == 0){
+			alert("이름을 입력하세요.");
+			return false;
+		};
+		
+		//이메일 체크
+		var email = $("#email").val();
+		if(email.length == 0){
+			alert("이메일을 입력하세요.")
+			return false;
+		};
+		
+		//전화번호 체크
+		var phone = $("phoneNo").val();
+		if(phone.length == 0){
+			alert("전화번호를 입력하세요")
+			return false;
+		}
+		
+		return ture;
+	});
 </script>
 </html>
