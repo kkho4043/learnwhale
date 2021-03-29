@@ -1,13 +1,19 @@
 package com.javaex.service;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.BanmainDao;
 import com.javaex.dao.ClassDao;
@@ -17,6 +23,7 @@ import com.javaex.vo.ExamVo;
 import com.javaex.vo.JoinUserVo;
 import com.javaex.vo.ProblemVo;
 import com.javaex.vo.QuestionVo;
+import com.javaex.vo.SolveVo;
 import com.javaex.vo.UserVo;
 
 @Service("/BlogBasicService")
@@ -136,15 +143,25 @@ public class ExamService {
 		examVo.setClassNo(classNo);
 		examVo = examDao.examinsert(examVo);
 
+		int examNo =  examVo.getExamNo();
 		String split;
 
 		for (int i = 0; i < arr.length; i++) {
 			split = arr[i];
 			String[] splitarr = split.split("/");
 			examDao.questioninsert(Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]), i + 1,
-					examVo.getExamNo());
+					examNo);
 		}
-
+		
+		List<Integer> userarr = examDao.selectjusers(classNo);
+		
+		List<Integer> squestionarr =  examDao.selectsquestion(examNo);
+		
+		for(int i = 0;i < userarr.size();i++) {
+			for(int j = 0;j < squestionarr.size();j++) {
+				examDao.insertsolve(userarr.get(i), squestionarr.get(j));
+			}
+		}
 	}
 
 	// 시험 수정
@@ -191,7 +208,7 @@ public class ExamService {
 
 	
 
-	public String clicktitle(String url, int examNo, HttpSession session) {
+	public String clicktitle(String url, int examNo, HttpSession session,int joinNo) {
 		
 		UserVo userVo = (UserVo) session.getAttribute("authUser");
 		
@@ -199,12 +216,18 @@ public class ExamService {
 		JoinUserVo jvo = banmainDao.selectuserInfo(url, userNo);
 		
 		if(jvo.getType().equals("선생님")) { // 선생님일때
-			return "examstart?examNo="+examNo;
-		}else {//학생일때
+			System.out.println("선생님");
+			return "/problemlist?examNo="+examNo;
+			
+		}else {
+			//학생일때
+			System.out.println("학생");
 			int flag = examDao.getAttendance(jvo.getJoinNo(),examNo);
 			if(flag > 0) { //문제를 풀었을때 
-				return "examstart?examNo="+examNo;
+				System.out.println("문제를 풀었을때");
+				return "/problemlist?examNo="+examNo+"&joinNo="+joinNo;
 			}else {
+				System.out.println("문제를 안풀었을때");
 				return "examstart?examNo="+examNo;
 			}
 			
@@ -221,7 +244,7 @@ public class ExamService {
 		Map.put("examVo", examVo);
 		
 		QuestionVo qeustionVo = examDao.startquestion(orderNum,examNo);
-		
+		qeustionVo.setOrderNum(orderNum);
 		Map.put("qeustionVo", qeustionVo);
 		
 		ProblemVo problemVo = examDao.selectproblem(qeustionVo.getProblemNo());
@@ -240,5 +263,51 @@ public class ExamService {
 		return Map;
 		
 	}
+
+	public void insertanswer(QuestionVo questionVo, SolveVo solveVo) {
+		examDao.updatesolve(questionVo,solveVo);
+	}
+	public void insertFile(QuestionVo questionVo, SolveVo solveVo, MultipartFile file) {
+		String saveDir = "C:\\javaStudy\\upload";
+		// 확장자
+		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+
+		// 서버 저장 파일 이름
+		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+
+		// 서버 파일 패스 --> 저장경로
+		String filePath = saveDir + "\\" + saveName;
+		// 서버 하드디스크 파일 저장
+		try {
+			byte[] fileData = file.getBytes();
+			OutputStream out = new FileOutputStream(filePath);
+			BufferedOutputStream bos = new BufferedOutputStream(out);
+
+			bos.write(fileData);
+			bos.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		examDao.updatefile(questionVo,solveVo,saveName);
+		
+	}
+
+	public String selectanswer(int examNo, int orderNum, int joinNo) {
+		System.out.println(examDao.selectanswer(examNo, orderNum, joinNo));
+		return examDao.selectanswer(examNo, orderNum, joinNo);
+	}
+	
+	//시험 종료
+	public void examfinish(int joinNo, int examNo) {
+		examDao.examfinish(joinNo,examNo);
+		
+	}
+
+	public int getpoint(int examNo, int orderNum, int joinNo) {
+		return examDao.getpoint(examNo, orderNum, joinNo);
+	}
+
 
 }

@@ -71,58 +71,71 @@
 						<div class="row">
 							<div class="col-xs-9">
 								<div class="row protitle">
-									<div class="col-xs-1">2번</div>
-									<div class="col-xs-8">다음인물은 가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가누구인가</div>
-									<div class="col-xs-1">(5점)</div>
-									<div class="col-xs-1"></div>
-									<div class="col-xs-1">30초 타이머</div>
+									<div class="col-xs-1">${examInfo.qeustionVo.orderNum}번</div>
+									<div class="col-xs-7">${examInfo.problemVo.content}</div>
 								</div>
-								<div class="row">
-									<div>
-										<img src="${pageContext.request.contextPath}/assets/image/profile.jpg" class = "proimg">
+								<c:if test="${examInfo.problemVo.contentImage != null}">
+									<div class="row">
+										<div class="testimg">
+											<img src="${examInfo.problemVo.contentImage}">
 
-										<!--  <input type="button" value="첨부파일">  -->
+											<!--  <input type="button" value="첨부파일">  -->
+										</div>
 									</div>
-								</div>
+								</c:if>
 								<div class="row">정답 : 이게답.</div>
-								<div class="row">입력한답 :</div>
+								<div class="row">
+									입력한답 :
+									<sapn id="ineranswer"></sapn>
+								</div>
 								<div class="row protype">
 
-									<div class="shortanswer row">
-										<textarea>이게 답이라 하였다.</textarea>
-										<a href="#" download><button>첨부파일 받기</button></a>
-									</div>
-
-									<!-- <div class="OX row">
-										<div id="O">O</div>
-										<div id="X" class="answer">X</div>
-									</div> ox-->
-
-
-									<!-- <div class="multiple row">
-										<div class="row">
-											<input type="button" value="1" class = "btn btn-primary"><span>유관순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순순</span>
+									<c:if test="${examInfo.problemVo.type == '주관식'}">
+										<div class="shortanswer">
+											<textarea id="shortans" onchange="getsanswer()"></textarea>
+											<form id="uploadForm">
+												<!-- <input type="file" name="file" onchange="uploadFile()" /> -->
+											</form>
 										</div>
-										<div class="row">
-											<input type="button" value="2" class="answer btn btn-primary"><span>이순신</span>
-										</div>
-										<div class="row">
-											<input type="button" value="3" class = "btn btn-primary"><span>강호동</span>
-										</div>
-										<div class="row">
-											<input type="button" value="4" class = "btn btn-primary"><span>세종대왕</span>
-										</div>
-									</div> 객관식-->
+									</c:if>
+									<c:if test="${examInfo.problemVo.type == 'OX문제'}">
+										<div class="OX">
 
-									<div class="givescore">
-										<span>점수</span> <input type="text" value="0"><span>/ 5</span>
+											<div>
+												<button id="O" class="btn btn-info">O</button>
+											</div>
+											<div>
+												<button id="X" class="btn btn-danger">X</button>
+											</div>
+
+										</div>
+									</c:if>
+									<c:if test="${examInfo.problemVo.type == '객관식'}">
+										<div class="multiple">
+
+											<c:forEach items="${examInfo.cList}" var="vo" varStatus="status">
+												<div class="row">
+													<input type="button" id="choice${vo.orderNo}" value="${vo.orderNo}" class="btn btn-info choicebtn"><span>${vo.choiceContent}</span>
+												</div>
+
+											</c:forEach>
+										</div>
+
+									</c:if>
+
+
+								</div>
+								<div class="givescore row">
+									<div class="col-xs-5"></div>
+									<div class="col-xs-5">
+										<span>점수</span> <input type="text" id = "mypoint"><span>/${examInfo.qeustionVo.point}</span>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-xs-5"></div>
 									<div class="col-xs-2">
-										<input type="button" value="점수 부여 확인" class="btn btn-primary">
+										<input type="button" value="점수 부여 확인" class="btn btn-primary" id = "pointgrant">
 									</div>
 									<div class="col-xs-3"></div>
 									<div class="col-xs-2">
@@ -240,7 +253,113 @@
 </body>
 
 <script type="text/javascript">
+	var joinNo = "${classInfo.joinVo.joinNo}";
+	var examNo = "${examInfo.examVo.examNo}";
+	var orderNum = "${examInfo.qeustionVo.orderNum}";
+
+	$.ajax({
+		url : '${pageContext.request.contextPath}/${url}/exam/selectanswer',
+		type : 'POST',
+		data : {
+			examNo : examNo,
+			orderNum : orderNum,
+			joinNo : joinNo
+		},
+		success : function(answer) {
+			console.log(answer)
+			document.getElementById("ineranswer").innerHTML = answer;
+			if ("${examInfo.problemVo.type}" == 'OX') {
+				if ("${examInfo.answer}" == 'O') {
+					$('#O').removeClass('btn-info');
+					$('#O').addClass('btn-primary');
+					$('#O').addClass('active');
+
+					$('#X').removeClass('active');
+					$('#X').removeClass('btn-warning', 'active');
+					$('#X').addClass('btn-danger');
+				} else {
+					$('#X').removeClass('btn-danger');
+					$('#X').addClass('btn-warning');
+					$('#X').addClass('active');
+
+					$('#O').removeClass('active');
+					$('#O').removeClass('btn-primary');
+					$('#O').addClass('btn-info');
+				}
+
+			} else if ("${examInfo.problemVo.type}" == '객관식') {
+				var ar = answer.split(",");
+
+				for (var i = 0; i < ar.length; i++) {
+					$("#choice" + ar[i]).removeClass('btn-info');
+					$("#choice" + ar[i]).addClass('btn-primary');
+					$("#choice" + ar[i]).addClass('active');
+
+				}
+
+			} else {
+
+				document.getElementById("shortans").value = answer;
+			}
+
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
 	
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/${url}/exam/getpoint",
+		type : "post",
+		//contentType : "application/json",
+		data : {
+			examNo : examNo,
+			orderNum : orderNum,
+			joinNo : joinNo
+		},
+		success : function(point) {
+			console.log("점수:"+point)
+			document.getElementById("mypoint").innerHTML = point;
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+
+	});
+	
+	$("#pointgrant").on("click", function() {
+		var point = document.getElementById('mypoint').value;
+		if(point > "${examInfo.qeustionVo.point}"){
+			alert('부여된될점수가 너무 큽니다.');
+			return false;
+		}
+		var joinNo = "${classInfo.joinVo.joinNo}";
+		var examNo = "${examInfo.examVo.examNo}";
+		var orderNum = "${examInfo.qeustionVo.orderNum}";
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/${url}/exam/grant",
+			type : "post",
+			//contentType : "application/json",
+			data : {
+			examNo : examNo,
+			orderNum : orderNum,
+			joinNo : joinNo
+			},
+			success : function(url) {
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+
+		});
+
+	});
+		
+	});
 </script>
 </html>
 

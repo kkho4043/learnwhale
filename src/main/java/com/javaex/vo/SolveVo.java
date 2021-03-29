@@ -5,6 +5,24 @@ public class SolveVo {
 	private int solveNo, joinNo, questionNo;
 	private String submitAnswer, attachmentFile, mypoint, status;
 	
+	
+	
+	public SolveVo() {
+		super();
+	}
+	
+	public SolveVo(int solveNo, int joinNo, int questionNo, String submitAnswer, String attachmentFile, String mypoint,
+			String status) {
+		super();
+		this.solveNo = solveNo;
+		this.joinNo = joinNo;
+		this.questionNo = questionNo;
+		this.submitAnswer = submitAnswer;
+		this.attachmentFile = attachmentFile;
+		this.mypoint = mypoint;
+		this.status = status;
+	}
+
 	public int getSolveNo() {
 		return solveNo;
 	}

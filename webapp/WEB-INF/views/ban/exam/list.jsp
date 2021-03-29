@@ -77,8 +77,10 @@
 							</div>
 
 							<div class="addtest ">
+								<c:if test="${classInfo.joinVo.type == '선생님'}">
+									<a href="${pageContext.request.contextPath}/${url}/exam/grantform"><button class="btn btn-primary btn-sm">시험출제</button></a>
+								</c:if>
 
-								<a href="${pageContext.request.contextPath}/${url}/exam/grantform"><button class="btn btn-primary btn-sm">시험출제</button></a>
 							</div>
 						</div>
 						<div class="row">
@@ -93,7 +95,10 @@
 										<th>상태</th>
 										<th>참석자</th>
 										<th>형태</th>
-										<th>수정</th>
+										<c:if test="${classInfo.joinVo.type == '선생님'}">
+											<th>수정</th>
+										</c:if>
+
 									</tr>
 								</thead>
 								<tbody>
@@ -104,7 +109,7 @@
 
 										<tr>
 											<td>${vo.examNo}</td>
-											<td><a href="${pageContext.request.contextPath}/${url}/exam/title?examNo=${vo.examNo}">${vo.examTitle}</a></td>
+											<td><a href="${pageContext.request.contextPath}/${url}/exam/title?examNo=${vo.examNo}&joinNo=${classInfo.joinVo.joinNo}">${vo.examTitle}</a></td>
 											<td>${vo.problemAmount}</td>
 											<td>${vo.startDate}</td>
 											<td>${vo.endDate}</td>
@@ -124,7 +129,11 @@
 												</c:choose></td>
 											<td>${vo.numSubmit}/${vo.attendNum}</td>
 											<td>${vo.examType}</td>
-											<td><a href="${pageContext.request.contextPath}/${url}/exam/exammodifyfrom?examNo=${vo.examNo}"><button class="btn btn-default btn-xs">수정</button></a></td>
+											<c:if test="${classInfo.joinVo.type == '선생님'}">
+												<td><a href="${pageContext.request.contextPath}/${url}/exam/exammodifyfrom?examNo=${vo.examNo}"><button
+															class="btn btn-default btn-xs">수정</button></a></td>
+											</c:if>
+
 										</tr>
 									</c:forEach>
 

@@ -13,6 +13,7 @@ import com.javaex.vo.ExamVo;
 import com.javaex.vo.JoinUserVo;
 import com.javaex.vo.ProblemVo;
 import com.javaex.vo.QuestionVo;
+import com.javaex.vo.SolveVo;
 
 @Repository
 public class ExamDao {
@@ -20,18 +21,28 @@ public class ExamDao {
 	@Autowired
 	private SqlSession sqlSession;
 
+	// 문제출제 시작
 	public ExamVo examinsert(ExamVo examVo) {
-		sqlSession.insert("exam.examinsert",examVo);
-		return examVo; 
+		sqlSession.insert("exam.examinsert", examVo);
+		return examVo;
 	}
-	public void questioninsert(int problemNo,int point , int order,int examNo) {
+
+	public void questioninsert(int problemNo, int point, int order, int examNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("problemNo", problemNo);
 		map.put("point", point);
 		map.put("order", order);
 		map.put("examNo", examNo);
-		sqlSession.insert("exam.questioninsert",map);
+		sqlSession.insert("exam.questioninsert", map);
 	}
+
+	public void insertsolve(int i, int j) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("joinNo", i);
+		map.put("examNo", j);
+		sqlSession.insert("exam.insertsolve", map);
+	}
+	// 문제출제 끝
 
 	public List<ExamVo> examList(int classNo, String keyward, int startNum, int endNum) {
 		System.out.println("[examDao.examList]");
@@ -57,7 +68,7 @@ public class ExamDao {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return 0;	
+		return 0;
 	}
 
 	public int selectproTotalCnt(int examNo) {
@@ -85,28 +96,28 @@ public class ExamDao {
 
 		return sqlSession.selectList("exam.examprolist", map);
 	}
-	
+
 	public ExamVo selectExam(int examNo) {
 		return sqlSession.selectOne("exam.selectexam", examNo);
 	}
-	
+
 	public List<QuestionVo> selectquestion(int examNo) {
 		return sqlSession.selectList("exam.selectquestion", examNo);
 	}
-	
-	//시험 수정
+
+	// 시험 수정
 	public void examupdate(ExamVo examVo) {
 		sqlSession.update("exam.examupdate", examVo);
 	}
-	
-	//시험수정시 삭제
+
+	// 시험수정시 삭제
 	public void qeustiondelete(int examNo) {
 		sqlSession.delete("exam.qeustiondelete", examNo);
 	}
-	
-	//시험 수정시 업데이트(입력)
-	public void questionupdate(int examNo, int problemNo,int point , int order) {
-		
+
+	// 시험 수정시 업데이트(입력)
+	public void questionupdate(int examNo, int problemNo, int point, int order) {
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("examNo", examNo);
 		map.put("problemNo", problemNo);
@@ -114,29 +125,90 @@ public class ExamDao {
 		map.put("order", order);
 		sqlSession.insert("exam.questionupdate", map);
 	}
-	
+
 	public ExamVo examstart(int examNo) {
-		
+
 		return sqlSession.selectOne("exam.examstart", examNo);
 	}
+
 	public int getAttendance(int joinNo, int examNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("joinNo", joinNo);
 		map.put("examNo", examNo);
-		return sqlSession.selectOne("exam. getAttendance", map);
+		return sqlSession.selectOne("exam.getAttendance", map);
 	}
-	public QuestionVo startquestion(int orderNum,int examNo) {
+
+	// 문제풀기 시작
+	public QuestionVo startquestion(int orderNum, int examNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("orderNum",orderNum);
+		map.put("orderNum", orderNum);
 		map.put("examNo", examNo);
-		return sqlSession.selectOne("exam.startquestion",map);
+		return sqlSession.selectOne("exam.startquestion", map);
 	}
+
 	public ProblemVo selectproblem(int problemNo) {
-		return sqlSession.selectOne("exam.selectproblem",problemNo);
+		return sqlSession.selectOne("exam.selectproblem", problemNo);
 	}
+
 	public List<ChoiceVo> selectchoice(int problemNo) {
-		return sqlSession.selectList("exam.selectchoice",problemNo);
+		return sqlSession.selectList("exam.selectchoice", problemNo);
 	}
-	
-	
+
+	public List<Integer> selectjusers(int classNo) {
+		return sqlSession.selectList("exam.selectjusers", classNo);
+	}
+
+	public List<Integer> selectsquestion(int examNo) {
+		return sqlSession.selectList("exam.selectsquestion", examNo);
+	}
+	// 문제풀기 끝
+
+	// 정답입력
+	public void updatesolve(QuestionVo questionVo, SolveVo solveVo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("orderNum", questionVo.getOrderNum());
+		map.put("examNo", questionVo.getExamNo());
+		
+		map.put("joinNo", solveVo.getJoinNo());
+		map.put("answer", solveVo.getSubmitAnswer());
+		sqlSession.update("exam.updateSolve", map);
+	}
+	//파일 입력
+	public void updatefile(QuestionVo questionVo, SolveVo solveVo, String saveName) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("orderNum", questionVo.getOrderNum());
+		map.put("examNo", questionVo.getExamNo());
+		
+		map.put("joinNo", solveVo.getJoinNo());
+		map.put("saveName", saveName);		
+		sqlSession.update("exam.updatefSolve", map);
+	}
+
+	public String selectanswer(int examNo, int orderNum, int joinNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("examNo", examNo);
+		map.put("orderNum", orderNum);
+		map.put("joinNo", joinNo);
+		return sqlSession.selectOne("exam.selectanswer", map);
+	}
+
+	public void examfinish(int joinNo, int examNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("examNo", examNo);
+		map.put("joinNo", joinNo);
+		sqlSession.update("exam.examfinish", map);
+	}
+
+	public int getpoint(int examNo, int orderNum, int joinNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("examNo", examNo);
+		map.put("orderNum", orderNum);
+		map.put("joinNo", joinNo);
+		
+		if(sqlSession.selectOne("exam.getpoint", map) == null) {
+			return 0;
+		}
+		return sqlSession.selectOne("exam.getpoint", map);
+	}
+
 }

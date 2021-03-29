@@ -66,16 +66,18 @@
 
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="main-content-area">
+						<c:if test="${classInfo.joinVo.type == '선생님'}">
+							<div id="student-list" class="col-xs-2" style="padding-right: 0px; padding-left: 0px; margin-left: -15px; width: 145px; height: 352px;">
+								<ol>
+									<c:forEach items="${upMap.eulist}" var="vo" varStatus="status">
 
-						<div id="student-list" class="col-xs-2" style="padding-right: 0px; padding-left: 0px; margin-left: -15px; width: 145px; height: 352px;">
-							<ol>
-								<c:forEach items="${upMap.eulist}" var="vo" varStatus="status">
+										<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${vo.joinNo}">${vo.username}(${vo.result})</a></li>
 
-									<li><a href="${pageContext.request.contextPath}/abc/exam/problemlist?examNo=${param.examNo}&joinNo=${vo.joinNo}">${vo.username}(${vo.result})</a></li>
+									</c:forEach>
+								</ol>
+							</div>
+						</c:if>
 
-								</c:forEach>
-							</ol>
-						</div>
 						<!-- //student-list -->
 
 						<div id="report-area" class="col-xs-10">
@@ -103,7 +105,7 @@
 													<c:forEach items="${upMap.eplist}" var="vo" varStatus="status">
 														<tr>
 															<td>${vo.orderNum}</td>
-															<td class="text-left"><a href="">${vo.problemTitle}</a></td>
+															<td class="text-left"><a href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${param.examNo}&orderNum=${vo.orderNum}&joinNo=${classInfo.joinVo.joinNo}">${vo.problemTitle}</a></td>
 															<td>${vo.result}</td>
 															<td>${vo.type}</td>
 														</tr>
@@ -123,13 +125,14 @@
 														<li><a
 															href="${pageContext.request.contextPath}/abc/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.startPageBtnNo-1}">◀</a></li>
 													</c:if>
-													
+
 													<c:forEach begin="${upMap.startPageBtnNo}" end="${upMap.endPageBtnNo}" step="1" var="page">
 														<li><a href="${pageContext.request.contextPath}/abc/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${page}">${page}</a></li>
 													</c:forEach>
 
 													<c:if test="${upMap.next == true}">
-														<li><a href="${pageContext.request.contextPath}/abc/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.endPageBtnNo+1}">▶</a></li>
+														<li><a
+															href="${pageContext.request.contextPath}/abc/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.endPageBtnNo+1}">▶</a></li>
 													</c:if>
 												</ul>
 											</nav>
