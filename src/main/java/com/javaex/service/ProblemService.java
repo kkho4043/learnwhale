@@ -26,7 +26,7 @@ public class ProblemService {
 	// 카테고리
 	public List<CategoryVo> getCategory(int userNo) {
 		System.out.println("CateService- getCategory");
-
+		
 		return proDao.selectCategory(userNo);
 	}
 
@@ -93,6 +93,7 @@ public class ProblemService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			proDao.ProblemInsert(proVo);
 
 		} else {
 

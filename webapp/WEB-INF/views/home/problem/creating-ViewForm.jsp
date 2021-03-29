@@ -69,12 +69,12 @@
 														</c:when>
 														<c:when test="${proVo.type == 'OX문제'}">
 															<div class="col-sm-12 problemType">
-																<input type="radio" class="oxF" id="typeOx" name="type" value="OX문제">
+																<input type="radio" class="oxF" id="typeOx" name="type" value="OX문제" checked="checked">
 															</div>
 														</c:when>
 														<c:otherwise>
 															<div class="col-sm-12 problemType">
-																<input type="radio" class="sjF" id="typeSj" name="type" value="주관식">
+																<input type="radio" class="sjF" id="typeSj" name="type" value="주관식" checked="checked">
 															</div>
 														</c:otherwise>
 													</c:choose>
@@ -116,7 +116,7 @@
 															<input type="text" class="form-control" placeholder="이미지를 넣어주세요.">
 														</div>
 														<div class="form-group" id="img-file">
-															<input type="file" name="Image" value="">
+															<input type="file" name="Image" value="${proVo.contentImage }">
 														</div>
 														<div class="form-group" id="last-makeType">
 															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description" value="${proVo.description}">
@@ -125,37 +125,46 @@
 														<!-- //col-sm-12 -->
 														<div class="mc-Area">
 															<div class="row answer-content">
-																<div class="col-xs-12">
-																	<h4>각 문항에 내용을 입력해주세요.</h4>
-																</div>
+																<c:choose>
+																	<c:when test="${proVo.type == '객관식'}">
+																		<div class="col-xs-12">
+																			<h4>각 문항에 내용을 입력해주세요.</h4>
+																		</div>
+																	</c:when>
+																</c:choose>
 																<c:forEach items="${choVo}" var="choVo" varStatus="status">
-																	<div class="col-sm-1 answer-num">
-																		<strong>${status.count}</strong>
-																	</div>
-																	<div class="col-xs-9">
-																		<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="${choVo.choiceContent}">
-																	</div>
 																	<c:choose>
-																		<c:when test="${proVo.answer == status.count}">
-																			<div class="col-xs-2">
-																				<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}" checked="checked"> <label
-																					for="check-second">정답체크</label>
+																		<c:when test="${proVo.type == '객관식'}">
+																			<div class="col-sm-1 answer-num">
+																				<strong>${status.count}</strong>
 																			</div>
+																			<div class="col-xs-9">
+																				<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="${choVo.choiceContent}">
+																			</div>
+																			<c:choose>
+																				<c:when test="${proVo.answer == status.count}">
+																					<div class="col-xs-2">
+																						<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}" checked="checked"> <label
+																							for="check-second">정답체크</label>
+																					</div>
+																				</c:when>
+																				<c:otherwise>
+																					<div class="col-xs-2">
+																						<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}"> <label for="check-second">정답체크</label>
+																					</div>
+																				</c:otherwise>
+																			</c:choose>
+																			<div class="col-xs-12 fileArea">
+																				<input type="file" name="Image1" id="asd">
+																			</div>
+																			<div class="col-xs-12 fileArea"></div>
 																		</c:when>
-																		<c:otherwise>
-																			<div class="col-xs-2">
-																				<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}"> <label for="check-second">정답체크</label>
-																			</div>
-																		</c:otherwise>
 																	</c:choose>
-																	<div class="col-xs-12 fileArea">
-																		<input type="file" name="Image1" id="asd">
-																	</div>
 																</c:forEach>
 															</div>
 															<!-- //answer-content -->
 
-															<!-- //fileArea -->
+
 
 
 															<c:choose>
@@ -216,16 +225,20 @@
 															</c:choose>
 
 															<!-- 주관식 문제 시작 -->
-															<div class="row answer-content sj-Area">
-																<div class="col-sm-12">
-																	<h4>정답을 적어주세요.</h4>
-																</div>
-																<div class="col-sm-12" id="last-input">
-																	<input type="text" class="form-control answer" name="answer" value="">
-																</div>
-															</div>
-															<!-- //answer-content -->
-															<!-- 주관식 문제 끝 -->
+															<c:choose>
+																<c:when test="${proVo.type == '주관식'}">
+																	<div class="row answer-content sj-Area">
+																		<div class="col-sm-12">
+																			<h4>정답을 적어주세요.</h4>
+																		</div>
+																		<div class="col-sm-12" id="last-input">
+																			<input type="text" class="form-control answer" name="answer" value="${proVo.answer}">
+																		</div>
+																	</div>
+																	<!-- //answer-content -->
+																	<!-- 주관식 문제 끝 -->
+																</c:when>
+															</c:choose>
 
 
 														</div>
@@ -270,57 +283,6 @@
 
 </body>
 <script type="text/javascript">
-	/* 시작할때 */
-	$(document).ready(function() {
-
-		/* 입력폼출력 */
-		$(".mc-Area").show();
-		$(".ox-Area").hide();
-		$(".sj-Area").hide();
-
-	});
-
-	/* OX문제방식 선택할때 */
-	$(".oxF").on("click", function() {
-
-		/* 폼초기화 */
-		formReset();
-
-		/* 입력폼출력 */
-		$(".mc-Area").hide();
-		$(".ox-Area").show();
-		$(".sj-Area").hide();
-
-		$('.oxF').prop('checked', true);
-	});
-
-	/* 주관식문제방식 선택할때 */
-	$(".sjF").on("click", function() {
-		/* 폼초기화 */
-		formReset();
-
-		/* 입력폼출력 */
-		$(".mc-Area").hide();
-		$(".ox-Area").hide();
-		$(".sj-Area").show();
-
-		$('.sjF').prop('checked', true);
-	});
-
-	/* 객관식문제방식 선택할때 */
-	$(".mcF").on("click", function() {
-
-		/* 폼초기화 */
-		formReset();
-
-		/* 입력폼출력 */
-		$(".mc-Area").show();
-		$(".ox-Area").hide();
-		$(".sj-Area").hide();
-
-		$('.mcF').prop('checked', true);
-	});
-
 	/* 빈칸 여부 체크하기 */
 	$("#prblemForm").on("submit", function() {
 
