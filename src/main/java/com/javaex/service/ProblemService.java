@@ -162,7 +162,7 @@ public class ProblemService {
 	}
 
 	// 문제 수정
-	public void ProblemModify(MultipartFile file, ProblemVo proVo, String choice, Map<String, Object> map) {
+	public void ProblemModify(MultipartFile file, ProblemVo proVo, String choiceContent, String choiceNo, Map<String, Object> map) {
 		System.out.println("ProblemService- ProblemModify");
 		System.out.println("파일이름" + file.getOriginalFilename());
 		String saveDir = "";
@@ -170,7 +170,7 @@ public class ProblemService {
 		String saveName;
 		String filePath;
 
-		System.out.println("서비스 초이스 :  " + choice);
+		System.out.println("서비스 초이스 :  " + choiceContent);
 
 		if (file.getSize() > 0) {
 			// 컨텐츠에 이미지가 있을때
@@ -203,22 +203,24 @@ public class ProblemService {
 		} else {
 
 			// 이미지가 없을때
-			System.out.println("serviceddd" + proVo);
 			proVo.setAnswer(proVo.getAnswer().replace(",", ""));
+			System.out.println("asdasd" + proVo);
+			
 			proDao.ProblemModify(proVo);
 		}
 
-		String[] arr = choice.split(",");
-		System.out.println(choice.length());
+		String[] choiceArr = choiceContent.split(",");
+		String[] choiceNoArr = choiceNo.split(",");
+		System.out.println(choiceContent.length());
 
 		if (proVo.getType().equals("객관식")) {
 			for (int i = 1; i <= 4; i++) {
 
 				// 보기 1, 2,3,4 의 문자열이 있으면
-				if (choice.length() > 3) {
-					System.out.println("proservice:" + choice);
+				if (choiceContent.length() > 3) {
+					System.out.println("proservice:" + choiceContent);
 					filePath = "";
-					proDao.ChoiceModify(filePath, arr[i - 1], proVo.getProblemNo(), i);
+					proDao.ChoiceModify(filePath, choiceArr[i - 1], choiceNoArr[i - 1], proVo.getProblemNo(), i);
 				} else {
 					// 이미지가 4개 모두 들어왔다면 여기를 탄다
 					file = (MultipartFile) map.get("file" + i);
@@ -242,7 +244,7 @@ public class ProblemService {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					proDao.ChoiceModify(filePath, "", proVo.getProblemNo(), i);
+					proDao.ChoiceModify(filePath, "", "", proVo.getProblemNo(), i);
 				}
 			}
 

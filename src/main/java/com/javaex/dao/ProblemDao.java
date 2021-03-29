@@ -95,13 +95,20 @@ public class ProblemDao {
 	}
 
 	// 보기 파일 수정
-	public int ChoiceModify(String filepath,String choiceContent,int proNo, int orderNo) {
+	public int ChoiceModify(String filepath,String choiceContent, String choiceNo, int proNo, int orderNo) {
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		
+		map.put("choiceNo", choiceNo);
 		map.put("choiceContent", choiceContent);
 		map.put("filepath", filepath);
 		map.put("proNo", proNo);
+		
+		System.out.println("asd");
+		System.out.println(choiceNo);
+		System.out.println(choiceContent);
+		System.out.println(filepath);
+		System.out.println("asd");
 
 		return sqlSession.update("category.ChoiceModify", map);
 	}

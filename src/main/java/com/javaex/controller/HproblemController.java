@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javaex.service.ProblemService;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.ChoiceVo;
 import com.javaex.vo.ProblemVo;
 
 @Controller
@@ -121,7 +122,7 @@ public class HproblemController {
 
 	// 문제 보기
 	@RequestMapping(value = "/creating-ViewForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String creatingViewForm(Model model, int proNo, HttpSession session, ProblemVo proVo) {
+	public String creatingViewForm(Model model, int proNo, HttpSession session, ProblemVo proVo, ChoiceVo choVo) {
 		System.out.println("[ProblemController.view()]");
 		
 		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
@@ -129,7 +130,6 @@ public class HproblemController {
 		model.addAttribute("cateList", proService.getCategory(1));
 		
 		System.out.println("22222222222222222222222:   " + proVo.getCateNo());
-		
 		model.addAttribute("choVo", proService.ChoiceView(proNo));
 		model.addAttribute("proVo", proService.Problemview(proNo));
 		return "home/problem/creating-ViewForm";
@@ -139,6 +139,7 @@ public class HproblemController {
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modify(@ModelAttribute ProblemVo proVo, MultipartHttpServletRequest request,
 			@RequestParam(value = "choiceContent", required = false, defaultValue = "") String choiceContent,
+			@RequestParam(value = "choiceNo", required = false, defaultValue = "") String choiceNo,
 			@RequestParam(value = "Image", required = false, defaultValue = "") MultipartFile file,
 			@RequestParam(value = "Image1", required = false, defaultValue = "") MultipartFile file1,
 			@RequestParam(value = "Image2", required = false, defaultValue = "") MultipartFile file2,
@@ -150,12 +151,15 @@ public class HproblemController {
 		System.out.println("초이스 스트링" + choiceContent);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("choiceContent", choiceContent);
+		map.put("choiceNo", choiceNo);
 		map.put("file1", file1);
 		map.put("file2", file2);
 		map.put("file3", file3);
 		map.put("file4", file4);
-
-		proService.ProblemModify(file, proVo, choiceContent, map);
+		
+		System.out.println("controller2222 : " + choiceContent);
+		
+		proService.ProblemModify(file, proVo, choiceContent, choiceNo, map);
 
 		return "redirect:/myclass/problem/problemList?cateNo=" + proVo.getCateNo();
 	}

@@ -91,7 +91,9 @@
 
 	<select id="problemView" parameterType="int" resultType="com.javaex.vo.ProblemVo">
 		<![CDATA[
-			select cate_no cateNo, 
+			select 
+					problem_no problemNo,
+					cate_no cateNo, 
 					 type type,
 					 problem_title problemTitle,
 					 content content,
@@ -118,9 +120,10 @@
 	<update id="ProblemModify" parameterType="ProblemVo">
 		<![CDATA[
 			update problem
-			set problem_title = #{problemTitle},
+			set cate_no = #{cateNo},
+				 problem_title = #{problemTitle},
 				 content = #{content},
-				 content_image = #{contentImage},
+				 content_image = #{contentImage, jdbcType=VARCHAR},
 				 description = #{description},
 				 answer = #{answer}
 			where problem_no = #{problemNo}
@@ -131,8 +134,8 @@
 		<![CDATA[
 			update choice
 			set choice_content = #{choiceContent},
-				 attachment_file = #{attachmentFile}
-			where choice_no = #{choiceNo} 
+				 attachment_file = #{filepath}
+			where choice_no = #{choiceNo}
 		]]>
 	</update>
 
