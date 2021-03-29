@@ -119,7 +119,7 @@
 				</c:choose>
 			</c:forEach>
 			
-			<script type="text/javascript">
+		<!-- 	<script type="text/javascript">
 			
 			$("document").ready(function(){
 				
@@ -179,13 +179,9 @@
 				
 			});
 						
-						
-						
-				
-				
-					
-					
-				</script>
+			</script> -->
+			
+			
 			<ul class="contextmenu">
 	  			<li><a href="#">등록</a></li>
 	  			<li><a href="#">수정</a></li>
