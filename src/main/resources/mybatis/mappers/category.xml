@@ -105,7 +105,8 @@
 
 	<select id="choiceView" parameterType="int" resultType="com.javaex.vo.ChoiceVo">
 		<![CDATA[
-			select  choice_content choiceContent,
+			select  choice_no choiceNo,
+					 choice_content choiceContent,
 			         attachment_file attachmentFile,
 			         order_no orderNo
 			from choice
@@ -114,11 +115,24 @@
 		]]>
 	</select>
 
-	<update id="ProblemModefy" parameterType="ProblemVo">
+	<update id="ProblemModify" parameterType="ProblemVo">
 		<![CDATA[
 			update problem
-			set problem_title = #{problemTitle}
+			set problem_title = #{problemTitle},
+				 content = #{content},
+				 content_image = #{contentImage},
+				 description = #{description},
+				 answer = #{answer}
 			where problem_no = #{problemNo}
+		]]>
+	</update>
+	
+	<update id="ChoiceModify" parameterType="map">
+		<![CDATA[
+			update choice
+			set choice_content = #{choiceContent},
+				 attachment_file = #{attachmentFile}
+			where choice_no = #{choiceNo} 
 		]]>
 	</update>
 

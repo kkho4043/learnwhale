@@ -121,10 +121,14 @@ public class HproblemController {
 
 	// 문제 보기
 	@RequestMapping(value = "/creating-ViewForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String creatingViewForm(Model model, int proNo, HttpSession session) {
+	public String creatingViewForm(Model model, int proNo, HttpSession session, ProblemVo proVo) {
 		System.out.println("[ProblemController.view()]");
 		
 		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
+		
+		model.addAttribute("cateList", proService.getCategory(1));
+		
+		System.out.println("22222222222222222222222:   " + proVo.getCateNo());
 		
 		model.addAttribute("choVo", proService.ChoiceView(proNo));
 		model.addAttribute("proVo", proService.Problemview(proNo));

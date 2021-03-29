@@ -26,7 +26,7 @@ public class ProblemService {
 	// 카테고리
 	public List<CategoryVo> getCategory(int userNo) {
 		System.out.println("CateService- getCategory");
-		
+
 		return proDao.selectCategory(userNo);
 	}
 
@@ -52,7 +52,7 @@ public class ProblemService {
 	// 문제 리스트
 	public List<ProblemVo> getProblem(int cateNo) {
 		System.out.println("ProblemService- getProblem");
-		
+
 		System.out.println(proDao.selectProblem(cateNo) + "service");
 
 		return proDao.selectProblem(cateNo);
@@ -71,6 +71,8 @@ public class ProblemService {
 
 		if (file.getSize() > 0) {
 			// 컨텐츠에 이미지가 있을때
+
+			proVo.setAnswer(proVo.getAnswer().replace(",", ""));
 
 			// db저장할 정보 수집
 			saveDir = "C:\\javaStudy\\upload";
@@ -102,14 +104,14 @@ public class ProblemService {
 			proVo.setAnswer(proVo.getAnswer().replace(",", ""));
 			proDao.ProblemInsert(proVo);
 		}
-		
+
 		String[] arr = choice.split(",");
 		System.out.println(choice.length());
-		
+
 		if (proVo.getType().equals("객관식")) {
 			for (int i = 1; i <= 4; i++) {
 
-				//보기 1, 2,3,4 의 문자열이 있으면 
+				// 보기 1, 2,3,4 의 문자열이 있으면
 				if (choice.length() > 3) {
 					System.out.println("proservice:" + choice);
 					filePath = "";
@@ -148,14 +150,14 @@ public class ProblemService {
 	// 문제 보기
 	public ProblemVo Problemview(int proNo) {
 		System.out.println("ProblemService- view");
-		
+
 		return proDao.problemView(proNo);
 	}
-	
-	//객관식 보기
-	public List<ChoiceVo> ChoiceView (int proNo){
+
+	// 객관식 보기
+	public List<ChoiceVo> ChoiceView(int proNo) {
 		System.out.println("ChoiceView- view");
-		
+
 		return proDao.choiceView(proNo);
 	}
 
@@ -168,11 +170,12 @@ public class ProblemService {
 		String saveName;
 		String filePath;
 
-		System.out.println("asdasd :  " + choice);
-		System.out.println("asdasddddd:  " + choice.length());
+		System.out.println("서비스 초이스 :  " + choice);
 
-		if (proVo.getContentImage() != null) {
+		if (file.getSize() > 0) {
 			// 컨텐츠에 이미지가 있을때
+
+			proVo.setAnswer(proVo.getAnswer().replace(",", ""));
 
 			// db저장할 정보 수집
 			saveDir = "C:\\javaStudy\\upload";
@@ -195,66 +198,66 @@ public class ProblemService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			proDao.ProblemModify(proVo);
 
 		} else {
+
 			// 이미지가 없을때
 			System.out.println("serviceddd" + proVo);
 			proVo.setAnswer(proVo.getAnswer().replace(",", ""));
 			proDao.ProblemModify(proVo);
-
-			if (map == null) {
-				return;
-			} else if (file != null || proVo != null) {
-				return;
-			}
 		}
 
 		String[] arr = choice.split(",");
 		System.out.println(choice.length());
-		for (int i = 1; i <= 4; i++) {
 
-			// 이미지가 모두 들어와도 여긴 절대 못탄다.
-			if (choice.length() > 3) {
+		if (proVo.getType().equals("객관식")) {
+			for (int i = 1; i <= 4; i++) {
 
-				filePath = "";
-				proDao.ChoiceModify(filePath, arr[i - 1], proVo.getProblemNo(), i);
-			} else {
-				// 이미지가 4개 모두 들어왔다면 여기를 탄다
-				file = (MultipartFile) map.get("file" + i);
-				System.out.println("exName: " + file.getOriginalFilename());
-				exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+				// 보기 1, 2,3,4 의 문자열이 있으면
+				if (choice.length() > 3) {
+					System.out.println("proservice:" + choice);
+					filePath = "";
+					proDao.ChoiceModify(filePath, arr[i - 1], proVo.getProblemNo(), i);
+				} else {
+					// 이미지가 4개 모두 들어왔다면 여기를 탄다
+					file = (MultipartFile) map.get("file" + i);
+					System.out.println("exName: " + file.getOriginalFilename());
+					exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
-				saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+					saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 
-				filePath = saveDir + "\\" + saveName;
+					filePath = saveDir + "\\" + saveName;
 
-				proVo.setContentImage(saveName);
+					proVo.setContentImage(saveName);
 
-				try {
-					byte[] fileData = file.getBytes();
-					OutputStream out = new FileOutputStream(filePath);
-					BufferedOutputStream bos = new BufferedOutputStream(out);
+					try {
+						byte[] fileData = file.getBytes();
+						OutputStream out = new FileOutputStream(filePath);
+						BufferedOutputStream bos = new BufferedOutputStream(out);
 
-					bos.write(fileData);
-					bos.close();
+						bos.write(fileData);
+						bos.close();
 
-				} catch (IOException e) {
-					e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					proDao.ChoiceModify(filePath, "", proVo.getProblemNo(), i);
 				}
 			}
-			proDao.ChoiceModify(filePath, "", proVo.getProblemNo(), i);
+
 		}
 	}
-	
-	public int delete (ProblemVo proVo) {
-		
+
+	public int delete(ProblemVo proVo) {
+
 		return proDao.delete(proVo);
 	}
-	
-	//객관식 보기
-		public List<CategoryVo> SubCategoryByGroupNo (CategoryVo cateVo){
-			System.out.println("SubCategoryByGroupNo");
-			
-			return proDao.SubCategoryByGroupNo(cateVo);
-		}
+
+	// 객관식 보기
+	public List<CategoryVo> SubCategoryByGroupNo(CategoryVo cateVo) {
+		System.out.println("SubCategoryByGroupNo");
+
+		return proDao.SubCategoryByGroupNo(cateVo);
+	}
 }

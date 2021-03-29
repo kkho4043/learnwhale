@@ -91,7 +91,7 @@ public class ProblemDao {
 	public int ProblemModify(ProblemVo proVo) {
 		System.out.println("ProDao- ProblemModefy");
 
-		return sqlSession.update("category.ProblemModefy", proVo);
+		return sqlSession.update("category.ProblemModify", proVo);
 	}
 
 	// 보기 파일 수정
@@ -103,7 +103,7 @@ public class ProblemDao {
 		map.put("filepath", filepath);
 		map.put("proNo", proNo);
 
-		return sqlSession.insert("category.ChoiceModify", map);
+		return sqlSession.update("category.ChoiceModify", map);
 	}
 	
 	public int delete(ProblemVo proVo) {

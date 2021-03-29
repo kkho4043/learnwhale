@@ -79,6 +79,7 @@
 														</c:otherwise>
 													</c:choose>
 												</div>
+												
 
 												<div class="row col-xs-9">
 													<c:choose>
@@ -99,15 +100,14 @@
 														</c:otherwise>
 													</c:choose>
 												</div>
-												<input type="hidden" name="cateNo" value="${param.cateNo}">
 												<!-- //row -->
-
+												<input type="hidden" name="cateNo" value="${param.cateNo}">	
+												
 												<div class="row">
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
-															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle"
-																value="${proVo.problemTitle}">
+															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="${proVo.problemTitle}">
 														</div>
 														<div class="form-group">
 															<input type="text" class="form-control" id="content" placeholder="문제를 입력해주세요." name="content" value="${proVo.content}">
@@ -155,7 +155,7 @@
 																				</c:otherwise>
 																			</c:choose>
 																			<div class="col-xs-12 fileArea">
-																				<input type="file" name="Image1" id="asd">
+																				<input type="file" name="Image${status.count}" id="asd">
 																			</div>
 																			<div class="col-xs-12 fileArea"></div>
 																		</c:when>
@@ -169,12 +169,12 @@
 
 															<c:choose>
 																<c:when test="${proVo.type == 'OX문제'}">
-																	<!-- ox문제 시작 -->
+																	
 																	<div class="row ox-Area">
 																		<div class="col-xs-12">
 																			<h4>정답을 선택해주세요</h4>
 																		</div>
-																		<!-- //col-sm-12 -->
+																	
 																		<div class="col-xs-6">
 																			<c:choose>
 																				<c:when test="${proVo.answer == 'O' }">
@@ -217,10 +217,9 @@
 																				</c:otherwise>
 																			</c:choose>
 																		</div>
-																		<!-- //col-sm-6 -->
+																	
 																	</div>
-																	<!-- //row -->
-																	<!-- ox문제 끝 -->
+																
 																</c:when>
 															</c:choose>
 
@@ -235,8 +234,7 @@
 																			<input type="text" class="form-control answer" name="answer" value="${proVo.answer}">
 																		</div>
 																	</div>
-																	<!-- //answer-content -->
-																	<!-- 주관식 문제 끝 -->
+																
 																</c:when>
 															</c:choose>
 
@@ -248,8 +246,8 @@
 												</div>
 
 												<div class="col-xs-4">
-													<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${proVo.cateNo}"><button type="button" id="out"
-															class="btn btn-danger">나가기</button></a>
+													<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${proVo.cateNo}">
+													<button type="button" id="out" class="btn btn-danger">나가기</button></a>
 												</div>
 												<div class="col-xs-5">
 													<button type="submit" class="btn btn-primary" id="save">수정하기</button>
