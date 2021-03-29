@@ -15,7 +15,9 @@
 					<li class="nav"><a href="">OVERVIEW</a></li>
 					<li class="nav"><a href="">FEATURES</a></li>
 					<li class="nav"><a href="">SERVICE</a></li>
-					<li class="nav"><a id="myclass" href="">마이클래스</a></li>
+					<c:if test="${authUser != null }">
+						<li class="nav"><a id="myclass" href="${pageContext.request.contextPath}/myclass/list">마이클래스</a></li>
+					</c:if>	
 				</ul>
 			</div>
 			<c:choose>
