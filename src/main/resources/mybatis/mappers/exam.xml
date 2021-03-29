@@ -35,10 +35,35 @@
 	
 	]]>
 	</insert>
+	<!--시험 출제시 solve insert를위한 select -->
+	<select id="selectjusers" resultType="int" parameterType="int">
+		<![CDATA[
+			select      
+				join_no            
+			from  join_users
+			where class_no = #{classNo}
+			and type != '선생님'
+		]]>
+	</select>
+
+	<select id="selectsquestion" resultType="int" parameterType="int">
+		<![CDATA[
+			select      
+			    question_no          
+			from question
+			where exam_no = #{examNo}
+		]]>
+	</select>
+	<insert id="insertsolve" parameterType="map">
+		<![CDATA[
+			insert into solve
+			values(seq_solve_no.nextval,#{joinNo} ,#{examNo} ,null,null,null,'출제')
+		]]>
+	</insert>
 
 	<select id="examList" resultType="ExamVo" parameterType="map">
 	<![CDATA[
-			select 
+select 
         r.rnum,
         r.classNo,
         r.examNo,
@@ -84,6 +109,7 @@ from(select
                                                                             count(q.question_no) count
                                                                       from join_users j, solve s ,question q
                                                                       where j.join_no = s.join_no
+                                                                      and j.type != '선생님'
                                                                       and s.question_no = q.question_no
                                                                       and (s.status = '제출' or s.status = '완료')
                                                                       group by j.join_no , q.exam_no
@@ -98,7 +124,9 @@ from(select
                                                                                                                                         c.class_no,
                                                                                                                                         count(join_no) count
                                                                                                                                         from class c, join_users j
+                                                                                                                                       
                                                                                                                                         where c.class_no = j.class_no
+                                                                                                                                        and j.type != '선생님'
                                                                                                                                         group by c.class_no)at
                 where e.exam_no= can.exam_no(+) 
                 and e.exam_no = cn.exam_no
@@ -210,6 +238,7 @@ from(select
 		               where e.exam_no = q.exam_no
 		               and e.class_no = c.class_no
 		               and j.class_no = c.class_no
+		               and j.type != '선생님'
 		               group by j.user_no,e.exam_no,j.join_no) al , (SELECT
 					                                                        e.exam_no,
 					                                                        j.user_no,
@@ -220,6 +249,7 @@ from(select
 				                                                     and e.class_no = c.class_no
 				                                                     and j.class_no = c.class_no
 				                                                     and j.join_no = s.join_no
+				                                                     and j.type != '선생님'
 				                                                     and s.question_no = q.question_no
 				                                                     and (s.status = '제출' or s.status = '완료')
 		                                
@@ -231,7 +261,7 @@ from(select
 
 		]]>
 	</select>
-	
+
 	<select id="selectexam" resultType="ExamVo" parameterType="int">
 		<![CDATA[
 		select  
@@ -248,7 +278,7 @@ from(select
 
 		]]>
 	</select>
-	
+
 	<select id="selectquestion" resultType="QuestionVo" parameterType="int">
 		<![CDATA[
 		select
@@ -263,52 +293,42 @@ from(select
 
 		]]>
 	</select>
-	
+
 	<update id="examupdate" parameterType="ExamVo">
 		<![CDATA[
 			update exam
-			
-			set 
-			]]>
-				<if test="examTitle != null and examTitle != ''">
-					
-					exam_title = #{examTitle}
-				</if>
-			
-				<if test="examType != null and examType != ''">
-					,
-					exam_type = #{examType}
-				</if>
-		<![CDATA[
-				,
-			    time = #{time}
-		]]>
+			set]]>
+		<if test="examTitle != null and examTitle != ''">
+
+				exam_title = #{examTitle}</if>
+		<if test="examType != null and examType != ''">
+				,exam_type = #{examType}</if>
 		
-		
-						
-			    <if test="startDate != null and startDate != ''">
-			    	,
-					start_date = TO_DATE(#{startDate},'yyyy-mm-dd hh:mi:ss')
-				</if>
-			    
-			     <if test="endDate != null and endDate != ''">
-			     	,
-					end_date = TO_DATE(#{endDate},'yyyy-mm-dd hh:mi:ss')
-				</if>
+		<if test="time != null and time != ''">
+				,time = #{time}
+		</if>
+
+		<if test="startDate != null and startDate != ''">
+			,start_date = TO_DATE(#{startDate},'yyyy-mm-dd hh:mi:ss')
+		</if>
+
+		<if test="endDate != null and endDate != ''">
+			,end_date = TO_DATE(#{endDate},'yyyy-mm-dd hh:mi:ss')
+		</if>
 			    
 		<![CDATA[
 			where exam_no = #{examNo}
 		]]>
 	</update>
-	
+
 	<delete id="qeustiondelete" parameterType="int">
 		<![CDATA[
 			delete 
 			from question
 			where exam_no = #{examNo}
 			]]>
-		</delete>
-	
+	</delete>
+
 	<insert id="questionupdate" parameterType="QuestionVo">
 		<![CDATA[
 			insert into question VALUES(
@@ -320,7 +340,7 @@ from(select
 							)	
 		]]>
 	</insert>
-	
+
 	<select id="getAttendance" parameterType="int" resultType="int">
 		<![CDATA[
 			select  
@@ -332,7 +352,7 @@ from(select
 			and (s.status = '제출' or s.status = '완료')
 		]]>
 	</select>
-	
+
 	<!-- 시험 풀기 시작시~~~~~~~~~~~~~ -->
 	<select id="examstart" parameterType="int" resultType="ExamVo">
 		<![CDATA[
@@ -352,8 +372,8 @@ from(select
 			and e.exam_no = #{examNo}
 		]]>
 	</select>
-	
-	
+
+
 	<select id="startquestion" parameterType="map" resultType="QuestionVo">
 		<![CDATA[
 			select
@@ -364,7 +384,7 @@ from(select
             and exam_no = #{examNo}
 		]]>
 	</select>
-	
+
 	<select id="selectproblem" parameterType="int" resultType="ProblemVo">
 		<![CDATA[
 			select
@@ -373,6 +393,36 @@ from(select
 				content_image contentImage
 			from problem
 			where problem_no = #{problemNo}
+			
+		]]>
+	</select>
+	
+	<select id="selectanswer" parameterType="map" resultType="String">
+		<![CDATA[
+			select
+				SUBMIT_ANSWER
+			from solve
+			where join_no = #{joinNo}
+			and question_no = (select 
+			                        question_no
+			                   from question
+			                   where exam_no = #{examNo}
+			                   and order_num = #{orderNum})
+			
+		]]>
+	</select>
+	
+	<select id="getpoint" parameterType="map" resultType="int">
+		<![CDATA[
+			select
+				MYPOINT
+			from solve
+			where join_no = #{joinNo}
+			and question_no = (select 
+			                        question_no
+			                   from question
+			                   where exam_no = #{examNo}
+			                   and order_num = #{orderNum})
 			
 		]]>
 	</select>
@@ -388,5 +438,37 @@ from(select
 			order by order_no
 		]]>
 	</select>
-
+	<update id="updateSolve" parameterType="map">
+	update solve
+	set submit_answer = #{answer},
+	    status = '저장'
+	where join_no = #{joinNo}
+	and question_no = (select 
+	                        question_no
+	                   from question
+	                   where exam_no = #{examNo}
+	                   and order_num = #{orderNum})
+	</update>
+	
+	<update id="updatefSolve" parameterType="map">
+	update solve
+	set ATTACHMENT_FILE = #{saveName},
+	    status = '저장'
+	where join_no = #{joinNo}
+	and question_no = (select 
+	                        question_no
+	                   from question
+	                   where exam_no = #{examNo}
+	                   and order_num = #{orderNum})
+	</update>
+	
+	<update id="examfinish" parameterType="map">
+	update solve
+	set status = '제출'
+	where join_no = #{joinNo}
+	and question_no in (select 
+	                        question_no
+	                   from question
+	                   where exam_no = #{examNo})
+	</update>
 </mapper>

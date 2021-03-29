@@ -72,26 +72,18 @@
 							</div>
 
 							<div class="row">
-								<h3>풀스텍A반 월말 평가</h3>
+								<h3>${examVo.examTitle}</h3>
 							</div>
 
-							<div class="row">
-								<div class="col-xs-4"></div>
-								
-								<div class="col-xs-4">
-									<span>푼문제</span><span>8 / 10</span><span>총문제</span>
-								</div>
-								<div class="col-xs-4">
-								</div>
-							</div>
+							
 
 							<div class="row">
 								<div class="col-xs-3">
-									<button class="btn btn-primary btn-sm">문제로</button>
+									<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${examInfo.qeustionVo.orderNum}&joinNo=${classInfo.joinVo.joinNo}"><button class="btn btn-primary btn-sm">문제로</button></a>
 								</div>
 								<div class="col-xs-7"></div>
 								<div class="col-xs-2">
-									<button class="btn btn-primary btn-sm">시험제출</button>
+									<a href="${pageContext.request.contextPath}/${url}/exam/examfinish?examNo=${examInfo.examVo.examNo}&joinNo=${classInfo.joinVo.joinNo}"><button class="btn btn-primary btn-sm">시험제출</button></a>
 								</div>
 							</div>
 						</div>
