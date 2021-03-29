@@ -484,4 +484,34 @@ from(select
 	                   from question
 	                   where exam_no = #{examNo})
 	</update>
+	
+	<!-- 문제풀기시 리스트 갯수  -->
+	<select id="examsolvecount" parameterType="int" resultType="ChoiceVo">
+		<![CDATA[
+			select 
+				count(*)
+			from question q  ,solve s
+			where q.question_no = s.question_no
+			and exam_no = #{examNo}
+			and join_no = #{joinNo}
+		]]>
+	</select>
+	
+	
+	<!-- 문제풀기시 리스트  -->
+	<select id="examsolveList" parameterType="int" resultType="ChoiceVo">
+		<![CDATA[
+			select
+				q.order_num orderNum,
+				p.type problemType,
+				decode(q.point,s.mypoint,'O','X') result
+			from question q, solve s,problem p
+			where q.question_no = s.question_no
+			and p.problem_no = q.problem_no
+			and s.join_no = 2
+			and q.exam_no = 1
+			and order_num >= 1
+			and order_num <= 3;
+		]]>
+	</select>
 </mapper>
