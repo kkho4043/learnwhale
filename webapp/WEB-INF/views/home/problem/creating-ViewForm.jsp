@@ -68,12 +68,12 @@
 															</div>
 														</c:when>
 														<c:when test="${proVo.type == 'OX문제'}">
-															<div class="col-sm-4 problemType">
+															<div class="col-sm-12 problemType">
 																<input type="radio" class="oxF" id="typeOx" name="type" value="OX문제">
 															</div>
 														</c:when>
 														<c:otherwise>
-															<div class="col-sm-4 problemType">
+															<div class="col-sm-12 problemType">
 																<input type="radio" class="sjF" id="typeSj" name="type" value="주관식">
 															</div>
 														</c:otherwise>
@@ -83,17 +83,17 @@
 												<div class="row col-xs-9">
 													<c:choose>
 														<c:when test="${proVo.type == '객관식'}">
-															<div class="col-sm-4 problemType radioArea">
+															<div class="col-sm-12 problemType radioArea">
 																<label for="typeMc">객관식</label>
 															</div>
 														</c:when>
 														<c:when test="${proVo.type == 'OX문제'}">
-															<div class="col-sm-4 problemType radioArea">
+															<div class="col-sm-12 problemType radioArea">
 																<label for="typeOx">OX문제</label>
 															</div>
 														</c:when>
 														<c:otherwise>
-															<div class="col-sm-4 problemType radioArea">
+															<div class="col-sm-12 problemType radioArea">
 																<label for="typeSj">주관식</label>
 															</div>
 														</c:otherwise>
