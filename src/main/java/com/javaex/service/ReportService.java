@@ -34,11 +34,11 @@ public class ReportService {
 					joinNo = 0;
 				}
 				reMap.put("joinList", reDao.selStudentList(url, 0));
-				System.out.println("1");
+				//System.out.println("1");
 				
 			}else {
 				reMap.put("joinList", reDao.selStudentList(url, 0));
-				System.out.println("1-1");
+				//System.out.println("1-1");
 			}
 			
 		}
@@ -51,18 +51,18 @@ public class ReportService {
 				
 				if(joinNo ==0) {
 					reMap.put("joinList", reDao.selStudentList(url, -1));
-					System.out.println("2");
+					//System.out.println("2");
 				}
 				else {
 					reMap.put("joinList", reDao.selStudentList(url, joinNo));
-					System.out.println("3");
+					//System.out.println("3");
 				}
 				
 				
 			}else {
 				
 				reMap.put("joinList", reDao.selStudentList(url, joinNo));
-				System.out.println("4");
+				//System.out.println("4");
 			}
 		}
 		
