@@ -232,48 +232,44 @@
 	
 		$(document).ready(function() {
 			subMake();
+			rightClick();
+			subVisible();
 		});
 		
 		
 		
-		$(document).ready(function(){
-			
-			
-			$(".parents-folder a").contextmenu(function(e){
+		
+		
+		
+		
+		
+		
+		
+		
+		function rightClick(){
 				
-				var y = $(this).offset().top;
-				console.log(y);
-				/* //window width
-				var width = $(document).width();
-				var height = $(document).height(); */
+			$(".parents-folder .main-folder").contextmenu(function(e){
 				
 				//pointer position
 				
 				var poX = e.offsetX;
-				//var poY = clientY;
-				
-				console.log(poX)
-				//console.log(poY)
-				
-				//contextmenu size
-				var menuWidth = $(".contextmenu").width();
-				var menuHeight = $(".contextmenu").height();
+				var poY = $(this).offset().top -150;
 				
 				$(".contextmenu").css({
 					"left": poX,
-					"top" : y-150
+					"top" : poY
 				}).show();
 		
-			//Prevent browser default contextmenu
-			return false;
+				//Prevent browser default contextmenu
+				return false;
 	
 			});
 		
 			$(document).click(function(){
 				$(".contextmenu").hide();
 			});
+		}
 	
-		});
 
 		
 		function subMake() {
@@ -288,7 +284,9 @@
 			});
 		};
 	
-		$(document).ready(function() {
+			
+		function subVisible(){
+			
 			$(".parents-folder").click(function() {
 
 				let parentNo = $(this).data("group");
@@ -301,8 +299,12 @@
 					submenu.slideDown();
 	
 				};
+				
 			});
-		});
+		
+		}
+			
+		
 	
 		$(document).ready(function() {
 			$("#management-btn").click(function() {
