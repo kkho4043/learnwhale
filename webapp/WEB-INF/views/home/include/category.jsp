@@ -60,6 +60,9 @@
 			 	position:relative;
 			}
 			
+			.main-folder{
+				color: blue;			
+			}
 		</style>
 		
 	</head>
@@ -87,8 +90,9 @@
 						<div class="parents-folder" id="top-folder" data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
 
 							<span class="glyphicon glyphicon-folder-close"></span> 
-							<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}">
-							 ${cateVo.cateName}</a> 
+							<span class="main-folder" data-cate="${cateVo.cateNo }">
+							 	${cateVo.cateName}
+							</span> 
 									
 						</div>
 					</c:when>
@@ -130,7 +134,7 @@
 					<div class="modal-body">
 						<label for="modalName">폴더이름</label> <input id="modalName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 						<!-- no 히든으로 처리 -->
-						<input type="text" name="userNo" value="1">
+						<input type="text" name="userNo" value="1"<%-- ${authUser.no } --%>>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -274,7 +278,7 @@
 		
 		function subMake() {
 	
-			$(".subFolder-btn").click(function() {
+			$("#subFolder-btn").click(function() {
 	
 				var groupNo = $(this).data("group");
 				$('input[name=groupNo]').val(groupNo);
