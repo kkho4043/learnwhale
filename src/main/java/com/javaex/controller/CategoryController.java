@@ -24,14 +24,11 @@ public class CategoryController {
 	
 	@ResponseBody
 	@RequestMapping(value = "problemList", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<ProblemVo> problemList(Model model, 
-							  @RequestParam int cateNo, HttpSession session) {
+	public List<ProblemVo> problemList(Model model, @RequestParam int cateNo, HttpSession session) {
 		
 		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
 		//caService.getCategory(1);
 		//model.addAttribute("cateList", );
-		
-		//model.addAttribute("proList", );
 
 		return caService.getProblem(cateNo);
 	}

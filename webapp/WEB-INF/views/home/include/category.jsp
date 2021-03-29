@@ -91,7 +91,7 @@
 
 							<span class="glyphicon glyphicon-folder-close"></span>
 							
-							<span class="main-folder" data-cate="${cateVo.cateNo }">
+							<span class="main-folder" data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
 							 	${cateVo.cateName}
 							</span> 
 									
@@ -106,8 +106,7 @@
 								
 								<span class="glyphicon glyphicon-folder-close"> </span> 
 								
-								<a href="" data-cate="${cateVo.cateNo }
-								"<%-- href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}" --%>>
+								<a href="" data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
 								 	${cateVo.cateName}
 								</a>
 								
@@ -118,74 +117,11 @@
 				
 				</c:choose>
 			</c:forEach>
-			
-		<!-- 	<script type="text/javascript">
-			
-			$("document").ready(function(){
-				
-				$(".child-folder a").on("click", function(e){
-					e.preventDefault();
-					
-					/* const URLSearch = new URLSearchParams(location.search); */
-					
-					let cateNo = $(this).data("cate");
-					
-					/* console.log(URLSearch.toString()); */
-					
-					//URLSearch.set('cateNo', cateNo);
-					/* console.log(URLSearch.toString()); */
-					
-					history.pushState(null, null, 'problemList?cateNo='+cateNo);
-					
-					$.ajax({
-						
-						url: "${pageContext.request.contextPath}/api/myclass/problem/problemList",
-						
-						type: "get",
-						
-						dataType : "json",
-						
-						data : {"cateNo" : cateNo},
-						
-						success : function(proVo){
-							console.log(proVo);
-						},
-						
-						error: function(XHR, status, error){
-							console.log(status+ ":" + error);
-				
-						}
-					});
-						
-					
-				})
-				
-				
-				function render(){
-					
-					
-					
-				}
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-			});
-						
-			</script> -->
-			
-			
+		
 			<ul class="contextmenu">
-	  			<li><a href="#">등록</a></li>
-	  			<li><a href="#">수정</a></li>
-	  			<li><a href="#">삭제</a></li>
+	  			<li id="subMake" data-group=""><a href="">등록</a></li>
+	  			<li id="modify"><a href="">수정</a></li>
+	  			<li id="delete"><a href="">삭제</a></li>
 			</ul>
 
 		</div>
@@ -205,7 +141,7 @@
 					<div class="modal-body">
 						<label for="modalName">폴더이름</label> <input id="modalName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 						<!-- no 히든으로 처리 -->
-						<input type="text" name="userNo" value="1"<%-- ${authUser.no } --%>>
+						<input type="text" name="userNo" value="1">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -233,7 +169,8 @@
 					<div class="modal-body">
 						<label for="SubName">폴더이름</label> <input id="SubName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 						<!-- no 히든으로 처리 -->
-						<input type="text" name="userNo" value="1"> <input type="text" name="groupNo" value="">
+						<input type="text" name="userNo" value="1">
+						<input type="text" name="groupNo" value="">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -247,7 +184,7 @@
 		<!-- /.madeModal -->
 	</form>
 	<!-- /.addSubFolder-->
-
+<form method="get" action="${pageContext.request.contextPath}/myclass/problem/updateFolder">
 	<div class="modal fade" id="modifyModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -259,12 +196,13 @@
 				</div>
 				<div class="modal-body">
 					<p>
-						<input type="text" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
+						<input type="text" id="modiText" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
+						<input type="text"  name="cateNo" value="">
 					</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary">수정하기</button>
+					<button onclick="empty();" type="button" id="cancel" class="btn btn-default" data-dismiss="modal">취소</button>
+					<button type="submit" class="btn btn-primary">수정하기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -272,7 +210,7 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modifyModal -->
-
+</form>
 	  
 	
 	<div class="modal fade" id="deleteModal">
@@ -286,7 +224,7 @@
 				</div>
 				<div class="modal-body"></div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+					<button onclick="empty();" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary">삭제하기</button>
 				</div>
 			</div>
@@ -305,15 +243,8 @@
 			subMake();
 			rightClick();
 			subVisible();
+			empty();
 		});
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
@@ -321,6 +252,21 @@
 				
 			$(".parents-folder .main-folder").contextmenu(function(e){
 				
+				let groupNo = e.target.getAttribute("data-group");
+				let cateNo = e.target.getAttribute("data-cate");
+				//$(".contextmenu #subMake").attr("data-group", groupNo);
+				
+				$("#subMake").on("click", function(){
+					$("input[name=groupNo]").val(groupNo);
+				})
+				
+				$("#modify").on("click", function(){
+					$("input[name=cateNo]").val(cateNo);
+				})
+				
+				$("#delete").on("click", function(){
+					$("input[name=cateNo]").val(cateNo);
+				})
 				//pointer position
 				
 				var poX = e.offsetX;
@@ -342,6 +288,30 @@
 		}
 	
 
+		$("#subMake").on("click", function(e) {
+			e.preventDefault();
+			//메인모달창 호출
+			$("#addSubFolder").modal();
+		});
+		
+		$("#modify").on("click", function(e) {
+			e.preventDefault();
+			//메인모달창 호출
+			$("#modifyModal").modal();
+		});
+		
+		$("#delete").on("click", function(e) {
+			e.preventDefault();
+			//메인모달창 호출
+			$("#deleteModal").modal();
+		});
+		
+		function empty(){
+			
+			$("#modiText").val("");
+		}
+		
+		
 		
 		function subMake() {
 	
@@ -376,7 +346,6 @@
 		}
 			
 		
-	
 		$(document).ready(function() {
 			$("#management-btn").click(function() {
 				
