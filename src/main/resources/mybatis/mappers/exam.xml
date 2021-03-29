@@ -444,6 +444,7 @@ from(select
 	set submit_answer = #{answer},
 	    status = '저장'
 	where join_no = #{joinNo}
+	and (status = '저장' or status = '출제')
 	and question_no = (select 
 	                        question_no
 	                   from question

@@ -23,7 +23,9 @@ public class BanmainService {
 		System.out.println(session);
 		
 		UserVo userVo = (UserVo) session.getAttribute("authUser");
-		System.out.println("userVo = "+userVo.toString());
+		if(userVo == null) {
+			return null;
+		}
 		int userNo = userVo.getNo();
 		
 		JoinUserVo jvo = banmainDao.selectuserInfo(url, userNo);

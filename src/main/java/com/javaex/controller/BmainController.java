@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.BanmainService;
 import com.javaex.service.ExamService;
@@ -32,10 +33,31 @@ public class BmainController {
 		System.out.println("[BanExamController.list()]");
 		
 		model.addAttribute("eMap", examService.examList(url,crtPage,keyward));
-	
+		if(examService.examList(url,crtPage,keyward) == null) {
+			
+			return "redirect:/user/loginForm";
+		}
+		if(banmainService.classInfo(url, session) == null) {
+			return "redirect:/user/loginForm";
+		}
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
 
 		
 		return "ban/exam/list";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "sessioncheck", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean sessioncheck(HttpSession session) {
+		System.out.println("세션체크");
+		if(session.getAttribute("authUser") == null) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	
+	
+	
 }

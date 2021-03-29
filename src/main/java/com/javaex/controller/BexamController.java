@@ -25,6 +25,7 @@ import com.javaex.vo.ExamVo;
 import com.javaex.vo.ProblemVo;
 import com.javaex.vo.QuestionVo;
 import com.javaex.vo.SolveVo;
+import com.javaex.vo.UserVo;
 
 @Controller
 @RequestMapping("/{url}/exam")
@@ -226,5 +227,7 @@ public class BexamController {
 		examService.grantpoint(examNo, orderNum, joinNo, point);
 		return 1;
 	}
+	
+	
 
 }

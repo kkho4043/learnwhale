@@ -29,3 +29,24 @@
 	</div>
 	<!-- //row -->
 </div>
+
+<script type="text/javascript">
+	var session = '';
+	$.ajax({
+		url : '${pageContext.request.contextPath}/sessioncheck',
+		type : 'POST',
+		data : {},
+		success : function(flag) {
+			
+			if(flag == false){
+				alert("세션이 만료되어 로그인 창으로 이동합니다");
+				location.href = "${pageContext.request.contextPath}/user/loginForm";
+			}
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+
+</script>
