@@ -78,7 +78,7 @@
 
 							<div class="addtest ">
 								<c:if test="${classInfo.joinVo.type == '선생님'}">
-									<a href="${pageContext.request.contextPath}/${url}/exam/grantform"><button class="btn btn-primary btn-sm">시험출제</button></a>
+									<a href="${pageContext.request.contextPath}/${url}/exam/grantform?userNo=${classInfo.joinVo.userNo}"><button class="btn btn-primary btn-sm">시험출제</button></a>
 								</c:if>
 
 							</div>

@@ -83,10 +83,9 @@
 										</div>
 									</div>
 								</c:if>
-								<div class="row">정답 : 이게답.</div>
+								<div class="row">정답 : ${examInfo.problemVo.answer}</div>
 								<div class="row">
-									입력한답 :
-									<sapn id="ineranswer"></sapn>
+									입력한답 : <span id="ineranswer"></span>
 								</div>
 								<div class="row protype">
 
@@ -125,18 +124,22 @@
 
 
 								</div>
+
 								<div class="givescore row">
 									<div class="col-xs-5"></div>
 									<div class="col-xs-5">
-										<span>점수</span> <input type="text" id="mypoint"><span>/${examInfo.qeustionVo.point}</span>
+										<span>점수</span> <input type="text" id="mypoint" <c:if test="${classInfo.joinVo.type != '선생님'}"> readonly </c:if>><span>/${examInfo.qeustionVo.point}</span>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-xs-5"></div>
 									<div class="col-xs-2">
-										<input type="button" value="점수 부여 확인" class="btn btn-primary" id="pointgrant">
+										<c:if test="${classInfo.joinVo.type == '선생님'}">
+											<input type="button" value="점수 부여 확인" class="btn btn-primary" id="pointgrant">
+										</c:if>
 									</div>
+
 									<div class="col-xs-3"></div>
 									<div class="col-xs-2">
 										<input type="button" value="리스트" class="btn btn-primary">
@@ -253,7 +256,7 @@
 </body>
 
 <script type="text/javascript">
-	var joinNo = "${classInfo.joinVo.joinNo}";
+	var joinNo = "${param.joinNo}";
 	var examNo = "${examInfo.examVo.examNo}";
 	var orderNum = "${examInfo.qeustionVo.orderNum}";
 
@@ -319,7 +322,7 @@
 		},
 		success : function(point) {
 			console.log("점수:" + point)
-			document.getElementById("mypoint").innerHTML = point;
+			document.getElementById("mypoint").value = point;
 
 		},
 		error : function(XHR, status, error) {
@@ -331,15 +334,15 @@
 	$("#pointgrant").on("click", function() {
 		var point = document.getElementById('mypoint').value;
 		if (point > "${examInfo.qeustionVo.point}") {
-			alert('부여된될점수가 너무 큽니다.');
+			alert('부여될점수가 너무 큽니다.');
 			return false;
 		}
-		var joinNo = "${classInfo.joinVo.joinNo}";
+		var joinNo = "${param.joinNo}";
 		var examNo = "${examInfo.examVo.examNo}";
 		var orderNum = "${examInfo.qeustionVo.orderNum}";
 
 		$.ajax({
-			url : "${pageContext.request.contextPath}/${url}/exam/grant",
+			url : "${pageContext.request.contextPath}/${url}/exam/grantpoint",
 			type : "post",
 			//contentType : "application/json",
 			data : {
@@ -349,6 +352,8 @@
 				joinNo : joinNo
 			},
 			success : function(url) {
+				console.log(url);
+				alert('점수가 부여되었습니다');
 
 			},
 			error : function(XHR, status, error) {

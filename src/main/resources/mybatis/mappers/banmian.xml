@@ -8,7 +8,8 @@
 	 		select 
   				u.name username,
 				j.type type,
-				j.join_no joinNo 
+				j.join_no joinNo,
+				u.no userNo
    			from join_users j, class c , users u
    
 		    where j.class_no = c.class_no

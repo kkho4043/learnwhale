@@ -116,10 +116,10 @@ public class BexamController {
 
 	@RequestMapping(value = "/grantform", method = { RequestMethod.GET, RequestMethod.POST })
 	public String grantform(Model model, @PathVariable("url") String url,
-			@RequestParam(value = "cateNo", required = false, defaultValue = "1") int cateNo,HttpSession session) {
+			@RequestParam(value = "userNo") int userNo,HttpSession session) {
 		System.out.println("[BanExamController.grantform()]");
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
-		model.addAttribute("cateList", proService.getCategory(2));
+		model.addAttribute("cateList", proService.getCategory(userNo));
 
 		return "ban/exam/examgrantform";
 	}
@@ -223,7 +223,8 @@ public class BexamController {
 	@RequestMapping(value = "/grantpoint", method = { RequestMethod.GET, RequestMethod.POST })
 	public int grantpoint(@RequestParam(value = "examNo") int examNo,
 			@RequestParam(value = "orderNum") int orderNum, @RequestParam(value = "joinNo") int joinNo,@RequestParam(value = "point") int point) {
-		return examService.grantpoint(examNo, orderNum, joinNo, point);
+		examService.grantpoint(examNo, orderNum, joinNo, point);
+		return 1;
 	}
 
 }

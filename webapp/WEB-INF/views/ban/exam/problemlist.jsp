@@ -105,7 +105,7 @@
 													<c:forEach items="${upMap.eplist}" var="vo" varStatus="status">
 														<tr>
 															<td>${vo.orderNum}</td>
-															<td class="text-left"><a href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${param.examNo}&orderNum=${vo.orderNum}&joinNo=${classInfo.joinVo.joinNo}">${vo.problemTitle}</a></td>
+															<td class="text-left"><a href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${param.examNo}&orderNum=${vo.orderNum}&joinNo=${param.joinNo}">${vo.problemTitle}</a></td>
 															<td>${vo.result}</td>
 															<td>${vo.type}</td>
 														</tr>
