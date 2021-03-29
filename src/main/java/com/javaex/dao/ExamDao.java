@@ -211,4 +211,13 @@ public class ExamDao {
 		return sqlSession.selectOne("exam.getpoint", map);
 	}
 
+	public int grantpoint(int examNo, int orderNum, int joinNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("examNo", examNo);
+		map.put("orderNum", orderNum);
+		map.put("joinNo", joinNo);
+	
+		return sqlSession.update("exam.grantpoint", map);
+	}
+
 }

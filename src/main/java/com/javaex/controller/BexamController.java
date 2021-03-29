@@ -218,5 +218,12 @@ public class BexamController {
 			@RequestParam(value = "orderNum") int orderNum, @RequestParam(value = "joinNo") int joinNo) {
 		return examService.getpoint(examNo, orderNum, joinNo);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/grantpoint", method = { RequestMethod.GET, RequestMethod.POST })
+	public int grantpoint(@RequestParam(value = "examNo") int examNo,
+			@RequestParam(value = "orderNum") int orderNum, @RequestParam(value = "joinNo") int joinNo) {
+		return examService.grantpoint(examNo, orderNum, joinNo);
+	}
 
 }

@@ -309,5 +309,10 @@ public class ExamService {
 		return examDao.getpoint(examNo, orderNum, joinNo);
 	}
 
+	public int grantpoint(int examNo, int orderNum, int joinNo) {
+		return examDao.grantpoint(examNo, orderNum, joinNo);
+	
+	}
+
 
 }

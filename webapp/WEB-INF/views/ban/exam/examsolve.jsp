@@ -251,7 +251,7 @@
 						console.log(answer)
 
 						if ("${examInfo.problemVo.type}" == 'OX') {
-							if ("${examInfo.answer}" == 'O') {
+							if (answer == 'O') {
 								$('#O').removeClass('btn-info');
 								$('#O').addClass('btn-primary');
 								$('#O').addClass('active');

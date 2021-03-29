@@ -128,14 +128,14 @@
 								<div class="givescore row">
 									<div class="col-xs-5"></div>
 									<div class="col-xs-5">
-										<span>점수</span> <input type="text" id = "mypoint"><span>/${examInfo.qeustionVo.point}</span>
+										<span>점수</span> <input type="text" id="mypoint"><span>/${examInfo.qeustionVo.point}</span>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-xs-5"></div>
 									<div class="col-xs-2">
-										<input type="button" value="점수 부여 확인" class="btn btn-primary" id = "pointgrant">
+										<input type="button" value="점수 부여 확인" class="btn btn-primary" id="pointgrant">
 									</div>
 									<div class="col-xs-3"></div>
 									<div class="col-xs-2">
@@ -269,7 +269,7 @@
 			console.log(answer)
 			document.getElementById("ineranswer").innerHTML = answer;
 			if ("${examInfo.problemVo.type}" == 'OX') {
-				if ("${examInfo.answer}" == 'O') {
+				if (answer == 'O') {
 					$('#O').removeClass('btn-info');
 					$('#O').addClass('btn-primary');
 					$('#O').addClass('active');
@@ -307,8 +307,7 @@
 			console.error(status + " : " + error);
 		}
 	});
-	
-	
+
 	$.ajax({
 		url : "${pageContext.request.contextPath}/${url}/exam/getpoint",
 		type : "post",
@@ -319,34 +318,34 @@
 			joinNo : joinNo
 		},
 		success : function(point) {
-			console.log("점수:"+point)
+			console.log("점수:" + point)
 			document.getElementById("mypoint").innerHTML = point;
-			
+
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
 		}
 
 	});
-	
+
 	$("#pointgrant").on("click", function() {
 		var point = document.getElementById('mypoint').value;
-		if(point > "${examInfo.qeustionVo.point}"){
+		if (point > "${examInfo.qeustionVo.point}") {
 			alert('부여된될점수가 너무 큽니다.');
 			return false;
 		}
 		var joinNo = "${classInfo.joinVo.joinNo}";
 		var examNo = "${examInfo.examVo.examNo}";
 		var orderNum = "${examInfo.qeustionVo.orderNum}";
-		
+
 		$.ajax({
 			url : "${pageContext.request.contextPath}/${url}/exam/grant",
 			type : "post",
 			//contentType : "application/json",
 			data : {
-			examNo : examNo,
-			orderNum : orderNum,
-			joinNo : joinNo
+				examNo : examNo,
+				orderNum : orderNum,
+				joinNo : joinNo
 			},
 			success : function(url) {
 
@@ -357,8 +356,6 @@
 
 		});
 
-	});
-		
 	});
 </script>
 </html>
