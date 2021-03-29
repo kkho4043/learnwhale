@@ -89,7 +89,8 @@
 					<c:when test="${cateVo.depth == 0}">
 						<div class="parents-folder" id="top-folder" data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
 
-							<span class="glyphicon glyphicon-folder-close"></span> 
+							<span class="glyphicon glyphicon-folder-close"></span>
+							
 							<span class="main-folder" data-cate="${cateVo.cateNo }">
 							 	${cateVo.cateName}
 							</span> 
@@ -101,16 +102,90 @@
 
 						<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}" class="child-group">
 							<div class="child-folder">
-								<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close"> </span> <a
-								href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}"> ${cateVo.cateName}</a></span>
+								<span class="glyphicon glyphicon-menu-right"></span> 
+								
+								<span class="glyphicon glyphicon-folder-close"> </span> 
+								
+								<a href="" data-cate="${cateVo.cateNo }
+								"<%-- href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}" --%>>
+								 	${cateVo.cateName}
+								</a>
+								
 							</div>
 						</div>
 
 					</c:otherwise>
-
+				
 				</c:choose>
 			</c:forEach>
 			
+			<script type="text/javascript">
+			
+			$("document").ready(function(){
+				
+				$(".child-folder a").on("click", function(e){
+					e.preventDefault();
+					
+					/* const URLSearch = new URLSearchParams(location.search); */
+					
+					let cateNo = $(this).data("cate");
+					
+					/* console.log(URLSearch.toString()); */
+					
+					//URLSearch.set('cateNo', cateNo);
+					/* console.log(URLSearch.toString()); */
+					
+					history.pushState(null, null, 'problemList?cateNo='+cateNo);
+					
+					$.ajax({
+						
+						url: "${pageContext.request.contextPath}/api/myclass/problem/problemList",
+						
+						type: "get",
+						
+						dataType : "json",
+						
+						data : {"cateNo" : cateNo},
+						
+						success : function(proVo){
+							console.log(proVo);
+						},
+						
+						error: function(XHR, status, error){
+							console.log(status+ ":" + error);
+				
+						}
+					});
+						
+					
+				})
+				
+				
+				function render(){
+					
+					
+					
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			});
+						
+						
+						
+				
+				
+					
+					
+				</script>
 			<ul class="contextmenu">
 	  			<li><a href="#">등록</a></li>
 	  			<li><a href="#">수정</a></li>
@@ -274,7 +349,7 @@
 		
 		function subMake() {
 	
-			$("#subFolder-btn").click(function() {
+			$(".subFolder-btn").click(function() {
 	
 				var groupNo = $(this).data("group");
 				$('input[name=groupNo]').val(groupNo);
