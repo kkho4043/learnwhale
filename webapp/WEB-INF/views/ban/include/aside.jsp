@@ -4,7 +4,8 @@
 <div id="left-area" class="col-xs-2">
 	<div id="profile-area">
 		<div id="profile-img">
-			<img src="/learnwhale/assets/image/profile.jpg" class="img-thumbnail">
+			<img src="${pageContext.request.contextPath}/upload/${classInfo.cuVo.proFile}"
+			onerror="this.src='${pageContext.request.contextPath}/assets/image/profile.jpg' " class="img-thumbnail">
 		</div>
 		<p id="teacherName" class="text-center">
 		

@@ -313,44 +313,55 @@ public class ExamService {
 
 	}
 
-	public Map examsolvepaging(int examNo, int orderNum, int joinNo) {
-		
+	public Map<String, Object> examsolvepaging(int examNo, int orderNum, int joinNo) {
+		System.out.println("받을때"+orderNum);
 		//전체 글 갯수
 		int count = examDao.examsolvecount(examNo,joinNo);
-			
+			System.out.println("글갯수는 "+count);
 		int startNum = 1;
+		int endNum = 9;
 		
-		if (orderNum < 5) {
-			startNum = 1;
-		} else {
+		
+		boolean next = true;
+		boolean prev = true;
+		
+		
+		if(orderNum >= 6) {
 			startNum = orderNum - 4;
+			endNum = startNum + 8;
+			if(endNum > count) {
+				startNum -=(endNum - count); 
+				endNum = count;
+			}
 		}
 		
-		int endNum = startNum + 8;
-		if(endNum > count) {
+		if(count < 10) {
+			startNum = 1;
 			endNum = count;
 		}
+		
+		if(endNum == count) {
+			next = false;
+			orderNum = count - 4;
+		}
+		
+		if(orderNum < 6) {
+			prev = false;
+		}
+		
 			
-		// 다음버튼
-		boolean next = false;
-		if(count > endNum + 4) {
-			next = true;
-		}
 		
-		//이전 버튼 
-		boolean prev = false;
-		if(orderNum - 4 > 1) {
-			prev = true;
-		}
-		
-		
+		List<QuestionVo> qList = examDao.examsolveList(examNo ,joinNo,startNum ,endNum);
 		
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		
-		pMap.put("prev", prev);
-		
+		System.out.println(qList);
+		pMap.put("qList", qList);
 		
 		pMap.put("next", next);
+		pMap.put("prev", prev);
+		System.out.println("넣어줄때"+orderNum);
+		pMap.put("thisoderNum", orderNum);
 		return pMap;
 		
 		

@@ -71,7 +71,7 @@
 						<div class="row testoption">
 
 							<div class="row">
-								<div class="col-xs-2">제목</div>
+								<div class="col-xs-2" style="margin-top: 3px;">제목</div>
 								<div class="col-xs-10">
 									<input type="text" id="examtitle" value="${pMap.examVo.examTitle}">
 								</div>
@@ -92,9 +92,9 @@
 							</div>
 
 							<div class="row" class="simpletesttime" id="testtime">
-								<div class="col-xs-2">시간설정</div>
+								<div class="col-xs-2" style="margin-top: 3px;">시간설정</div>
 								<div class="col-xs-4">
-									<select name="testtime" id="timeselect">
+									<select name="testtime" id="timeselect" class="selecttimebar">
 										<option value="">문제당 시간</option>
 										<option value="30" <c:if test="${pMap.examVo.time == '30'}"> selected="selected" </c:if>>30초</option>
 										<option value="60" <c:if test="${pMap.examVo.time == '60'}"> selected="selected" </c:if>>1분</option>
@@ -112,11 +112,11 @@
 							<div class="row">
 								<div class="col-xs-2">응시 가능 시간</div>
 								<div class="col-xs-5">
-									<input type="datetime-local" id="startdate"> 부터
+									<input type="datetime-local" id="startdate" class="selecttimebar"> 부터
 								</div>
 
 								<div class="col-xs-5">
-									<input type="datetime-local" id="enddate"> 까지
+									<input type="datetime-local" id="enddate" class="selecttimebar"> 까지
 								</div>
 							</div>
 
@@ -130,7 +130,7 @@
 								<button type="button" class="" data-toggle="modal" data-target="#myModal">문제 추가</button>
 							</div>
 
-							<div class="col-xs-3">
+							<div class="col-xs-3" style="margin-left: -40px;">
 								합산점수 <span id="hapscore">100</span> / 100
 							</div>
 						</div>
@@ -147,7 +147,7 @@
 									</tr>
 								</thead>
 								<tbody id="selectprolist">
-									
+
 								</tbody>
 							</table>
 						</div>
@@ -227,57 +227,57 @@
 
 						document.getElementById("startdate").value = "${pMap.examVo.startDate}";
 						document.getElementById("enddate").value = "${pMap.examVo.endDate}";
-						
-						
+
 						console.log('${pMap.qList}');
 						var ar = '${pMap.qList}'.split("QuestionVo");
-						var proNos;var eq;var rut;var prono;var poi;var proti;var proty;
-						for(var i= 0 ;i < ar.length;i++){
-							
-							
+						var proNos;
+						var eq;
+						var rut;
+						var prono;
+						var poi;
+						var proti;
+						var proty;
+						for (var i = 0; i < ar.length; i++) {
+
 							proNos = ar[i].indexOf('problemNo');
-							if(proNos == -1){
+							if (proNos == -1) {
 								continue;
 							}
-							eq = ar[i].indexOf('=',proNos);
-							rut = ar[i].indexOf(',',eq);
-							prono = ar[i].substring(eq+1,rut);
+							eq = ar[i].indexOf('=', proNos);
+							rut = ar[i].indexOf(',', eq);
+							prono = ar[i].substring(eq + 1, rut);
 							console.log("problemNo = " + prono);
-							
-							
+
 							proNos = ar[i].indexOf('point');
-							if(proNos == -1){
+							if (proNos == -1) {
 								continue;
 							}
-							eq = ar[i].indexOf('=',proNos);
-							rut = ar[i].indexOf(',',eq);
-							poi = ar[i].substring(eq+1,rut);
-						
+							eq = ar[i].indexOf('=', proNos);
+							rut = ar[i].indexOf(',', eq);
+							poi = ar[i].substring(eq + 1, rut);
+
 							console.log("point = " + poi);
-							
-							
+
 							proNos = ar[i].indexOf('problemTitle');
-							if(proNos == -1){
+							if (proNos == -1) {
 								continue;
 							}
-							eq = ar[i].indexOf('=',proNos);
-							rut = ar[i].indexOf(',',eq);
-							proti = ar[i].substring(eq+1,rut);
-						
+							eq = ar[i].indexOf('=', proNos);
+							rut = ar[i].indexOf(',', eq);
+							proti = ar[i].substring(eq + 1, rut);
+
 							console.log("problemTitle = " + proti);
-							
-							
+
 							proNos = ar[i].indexOf('problemType');
-							if(proNos == -1){
+							if (proNos == -1) {
 								continue;
 							}
-							eq = ar[i].indexOf('=',proNos);
-							rut = ar[i].indexOf(']',eq);
-							proty = ar[i].substring(eq+1,rut-1);
-							
+							eq = ar[i].indexOf('=', proNos);
+							rut = ar[i].indexOf(']', eq);
+							proty = ar[i].substring(eq + 1, rut - 1);
+
 							console.log("problemType = " + proty);
-							
-							
+
 							var vo = new Object();
 							vo.problemNo = prono;
 							vo.point = poi;
@@ -285,7 +285,7 @@
 							vo.problemType = proty;
 							voarr.push(vo);
 						}
-					
+
 						rendersVo();
 						getscore();
 					});
@@ -299,9 +299,8 @@
 		}
 
 	}
-	
-	var type ="${pMap.examVo.examType}" ;
-	
+
+	var type = "${pMap.examVo.examType}";
 
 	//점수 합산
 	function getscore() {
@@ -529,7 +528,7 @@
 		str += '	<td>' + Vo.problemTitle + '</td>';
 		str += '	<td>' + Vo.problemType + '</td>';
 		str += '	<td><input type="text" id="score-' + (order - 1)
-				+ '" onchange = "getscore()" value="'+Vo.point+'">점</td>';
+				+ '" onchange = "getscore()" value="' + Vo.point + '">점</td>';
 		str += '	<td>';
 		str += '			<input type="button" value="삭제" class="btn btn-xs btn-danger" data-order="'
 				+ (order - 1) + '">';

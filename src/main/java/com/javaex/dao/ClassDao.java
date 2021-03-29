@@ -62,8 +62,6 @@ public class ClassDao {
 	
 	public int getclassNo(String url) {
 		System.out.println("[classDao.dddd()]");
-		
-		
 		return sqlSession.selectOne("class.selectclassNo", url);
 	}
 	

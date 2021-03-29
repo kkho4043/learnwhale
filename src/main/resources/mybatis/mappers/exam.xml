@@ -200,6 +200,7 @@ from(select
 					and p.problem_no = q.problem_no
 					and q.exam_no = ${examNo}
 					and s.join_no = ${joinNo}
+					and (s.status = '제출' or s.status =  '완료')
 			        order by q.order_num desc)o)r
 		where r.rnum >= #{startNum}
 	   	and r.rnum <= #{endNum}
@@ -482,11 +483,12 @@ from(select
 	and question_no in (select 
 	                        question_no
 	                   from question
-	                   where exam_no = #{examNo})
+	                   where exam_no = #{examNo}
+	                   and order_num = #{orderNum})
 	</update>
 	
 	<!-- 문제풀기시 리스트 갯수  -->
-	<select id="examsolvecount" parameterType="int" resultType="ChoiceVo">
+	<select id="examsolvecount" parameterType="map" resultType="int">
 		<![CDATA[
 			select 
 				count(*)
@@ -499,7 +501,7 @@ from(select
 	
 	
 	<!-- 문제풀기시 리스트  -->
-	<select id="examsolveList" parameterType="int" resultType="ChoiceVo">
+	<select id="examsolveList" parameterType="map" resultType="QuestionVo">
 		<![CDATA[
 			select
 				q.order_num orderNum,
@@ -508,10 +510,10 @@ from(select
 			from question q, solve s,problem p
 			where q.question_no = s.question_no
 			and p.problem_no = q.problem_no
-			and s.join_no = 2
-			and q.exam_no = 1
-			and order_num >= 1
-			and order_num <= 3;
+			and s.join_no = #{joinNo}
+			and q.exam_no = #{examNo}
+			and order_num >= #{startNum}
+			and order_num <= #{endNum}
 		]]>
 	</select>
 </mapper>

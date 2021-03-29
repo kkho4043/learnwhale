@@ -70,7 +70,7 @@
 						<div class="row">
 
 							<div class="searchF form-group form-inline">
-								<form action="${pageContext.request.contextPath}/abc/exam/list" method="get">
+								<form action="${pageContext.request.contextPath}/${url}/exam/list" method="get">
 									<input type="text" class="form-control input-sm" id="txtSearchKyword" name="keyward" placeholder="">
 									<button type="submit" class="btn btn-default btn-sm">검색</button>
 								</form>
@@ -147,19 +147,19 @@
 								<nav>
 									<ul class="pagination">
 										<c:if test="${eMap.prev == true}">
-											<li><a href="${pageContext.request.contextPath}/abc/list?crtPage=${pMap.startPageBtnNo-1}&keyward=${param.keyward}">◀</a></li>
+											<li><a href="${pageContext.request.contextPath}/${url}/list?crtPage=${pMap.startPageBtnNo-1}&keyward=${param.keyward}">◀</a></li>
 										</c:if>
 
 
 										<c:forEach begin="${eMap.startPageBtnNo}" end="${eMap.endPageBtnNo}" step="1" var="page">
-											<li><a href="${pageContext.request.contextPath}/abc/exam/list?crtPage=${page}&keyward=${param.keyward}">${page}</a></li>
+											<li><a href="${pageContext.request.contextPath}/${url}/exam/list?crtPage=${page}&keyward=${param.keyward}">${page}</a></li>
 										</c:forEach>
 
 
 
 
 										<c:if test="${eMap.next == true}">
-											<li><a href="${pageContext.request.contextPath}/abc/exam/list?crtPage=${pMap.endPageBtnNo+1}&keyward=${param.keyward}">▶</a></li>
+											<li><a href="${pageContext.request.contextPath}/${url}/exam/list?crtPage=${pMap.endPageBtnNo+1}&keyward=${param.keyward}">▶</a></li>
 										</c:if>
 									</ul>
 								</nav>

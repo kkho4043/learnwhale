@@ -44,7 +44,7 @@
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,
 	.table>tbody>tr>td, .table>tfoot>tr>td {
-	font-size :14px;
+	font-size: 14px;
 	padding: 4px;
 	text-align: center;
 }
@@ -114,13 +114,15 @@
 }
 
 .prolist ul {
+	padding-left: 0px;
 	text-align: center;
+	border: solid 1px black;
 }
 
 .prolist ul li {
 	list-style: none;
 	margin: 20px;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .prolist table th {
@@ -146,9 +148,12 @@
 }
 
 .prolistbtn {
-	padding: 15px 0px 0px 55px;
+	padding: 15px 0px 0px 10px;
 }
 
 .modal-lg {
 	width: 1200px;
+}
+.selecttimebar{
+	height: 26px;
 }

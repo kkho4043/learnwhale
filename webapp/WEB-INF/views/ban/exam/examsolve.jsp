@@ -117,7 +117,6 @@
 												<div class="row">
 													<input type="button" id="choice${vo.orderNo}" value="${vo.orderNo}" class="btn btn-info choicebtn"><span>${vo.choiceContent}</span>
 												</div>
-
 											</c:forEach>
 										</div>
 
@@ -145,7 +144,8 @@
 									<div class="col-xs-2">
 										<c:choose>
 											<c:when test="${examInfo.endsolve == 'endsolve'}">
-												<a href="${pageContext.request.contextPath}/${url}/exam/examend?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum}"><input type="button" value="시험 종료" class="btn btn-info"></a>
+												<a href="${pageContext.request.contextPath}/${url}/exam/examend?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum}"><input
+													type="button" value="시험 종료" class="btn btn-info"></a>
 											</c:when>
 											<c:otherwise>
 												<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum+1}"><input
@@ -163,25 +163,22 @@
 							<div class="col-xs-2">
 								<div class="row">
 									<div class="prolist">
-										<ul>
-											<li>1번</li>
-											<li>2번</li>
-											<li>3번</li>
-											<li>4번</li>
-											<li>5번</li>
-											<li>6번</li>
-											<li>7번</li>
-											<li>8번</li>
-											<li>9번</li>
-											<li>10번</li>
+										<ul id="problemList">
 										</ul>
+										<div class="row prolistbtn">
+											<div class="col-xs-6">
+												<input type="button" value="이전" class="btn btn-primary" id="prevbtn">
+											</div>
+											<div class="col-xs-6">
+												<input type="button" value="다음" class="btn btn-primary" id="nextbtn">
+												<input type="hidden" id = "Listorder">
+											</div>
 
+										</div>
 									</div>
 
 
-									<div class="row prolistbtn">
-										<input type="button" value="이전" class="btn btn-primary btn-sm"> <input type="button" value="다음" class="btn btn-primary btn-sm">
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -214,6 +211,7 @@
 </body>
 
 <script type="text/javascript">
+
 	if ("${examInfo.examVo.examType}" == '쪽지시험') {
 
 		var time = "${examInfo.examVo.time}";
@@ -239,7 +237,8 @@
 		var examNo = "${examInfo.examVo.examNo}";
 		var orderNum = "${examInfo.qeustionVo.orderNum}";
 
-		$.ajax({
+		$
+				.ajax({
 					url : '${pageContext.request.contextPath}/${url}/exam/selectanswer',
 					type : 'POST',
 					data : {
@@ -259,7 +258,7 @@
 								$('#X').removeClass('active');
 								$('#X').removeClass('btn-warning', 'active');
 								$('#X').addClass('btn-danger');
-							} else {
+							} else if (answer == 'X') {
 								$('#X').removeClass('btn-danger');
 								$('#X').addClass('btn-warning');
 								$('#X').addClass('active');
@@ -283,13 +282,88 @@
 
 							document.getElementById("shortans").value = answer;
 						}
-
+						getsideList(orderNum);
 					},
 					error : function(XHR, status, error) {
 						console.error(status + " : " + error);
 					}
 				});
 
+	}
+	
+	$("#prevbtn").on("click", function(orderNum) {
+		var oder = document.getElementById("Listorder").value;
+		var order = parseInt(oder) - 1;
+		getsideList(order);
+		
+		
+	});
+	
+	$("#nextbtn").on("click", function(orderNum) {
+		var oder = document.getElementById("Listorder").value;
+		var order = parseInt(oder) + 1;
+		getsideList(order);
+	});
+	
+	function getsideList(orNum) {
+		var oNum = orNum;
+		var joinNo = "${classInfo.joinVo.joinNo}";
+		var examNo = "${examInfo.examVo.examNo}";
+		$
+				.ajax({
+					url : "${pageContext.request.contextPath}/${url}/exam/examsolveList",
+					type : "post",
+					//contentType : "application/json",
+					data : {
+						examNo : examNo,
+						orderNum : oNum,
+						joinNo : joinNo
+					},
+					success : function(data) {
+						console.log(data.next)
+						if (data.prev) {
+							$("#prevbtn").show();
+						} else {
+							$("#prevbtn").hide();
+						}
+
+						if (data.next) {
+							$("#nextbtn").show();
+						} else {
+							$("#nextbtn").hide();
+						}
+
+						renders(data.qList);
+						document.getElementById("Listorder").value = data.thisoderNum;
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+				});
+	}
+
+	function renders(qList) {
+		$("#problemList").empty();
+		for (var i = 0; i < qList.length; i++) {
+			serender(qList[i]);
+		}
+	}
+
+	function serender(Vo) {
+		var str = "";
+		str += '<li>';
+		if ("${param.orderNum}" == Vo.orderNum) {
+			str += +Vo.orderNum + '번';
+		} else {
+			str += '<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum='
+					+ Vo.orderNum
+					+ '&joinNo=${param.joinNo}">'
+					+ Vo.orderNum
+					+ '번</a>';
+			str += '</li>';
+		}
+
+		$("#problemList").append(str);
 	}
 
 	$("#O").on("click", function() {

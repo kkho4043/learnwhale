@@ -19,8 +19,10 @@
 <!-- //header -->
 <div class="container">
 	<div class="row">
-		<div id="top-banner-area" class="col-xs-12">
-			<img id="top-banner" <%-- src = "/img/${classInfo.cvo.logoFile}" --%> src="/learnwhale/assets/image/top-banner.jpg">
+		<div id="top-banner-area" class="col-xs-12" style="height: 220px; overflow: hidden;">
+			<img id="top-banner"  style=" width: 100%;height:100%;object-fit:cover;"
+			src="${pageContext.request.contextPath}/upload/${classInfo.cvo.logoFile}"
+				onerror="this.src='${pageContext.request.contextPath}/assets/image/top-banner.jpg'">
 			<p id="banName" class="text-center">${classInfo.cvo.className}</p>
 			<div id="date-area" class="text-center">
 				<span class="banDate">${classInfo.cvo.startDate}</span> <span class="banDate"> ~ </span> <span class="banDate">${classInfo.cvo.endDate}</span>
@@ -32,21 +34,21 @@
 
 <script type="text/javascript">
 	var session = '';
-	$.ajax({
-		url : '${pageContext.request.contextPath}/sessioncheck',
-		type : 'POST',
-		data : {},
-		success : function(flag) {
-			
-			if(flag == false){
-				alert("세션이 만료되어 로그인 창으로 이동합니다");
-				location.href = "${pageContext.request.contextPath}/user/loginForm";
-			}
-			
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
-		}
-	});
+	$
+			.ajax({
+				url : '${pageContext.request.contextPath}/sessioncheck',
+				type : 'POST',
+				data : {},
+				success : function(flag) {
 
+					if (flag == false) {
+						alert("세션이 만료되어 로그인 창으로 이동합니다");
+						location.href = "${pageContext.request.contextPath}/user/loginForm";
+					}
+
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
 </script>

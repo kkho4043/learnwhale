@@ -71,7 +71,7 @@
 						<div class="row testoption">
 
 							<div class="row">
-								<div class="col-xs-2">제목</div>
+								<div class="col-xs-2" style="margin-top: 3px;">제목</div>
 								<div class="col-xs-10">
 									<input type="text" id="examtitle">
 								</div>
@@ -90,10 +90,10 @@
 								</div>
 							</div>
 
-							<div class="row" class="simpletesttime" id="testtime">
-								<div class="col-xs-2">시간설정</div>
+							<div class="row" class="simpletesttime" id="testtime" >
+								<div class="col-xs-2" style="margin-top: 3px;">시간설정</div>
 								<div class="col-xs-4">
-									<select name="testtime" id="timeselect">
+									<select name="testtime" id="timeselect" class = "selecttimebar"> 
 										<option value="">문제당 시간</option>
 										<option value="30">30초</option>
 										<option value="60">1분</option>
@@ -109,11 +109,11 @@
 							<div class="row">
 								<div class="col-xs-2">응시 가능 시간</div>
 								<div class="col-xs-5">
-									<input type="datetime-local" id="startdate"> 부터
+									<input type="datetime-local" id="startdate" class = "selecttimebar"> 부터
 								</div>
 
 								<div class="col-xs-5">
-									<input type="datetime-local" id="enddate"> 까지
+									<input type="datetime-local" id="enddate" class = "selecttimebar">  까지
 								</div>
 							</div>
 
@@ -127,7 +127,7 @@
 								<button type="button" class="" data-toggle="modal" data-target="#myModal">문제 추가</button>
 							</div>
 
-							<div class="col-xs-3">
+							<div class="col-xs-3" style="margin-left: -40px;">
 								합산점수 <span id="hapscore">0</span> / 100
 							</div>
 						</div>

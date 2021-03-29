@@ -15,6 +15,7 @@
 		    where j.class_no = c.class_no
 		    and j.user_no = u.no
 		    and c.class_url = #{url}
+		    and j.approval = '승인'
 		    and u.no = #{userNo}
 	 	]]>
 

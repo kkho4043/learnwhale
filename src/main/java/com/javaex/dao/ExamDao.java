@@ -225,13 +225,17 @@ public class ExamDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("examNo", examNo);
 		map.put("joinNo", joinNo);
-		return sqlSession.update("exam.examsolvecount", map);
+		return sqlSession.selectOne("exam.examsolvecount", map);
 	}
 	
-	public List<QuestionVo> examsolveList(int examNo, int joinNo) {
+	public List<QuestionVo> examsolveList(int examNo, int joinNo,int startNum ,int endNum) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		map.put("examNo", examNo);
 		map.put("joinNo", joinNo);
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		System.out.println(map.toString());
 		return sqlSession.selectList("examsolveList", map);
 	}
 
