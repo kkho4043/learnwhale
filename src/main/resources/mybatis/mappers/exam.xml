@@ -471,4 +471,15 @@ from(select
 	                   from question
 	                   where exam_no = #{examNo})
 	</update>
+	
+	
+	<update id="grantpoint" parameterType="map">
+	update solve
+	set	MYPOINT = #{point}
+	where join_no = #{joinNo}
+	and question_no in (select 
+	                        question_no
+	                   from question
+	                   where exam_no = #{examNo})
+	</update>
 </mapper>

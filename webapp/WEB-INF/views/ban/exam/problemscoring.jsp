@@ -343,6 +343,7 @@
 			type : "post",
 			//contentType : "application/json",
 			data : {
+				point : point,
 				examNo : examNo,
 				orderNum : orderNum,
 				joinNo : joinNo
