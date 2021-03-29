@@ -139,7 +139,7 @@
 			union all
 			
 			select 0 as joinNo,
-			       null as type
+			       '학생' as type
 			from dual
 			where not exists (select      join_no joinNo,
 			                              type

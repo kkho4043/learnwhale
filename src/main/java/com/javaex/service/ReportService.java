@@ -22,10 +22,11 @@ public class ReportService {
 	public Map<String, Object> getList(String url, String type, int joinNo, String keyword, int page, int userNo) {
 		Map<String, Object> reMap = new HashMap<String, Object>(7);
 		Map<String, Object> joMap = reDao.selJoin(userNo, url);
-		
-		if(joinNo==0) {
+		System.out.println(joMap);
+				
+		if("선생님".equals(joMap.get("TYPE"))) { 
 			
-			if("선생님".equals(joMap.get("TYPE"))) { 
+			if(joinNo==0) {
 				
 				try{
 					joinNo = reDao.selNo(url);
@@ -33,21 +34,38 @@ public class ReportService {
 					joinNo = 0;
 				}
 				reMap.put("joinList", reDao.selStudentList(url, 0));
+				System.out.println("1");
 				
 			}else {
-				joinNo = Integer.parseInt(String.valueOf(joMap.get("JOINNO")));
-				reMap.put("joinList", reDao.selStudentList(url, joinNo));
-			 }
+				reMap.put("joinList", reDao.selStudentList(url, 0));
+				System.out.println("1-1");
+			}
+			
+		}
 	
+		
+		if("학생".equals(joMap.get("TYPE"))) {
+			
+			if(joinNo==0) {
+				joinNo = Integer.parseInt(String.valueOf(joMap.get("JOINNO")));
+				
+				if(joinNo ==0) {
+					reMap.put("joinList", reDao.selStudentList(url, -1));
+					System.out.println("2");
+				}
+				else {
+					reMap.put("joinList", reDao.selStudentList(url, joinNo));
+					System.out.println("3");
+				}
+				
+				
+			}else {
+				
+				reMap.put("joinList", reDao.selStudentList(url, joinNo));
+				System.out.println("4");
+			}
 		}
 		
-		if("선생님".equals(joMap.get("TYPE"))) {
-			reMap.put("joinList", reDao.selStudentList(url, 0));
-		}
-		else {
-			joinNo = Integer.parseInt(String.valueOf(joMap.get("JOINNO")));
-			reMap.put("joinList", reDao.selStudentList(url, joinNo));
-		}
 		
 		int postCnt = 5;
 		

@@ -60,6 +60,9 @@
 			 	position:relative;
 			}
 			
+			.main-folder{
+				color: blue;			
+			}
 		</style>
 		
 	</head>
@@ -87,8 +90,9 @@
 						<div class="parents-folder" id="top-folder" data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
 
 							<span class="glyphicon glyphicon-folder-close"></span> 
-							<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${cateVo.cateNo}">
-							 ${cateVo.cateName}</a> 
+							<span class="main-folder" data-cate="${cateVo.cateNo }">
+							 	${cateVo.cateName}
+							</span> 
 									
 						</div>
 					</c:when>
@@ -130,7 +134,7 @@
 					<div class="modal-body">
 						<label for="modalName">폴더이름</label> <input id="modalName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 						<!-- no 히든으로 처리 -->
-						<input type="text" name="userNo" value="1">
+						<input type="text" name="userNo" value="1"<%-- ${authUser.no } --%>>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -228,48 +232,44 @@
 	
 		$(document).ready(function() {
 			subMake();
+			rightClick();
+			subVisible();
 		});
 		
 		
 		
-		$(document).ready(function(){
-			
-			
-			$(".parents-folder a").contextmenu(function(e){
+		
+		
+		
+		
+		
+		
+		
+		
+		function rightClick(){
 				
-				var y = $(this).offset().top;
-				console.log(y);
-				/* //window width
-				var width = $(document).width();
-				var height = $(document).height(); */
+			$(".parents-folder .main-folder").contextmenu(function(e){
 				
 				//pointer position
 				
 				var poX = e.offsetX;
-				//var poY = clientY;
-				
-				console.log(poX)
-				//console.log(poY)
-				
-				//contextmenu size
-				var menuWidth = $(".contextmenu").width();
-				var menuHeight = $(".contextmenu").height();
+				var poY = $(this).offset().top -150;
 				
 				$(".contextmenu").css({
 					"left": poX,
-					"top" : y-150
+					"top" : poY
 				}).show();
 		
-			//Prevent browser default contextmenu
-			return false;
+				//Prevent browser default contextmenu
+				return false;
 	
 			});
 		
 			$(document).click(function(){
 				$(".contextmenu").hide();
 			});
+		}
 	
-		});
 
 		
 		function subMake() {
@@ -284,7 +284,9 @@
 			});
 		};
 	
-		$(document).ready(function() {
+			
+		function subVisible(){
+			
 			$(".parents-folder").click(function() {
 
 				let parentNo = $(this).data("group");
@@ -297,8 +299,12 @@
 					submenu.slideDown();
 	
 				};
+				
 			});
-		});
+		
+		}
+			
+		
 	
 		$(document).ready(function() {
 			$("#management-btn").click(function() {
