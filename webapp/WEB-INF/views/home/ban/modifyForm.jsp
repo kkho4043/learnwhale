@@ -112,14 +112,14 @@
 									</span>
 								</div>
 								<!-- //노출여부 -->
-								<input type="text" name="classNo" value="${classVo.classNo}">
+								<input type="hidden" name="classNo" value="${classVo.classNo}">
 								<div class="row interval">
 									<div class="col-xs-6">
 										<button type="submit" class="btn btn-primary btn-xs pull-right">수정</button>
 									</div>
 									<div class="col-xs-6">
 										<button class="btn btn-primary btn-xs pull-right">
-											<a href="${pageContext.request.contextPath}/myclass/list">취소</a>
+											<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">취소</a>
 										</button>
 									</div>
 

@@ -122,7 +122,7 @@ public class ClassService {
 		if(count == 0) {
 			classDao.joinDelete(classNo);
 		}else {
-			return 1;
+			return count;
 		}
 		
 		return classDao.classDelete(classNo);

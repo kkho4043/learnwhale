@@ -136,7 +136,7 @@
 									</div>
 									<div class="col-xs-6">
 										<button class="btn btn-primary btn-xs pull-right">
-											<a href="${pageContext.request.contextPath}/myclass/list">취소</a>
+											<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">취소</a>
 										</button>
 									</div>
 								</div>

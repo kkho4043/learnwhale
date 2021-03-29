@@ -68,7 +68,7 @@
 															</div>
 															<input type="text" name="id" class="form-control"
 																id="id-margin" placeholder="아이디를 입력해 주세요.">
-															<button type="button" id="btnCheck">중복체크</button>	
+															<button type="button" id="btnCheck" class="btn btn-primary btn-xs">중복체크</button>	
 														</div>
 														<!-- //form-group -->
 													</div>
