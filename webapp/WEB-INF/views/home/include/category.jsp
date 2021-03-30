@@ -106,7 +106,7 @@
 								
 								<span class="glyphicon glyphicon-folder-close"> </span> 
 								
-								<a href="" data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
+								<a class = "subFolder" href="" data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
 								 	${cateVo.cateName}
 								</a>
 								
@@ -119,7 +119,7 @@
 			</c:forEach>
 		
 			<ul class="contextmenu">
-	  			<li id="subMake" data-group=""><a href="">등록</a></li>
+	  			<li id="subMake" data-group=""><a href="">폴더 만들기</a></li>
 	  			<li id="modify"><a href="">수정</a></li>
 	  			<li id="delete"><a href="">삭제</a></li>
 			</ul>
@@ -196,7 +196,7 @@
 				</div>
 				<div class="modal-body">
 					<p>
-						<input type="text" id="modiText" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
+						<input type="text" name="cateName" id="modiText" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 						<input type="text"  name="cateNo" value="">
 					</p>
 				</div>
@@ -250,12 +250,18 @@
 		
 		function rightClick(){
 				
-			$(".parents-folder .main-folder").contextmenu(function(e){
+			$(".parents-folder .main-folder, .child-folder .subFolder").contextmenu(function(e){
 				
 				let groupNo = e.target.getAttribute("data-group");
 				let cateNo = e.target.getAttribute("data-cate");
 				//$(".contextmenu #subMake").attr("data-group", groupNo);
 				
+				if(e.target.getAttribute("class")=='subFolder'){
+					$("#subMake").hide();
+				}
+				else{
+					$("#subMake").show();
+				}
 				$("#subMake").on("click", function(){
 					$("input[name=groupNo]").val(groupNo);
 				})
