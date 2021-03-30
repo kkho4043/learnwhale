@@ -37,8 +37,8 @@
 	    <![CDATA[
 			select cl.class_no classNo,
 			       cl.class_name className,
-			       nvl2(total, total, 0) total,
-			       nvl2(approval, approval, 0) approval,
+			       nvl2(co.total, co.total, 0) total,
+			       nvl2(co.approval, co.approval, 0) approval,
 			       TO_CHAR(cl.start_date,'yyyy-mm-dd') startDate,
 			       TO_CHAR(cl.end_date,'yyyy-mm-dd') endDate,
 			       cl.class_url classUrl,
@@ -47,17 +47,20 @@
 			            WHEN sysdate < cl.start_date THEN '대기'
 			            ELSE '종료'
 			       END AS state
-			from class cl left outer join (select      j.class_no,
-			                                            count(j.class_no) total,
-			                                            count(case when type='학생' and approval = '승인' then 1 end) approval
-			                                from join_users j, (select class_no
-			                                                    from   join_users
-			                                                    where  user_no = #{no}) c
+			from join_users jj, users uu, class cl left outer join (select      j.class_no,
+			                                                                   count(j.class_no) total,
+			                                                                   count(case when type='학생' and approval = '승인' then 1 end) approval
+			                                from join_users j,users u, (select class_no
+			                                                            from   join_users
+			                                                            ) c
 			                                where type='학생' and (approval = '대기' or approval='승인')
 			                                and c.class_no = j.class_no
 			                                group by j.class_no
 			                                ) co
 			on cl.class_no = co.class_no
+			where jj.user_no = uu.no
+			and cl.class_no = jj.class_no
+			and uu.no = #{no}
 		]]>
 			<if test="search != null and search !='' ">
 				where cl.class_name like '%' || #{search} || '%'
