@@ -54,9 +54,16 @@
 
 					<!-- 메인영역 타이틀 -->
 					<div id="main-title">
-						<div class="row">
-							<div class="col-xs-12">
+						<div class="row" style="margin-top: 15px;">
+							<div class="col-xs-3" style="padding-left: 50px;">
 								<p>시험 풀기</p>
+							</div>
+							<div class="col-xs-2">
+								<p>풀스텍A반</p>
+							</div>
+
+							<div class="col-xs-7">
+								<p>응시기간 :2021-03-30 06:30 ~ 2021-03-30 06:30</p>
 							</div>
 						</div>
 					</div>
@@ -68,33 +75,41 @@
 					<div id="main-content-area">
 						<div class="examsovle-informaion">
 							<div class="row">
-								<h2>풀스텍A반</h2>
+								<div class="col-xs-3"></div>
+								<div class="col-xs-6">
+									<h1>${examVo.examTitle}</h1>
+								</div>
+								<div class="col-xs-3" style="margin-top: 22px; margin-left: -85px; font-size: 20px;">
+									<c:if test="${examVo.time != null}">
+										<span>문제당 제한 시간 </span>
+										<span>${examVo.time}초</span>
+									</c:if>
+								</div>
+
 							</div>
 
-							<div class="row">
-								<h3>${examVo.examTitle}</h3>
+							<div class="row" style="height: 100px;">
+
+								<h3 style="margin-top: -20px;">(${examVo.examType})</h3>
+
 							</div>
 
-							<div class="row">
-								<div class="col-xs-1"></div>
-								<div class="col-xs-4">
-									<span>문항수:</span><span>${examVo.problemAmount} 개</span>
+							<div class="row" style="height: 100px; font-size: 25px;">
+								<div class="col-xs-6">응시자 : ${classInfo.joinVo.username}</div>
+								<div class="col-xs-6">
+									<span>문항수 : </span><span>${examVo.problemAmount}개</span>
 								</div>
-								<div class="col-xs-2">
-									<span>시험유형:</span><span>${examVo.examType}</span>
-								</div>
-								<div class="col-xs-5">
-									<c:if test="${examVo.time != null}"><span>문제당 시간:</span><span>${examVo.time}초 </span></c:if>
-								</div>
+
+								<div class="col-xs-5"></div>
 							</div>
 
 							<div class="row">
 								<div class="col-xs-3">
-									<button class="btn btn-primary btn-sm">리스트</button>
+									<button class="btn btn-primary btn-lg" style="margin-left: -90px;">리스트</button>
 								</div>
 								<div class="col-xs-7"></div>
 								<div class="col-xs-2">
-									<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examVo.examNo}&orderNum=1"><button class="btn btn-primary btn-sm">시험풀기</button></a>
+									<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examVo.examNo}&orderNum=1"><button class="btn btn-primary btn-lg">시험풀기</button></a>
 								</div>
 							</div>
 						</div>

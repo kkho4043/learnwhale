@@ -58,7 +58,7 @@
 					<div id="main-title">
 						<div class="row">
 							<div class="col-xs-12">
-								<p>시험 출제</p>
+								<p>${examInfo.examVo.examTitle}</p>
 							</div>
 						</div>
 					</div>
