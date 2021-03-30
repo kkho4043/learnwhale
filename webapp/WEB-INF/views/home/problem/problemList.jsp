@@ -67,8 +67,8 @@
 											</form>
 										</div>
 										<div class="col-xs-6">
-											<a href="${pageContext.request.contextPath}/myclass/problem/creatingForm?cateNo=${param.cateNo}"><button
-													class="btn btn-primary btn-sm pull-right" type="button">문제등록</button></a>
+											<button class="btn btn-primary btn-sm pull-right" type="button" id = "creatbtn">문제등록</button>
+											<input TYPE="hidden" id = "cateNosave">
 										</div>
 									</div>
 
@@ -180,6 +180,7 @@
 
 </body>
 <script type="text/javascript">
+
 	$(".delete-Btn").on("click", function() {
 		console.log("삭제버튼 클릭");
 
@@ -227,80 +228,14 @@
 	});
 	
 
-	$("document").ready(function(){
 	
-		fetchList();
-				
-	});
+	$("#creatbtn").on("click", function() {
+		var cateN = document.getElementById("cateNosave").value
 		
-	
-	
-	
-	
-	
-	
-		function fetchList(){
-			
-			$(".child-folder a").on("click", function(e){
-				e.preventDefault();
-				
-				var html = $("#problemList").html();	
+		location.href = "${pageContext.request.contextPath}//myclass/problem/creatingForm?cateNo="+cateN+"";
 
-				if(html != null){
-					
-					$("#problemList").empty();
-				}
-							
-				let cateNo = $(this).data("cate");
-				console.log(cateNo);				
-				history.pushState(null, null, 'problemList?cateNo='+cateNo);
-				
-				$.ajax({
-					
-					url: "${pageContext.request.contextPath}/api/myclass/problem/problemList",
-					
-					type: "get",
-					
-					dataType : "json",
-					
-					data : {"cateNo" : cateNo},
-					
-					success : function(proList){
-						
-						for(var i=0; i<proList.length; i++){
-							
-							render(proList[i]);
-						}
-					},
-					
-					error: function(XHR, status, error){
-						console.log(status+ ":" + error);
-			
-					}
-				});
-					
-				
-			});
-			
-		};
 		
-	
-		function render(proVo){
-				
-			let html = 		"<tr id='tr-center'>";
-			html += 			"<th>"+proVo.problemNo+"</th>";
-			html += 			"<th><a href='${pageContext.request.contextPath}/myclass/problem/creating-ViewForm?proNo=${proVo.problemNo}'>"+proVo.problemTitle+"</a></th>";
-			html += 			"<th>"+proVo.type+"</th>";
-			html += 			"<th>"+proVo.regDate+"</th>";
-			html += 			"<td>";
-			html +=					"<button class='btn btn-primary btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>이동</button>";	
-			html +=					"<button class='btn btn-danger btn-xs move-Btn'>삭제</button>";
-			html += 			"</td>";
-			html += 		"</tr>";
-	
-			$("#problemList").append(html);
-		}
-		
+	});
 </script>
 </html>
 

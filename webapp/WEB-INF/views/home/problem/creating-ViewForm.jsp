@@ -60,7 +60,7 @@
 
 										<div class="col-xs-9">
 											<form id="prblemForm" action="${pageContext.request.contextPath}/myclass/problem/modify" method="post" enctype="multipart/form-data">
-											<input type="text" name="problemNo" value="${proVo.problemNo}">
+												<input type="text" name="problemNo" value="${proVo.problemNo}">
 												<div class="row col-xs-9">
 													<c:choose>
 														<c:when test="${proVo.type == '객관식'}">
@@ -80,7 +80,7 @@
 														</c:otherwise>
 													</c:choose>
 												</div>
-												
+
 
 												<div class="row col-xs-9">
 													<c:choose>
@@ -103,8 +103,8 @@
 												</div>
 												<!-- //row -->
 												<input type="text" name="cateNo" value="${proVo.cateNo}">
-												
-												
+
+
 												<div class="row">
 													<div class="col-xs-9" id="make-problem">
 
@@ -142,23 +142,16 @@
 																				<strong>${status.count}</strong>
 																			</div>
 																			<div class="col-xs-9">
-																				<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="${choVo.choiceContent}">
-																				<input type="text" name="choiceNo" value="${choVo.choiceNo }">
+																				<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="${choVo.choiceContent}"> <input type="text" name="choiceNo" value="${choVo.choiceNo}">
 																			</div>
-																			<c:choose>
-																				<c:when test="${proVo.answer == status.count}">
-																					<div class="col-xs-2">
-																						<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}" checked="checked"> 
-																						<label for="check-second">정답체크</label>
-																					</div>
-																				</c:when>
-																				<c:otherwise>
-																					<div class="col-xs-2">
-																						<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}"> 
-																						<label for="check-second">정답체크</label>
-																					</div>
-																				</c:otherwise>
-																			</c:choose>
+
+
+																			<div class="col-xs-2">
+																				<input type="checkBox" class="answer" name="answer" id="check${choVo.orderNo}" value="${status.count}"> <label for="check${choVo.orderNo}">정답체크</label>
+																			</div>
+
+
+
 																			<div class="col-xs-12 fileArea">
 																				<input type="file" name="Image${status.count}">
 																			</div>
@@ -174,28 +167,28 @@
 
 															<c:choose>
 																<c:when test="${proVo.type == 'OX문제'}">
-																	
+
 																	<div class="row ox-Area">
 																		<div class="col-xs-12">
 																			<h4>정답을 선택해주세요</h4>
 																		</div>
-																	
+
 																		<div class="col-xs-6">
 																			<c:choose>
 																				<c:when test="${proVo.answer == 'O' }">
 																					<div>
-																						<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O" checked="checked">
+																						<input id="checkO" class="answer" type="radio" name="answer" value="O" checked="checked">
 																					</div>
 																					<div id="O">
-																						<label for="quizAnswerO">O</label>
+																						<label for="checkO">O</label>
 																					</div>
 																				</c:when>
 																				<c:otherwise>
 																					<div>
-																						<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O">
+																						<input id="checkO" class="answer" type="radio" name="answer" value="O">
 																					</div>
 																					<div id="O">
-																						<label for="quizAnswerO">O</label>
+																						<label for="checkO">O</label>
 																					</div>
 																				</c:otherwise>
 																			</c:choose>
@@ -204,27 +197,27 @@
 
 																		<div class="col-xs-6">
 																			<c:choose>
-																				<c:when test="${proVo.answer == 'X' }">
+																				<c:when test="${proVo.answer == 'X'}">
 																					<div>
-																						<input id="quizAnswerX" class="answer" type="radio" name="answer" value="X" checked="checked">
+																						<input id="checkX" class="answer" type="radio" name="answer" value="X" checked="checked">
 																					</div>
 																					<div id="X">
-																						<label for="quizAnswerX">X</label>
+																						<label for="checkX">X</label>
 																					</div>
 																				</c:when>
 																				<c:otherwise>
 																					<div>
-																						<input id="quizAnswerX" class="answer" type="radio" name="answer" value="X">
+																						<input id="checkX" class="answer" type="radio" name="answer" value="X">
 																					</div>
 																					<div id="X">
-																						<label for="quizAnswerX">X</label>
+																						<label for="checkX">X</label>
 																					</div>
 																				</c:otherwise>
 																			</c:choose>
 																		</div>
-																	
+
 																	</div>
-																
+
 																</c:when>
 															</c:choose>
 
@@ -239,7 +232,7 @@
 																			<input type="text" class="form-control answer" name="answer" value="${proVo.answer}">
 																		</div>
 																	</div>
-																
+
 																</c:when>
 															</c:choose>
 
@@ -252,7 +245,8 @@
 
 												<div class="col-xs-4">
 													<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${proVo.cateNo}">
-													<button type="button" id="out" class="btn btn-danger">나가기</button></a>
+														<button type="button" id="out" class="btn btn-danger">나가기</button>
+													</a>
 												</div>
 												<div class="col-xs-5">
 													<button type="submit" class="btn btn-primary" id="save">수정하기</button>
@@ -286,6 +280,21 @@
 
 </body>
 <script type="text/javascript">
+	$(document).ready(function() {
+		if("${proVo.type}" != '주관식'){
+			var answer = "${proVo.answer}";
+			var ar = answer.split(",");
+			var num;
+			console.log(ar);
+			for (var i = 0; i < ar.length; i++) {
+				num = ar[i];
+				document.getElementById("check"+num).checked = true;
+			}
+		}
+		
+
+	});
+
 	/* 빈칸 여부 체크하기 */
 	$("#prblemForm").on("submit", function() {
 

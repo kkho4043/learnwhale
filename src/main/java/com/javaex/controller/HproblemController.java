@@ -84,16 +84,20 @@ public class HproblemController {
 
 	// 문제관리 리스트
 	@RequestMapping(value = "problemList", method = { RequestMethod.GET, RequestMethod.POST })
-	public String problemList(Model model, int cateNo, HttpSession session) {
+	public String problemList(Model model, HttpSession session) {
 		System.out.println("[ProblemController.problemList()]");
 		
 		int no = ((UserVo) session.getAttribute("authUser")).getNo();
 		
 		model.addAttribute("cateList", proService.getCategory(no));
 
-		model.addAttribute("proList", proService.getProblem(cateNo));
-
 		return "home/problem/problemList";
+	}
+	@ResponseBody
+	@RequestMapping(value = "cateproblem", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<ProblemVo> cateproblem(@RequestParam(value = "cateNo")int cateNo) {
+		System.out.println("[ProblemController.problemList()]");
+		return proService.getProblem(cateNo);
 	}
 
 	// 문제 작성
@@ -123,14 +127,14 @@ public class HproblemController {
 
 	// 문제 보기
 	@RequestMapping(value = "/creating-ViewForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String creatingViewForm(Model model, int proNo, HttpSession session, ProblemVo proVo, ChoiceVo choVo) {
+	public String creatingViewForm(Model model, HttpSession session, int proNo, ChoiceVo choVo) {
 		System.out.println("[ProblemController.view()]");
 
 		int no = ((UserVo) session.getAttribute("authUser")).getNo();
 		
 		model.addAttribute("cateList", proService.getCategory(no));
 		
-		System.out.println("22222222222222222222222:   " + proVo.getCateNo());
+		System.out.println("22222222222222222222222:   " + proNo);
 		model.addAttribute("choVo", proService.ChoiceView(proNo));
 		model.addAttribute("proVo", proService.Problemview(proNo));
 		return "home/problem/creating-ViewForm";

@@ -334,6 +334,7 @@
 						}
 
 						renders(data.qList);
+						console.log("잘되나");
 						document.getElementById("Listorder").value = data.thisoderNum;
 					},
 					error : function(XHR, status, error) {

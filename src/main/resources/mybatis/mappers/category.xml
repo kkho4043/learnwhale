@@ -96,7 +96,7 @@
 			insert into choice
 			values(
 			     SEQ_CHOICE.nextval,
-			     seq_problem_no.currval,
+			     #{proNo},
 			     #{choiceContent},
 			     #{filepath},
 			     #{orderNo}

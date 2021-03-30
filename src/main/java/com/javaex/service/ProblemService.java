@@ -72,7 +72,6 @@ public class ProblemService {
 		if (file.getSize() > 0) {
 			// 컨텐츠에 이미지가 있을때
 
-			proVo.setAnswer(proVo.getAnswer().replace(",", ""));
 
 			// db저장할 정보 수집
 			saveDir = "C:\\javaStudy\\upload";
@@ -101,7 +100,6 @@ public class ProblemService {
 
 			// 이미지가 없을때
 			System.out.println("serviceddd" + proVo);
-			proVo.setAnswer(proVo.getAnswer().replace(",", ""));
 			proDao.ProblemInsert(proVo);
 		}
 
@@ -175,7 +173,6 @@ public class ProblemService {
 		if (file.getSize() > 0) {
 			// 컨텐츠에 이미지가 있을때
 
-			proVo.setAnswer(proVo.getAnswer().replace(",", ""));
 
 			// db저장할 정보 수집
 			saveDir = "C:\\javaStudy\\upload";
@@ -203,7 +200,6 @@ public class ProblemService {
 		} else {
 
 			// 이미지가 없을때
-			proVo.setAnswer(proVo.getAnswer().replace(",", ""));
 			System.out.println("asdasd" + proVo);
 			
 			proDao.ProblemModify(proVo);

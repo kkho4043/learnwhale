@@ -514,6 +514,7 @@ from(select
 			and q.exam_no = #{examNo}
 			and order_num >= #{startNum}
 			and order_num <= #{endNum}
+			order by order_num asc
 		]]>
 	</select>
 	

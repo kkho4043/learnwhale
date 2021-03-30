@@ -58,11 +58,11 @@ public class ProblemDao {
 	}
 
 	// 문제 작성
-	public int ProblemInsert(ProblemVo proVo) {
+	public ProblemVo ProblemInsert(ProblemVo proVo) {
 		System.out.println("ProDao- ProblemInsert");
 		System.out.println("ProDao- ProblemInsert" + proVo);
-
-		return sqlSession.insert("category.problemInsert", proVo);
+		sqlSession.insert("category.problemInsert", proVo);
+		return  proVo;
 	}
 
 	// 보기 파일 넣기
