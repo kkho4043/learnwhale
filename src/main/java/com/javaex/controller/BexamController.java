@@ -234,12 +234,6 @@ public class BexamController {
 		return examService.examsolvepaging(examNo, orderNum, joinNo);
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/classjoin", method = { RequestMethod.GET, RequestMethod.POST })
-	public boolean classjoin(@PathVariable("url") String url,HttpSession session, Model model) {
-		banmainService.joinclass(url,session);
-		
-		return true;
-	}
+	
 
 }

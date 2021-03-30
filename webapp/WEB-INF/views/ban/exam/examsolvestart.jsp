@@ -84,7 +84,7 @@
 									<span>시험유형:</span><span>${examVo.examType}</span>
 								</div>
 								<div class="col-xs-5">
-									<c:if test="${examVo.time != null}"><span>시간:</span><span>${examVo.time}</span></c:if>
+									<c:if test="${examVo.time != null}"><span>문제당 시간:</span><span>${examVo.time}초 </span></c:if>
 								</div>
 							</div>
 

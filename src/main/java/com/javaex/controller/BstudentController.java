@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.BanmainService;
 import com.javaex.service.StudentService;
@@ -122,5 +123,11 @@ public class BstudentController {
 			return "redirect:list";
 		}
 	}
-	
+	@ResponseBody
+	@RequestMapping(value = "/classjoin", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean classjoin(@PathVariable("url") String url,HttpSession session, Model model) {
+		banmainService.joinclass(url,session);
+		
+		return true;
+	}
 }
