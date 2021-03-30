@@ -138,7 +138,7 @@
 									
 									
 									<form method="get"
-										action="{pageContext.request.contextPath}/myclass/remove">
+										action="{pageContext.request.contextPath}/myclass/remove}">
 										<div class="modal fade" id="deleteModal">
 											<div class="modal-dialog">
 												<div class="modal-content">
