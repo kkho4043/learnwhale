@@ -143,22 +143,21 @@ public class ExamService {
 		examVo.setClassNo(classNo);
 		examVo = examDao.examinsert(examVo);
 
-		int examNo =  examVo.getExamNo();
+		int examNo = examVo.getExamNo();
 		String split;
 
 		for (int i = 0; i < arr.length; i++) {
 			split = arr[i];
 			String[] splitarr = split.split("/");
-			examDao.questioninsert(Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]), i + 1,
-					examNo);
+			examDao.questioninsert(Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]), i + 1, examNo);
 		}
-		
+
 		List<Integer> userarr = examDao.selectjusers(classNo);
-		
-		List<Integer> squestionarr =  examDao.selectsquestion(examNo);
-		
-		for(int i = 0;i < userarr.size();i++) {
-			for(int j = 0;j < squestionarr.size();j++) {
+
+		List<Integer> squestionarr = examDao.selectsquestion(examNo);
+
+		for (int i = 0; i < userarr.size(); i++) {
+			for (int j = 0; j < squestionarr.size(); j++) {
 				examDao.insertsolve(userarr.get(i), squestionarr.get(j));
 			}
 		}
@@ -206,67 +205,67 @@ public class ExamService {
 		examDao.examupdate(examVo);
 	}
 
-	
+	public String clicktitle(String url, int examNo, HttpSession session, int joinNo) {
 
-	public String clicktitle(String url, int examNo, HttpSession session,int joinNo) {
-		
 		UserVo userVo = (UserVo) session.getAttribute("authUser");
-		
+
 		int userNo = userVo.getNo();
 		JoinUserVo jvo = banmainDao.selectuserInfo(url, userNo);
-		
-		if(jvo.getType().equals("선생님")) { // 선생님일때
+
+		if (jvo.getType().equals("선생님")) { // 선생님일때
 			System.out.println("선생님");
-			return "/problemlist?examNo="+examNo;
-			
-		}else {
-			//학생일때
+			return "/problemlist?examNo=" + examNo;
+
+		} else {
+			// 학생일때
 			System.out.println("학생");
-			int flag = examDao.getAttendance(jvo.getJoinNo(),examNo);
-			if(flag > 0) { //문제를 풀었을때 
+			int flag = examDao.getAttendance(jvo.getJoinNo(), examNo);
+			if (flag > 0) { // 문제를 풀었을때
 				System.out.println("문제를 풀었을때");
-				return "/problemlist?examNo="+examNo+"&joinNo="+joinNo;
-			}else {
+				return "/problemlist?examNo=" + examNo + "&joinNo=" + joinNo;
+			} else {
 				System.out.println("문제를 안풀었을때");
-				return "examstart?examNo="+examNo;
+				return "examstart?examNo=" + examNo;
 			}
-			
+
 		}
 
 	}
+
 	public ExamVo examstart(int examNo) {
 		return examDao.examstart(examNo);
 	}
+
 	public Map<String, Object> examsolve(int examNo, int orderNum) {
 		Map<String, Object> Map = new HashMap<String, Object>();
-		
+
 		ExamVo examVo = examDao.examstart(examNo);
 		Map.put("examVo", examVo);
-		
-		QuestionVo qeustionVo = examDao.startquestion(orderNum,examNo);
+
+		QuestionVo qeustionVo = examDao.startquestion(orderNum, examNo);
 		qeustionVo.setOrderNum(orderNum);
 		Map.put("qeustionVo", qeustionVo);
-		
+
 		ProblemVo problemVo = examDao.selectproblem(qeustionVo.getProblemNo());
 		Map.put("problemVo", problemVo);
-		
-		if(problemVo.getType().equals("객관식")) { //객관식 보기
+
+		if (problemVo.getType().equals("객관식")) { // 객관식 보기
 			List<ChoiceVo> cList = examDao.selectchoice(qeustionVo.getProblemNo());
 			Map.put("cList", cList);
 		}
-		
-		if(examDao.startquestion(orderNum+1,examNo) == null) {
+
+		if (examDao.startquestion(orderNum + 1, examNo) == null) {
 			Map.put("endsolve", "endsolve");
 		}
-		
-		
+
 		return Map;
-		
+
 	}
 
 	public void insertanswer(QuestionVo questionVo, SolveVo solveVo) {
-		examDao.updatesolve(questionVo,solveVo);
+		examDao.updatesolve(questionVo, solveVo);
 	}
+
 	public void insertFile(QuestionVo questionVo, SolveVo solveVo, MultipartFile file) {
 		String saveDir = "C:\\javaStudy\\upload";
 		// 확장자
@@ -289,30 +288,88 @@ public class ExamService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		examDao.updatefile(questionVo,solveVo,saveName);
-		
+
+		examDao.updatefile(questionVo, solveVo, saveName);
+
 	}
 
 	public String selectanswer(int examNo, int orderNum, int joinNo) {
 		System.out.println(examDao.selectanswer(examNo, orderNum, joinNo));
 		return examDao.selectanswer(examNo, orderNum, joinNo);
 	}
-	
-	//시험 종료
+
+	// 시험 종료
 	public void examfinish(int joinNo, int examNo) {
-		examDao.examfinish(joinNo,examNo);
-		
+		examDao.examfinish(joinNo, examNo);
+
 	}
 
 	public int getpoint(int examNo, int orderNum, int joinNo) {
 		return examDao.getpoint(examNo, orderNum, joinNo);
 	}
 
-	public int grantpoint(int examNo, int orderNum, int joinNo ,int point) {
-		return examDao.grantpoint(examNo, orderNum, joinNo , point);
-	
+	public int grantpoint(int examNo, int orderNum, int joinNo, int point) {
+		return examDao.grantpoint(examNo, orderNum, joinNo, point);
+
 	}
 
+	public Map<String, Object> examsolvepaging(int examNo, int orderNum, int joinNo) {
+		System.out.println("받을때"+orderNum);
+		//전체 글 갯수
+		int count = examDao.examsolvecount(examNo,joinNo);
+			System.out.println("글갯수는 "+count);
+		int startNum = 1;
+		int endNum = 9;
+		
+		
+		boolean next = true;
+		boolean prev = true;
+		
+		
+		if(orderNum >= 6) {
+			startNum = orderNum - 4;
+			endNum = startNum + 8;
+			if(endNum > count) {
+				startNum -=(endNum - count); 
+				endNum = count;
+			}
+		}
+		
+		if(count < 10) {
+			startNum = 1;
+			endNum = count;
+		}
+		
+		if(endNum == count) {
+			next = false;
+			orderNum = count - 4;
+		}
+		
+		if(orderNum < 6) {
+			prev = false;
+		}
+		
+			
+		
+		List<QuestionVo> qList = examDao.examsolveList(examNo ,joinNo,startNum ,endNum);
+		
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		
+		System.out.println(qList);
+		pMap.put("qList", qList);
+		
+		pMap.put("next", next);
+		pMap.put("prev", prev);
+		System.out.println("넣어줄때"+orderNum);
+		pMap.put("thisoderNum", orderNum);
+		return pMap;
+		
+		
+		
+		
+
+	}
+
+	
 
 }

@@ -39,23 +39,24 @@ public class BexamController {
 
 	@Autowired
 	private ProblemService proService;
-
+	
+	
+	
 	@RequestMapping(value = "/title", method = { RequestMethod.GET, RequestMethod.POST })
-	public String title(@PathVariable("url") String url, 
-						@RequestParam(value = "examNo") int examNo, 
-						@RequestParam(value = "joinNo") int joinNo, HttpSession session,Model model) {
+	public String title(@PathVariable("url") String url, @RequestParam(value = "examNo") int examNo,
+			@RequestParam(value = "joinNo") int joinNo, HttpSession session, Model model) {
 
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
-		String where = examService.clicktitle(url, examNo, session,joinNo);
+		String where = examService.clicktitle(url, examNo, session, joinNo);
 		return "redirect:/" + url + "/exam/" + where;
 	}
 
 	@RequestMapping(value = "/problemlist", method = { RequestMethod.GET, RequestMethod.POST })
-	public String problemlist(@PathVariable("url") String url, HttpSession session,Model model, 
-							  @RequestParam(value = "examNo") int examNo,
-							  @RequestParam(value = "joinNo", required = false, defaultValue = "1") int joinNo,
-							  @RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage) {
-		
+	public String problemlist(@PathVariable("url") String url, HttpSession session, Model model,
+			@RequestParam(value = "examNo") int examNo,
+			@RequestParam(value = "joinNo", required = false, defaultValue = "1") int joinNo,
+			@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage) {
+
 		System.out.println("[BanExamController.problemlist()]");
 
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
@@ -65,11 +66,9 @@ public class BexamController {
 	}
 
 	@RequestMapping(value = "/problemscoring", method = { RequestMethod.GET, RequestMethod.POST })
-	public String problemsolve(Model model,HttpSession session,
-							   @PathVariable("url") String url , 
-							   @RequestParam(value = "examNo") int examNo, 
-							   @RequestParam(value = "joinNo") int joinNo, 
-							   @RequestParam(value = "orderNum") int orderNum){
+	public String problemsolve(Model model, HttpSession session, @PathVariable("url") String url,
+			@RequestParam(value = "examNo") int examNo, @RequestParam(value = "joinNo") int joinNo,
+			@RequestParam(value = "orderNum") int orderNum) {
 		System.out.println("[BanExamController.problemscoring()]");
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
 		model.addAttribute("examInfo", examService.examsolve(examNo, orderNum));
@@ -106,8 +105,7 @@ public class BexamController {
 
 	@RequestMapping(value = "/examend", method = { RequestMethod.GET, RequestMethod.POST })
 	public String examend(@PathVariable("url") String url, HttpSession session, Model model,
-						  @RequestParam(value = "examNo") int examNo,
-						  @RequestParam(value = "orderNum") int orderNum) {
+			@RequestParam(value = "examNo") int examNo, @RequestParam(value = "orderNum") int orderNum) {
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
 		model.addAttribute("examInfo", examService.examsolve(examNo, orderNum));
 		model.addAttribute("examVo", examService.examstart(examNo));
@@ -116,8 +114,8 @@ public class BexamController {
 	}
 
 	@RequestMapping(value = "/grantform", method = { RequestMethod.GET, RequestMethod.POST })
-	public String grantform(Model model, @PathVariable("url") String url,
-			@RequestParam(value = "userNo") int userNo,HttpSession session) {
+	public String grantform(Model model, @PathVariable("url") String url, @RequestParam(value = "userNo") int userNo,
+			HttpSession session) {
 		System.out.println("[BanExamController.grantform()]");
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
 		model.addAttribute("cateList", proService.getCategory(userNo));
@@ -206,28 +204,42 @@ public class BexamController {
 
 	// 문제 제출 클릭시
 	@RequestMapping(value = "/examfinish", method = { RequestMethod.GET, RequestMethod.POST })
-	public String examfinish(@RequestParam(value = "examNo") int examNo,
-			@RequestParam(value = "joinNo") int joinNo, @PathVariable("url") String url) {
-		
-		examService.examfinish(joinNo,examNo);
+	public String examfinish(@RequestParam(value = "examNo") int examNo, @RequestParam(value = "joinNo") int joinNo,
+			@PathVariable("url") String url) {
+
+		examService.examfinish(joinNo, examNo);
 		return "redirect:/" + url;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/getpoint", method = { RequestMethod.GET, RequestMethod.POST })
-	public int getpoint(@RequestParam(value = "examNo") int examNo,
-			@RequestParam(value = "orderNum") int orderNum, @RequestParam(value = "joinNo") int joinNo) {
+	public int getpoint(@RequestParam(value = "examNo") int examNo, @RequestParam(value = "orderNum") int orderNum,
+			@RequestParam(value = "joinNo") int joinNo) {
 		return examService.getpoint(examNo, orderNum, joinNo);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/grantpoint", method = { RequestMethod.GET, RequestMethod.POST })
-	public int grantpoint(@RequestParam(value = "examNo") int examNo,
-			@RequestParam(value = "orderNum") int orderNum, @RequestParam(value = "joinNo") int joinNo,@RequestParam(value = "point") int point) {
+	public int grantpoint(@RequestParam(value = "examNo") int examNo, @RequestParam(value = "orderNum") int orderNum,
+			@RequestParam(value = "joinNo") int joinNo, @RequestParam(value = "point") int point) {
 		examService.grantpoint(examNo, orderNum, joinNo, point);
 		return 1;
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/examsolveList", method = { RequestMethod.GET, RequestMethod.POST })
+	public Map<String, Object> examsolveList(@RequestParam(value = "examNo") int examNo, @RequestParam(value = "orderNum") int orderNum,
+			@RequestParam(value = "joinNo") int joinNo) {
+		System.out.println("체점시 리스트 출력 컨트롤러");
+		return examService.examsolvepaging(examNo, orderNum, joinNo);
+	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value = "/classjoin", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean classjoin(@PathVariable("url") String url,HttpSession session, Model model) {
+		banmainService.joinclass(url,session);
+		
+		return true;
+	}
 
 }

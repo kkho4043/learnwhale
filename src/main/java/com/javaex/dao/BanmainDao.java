@@ -34,5 +34,13 @@ public class BanmainDao {
 		
 		return sqlSession.selectOne("banmain.selectclassteacher",classNo);
 	}
+
+	public void joinclass(int classNo, int userNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("classNo",classNo);
+		map.put("userNo", userNo);
+		
+		sqlSession.insert("banmain.joinclass",map);
+	}
 	
 }

@@ -60,6 +60,7 @@
 
 										<div class="col-xs-9">
 											<form id="prblemForm" action="${pageContext.request.contextPath}/myclass/problem/modify" method="post" enctype="multipart/form-data">
+											<input type="text" name="problemNo" value="${proVo.problemNo}">
 												<div class="row col-xs-9">
 													<c:choose>
 														<c:when test="${proVo.type == '객관식'}">
@@ -101,7 +102,8 @@
 													</c:choose>
 												</div>
 												<!-- //row -->
-												<input type="hidden" name="cateNo" value="${param.cateNo}">	
+												<input type="text" name="cateNo" value="${proVo.cateNo}">
+												
 												
 												<div class="row">
 													<div class="col-xs-9" id="make-problem">
@@ -122,6 +124,7 @@
 															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description" value="${proVo.description}">
 														</div>
 
+
 														<!-- //col-sm-12 -->
 														<div class="mc-Area">
 															<div class="row answer-content">
@@ -140,22 +143,24 @@
 																			</div>
 																			<div class="col-xs-9">
 																				<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="${choVo.choiceContent}">
+																				<input type="text" name="choiceNo" value="${choVo.choiceNo }">
 																			</div>
 																			<c:choose>
 																				<c:when test="${proVo.answer == status.count}">
 																					<div class="col-xs-2">
-																						<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}" checked="checked"> <label
-																							for="check-second">정답체크</label>
+																						<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}" checked="checked"> 
+																						<label for="check-second">정답체크</label>
 																					</div>
 																				</c:when>
 																				<c:otherwise>
 																					<div class="col-xs-2">
-																						<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}"> <label for="check-second">정답체크</label>
+																						<input type="checkBox" class="answer" name="answer" id="check-second" value="${status.count}"> 
+																						<label for="check-second">정답체크</label>
 																					</div>
 																				</c:otherwise>
 																			</c:choose>
 																			<div class="col-xs-12 fileArea">
-																				<input type="file" name="Image${status.count}" id="asd">
+																				<input type="file" name="Image${status.count}">
 																			</div>
 																			<div class="col-xs-12 fileArea"></div>
 																		</c:when>

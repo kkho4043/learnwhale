@@ -4,7 +4,8 @@
 <div id="left-area" class="col-xs-2">
 	<div id="profile-area">
 		<div id="profile-img">
-			<img src="/learnwhale/assets/image/profile.jpg" class="img-thumbnail">
+			<img src="${pageContext.request.contextPath}/upload/${classInfo.cuVo.proFile}"
+			onerror="this.src='${pageContext.request.contextPath}/assets/image/profile.jpg' " class="img-thumbnail">
 		</div>
 		<p id="teacherName" class="text-center">
 		
@@ -12,8 +13,10 @@
 		</p>
 		<p class="profile-text">이메일:${classInfo.cuVo.email}</p>
 		<p class="profile-text last">연락처:${classInfo.cuVo.phoneNum}</p>
-
-		<button type="button" class="btn btn-primary btn-sm btn-block">가입신청</button>
+		<c:if test="${classInfo.joinVo.type == null}">
+			<button type="button" class="btn btn-primary btn-sm btn-block" id = "classjoinbtn">가입신청</button>
+		</c:if>
+		
 	</div>
 
 	<div id="menu-area">
@@ -27,3 +30,27 @@
 		</ul>
 	</div>
 </div>
+<script type="text/javascript">
+$("#classjoinbtn").on("click", function() {
+	$.ajax({
+		url : "${pageContext.request.contextPath}/${url}/exam/classjoin",
+		type : "post",
+		//contentType : "application/json",
+		data : {},
+		success : function(flag) {
+			if(flag){
+				alert('가입신청이 완료 되었습니다.');
+			}
+			
+			/* location.href = "http://www.example.com/ThankYou.html" */
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+
+	});
+
+	
+	
+});
+</script>

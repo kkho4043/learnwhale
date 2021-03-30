@@ -153,75 +153,33 @@
 								<div class="row">
 									<div class="prolist">
 										<table class="table">
-											<tr>
-												<th>번호</th>
-												<th>오답여부</th>
-												<th>상태</th>
-											</tr>
+											<thead>
+												<tr>
+													<th>번호</th>
+													<th>오답여부</th>
+													<th>상태</th>
+												</tr>
 
-											<tr>
-												<td>1</td>
-												<td>O</td>
-												<td>OX</td>
-											</tr>
 
-											<tr>
-												<td>2</td>
-												<td>△</td>
-												<td>주관식</td>
-											</tr>
+											</thead>
+											<tbody id="sidesolveList">
 
-											<tr>
-												<td>3</td>
-												<td>X</td>
-												<td>객관식</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td>X</td>
-												<td>객관식</td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td>X</td>
-												<td>객관식</td>
-											</tr>
-											<tr>
-												<td>6</td>
-												<td>X</td>
-												<td>객관식</td>
-											</tr>
-											<tr>
-												<td>7</td>
-												<td>X</td>
-												<td>객관식</td>
-											</tr>
-											<tr>
-												<td>8</td>
-												<td>X</td>
-												<td>객관식</td>
-											</tr>
-
-											<tr>
-												<td>9</td>
-												<td>X</td>
-												<td>객관식</td>
-											</tr>
-
-											<tr>
-												<td>10</td>
-												<td>X</td>
-												<td>객관식</td>
-											</tr>
+											</tbody>
 
 										</table>
-
+										<div class="row prolistbtn">
+											<div class="col-xs-6">
+												<input type="button" value="이전" class="btn btn-primary" id="prevbtn">
+											</div>
+											<div class="col-xs-6">
+												<input type="button" value="다음" class="btn btn-primary" id="nextbtn">
+												<input type="hidden" id = "Listorder">
+											</div>
+										</div>
 									</div>
 
 								</div>
-								<div class="row prolistbtn">
-									<input type="button" value="이전" class="btn btn-primary"> <input type="button" value="다음" class="btn btn-primary">
-								</div>
+
 							</div>
 						</div>
 
@@ -280,7 +238,7 @@
 					$('#X').removeClass('active');
 					$('#X').removeClass('btn-warning', 'active');
 					$('#X').addClass('btn-danger');
-				} else {
+				} else if (answer == 'X') {
 					$('#X').removeClass('btn-danger');
 					$('#X').addClass('btn-warning');
 					$('#X').addClass('active');
@@ -323,7 +281,7 @@
 		success : function(point) {
 			console.log("점수:" + point)
 			document.getElementById("mypoint").value = point;
-
+			getsideList(orderNum);
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -331,9 +289,87 @@
 
 	});
 
+	function getsideList(orNum) {
+		var oNum = orNum;
+		var joinNo = "${param.joinNo}";
+		var examNo = "${examInfo.examVo.examNo}";
+		$
+				.ajax({
+					url : "${pageContext.request.contextPath}/${url}/exam/examsolveList",
+					type : "post",
+					//contentType : "application/json",
+					data : {
+						examNo : examNo,
+						orderNum : oNum,
+						joinNo : joinNo
+					},
+					success : function(data) {
+						console.log(data.prev);
+						console.log(data.next);
+						if (data.prev) {
+							$("#prevbtn").show();
+						} else {
+							$("#prevbtn").hide();
+						}
+
+						if (data.next) {
+							$("#nextbtn").show();
+						} else {
+							$("#nextbtn").hide();
+						}
+
+						renders(data.qList);
+						document.getElementById("Listorder").value = data.thisoderNum;
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+				});
+	}
+	
+
+	$("#prevbtn").on("click", function(orderNum) {
+		var oder = document.getElementById("Listorder").value;
+		var order = parseInt(oder) - 1;
+		getsideList(order);
+		
+		
+	});
+	
+	$("#nextbtn").on("click", function(orderNum) {
+		var oder = document.getElementById("Listorder").value;
+		var order = parseInt(oder) + 1;
+		getsideList(order);
+	});
+	
+	
+	function renders(qList) {
+		$("#sidesolveList").empty();
+		for (var i = 0; i < qList.length; i++) {
+			serender(qList[i]);
+		}
+	}
+
+	function serender(Vo) {
+		var str = "";
+		str += '<tr>';
+		str += '	<td><a href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${examInfo.examVo.examNo}&orderNum='
+				+ Vo.orderNum
+				+ '&joinNo=${param.joinNo}">'
+				+ Vo.orderNum
+				+ '<a></td>';
+		str += '	<td>' + Vo.result + '</td>';
+		str += '	<td>' + Vo.problemType + '</td>';
+		str += '</tr>';
+
+		$("#sidesolveList").append(str);
+	}
+
 	$("#pointgrant").on("click", function() {
+		
 		var point = document.getElementById('mypoint').value;
-		if (point > "${examInfo.qeustionVo.point}") {
+		console.log("넣어줄 포인트는"+point);
+		if (parseInt(point) > "${examInfo.qeustionVo.point}"){
 			alert('부여될점수가 너무 큽니다.');
 			return false;
 		}

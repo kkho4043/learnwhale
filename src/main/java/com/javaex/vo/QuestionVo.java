@@ -3,13 +3,16 @@ package com.javaex.vo;
 public class QuestionVo {
 
 	private int questionNo, examNo, problemNo, point, orderNum;
-	private String problemTitle, problemType;
+	private String problemTitle, problemType ,result;//정답여부
 
 	public QuestionVo() {
 	}
 
+	
+	
 	public QuestionVo(int questionNo, int examNo, int problemNo, int point, int orderNum, String problemTitle,
-			String problemType) {
+			String problemType, String result) {
+		super();
 		this.questionNo = questionNo;
 		this.examNo = examNo;
 		this.problemNo = problemNo;
@@ -17,6 +20,17 @@ public class QuestionVo {
 		this.orderNum = orderNum;
 		this.problemTitle = problemTitle;
 		this.problemType = problemType;
+		this.result = result;
+	}
+
+
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 	public int getQuestionNo() {

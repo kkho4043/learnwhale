@@ -71,7 +71,7 @@
 						<div class="row testoption">
 
 							<div class="row">
-								<div class="col-xs-2">제목</div>
+								<div class="col-xs-2" style="margin-top: 3px;">제목</div>
 								<div class="col-xs-10">
 									<input type="text" id="examtitle">
 								</div>
@@ -85,9 +85,9 @@
 							</div>
 
 							<div class="row" class="simpletesttime" id="testtime">
-								<div class="col-xs-2">시간설정</div>
+								<div class="col-xs-2" style="margin-top: 3px;">시간설정</div>
 								<div class="col-xs-4">
-									<select name="testtime" id="timeselect">
+									<select name="testtime" id="timeselect" class="selecttimebar">
 										<option value="">문제당 시간</option>
 										<option value="30" <c:if test="${pMap.examVo.time == '30'}"> selected="selected" </c:if>>30초</option>
 										<option value="60" <c:if test="${pMap.examVo.time == '60'}"> selected="selected" </c:if>>1분</option>

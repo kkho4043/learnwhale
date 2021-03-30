@@ -123,16 +123,16 @@
 
 													<c:if test="${upMap.prev == true}">
 														<li><a
-															href="${pageContext.request.contextPath}/abc/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.startPageBtnNo-1}">◀</a></li>
+															href="${pageContext.request.contextPath}/${url}/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.startPageBtnNo-1}">◀</a></li>
 													</c:if>
 
 													<c:forEach begin="${upMap.startPageBtnNo}" end="${upMap.endPageBtnNo}" step="1" var="page">
-														<li><a href="${pageContext.request.contextPath}/abc/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${page}">${page}</a></li>
+														<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${page}">${page}</a></li>
 													</c:forEach>
 
 													<c:if test="${upMap.next == true}">
 														<li><a
-															href="${pageContext.request.contextPath}/abc/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.endPageBtnNo+1}">▶</a></li>
+															href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.endPageBtnNo+1}">▶</a></li>
 													</c:if>
 												</ul>
 											</nav>

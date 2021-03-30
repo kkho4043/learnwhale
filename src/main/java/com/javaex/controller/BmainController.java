@@ -26,6 +26,17 @@ public class BmainController {
 	@Autowired
 	private BanmainService banmainService;
 	
+	@ResponseBody
+	@RequestMapping(value = "sessioncheck", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean sessioncheck(HttpSession session) {
+		System.out.println("세션체크");
+		if(session.getAttribute("authUser") == null) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
 	@RequestMapping(value = "{url}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list( @PathVariable("url") String url,
 						@RequestParam(value = "crtPage", required = false ,defaultValue = "1") int crtPage,
@@ -46,16 +57,7 @@ public class BmainController {
 		return "ban/exam/list";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "sessioncheck", method = { RequestMethod.GET, RequestMethod.POST })
-	public boolean sessioncheck(HttpSession session) {
-		System.out.println("세션체크");
-		if(session.getAttribute("authUser") == null) {
-			return false;
-		}else {
-			return true;
-		}
-	}
+	
 	
 	
 	

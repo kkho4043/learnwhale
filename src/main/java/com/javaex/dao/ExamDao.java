@@ -221,4 +221,22 @@ public class ExamDao {
 		return sqlSession.update("exam.grantpoint", map);
 	}
 
+	public int examsolvecount(int examNo, int joinNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("examNo", examNo);
+		map.put("joinNo", joinNo);
+		return sqlSession.selectOne("exam.examsolvecount", map);
+	}
+	
+	public List<QuestionVo> examsolveList(int examNo, int joinNo,int startNum ,int endNum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("examNo", examNo);
+		map.put("joinNo", joinNo);
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		System.out.println(map.toString());
+		return sqlSession.selectList("examsolveList", map);
+	}
+
 }
