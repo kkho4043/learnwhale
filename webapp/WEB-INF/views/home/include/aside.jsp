@@ -5,8 +5,8 @@
 	<div id="left_menu_title" class="text-center">마이클래스</div>
 	<div class="left_menu_se">
 		<ul>
-			<li><a href="${pageContext.request.contextPath}/myclass/problem/problemList">문제관리</a></li>
 			<li><a href="${pageContext.request.contextPath}/myclass/list">반관리</a>
+			<li><a href="${pageContext.request.contextPath}/myclass/problem/problemList">문제관리</a></li>
 			<li class="last"><a href="">개인정보관리</a></li>
 		</ul>
 	</div>
