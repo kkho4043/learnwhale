@@ -10,6 +10,9 @@
 
 			<div class="col-xs-9 text-right">
 				<span id="loginUserName">${classInfo.joinVo.username} ${classInfo.joinVo.type}</span>
+				<button id="btnJoin" type="button" class="btn btn-default btn-xs">
+							<a href="${pageContext.request.contextPath}/user/logout">로그아웃</a>
+						</button>
 			</div>
 		</div>
 		<!-- //header container-->
