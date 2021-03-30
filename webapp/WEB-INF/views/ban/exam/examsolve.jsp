@@ -132,8 +132,7 @@
 													<a href="${pageContext.request.contextPath}/${url}/"><input type="button" value="리스트 로" class="btn btn-info"></a>
 												</c:when>
 												<c:otherwise>
-													<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum-1}"><input
-														type="button" value="이전문제" class="btn btn-primary"></a>
+													<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum-1}"><input type="button" value="이전문제" class="btn btn-primary"></a>
 												</c:otherwise>
 											</c:choose>
 										</c:if>
@@ -144,12 +143,10 @@
 									<div class="col-xs-2">
 										<c:choose>
 											<c:when test="${examInfo.endsolve == 'endsolve'}">
-												<a href="${pageContext.request.contextPath}/${url}/exam/examend?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum}"><input
-													type="button" value="시험 종료" class="btn btn-info"></a>
+												<a href="${pageContext.request.contextPath}/${url}/exam/examend?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum}"><input type="button" value="시험 종료" class="btn btn-info"></a>
 											</c:when>
 											<c:otherwise>
-												<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum+1}"><input
-													type="button" value="다음문제" class="btn btn-primary"></a>
+												<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum+1}"><input type="button" value="다음문제" class="btn btn-primary"></a>
 											</c:otherwise>
 										</c:choose>
 									</div>
@@ -162,22 +159,21 @@
 
 							<div class="col-xs-2">
 								<div class="row">
-									<div class="prolist">
-										<ul id="problemList">
-										</ul>
-										<div class="row prolistbtn">
-											<div class="col-xs-6">
-												<input type="button" value="이전" class="btn btn-primary" id="prevbtn">
-											</div>
-											<div class="col-xs-6">
-												<input type="button" value="다음" class="btn btn-primary" id="nextbtn">
-												<input type="hidden" id = "Listorder">
-											</div>
+									<c:if test="${examInfo.examVo.examType != '쪽지시험'}">
+										<div class="prolist">
+											<ul id="problemList">
+											</ul>
+											<div class="row prolistbtn">
+												<div class="col-xs-6">
+													<input type="button" value="이전" class="btn btn-primary" id="prevbtn">
+												</div>
+												<div class="col-xs-6">
+													<input type="button" value="다음" class="btn btn-primary" id="nextbtn"> <input type="hidden" id="Listorder">
+												</div>
 
+											</div>
 										</div>
-									</div>
-
-
+									</c:if>
 
 								</div>
 							</div>
@@ -211,7 +207,6 @@
 </body>
 
 <script type="text/javascript">
-
 	if ("${examInfo.examVo.examType}" == '쪽지시험') {
 
 		var time = "${examInfo.examVo.time}";
@@ -290,21 +285,20 @@
 				});
 
 	}
-	
+
 	$("#prevbtn").on("click", function(orderNum) {
 		var oder = document.getElementById("Listorder").value;
 		var order = parseInt(oder) - 1;
 		getsideList(order);
-		
-		
+
 	});
-	
+
 	$("#nextbtn").on("click", function(orderNum) {
 		var oder = document.getElementById("Listorder").value;
 		var order = parseInt(oder) + 1;
 		getsideList(order);
 	});
-	
+
 	function getsideList(orNum) {
 		var oNum = orNum;
 		var joinNo = "${classInfo.joinVo.joinNo}";
