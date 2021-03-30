@@ -37,7 +37,7 @@
 		<![CDATA[
 			update category
 			set cate_name = #{cateName}
-			where cate_no = #{cateNo};
+			where cate_no = #{cateNo}
 		]]>
 	</update>
 
