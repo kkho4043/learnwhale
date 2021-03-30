@@ -132,10 +132,10 @@
 								<div class="row interval">
 									<div class="col-xs-6">
 										<button type="submit"
-											class="btn btn-primary btn-xs pull-right">저장</button>
+											class="btn btn-primary btn-sm pull-right">저장</button>
 									</div>
 									<div class="col-xs-6">
-										<button class="btn btn-primary btn-xs pull-right">
+										<button class="btn btn-primary btn-sm pull-right">
 											<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">취소</a>
 										</button>
 									</div>

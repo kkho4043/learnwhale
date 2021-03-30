@@ -51,10 +51,12 @@
 			                                                                   count(j.class_no) total,
 			                                                                   count(case when type='학생' and approval = '승인' then 1 end) approval
 			                                from join_users j,users u, (select class_no
-			                                                            from   join_users
-			                                                            ) c
+			                                                            from   join_users j, users u
+			                                                            where j.user_no = u.no
+			                                                            and u.no = #{no}) c
 			                                where type='학생' and (approval = '대기' or approval='승인')
 			                                and c.class_no = j.class_no
+			                                and j.user_no = u.no
 			                                group by j.class_no
 			                                ) co
 			on cl.class_no = co.class_no
@@ -63,10 +65,9 @@
 			and uu.no = #{no}
 		]]>
 			<if test="search != null and search !='' ">
-				where cl.class_name like '%' || #{search} || '%'
+				and cl.class_name like '%' || #{search} || '%'
 			</if>	
 		<![CDATA[
-			
 			order by cl.class_no desc
 	   	]]>
 	</select>
