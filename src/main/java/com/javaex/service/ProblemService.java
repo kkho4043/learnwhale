@@ -97,6 +97,8 @@ public class ProblemService {
 			proDao.ProblemInsert(proVo);
 
 		} else {
+			
+			proVo.getAnswer().split(",");
 
 			// 이미지가 없을때
 			System.out.println("serviceddd" + proVo);

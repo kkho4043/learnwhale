@@ -66,7 +66,7 @@
 			from problem p, category c
 			where p.cate_no = c.cate_no
 			and p.cate_no = #{cateNo}
-			order by problem_no asc
+			order by problem_no desc
 		]]>
 	</select>
 

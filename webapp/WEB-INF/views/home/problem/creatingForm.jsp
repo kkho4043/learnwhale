@@ -94,8 +94,7 @@
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
-															<span>제목: </span>
-															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="">
+															<span>제목: </span> <input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="">
 														</div>
 														<div class="form-group">
 															<input type="text" class="form-control" id="content" placeholder="문제를 입력해주세요." name="content" value="">
@@ -122,6 +121,7 @@
 																<button type="button" class="btn btn-info" id="choice-ImageType">이미지 등록</button>
 															</div>
 														</div>
+
 														<div class="mc-Area">
 															<div class="row answer-content">
 																<div class="col-xs-12">
@@ -185,32 +185,24 @@
 																<h4>각 문항에 이미지를 넣어주세요.</h4>
 															</div>
 															<div class="col-xs-12 answer-num image-answer-num">
-																<strong class="image-num">1</strong>
-																<input type="file" name="Image1" id="asd" class="image-file file1">
-																<input type="checkBox" class="answer image-checkbox" name="answer" id="imgCheck-first" value="1"> 
-																<label for="imgCheck-first" class="check-label">정답체크</label>
+																<strong class="image-num">1</strong> <input type="file" name="Image1" id="file1" class="image-file"> <input type="checkBox"
+																	class="answer image-checkbox" name="answer" id="imgCheck-first" value="1"> <label for="imgCheck-first" class="check-label">정답체크</label>
 															</div>
-															
+
 
 															<div class="col-xs-12 answer-num image-answer-num">
-																<strong class="image-num">2</strong>
-																<input type="file" name="Image2" id="asd" class="image-file file2">
-																<input type="checkBox" class="answer image-checkbox" name="answer" id="imgCheck-second" value="2"> 
-																<label for="imgCheck-second" class="check-label">정답체크</label>
+																<strong class="image-num">2</strong> <input type="file" name="Image2" id="file2" class="image-file"> <input type="checkBox"
+																	class="answer image-checkbox" name="answer" id="imgCheck-second" value="2"> <label for="imgCheck-second" class="check-label">정답체크</label>
 															</div>
-															
+
 															<div class="col-xs-12 answer-num image-answer-num">
-																<strong class="image-num">3</strong>
-																<input type="file" name="Image3" id="asd" class="image-file file3">
-																<input type="checkBox" class="answer image-checkbox" name="answer" id="imgCheck-third" value="3"> 
-																<label for="imgCheck-third" class="check-label">정답체크</label>
+																<strong class="image-num">3</strong> <input type="file" name="Image3" id="file3" class="image-file"> <input type="checkBox"
+																	class="answer image-checkbox" name="answer" id="imgCheck-third" value="3"> <label for="imgCheck-third" class="check-label">정답체크</label>
 															</div>
-															
+
 															<div class="col-xs-12 answer-num image-answer-num">
-																<strong class="image-num">4</strong>
-																<input type="file" name="Image4" id="asd" class="image-file file4">
-																<input type="checkBox" class="answer image-checkbox" name="answer" id="imgCheck-fourth" value="4"> 
-																<label for="imgCheck-fourth" class="check-label">정답체크</label>
+																<strong class="image-num">4</strong> <input type="file" name="Image4" id="file4" class="image-file"> <input type="checkBox"
+																	class="answer image-checkbox" name="answer" id="imgCheck-fourth" value="4"> <label for="imgCheck-fourth" class="check-label">정답체크</label>
 															</div>
 														</div>
 
@@ -362,21 +354,20 @@
 
 		$('.mcF').prop('checked', true);
 	});
-	
+
 	//보기 타입 텍스트 선택할 때
 	$("#choice-TextType").on("click", function() {
-		
+
 		$("#image-area").hide();
 		$(".mc-Area").show();
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
 
 	});
-	
+
 	//보기 타입 이미지 선택할 때
-	$("#choice-ImageType").on("click", function(){
-		
-		
+	$("#choice-ImageType").on("click", function() {
+
 		$("#image-area").show();
 		$(".mc-Area").hide();
 		$(".ox-Area").hide();
@@ -391,6 +382,7 @@
 		var content = $("#content").val();
 		var answer = $("input[name=answer]");
 
+		/* 문제 제목 체크 */
 		if (!problemTitle) {
 			alert("문제 제목을 입력해 주세요.");
 			return false;
@@ -402,45 +394,50 @@
 			return false;
 		}
 
-		//typeSj typeOx
+		/* if ($("#typeMc").is(":checked") == true) {
+
+			
+				if (!$("#choiceContent1").val()) {
+					console.log("보기 1번 비었음")
+					alert("보기 1번 입력해주세요");
+					return false;
+				} else if (!$("#choiceContent2").val()) {
+					alert("보기 2번 입력해주세요");
+					return false;
+				} else if (!$("#choiceContent3").val()) {
+					alert("보기 3번 입력해주세요");
+					return false;
+				} else if (!$("#choiceContent4").val()) {
+					alert("보기 4번 입력해주세요");
+					return false;
+				} else if ($(".mc-Area .answer").is(":checked") == false) {
+					console.log("객관식");
+					alert("정답을 체크해주세요");
+					return false;
+				}
+		
+		} */
 
 		if ($("#typeMc").is(":checked") == true) {
 
-			if (!$("#choiceContent1").val()) {
-				alert("보기 1번 입력해주세요");
+			if (!$("#file1").val()) {
+				alert("이미지 1번을 넣어주세요.");
 				return false;
-			} else if (!$("#choiceContent2").val()) {
-				alert("보기 2번 입력해주세요");
+			} else if (!$("#file2").val()) {
+				alert("이미지 2번을 넣어주세요.");
 				return false;
-			} else if (!$("#choiceContent3").val()) {
-				alert("보기 3번 입력해주세요");
+			} else if (!$("#file3").val()) {
+				alert("이미지 3번을 넣어주세요.");
 				return false;
-			} else if (!$("#choiceContent4").val()) {
-				alert("보기 4번 입력해주세요");
+			} else if (!$("#file4").val()) {
+				alert("이미지 4번을 넣어주세요.");
 				return false;
-			} else if ($(".mc-Area .answer").is(":checked") == false) {
+			} else if ($(".image-area .answer").is(":checked") == false) {
 				console.log("객관식");
 				alert("정답을 체크해주세요");
 				return false;
 			}
-			
-			if(!$(".file1").val()){
-				alert("이미지 1번을 넣어주세요.");
-				return false;
-			} else if(!$(".file2").val()) {
-				alert("이미지 2번을 넣어주세요.");
-				return false;
-			} else if(!$(".file3").val()) {
-				alert("이미지 3번을 넣어주세요.");
-				return false;
-			} else if(!$(".file4").val()) {
-				alert("이미지 4번을 넣어주세요.");
-				return false;
-			} 
-
 		}
-		
-		
 
 		if ($("#typeOx").is(":checked") == true) {
 
@@ -449,7 +446,6 @@
 				alert("정답을 체크해주세요");
 				return false;
 			}
-
 		}
 
 		if ($("#typeSj").is(":checked") == true) {
@@ -470,8 +466,12 @@
 			this.reset();
 		});
 	}
-	
-	
-	
+
+	function choTextReset() {
+		$(".mc-Area").each(function() {
+			this.reset();
+		});
+
+	}
 </script>
 </html>
