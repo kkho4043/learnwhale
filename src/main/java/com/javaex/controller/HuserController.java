@@ -3,12 +3,14 @@ package com.javaex.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -36,11 +38,12 @@ public class HuserController {
 	
 	// 회원가입
 	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
-	public String join(@ModelAttribute UserVo userVo) {
+	public String join(@ModelAttribute UserVo userVo,
+						@RequestParam(value="proFile", required = false, defaultValue = "") MultipartFile file) {
 		System.out.println("[user()-join]");
-
+		
 		System.out.println(userVo);
-		userService.join(userVo);
+		userService.join(userVo, file);
 
 		return "home/main/joinOk";
 	}

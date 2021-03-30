@@ -91,8 +91,9 @@ public class HbanContorller {
 	public String remove(@RequestParam("classNo") int classNo) {
 		System.out.println("[HbanController.remove()]");
 		System.out.println(classNo);
-		classService.remove(classNo);
-		return "redirect:list";
+		int count = classService.remove(classNo);
+			
+		return "redirect:list?result"+count;
 	}
 
 }

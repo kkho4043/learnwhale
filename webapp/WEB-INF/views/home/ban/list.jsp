@@ -31,7 +31,11 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
-
+<c:if test="${param.count > 0 }">
+	<script type="text/javascript">		
+		alert("반에 학생이 남아 있습니다.");	
+	</script>
+</c:if>
 </head>
 
 <body>
@@ -75,15 +79,16 @@
 								</form>
 							</div>
 							<div class="col-xs-6 text-right">
-								<button type="submit" id=btn_produce>
-									<a href="${pageContext.request.contextPath}/myclass/createForm">반생성</a>
+								<button type="submit" class="btn btn-primary btn-sm">
+									<a href="${pageContext.request.contextPath}/myclass/createForm" style="color:#fff;">반생성</a>
 								</button>
 							</div>
 
 							<div class="row">
-								<div class="col-xs-11">
+								<div class="col-xs-11" style="width: 97%;">
 									<table class="table table-striped table-hover table-bordered"
 										style="margin-left: 15px;">
+									
 										<thead>
 											<tr>
 												<th>번호</th>
