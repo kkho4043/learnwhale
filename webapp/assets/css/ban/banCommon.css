@@ -30,7 +30,7 @@
 * 해더영역                                *
 *******************************************/
 #header-Area {
-	padding: 5px 0px 5px 0px;
+	padding: 7px 0px 7px 0px;
 	border-bottom: 1px solid #bebebe;
 	background-color: white;
 }
@@ -42,12 +42,13 @@
 #logo-img {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
-	width: 100px;
+	width: 134px;
 }
 
 #loginUserName {
+	color: #337ab7;
 	margin: 0px 10px 0px 0px;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: bold;
 	
 }
@@ -66,7 +67,7 @@
 #top-banner-area #banName {
 	width: 980px;
 	position: absolute;
-	top: 50px;
+	top: 40px;
 	color: #ffffff;
 	font-size: 60px;
     font-weight: bold;	
@@ -75,7 +76,7 @@
 #top-banner-area #date-area {
 	width: 980px;
 	position: absolute;
-	top: 150px;
+	top: 116px;
 	color: #ffffff;
 	font-size: 45px;
     font-weight: bold;	
@@ -102,13 +103,14 @@
 #content #left-area #profile-area {
     background: #efefef;
     border: 1px solid #bebebe;
-    margin: 0px 0px 20px 0px;	
+    margin: 0px 0px 12px 0px;	
     padding: 5px 5px 7px 5px;	
 }
 
 #content #left-area #profile-area #teacherName {
 	font-size: 12px;
 	font-weight: bold;
+	margin-top: 7px;
 }
 
 #content #left-area #profile-area .profile-text {
@@ -139,6 +141,7 @@
 	border-top: 1px solid #bebebe;
 	border-right: 1px solid #bebebe;
 	border-left: 1px solid #bebebe;
+	
 }
 
 #content #left-area #menu-area > ul > li.last{
@@ -147,6 +150,10 @@
 	border: 1px solid #bebebe;
 }
 
+.glyphicon{
+	color: #337ab7;
+    margin-right: 13px;
+    margin-left: 30px;}
 
 /******************************************
 * 컨텐츠영역 > 메인컨텐츠                   *

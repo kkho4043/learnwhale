@@ -67,7 +67,7 @@
 																	
 									<div id="board">
 										<div id="read">
-											<form action="${pageContext.request.contextPath}/notice" method="get">
+											<form action="${pageContext.request.contextPath}/${url}/notice" method="get">
 												<!-- 작성자 -->
 												<div class="form-group">
 													<span class="form-text">작성자</span>
@@ -98,9 +98,9 @@
 														${nVo.content}
 													</span>
 												</div>
-												                             <!-- 임의로 no넣어줌 : 미해결 -->
-												<a id="btn_modify" href="${pageContext.request.contextPath}/notice/modifyForm?no=${nVo.no}">수정</a>
-												<a id="btn_list" href="${pageContext.request.contextPath}/notice/list">목록</a>		
+												                      
+												<a id="btn_modify" href="${pageContext.request.contextPath}/${url}/notice/modifyForm?no=${nVo.no}">수정</a>
+												<a id="btn_list" href="${pageContext.request.contextPath}/${url}/notice/list">목록</a>		
 							
 											</form>
 										</div>

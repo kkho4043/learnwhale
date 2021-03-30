@@ -105,7 +105,7 @@
 													<c:forEach items="${requestScope.pMap.nList}" var="nvo">
 														<tr>
 															<td>${nvo.no}</td>
-															<td class="text-left"><a href="${pageContext.request.contextPath}/notice/read?no=${nvo.no}">${nvo.title}</a></td>
+															<td class="text-left"><a href="${pageContext.request.contextPath}/${url}/notice/read?no=${nvo.no}">${nvo.title}</a></td>
 															<td>${nvo.name}</td>
 															<td>${nvo.hit}</td>
 															<td>${nvo.reg_date}</td>

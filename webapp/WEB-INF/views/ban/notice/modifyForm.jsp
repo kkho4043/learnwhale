@@ -87,8 +87,6 @@
 												<input type="text" id="txt-title" name="title" value="${noticeVo.title}">
 											</div>
 
-
-
 											<!-- 내용 -->
 											<div class="form-group">
 												<textarea id="txt-content" name="content">${noticeVo.content}</textarea>

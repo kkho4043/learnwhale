@@ -24,7 +24,7 @@
 <!-- //header -->
 <div class="container">
 	<div class="row">
-		<div id="top-banner-area" class="col-xs-12" style="height: 220px; overflow: hidden;">
+		<div id="top-banner-area" class="col-xs-12" style="height: 208px; overflow: hidden;">
 			<img id="top-banner"  style=" width: 100%;height:100%;object-fit:cover;"
 			src="${pageContext.request.contextPath}/upload/${classInfo.cvo.logoFile}"
 				onerror="this.src='${pageContext.request.contextPath}/assets/image/top-banner.jpg'">
