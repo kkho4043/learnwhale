@@ -242,12 +242,12 @@
 				var html = $("#problemList").html();	
 
 				if(html != null){
-					console.log("not null");
+					
 					$("#problemList").empty();
 				}
 							
 				let cateNo = $(this).data("cate");
-								
+				console.log(cateNo);				
 				history.pushState(null, null, 'problemList?cateNo='+cateNo);
 				
 				$.ajax({

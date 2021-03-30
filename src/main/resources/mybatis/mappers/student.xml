@@ -57,7 +57,16 @@
 	
 	</select>
 	
+	<delete id="">
 	
+		<![CDATA[
+		
+			delete from category 
+			where cate_no =  case when (select count(problem_no) from problem where cate_no = '2')= '0' 
+                 then '2' end;
+		]]>
+	
+	</delete>
 	
 	
 	
