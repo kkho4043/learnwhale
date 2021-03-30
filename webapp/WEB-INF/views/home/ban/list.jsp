@@ -32,8 +32,8 @@
 	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 <c:if test="${param.count > 0 }">
-	<script type="text/javascript">		
-		alert("반에 학생이 남아 있습니다.");	
+	<script type="text/javascript">
+		alert("반에 학생이 남아 있습니다.");
 	</script>
 </c:if>
 </head>
@@ -74,13 +74,17 @@
 									method="get">
 									<div class="form-group form-inline">
 										<input type="text" class="form-control input-sm" name="search">
-										<button class="btn btn-default btn-sm" type="submit" id=btn_search><span class="glyphicon glyphicon-search"></span></button>
+										<button class="btn btn-default btn-sm" type="submit"
+											id=btn_search>
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
 									</div>
 								</form>
 							</div>
 							<div class="col-xs-6 text-right">
 								<button type="submit" class="btn btn-primary btn-sm">
-									<a href="${pageContext.request.contextPath}/myclass/createForm" style="color:#fff;">반생성</a>
+									<a href="${pageContext.request.contextPath}/myclass/createForm"
+										style="color: #fff;">반생성</a>
 								</button>
 							</div>
 
@@ -88,7 +92,7 @@
 								<div class="col-xs-11" style="width: 97%;">
 									<table class="table table-striped table-hover table-bordered"
 										style="margin-left: 15px;">
-									
+
 										<thead>
 											<tr>
 												<th>번호</th>
@@ -106,7 +110,8 @@
 												<tr>
 													<td>${status.count}</td>
 													<td><a
-														href="${pageContext.request.contextPath}/${vo.classUrl}" target="_blank">${vo.className}(${vo.classUrl })</a></td>
+														href="${pageContext.request.contextPath}/${vo.classUrl}"
+														target="_blank">${vo.className}(${vo.classUrl })</a></td>
 													<td>${vo.startDate}</td>
 													<td>${vo.endDate}</td>
 
@@ -116,16 +121,51 @@
 
 													<td>${vo.hidden}</td>
 
-													<td>
-													<a href="${pageContext.request.contextPath}/myclass/modifyForm?classNo=${vo.classNo}">[수정]</a>
-													<a href="${pageContext.request.contextPath}/myclass/remove?classNo=${vo.classNo}">[삭제]</a>
+													<td><button class="btn btn-primary btn-xs">
+															<a
+																href="${pageContext.request.contextPath}/myclass/modifyForm?classNo=${vo.classNo}"
+																, style="color: #fff;">수정</a>
+														</button>
+														<button class="btn btn-primary btn-xs" id="delete">삭제</button>
+
 													</td>
 												</tr>
 											</c:forEach>
 
 										</tbody>
+
 									</table>
-				
+									
+									
+									<form method="get"
+										action="{pageContext.request.contextPath}/myclass/remove">
+										<div class="modal fade" id="deleteModal">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														<h4 class="modal-title">삭제</h4>
+													</div>
+													<div class="modal-body">
+														<p>반을 삭제하시겠습니까?</p>
+													</div>
+													<input type="text" name="classNo" value="">
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">취소</button>
+														<button type="submit" class="btn btn-primary">삭제하기
+														</button>
+													</div>
+												</div>
+												<!-- /.modal-content -->
+											</div>
+											<!-- /.modal-dialog -->
+										</div>
+										<!-- /.modal -->
+									</form>
 									<nav class="text-center">
 										<ul class="pagination">
 											<li><a href="#" aria-label="Previous"> <span
@@ -172,9 +212,14 @@
 	<!-- footer-Area -->
 	<c:import url="/WEB-INF/views/home/include/footer.jsp"></c:import>
 	<!-- //footer-Area -->
-
 </body>
-	
+<script type="text/javascript">
+	$("#delete").on("click", function() {
+		//메인모달창 호출
+		$("#deleteModal").modal();
+	});
+</script>
+
 
 </html>
 
