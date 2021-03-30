@@ -43,9 +43,9 @@ public class ProblemDao {
 		return sqlSession.update("category.updateFolder", cateVo);
 	}
 	
-	public int delete(int cateNo) {
+	public int deleteFolder(int cateNo) {
 		
-		return sqlSession.delete("category.delete", cateNo);
+		return sqlSession.delete("category.deleteFolder", cateNo);
 	}
 	
 	
