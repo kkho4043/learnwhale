@@ -42,7 +42,14 @@ public class ProblemDao {
 
 		return sqlSession.update("category.updateFolder", cateVo);
 	}
-
+	
+	public int delete(int cateNo) {
+		
+		return sqlSession.delete("category.delete", cateNo);
+	}
+	
+	
+	
 	// 문제 리스트
 	public List<ProblemVo> selectProblem(int cateNo) {
 		System.out.println("ProDao- selectProblem");

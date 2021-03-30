@@ -222,7 +222,8 @@
 					</button>
 					<h4 class="modal-title">폴더 삭제</h4>
 				</div>
-				<div class="modal-body"></div>
+				<div class="modal-body">폴더를 삭제하시겠습니까?</div>
+				<input type="text" name="cateNo" value="">
 				<div class="modal-footer">
 					<button onclick="empty();" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary">삭제하기</button>
