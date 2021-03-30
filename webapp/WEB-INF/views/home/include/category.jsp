@@ -212,7 +212,7 @@
 	<!-- /.modifyModal -->
 </form>
 	  
-	
+	<form method="get" action="${pageContext.request.contextPath}/api/myclass/problem/delete">
 	<div class="modal fade" id="deleteModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -225,8 +225,8 @@
 				<div class="modal-body">폴더를 삭제하시겠습니까?</div>
 				<input type="text" name="cateNo" value="">
 				<div class="modal-footer">
-					<button onclick="empty();" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary">삭제하기</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+					<button type="submit" class="btn btn-primary">삭제하기</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -234,6 +234,14 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.deleteModal -->
+	</form>
+	
+	<c:if test="${param.result ==0 }">
+		<script type="text/javascript">
+			alert("문제가 있는 카테고리는 삭제 할 수 없습니다");
+		</script>
+	</c:if>
+	
 	
 </body>
 
@@ -245,7 +253,9 @@
 			rightClick();
 			subVisible();
 			empty();
+			
 		});
+		
 		
 		
 		

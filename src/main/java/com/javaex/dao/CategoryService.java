@@ -19,4 +19,10 @@ public class CategoryService {
 	}
 	
 	
+	public int delete(int cateNo) {
+		
+		return proDao.deleteFolder(cateNo);
+	}
+	
+	
 }

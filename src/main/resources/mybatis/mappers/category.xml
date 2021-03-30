@@ -40,7 +40,22 @@
 			where cate_no = #{cateNo}
 		]]>
 	</update>
-
+	
+	<delete id="deleteFolder" parameterType="int">
+	
+		<![CDATA[
+		
+			delete from category 
+			where cate_no =  case when (select count(problem_no) from problem where cate_no = #{cateNo})= '0' 
+                 			 then #{cateNo} end
+		]]>
+	
+	</delete>
+	
+	
+	
+	
+	
 	<select id="selectProblem" parameterType="int" resultType="com.javaex.vo.ProblemVo">
 		<![CDATA[
 			select  c.cate_no cateNo,
