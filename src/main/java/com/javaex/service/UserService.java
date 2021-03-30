@@ -16,54 +16,60 @@ import com.javaex.vo.UserVo;
 @Service
 public class UserService {
 
-	@Autowired UserDao userDao;
-	
+	@Autowired
+	UserDao userDao;
+
 	public int join(UserVo userVo, MultipartFile file) {
 		System.out.println("userService - join");
-		String saveDir = "C:\\javaStudy\\upload";
-		// 확장자
-		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		// db저정할 정보 수집
 
-		// 서버 저장 파일 이름
-		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+		if (file.getSize() > 0) {
+			String saveDir = "C:\\javaStudy\\upload";
+			// 확장자
+			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
-		// 서버 파일 패스 --> 저장경로
-		String filePath = saveDir + "\\" + saveName;
-		System.out.println(filePath);
-		userVo.setProFile(saveName);
-		// 서버 하드디스크 파일 저장
-		System.out.println(saveName);
-		try {
-			byte[] fileData = file.getBytes();
-			OutputStream out = new FileOutputStream(filePath);
-			BufferedOutputStream bos = new BufferedOutputStream(out);
+			// 서버 저장 파일 이름
+			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 
-			bos.write(fileData);
-			bos.close();
+			// 서버 파일 패스 --> 저장경로
+			String filePath = saveDir + "\\" + saveName;
+			System.out.println(filePath);
+			userVo.setProFile(saveName);
+			// 서버 하드디스크 파일 저장
+			System.out.println(saveName);
+			try {
+				byte[] fileData = file.getBytes();
+				OutputStream out = new FileOutputStream(filePath);
+				BufferedOutputStream bos = new BufferedOutputStream(out);
 
-		} catch (IOException e) {
-			e.printStackTrace();
+				bos.write(fileData);
+				bos.close();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 
 		return userDao.insert(userVo);
-		
+
 	}
-	
+
 	public UserVo login(UserVo userVo) {
 		System.out.println("Service - login");
 		return userDao.selectUser(userVo);
 	}
-	
+
 	public String idcheck(String id) {
 		System.out.println("userService idCheck()");
 		UserVo userVo = userDao.selectOne(id);
 		String result = "";
-		if(userVo==null) {
-			//사용할수 있는 아이디
+		if (userVo == null) {
+			// 사용할수 있는 아이디
 			result = "can";
-		}else {
-			//중복 아이디, 사용할수 없는 아이디
-			result= "cant";
+		} else {
+			// 중복 아이디, 사용할수 없는 아이디
+			result = "cant";
 		}
 		return result;
 	}

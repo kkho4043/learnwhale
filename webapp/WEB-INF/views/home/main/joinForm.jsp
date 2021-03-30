@@ -59,8 +59,8 @@
 											</div>
 
 											<div class="col-sm-12">
-												<form class="form-inline" id="joinForm" method="get"
-													action="${pageContext.request.contextPath}/user/join">
+												<form class="form-inline" id="joinForm" method="post"
+													action="${pageContext.request.contextPath}/user/join" enctype="multipart/form-data">
 													<div class="col-sm-12 joinArea" style="padding-left:90px;">
 														<div class="form-group">
 															<div class="col-sm-12">
@@ -140,7 +140,7 @@
 																<label for="profile" id="phoneArea">프로필</label>
 															</div>
 															<input type="file" id="profile" style="padding-left:270px;"
-																name="proFile" placeholder="프로필사진을 입력해주세요">
+																name="pro" placeholder="프로필사진을 입력해주세요">
 
 														</div>
 													</div>

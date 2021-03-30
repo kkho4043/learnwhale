@@ -39,7 +39,7 @@ public class HuserController {
 	// 회원가입
 	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVo userVo,
-						@RequestParam(value="proFile", required = false, defaultValue = "") MultipartFile file) {
+						@RequestParam(value="pro", required = false, defaultValue = "") MultipartFile file) {
 		System.out.println("[user()-join]");
 		
 		System.out.println(userVo);
