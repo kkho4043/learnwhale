@@ -21,6 +21,7 @@ import com.javaex.service.ProblemService;
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.ChoiceVo;
 import com.javaex.vo.ProblemVo;
+import com.javaex.vo.UserVo;
 
 @Controller
 @RequestMapping("/myclass/problem")
@@ -32,9 +33,9 @@ public class HproblemController {
 	@RequestMapping(value = "/problem-Management", method = { RequestMethod.GET, RequestMethod.POST })
 	public String problemManagement(Model model, HttpSession session) {
 		
-		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
+		int no = ((UserVo) session.getAttribute("authUser")).getNo();
 		
-		model.addAttribute("cateList", proService.getCategory(1));
+		model.addAttribute("cateList", proService.getCategory(no));
 
 		return "home/problem/problem-Management";
 	}
@@ -43,9 +44,9 @@ public class HproblemController {
 	public String multipleChoice(Model model, HttpSession session) {
 		System.out.println("[ProblemController.creatingForm()]");
 		
-		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
+		int no = ((UserVo) session.getAttribute("authUser")).getNo();
 
-		model.addAttribute("cateList", proService.getCategory(1));
+		model.addAttribute("cateList", proService.getCategory(no));
 
 		return "home/problem/creatingForm";
 	}
@@ -86,9 +87,9 @@ public class HproblemController {
 	public String problemList(Model model, int cateNo, HttpSession session) {
 		System.out.println("[ProblemController.problemList()]");
 		
-		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
+		int no = ((UserVo) session.getAttribute("authUser")).getNo();
 		
-		model.addAttribute("cateList", proService.getCategory(1));
+		model.addAttribute("cateList", proService.getCategory(no));
 
 		model.addAttribute("proList", proService.getProblem(cateNo));
 
@@ -124,10 +125,10 @@ public class HproblemController {
 	@RequestMapping(value = "/creating-ViewForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String creatingViewForm(Model model, int proNo, HttpSession session, ProblemVo proVo, ChoiceVo choVo) {
 		System.out.println("[ProblemController.view()]");
+
+		int no = ((UserVo) session.getAttribute("authUser")).getNo();
 		
-		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
-		
-		model.addAttribute("cateList", proService.getCategory(1));
+		model.addAttribute("cateList", proService.getCategory(no));
 		
 		System.out.println("22222222222222222222222:   " + proVo.getCateNo());
 		model.addAttribute("choVo", proService.ChoiceView(proNo));
@@ -178,9 +179,9 @@ public class HproblemController {
 	public List<CategoryVo> getSubCate (Model model, HttpSession session, @RequestParam("groupNo") int groupNo) {
 		System.out.println("[ProblemController.getSubCate()]");
 		
-		/* int no = ((UserVo) session.getAttribute("authUser")).getNo(); */
+		int no = ((UserVo) session.getAttribute("authUser")).getNo();
 		CategoryVo cateVo = new CategoryVo();
-		cateVo.setUserNo(1);
+		cateVo.setUserNo(no);
 		cateVo.setGroupNo(groupNo);
 		
 		List<CategoryVo> categoryVo = proService.SubCategoryByGroupNo(cateVo);
