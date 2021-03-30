@@ -39,7 +39,9 @@ public class BexamController {
 
 	@Autowired
 	private ProblemService proService;
-
+	
+	
+	
 	@RequestMapping(value = "/title", method = { RequestMethod.GET, RequestMethod.POST })
 	public String title(@PathVariable("url") String url, @RequestParam(value = "examNo") int examNo,
 			@RequestParam(value = "joinNo") int joinNo, HttpSession session, Model model) {
@@ -230,6 +232,14 @@ public class BexamController {
 			@RequestParam(value = "joinNo") int joinNo) {
 		System.out.println("체점시 리스트 출력 컨트롤러");
 		return examService.examsolvepaging(examNo, orderNum, joinNo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/classjoin", method = { RequestMethod.GET, RequestMethod.POST })
+	public boolean classjoin(@PathVariable("url") String url,HttpSession session, Model model) {
+		banmainService.joinclass(url,session);
+		
+		return true;
 	}
 
 }

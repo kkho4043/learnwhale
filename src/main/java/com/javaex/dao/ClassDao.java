@@ -62,7 +62,9 @@ public class ClassDao {
 	
 	public int getclassNo(String url) {
 		System.out.println("[classDao.dddd()]");
-		return sqlSession.selectOne("class.selectclassNo", url);
+		int a = sqlSession.selectOne("class.selectclassNo", url);
+		System.out.println(a);
+		return a;
 	}
 	
 	//학생 수 세기

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--시험리스트 -->
 <mapper namespace="banmain">
-	
+
 	<select id="selectjoinuser" resultType="JoinUserVo" parameterType="map">
 	 	<![CDATA[
 	 		select 
@@ -20,7 +20,7 @@
 	 	]]>
 
 	</select>
-	
+
 	<select id="selectjoinclass" resultType="ClassVo" parameterType="String">
 	 	<![CDATA[
 	 		select
@@ -35,8 +35,8 @@
 		    where class_url = #{url}
 	 	]]>
 	</select>
-	
-		<select id="selectclassteacher" resultType="UserVo" parameterType="int">
+
+	<select id="selectclassteacher" resultType="UserVo" parameterType="int">
 	 	<![CDATA[
 	 		select
 				u.name name,
@@ -51,6 +51,13 @@
 			and class_no = #{classNo}
 	 	]]>
 	</select>
+
+	<insert id="joinclass" parameterType="map">
+		<![CDATA[
+	 		INSERT INTO join_users 
+			VALUES (seq_joinUsers_no.nextval, #{classNo}, #{userNo}, '대기', '학생', sysdate)
+	 	]]>
+	</insert>
 
 
 
