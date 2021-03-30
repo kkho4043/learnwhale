@@ -68,7 +68,7 @@
 															</div>
 															<input type="text" name="id" class="form-control"
 																id="id-margin" placeholder="아이디를 입력해 주세요.">
-															<button type="button" id="btnCheck" class="btn btn-primary btn-xs">중복체크</button>	
+															<button type="button" id="btnCheck" class="btn btn-primary btn-sm">중복체크</button>	
 														</div>
 														<!-- //form-group -->
 													</div>
@@ -91,7 +91,7 @@
 													<div class="col-sm-12 joinArea">
 														<div class="form-group">
 															<div class="col-sm-12" >
-																<label for="pwCheck" id="checkpw" style="padding-right:120px;">비밀번호 확인</label>
+																<label for="pwCheck" id="check-pwArea">비밀번호 확인</label>
 															</div>
 															<input type="text" class="form-control" id="pwCheck"
 																 placeholder="비밀번호를 확인해 주세요."  onchange="check_pw()">
@@ -114,7 +114,7 @@
 													<div class="col-sm-12 joinArea">
 														<div class="form-group">
 															<div class="col-sm-12">
-																<label for="email" id="nameArea">이메일</label>
+																<label for="email" id="emailArea">이메일</label>
 															</div>
 															<input type="text" class="form-control" id="email"
 																name="email" placeholder="이메일을 입력해주세요.">
@@ -139,7 +139,7 @@
 															<div class="col-sm-12">
 																<label for="profile" id="phoneArea">프로필</label>
 															</div>
-															<input type="file" class="form-control" id="profile"
+															<input type="file" id="profile" style="padding-left:270px;"
 																name="proFile" placeholder="프로필사진을 입력해주세요">
 
 														</div>

@@ -71,7 +71,7 @@
 									<label class="col-xs-2 text-right" for="name">반이름</label> <span
 										class="col-xs-10"> <input type="text"
 										class="form-control input-sm" name="className" id="name"
-										placeholder="반 이름을 입력해주세요" style="width: 600px;">
+										placeholder="반 이름을 입력해주세요" style="width: 710px;">
 									</span>
 								</div>
 
@@ -79,10 +79,10 @@
 									<label class="col-xs-2 text-right" for="banner">메인배너</label> <span
 										class="col-xs-9"> <input type="text" readonly
 										class="form-control input-sm" id=""
-										placeholder="메인배너 이미지를 넣어주세요" style="width: 450px;">
-									</span> <span class="col-xs-1"> <input type="file" id="banner"
-										class="btn btn-default btn-xs pull-right" name="logo">
-									</span>
+										placeholder="메인배너 이미지를 넣어주세요" style="width: 710px;">
+										<input type="file" id="banner"
+										 name="logo">
+									</span> 
 								</div>
 								<!-- //메인베너 -->
 
@@ -90,7 +90,7 @@
 									<label class="col-xs-2 text-right" for="startDate">시작일</label>
 									<span class="col-xs-8"> <input type="datetime-local"
 										name="startDate" class="form-control input-sm" id="startDate"
-										placeholder="" style="width: 600px;">
+										placeholder="" style="width: 710px;">
 									</span>
 								</div>
 								<!-- //시작일 -->
@@ -99,7 +99,7 @@
 									<label class="col-xs-2 text-right" for="endDate">종료일</label> <span
 										class="col-xs-8"> <input type="datetime-local"
 										name="endDate" class="form-control input-sm" id="endDate"
-										placeholder="" style="width: 600px;">
+										placeholder="" style="width: 710px;">
 									</span>
 								</div>
 								<!-- //종료일 -->
@@ -119,7 +119,7 @@
 										class="col-xs-10"> <input type="text"
 										class="form-control input-sm" name="classUrl"
 										placeholder="해당 반(블로그) 개설을 위해 url을 입력해주세요 ex) a,b,c,,1,2,3,가,나,다"
-										id="url" style="width: 600px;">
+										id="url" style="width: 710px;">
 										<button type="button" class="btn btn-default btn-xs" id="btnCheck">중복체크</button>
 										<p id="msg" class="text-danger">
 											<!-- url 사용 가능 여부 메세지  -->
@@ -130,11 +130,11 @@
 								<!-- //노출여부 -->
 
 								<div class="row interval">
-									<div class="col-xs-6">
+									<div class="col-xs-7">
 										<button type="submit"
 											class="btn btn-primary btn-sm pull-right">저장</button>
 									</div>
-									<div class="col-xs-6">
+									<div class="col-xs-5">
 										<button class="btn btn-primary btn-sm pull-right">
 											<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">취소</a>
 										</button>

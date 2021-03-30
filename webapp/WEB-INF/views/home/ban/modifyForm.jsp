@@ -56,29 +56,29 @@
 								<div class="row interval">
 									<!-- 반이름 -->
 									<label class="col-xs-2 text-right" for="name">반이름</label> <span class="col-xs-10"> <input type="text" class="form-control input-sm"
-										name="className" id="name" value="${classVo.className }" style="width: 600px;">
+										name="className" id="name" value="${classVo.className }" style="width: 710px;">
 									</span>
 								</div>
 
 								<div class="row interval">
 									<label class="col-xs-2 text-right" for="banner">메인배너</label> <span class="col-xs-9"> <input type="text" readonly
-										class="form-control input-sm" id="" placeholder="메인배너 이미지를  수정해주세요" style="width: 450px;">
-									</span> <span class="col-xs-1"> <input type="file" id="banner" class="btn btn-default btn-xs pull-right" name="logo"
+										class="form-control input-sm" id="" placeholder="메인배너 이미지를  수정해주세요" style="width: 710px;">
+										 <input type="file" id="banner" name="logo"
 										value="${classVo.logoFile }">
-									</span>
+									</span> 
 								</div>
 								<!-- //메인베너 -->
 
 								<div class="row interval">
 									<label class="col-xs-2 text-right" for="startDate">시작일</label> <span class="col-xs-8"> <input type="datetime-local" name="startDate"
-										class="form-control input-sm" id="startDate" value="${classVo.startDate }" style="width: 600px;">
+										class="form-control input-sm" id="startDate" value="${classVo.startDate }" style="width: 710px;">
 									</span>
 								</div>
 								<!-- //시작일 -->
 
 								<div class="row interval">
 									<label class="col-xs-2 text-right" for="endDate">종료일</label> <span class="col-xs-8"> <input type="datetime-local" name="endDate"
-										class="form-control input-sm" id="endDate" value="${classVo.endDate }" style="width: 600px;">
+										class="form-control input-sm" id="endDate" value="${classVo.endDate }" style="width: 710px;">
 									</span>
 								</div>
 								<!-- //종료일 -->
@@ -107,17 +107,17 @@
 
 								<div class="row interval">
 									<label class="col-xs-2 text-right" for="url">url</label> <span class="col-xs-10"> <input type="text" readonly
-										class="form-control input-sm" placeholder="${classVo.classUrl }" id="url" style="width: 600px;">
+										class="form-control input-sm" placeholder="${classVo.classUrl }" id="url" style="width: 710px;">
 										<p class="text-warning">※url의 경우 중복불가, 수정불가</p>
 									</span>
 								</div>
 								<!-- //노출여부 -->
 								<input type="hidden" name="classNo" value="${classVo.classNo}">
 								<div class="row interval">
-									<div class="col-xs-6">
+									<div class="col-xs-7">
 										<button type="submit" class="btn btn-primary btn-sm pull-right">수정</button>
 									</div>
-									<div class="col-xs-6">
+									<div class="col-xs-5">
 										<button class="btn btn-primary btn-sm pull-right">
 											<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">취소</a>
 										</button>

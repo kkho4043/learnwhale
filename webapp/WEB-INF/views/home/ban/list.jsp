@@ -72,9 +72,9 @@
 							<div class="col-xs-6 text-left">
 								<form action="${pageContext.request.contextPath}/myclass/list"
 									method="get">
-									<div class="form-group text-left">
-										<input type="text" name="search">
-										<button type="submit" id=btn_search>검색</button>
+									<div class="form-group form-inline">
+										<input type="text" class="form-control input-sm" name="search">
+										<button class="btn btn-default btn-sm" type="submit" id=btn_search><span class="glyphicon glyphicon-search"></span></button>
 									</div>
 								</form>
 							</div>
@@ -106,7 +106,7 @@
 												<tr>
 													<td>${status.count}</td>
 													<td><a
-														href="${pageContext.request.contextPath}/${vo.classUrl}">${vo.className}</a></td>
+														href="${pageContext.request.contextPath}/${vo.classUrl}" target="_blank">${vo.className}(${vo.classUrl })</a></td>
 													<td>${vo.startDate}</td>
 													<td>${vo.endDate}</td>
 

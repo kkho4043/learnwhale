@@ -40,11 +40,11 @@ text-large{
 
 #idArea{
 	float: left;
-	margin-left: 41px;
+	margin-left: 50px;
 }
 #pwArea{
 	float: left;
-	margin-left: 53px;
+	margin-left: 60px;
 }
 #check-pwArea{
 	float: left;
@@ -56,11 +56,14 @@ text-large{
 }
 #nameArea{
 	float: left;
-	margin-left: 25px;
+	margin-left: 32px;
 }
-
+#emailArea{
+	float: left;
+	margin-left: 40px;
+}
 #phoneArea{
-	margin-right: 148px;
+	margin-right: 138px;
 }
 #agreeArea{
 	margin-left: 2px;
