@@ -94,6 +94,7 @@
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
+															<span>제목: </span>
 															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="">
 														</div>
 														<div class="form-group">
@@ -110,10 +111,21 @@
 														</div>
 
 														<!-- //col-sm-12 -->
+														<div id="choType-div">
+															<div class="col-xs-12" id="choice-type">
+																<span>보기 등록 방식을 선택해 주세요.</span>
+															</div>
+															<div class="col-xs-6">
+																<button type="button" class="btn btn-success" id="choice-TextType">내용 입력</button>
+															</div>
+															<div class="col-xs-6">
+																<button type="button" class="btn btn-info" id="choice-ImageType">이미지 등록</button>
+															</div>
+														</div>
 														<div class="mc-Area">
 															<div class="row answer-content">
 																<div class="col-xs-12">
-																	<h4>각 문항에 내용을 입력해주세요.</h4>
+																	<h4 id="text-area">각 문항에 내용을 입력해주세요.</h4>
 																</div>
 																<div class="col-sm-1 answer-num">
 																	<strong>1</strong>
@@ -126,10 +138,6 @@
 																</div>
 															</div>
 															<!-- //answer-content -->
-															<div class="col-xs-12 fileArea">
-																<input type="file" name="Image1" id="asd">
-															</div>
-															<!-- //fileArea -->
 
 															<div class="row answer-content">
 																<div class="col-xs-1 answer-num">
@@ -143,10 +151,7 @@
 																</div>
 															</div>
 															<!-- //answer-content -->
-															<div class="col-xs-12 fileArea">
-																<input type="file" name="Image2">
-															</div>
-															<!-- //fileArea -->
+
 
 															<div class="row answer-content">
 																<div class="col-xs-1 answer-num">
@@ -160,10 +165,7 @@
 																</div>
 															</div>
 															<!-- //answer-content -->
-															<div class="col-xs-12 fileArea">
-																<input type="file" name="Image3">
-															</div>
-															<!-- //fileArea -->
+
 
 															<div class="row answer-content">
 																<div class="col-xs-1 answer-num">
@@ -175,15 +177,43 @@
 																<div class="col-xs-2">
 																	<input type="checkBox" class="answer" name="answer" id="check-fourth" value="4"> <label for="check-fourth">정답체크</label>
 																</div>
-
 															</div>
-															<div class="col-xs-12 fileArea">
-																<input type="file" name="Image4">
-															</div>
-															<!-- //answer-content -->
-															<div class="col-xs-12 fileArea"></div>
 														</div>
-														<!-- //fileArea -->
+
+														<div class="row answer-content" id="image-area">
+															<div class="col-xs-12 image-h4">
+																<h4>각 문항에 이미지를 넣어주세요.</h4>
+															</div>
+															<div class="col-xs-12 answer-num image-answer-num">
+																<strong class="image-num">1</strong>
+																<input type="file" name="Image1" id="asd" class="image-file file1">
+																<input type="checkBox" class="answer image-checkbox" name="answer" id="imgCheck-first" value="1"> 
+																<label for="imgCheck-first" class="check-label">정답체크</label>
+															</div>
+															
+
+															<div class="col-xs-12 answer-num image-answer-num">
+																<strong class="image-num">2</strong>
+																<input type="file" name="Image2" id="asd" class="image-file file2">
+																<input type="checkBox" class="answer image-checkbox" name="answer" id="imgCheck-second" value="2"> 
+																<label for="imgCheck-second" class="check-label">정답체크</label>
+															</div>
+															
+															<div class="col-xs-12 answer-num image-answer-num">
+																<strong class="image-num">3</strong>
+																<input type="file" name="Image3" id="asd" class="image-file file3">
+																<input type="checkBox" class="answer image-checkbox" name="answer" id="imgCheck-third" value="3"> 
+																<label for="imgCheck-third" class="check-label">정답체크</label>
+															</div>
+															
+															<div class="col-xs-12 answer-num image-answer-num">
+																<strong class="image-num">4</strong>
+																<input type="file" name="Image4" id="asd" class="image-file file4">
+																<input type="checkBox" class="answer image-checkbox" name="answer" id="imgCheck-fourth" value="4"> 
+																<label for="imgCheck-fourth" class="check-label">정답체크</label>
+															</div>
+														</div>
+
 
 														<!-- ox문제 시작 -->
 														<div class="row ox-Area">
@@ -232,7 +262,8 @@
 												<!-- //row -->
 
 												<div class="col-xs-4">
-													<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${param.cateNo}"><button type="button" id="out"  class="btn btn-danger">나가기</button></a>
+													<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${param.cateNo}"><button type="button" id="out"
+															class="btn btn-danger">나가기</button></a>
 												</div>
 												<div class="col-xs-5">
 													<button type="submit" class="btn btn-primary" id="save">저장하기</button>
@@ -270,7 +301,9 @@
 	$(document).ready(function() {
 
 		/* 입력폼출력 */
-		$(".mc-Area").show();
+		$("#choType-div").show();
+		$("#image-area").hide();
+		$(".mc-Area").hide();
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
 
@@ -287,6 +320,7 @@
 		formReset();
 
 		/* 입력폼출력 */
+		$("#choType-div").hide();
 		$(".mc-Area").hide();
 		$(".ox-Area").show();
 		$(".sj-Area").hide();
@@ -303,6 +337,7 @@
 		formReset();
 
 		/* 입력폼출력 */
+		$("#choType-div").hide();
 		$(".mc-Area").hide();
 		$(".ox-Area").hide();
 		$(".sj-Area").show();
@@ -317,7 +352,8 @@
 		formReset();
 
 		/* 입력폼출력 */
-		$(".mc-Area").show();
+		$("#choType-div").show();
+		$(".mc-Area").hide();
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
 
@@ -325,6 +361,26 @@
 		//$(".mc-Area .answer").attr("name", "answer");
 
 		$('.mcF').prop('checked', true);
+	});
+	
+	//보기 타입 텍스트 선택할 때
+	$("#choice-TextType").on("click", function() {
+		
+		$("#image-area").hide();
+		$(".mc-Area").show();
+		$(".ox-Area").hide();
+		$(".sj-Area").hide();
+
+	});
+	
+	//보기 타입 이미지 선택할 때
+	$("#choice-ImageType").on("click", function(){
+		
+		
+		$("#image-area").show();
+		$(".mc-Area").hide();
+		$(".ox-Area").hide();
+		$(".sj-Area").hide();
 	});
 
 	/* 빈칸 여부 체크하기 */
@@ -367,8 +423,24 @@
 				alert("정답을 체크해주세요");
 				return false;
 			}
+			
+			if(!$(".file1").val()){
+				alert("이미지 1번을 넣어주세요.");
+				return false;
+			} else if(!$(".file2").val()) {
+				alert("이미지 2번을 넣어주세요.");
+				return false;
+			} else if(!$(".file3").val()) {
+				alert("이미지 3번을 넣어주세요.");
+				return false;
+			} else if(!$(".file4").val()) {
+				alert("이미지 4번을 넣어주세요.");
+				return false;
+			} 
 
 		}
+		
+		
 
 		if ($("#typeOx").is(":checked") == true) {
 
@@ -398,5 +470,8 @@
 			this.reset();
 		});
 	}
+	
+	
+	
 </script>
 </html>

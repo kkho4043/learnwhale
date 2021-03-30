@@ -53,3 +53,39 @@ input[type=radio]{
 .radioArea{
 	margin-top: -41px;
 }
+#choice-type{
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.answer-content{
+	margin-bottom: 15px;
+}
+.image-num{
+	float: left;
+	margin-top: 3px;
+}
+.image-file{
+	float: left;
+	margin-left: 57px;
+}
+.image-checkbox{
+	float: left;
+	margin-left:100px;
+}
+.check-label{
+	float: left;
+    margin-top: 3px;
+    margin-left: 10px;
+}
+.image-answer-num{
+	margin-bottom: 12px;
+}
+
+.image-h4{
+	margin: 30px;
+}
+
+#text-area{
+	margin: 30px;
+}

@@ -109,7 +109,8 @@
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
-															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="${proVo.problemTitle}">
+															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle"
+																value="${proVo.problemTitle}">
 														</div>
 														<div class="form-group">
 															<input type="text" class="form-control" id="content" placeholder="문제를 입력해주세요." name="content" value="${proVo.content}">
@@ -142,12 +143,14 @@
 																				<strong>${status.count}</strong>
 																			</div>
 																			<div class="col-xs-9">
-																				<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="${choVo.choiceContent}"> <input type="text" name="choiceNo" value="${choVo.choiceNo}">
+																				<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="${choVo.choiceContent}">
+																				<input type="text" name="choiceNo" value="${choVo.choiceNo}">
 																			</div>
 
 
 																			<div class="col-xs-2">
-																				<input type="checkBox" class="answer" name="answer" id="check${choVo.orderNo}" value="${status.count}"> <label for="check${choVo.orderNo}">정답체크</label>
+																				<input type="checkBox" class="answer" name="answer" id="check${choVo.orderNo}" value="${status.count}"> <label
+																					for="check${choVo.orderNo}">정답체크</label>
 																			</div>
 
 
@@ -281,17 +284,16 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		if("${proVo.type}" != '주관식'){
+		if ("${proVo.type}" != '주관식') {
 			var answer = "${proVo.answer}";
 			var ar = answer.split(",");
 			var num;
 			console.log(ar);
 			for (var i = 0; i < ar.length; i++) {
 				num = ar[i];
-				document.getElementById("check"+num).checked = true;
+				document.getElementById("check" + num).checked = true;
 			}
 		}
-		
 
 	});
 
@@ -324,6 +326,16 @@
 		if (!choiceContent) {
 			alert("보기 내용을 입력해 주세요.");
 			return false;
+		}
+
+		if ($("#typeOx").is(":checked") == true) {
+
+			if ($('input:radio[name=answer]').is(':checked') == false) {
+				console.log("ox");
+				alert("정답을 체크해주세요");
+				return false;
+			}
+
 		}
 
 	});
