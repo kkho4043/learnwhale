@@ -105,14 +105,14 @@ public class ReportService {
 		}
 		else {
 			
-			ArrayList<Integer> quizArr = new ArrayList<>();
-			ArrayList<Integer> testArr = new ArrayList<>();
-			ArrayList<Integer> homeworkArr = new ArrayList<>();
+			ArrayList<Double> quizArr = new ArrayList<>();
+			ArrayList<Double> testArr = new ArrayList<>();
+			ArrayList<Double> homeworkArr = new ArrayList<>();
 			
 			for(int i=0; i<exList.size(); i++) {
 				
 				String exType = exList.get(i).getExamType();
-				int grade = exList.get(i).getGrade();
+				double grade = exList.get(i).getGrade();
 				
 				if("쪽지시험".equals(exType)) {
 					quizArr.add(grade);
@@ -125,12 +125,16 @@ public class ReportService {
 				}
 			}
 			
-			int sum= 0;
+			double sum= 0;
 			for(int i=0; i<exList.size(); i++) {
 				sum += exList.get(i).getGrade();
 			}
 			
 			double totalAvg = sum/exList.size();
+			
+			if(Double.isNaN(totalAvg)) {
+				totalAvg = 0;
+			}
 			
 			sum=0;
 			for(int i=0; i<quizArr.size(); i++) {
@@ -139,6 +143,9 @@ public class ReportService {
 			
 			double quizAvg = sum/quizArr.size();
 			
+			if(Double.isNaN(quizAvg)) {
+				quizAvg = 0;
+			}
 			
 			sum=0;
 			for(int i=0; i<testArr.size(); i++) {
@@ -147,12 +154,20 @@ public class ReportService {
 			
 			double testAvg = sum/testArr.size();
 			
+			if(Double.isNaN(testAvg)) {
+				testAvg = 0;
+			}
+			
 			sum=0;
 			for(int i=0; i<homeworkArr.size(); i++) {
 				sum += homeworkArr.get(i);
 			}
 			
 			double homeAvg = sum/homeworkArr.size();
+			
+			if(Double.isNaN(homeAvg)) {
+				homeAvg = 0;
+			}
 			
 			double[] avgList = {totalAvg, quizAvg, testAvg, homeAvg}; 
 			

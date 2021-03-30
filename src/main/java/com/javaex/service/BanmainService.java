@@ -29,7 +29,13 @@ public class BanmainService {
 		int userNo = userVo.getNo();
 
 		JoinUserVo jvo = banmainDao.selectuserInfo(url, userNo);
-
+		
+		String type = jvo.getType();
+		
+		if(type ==null) {
+			jvo.setType("님");
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("joinVo", jvo); // 접속유저 정보
 		System.out.println("url = " + url);

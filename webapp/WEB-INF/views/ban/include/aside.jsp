@@ -23,7 +23,7 @@
 		<ul>
 
 			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/">시험관리</a></li>
-			<li><span class="glyph glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/student/list">학생관리</a></li>
+			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/student/list">학생관리</a></li>
 			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/report/list">성적관리</a></li>
 			<li class="last"><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/notice/list">공지사항</a></li>
 
@@ -33,7 +33,7 @@
 <script type="text/javascript">
 $("#classjoinbtn").on("click", function() {
 	$.ajax({
-		url : "${pageContext.request.contextPath}/${url}/exam/classjoin",
+		url : "${pageContext.request.contextPath}/${url}/student/classjoin",
 		type : "post",
 		//contentType : "application/json",
 		data : {},

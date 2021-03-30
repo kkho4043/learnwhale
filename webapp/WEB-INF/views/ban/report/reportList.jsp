@@ -163,21 +163,17 @@
 														<th>형식</th>
 														<th>점수</th>
 														<th>작성일</th>
-														<th>관리</th>
+														
 													</tr>
 												</thead>
 												<tbody>
 												<c:forEach items="${exList }" var="examVo" varStatus="status">
 														<tr>
 															<td>${exList.size() - status.index}</td>
-															<td class="text-left"><a href="">${examVo.examTitle }</a></td>
+															<td class="text-left">${examVo.examTitle }</td>
 															<td>${examVo.examType }</td>
 															<td>${examVo.grade }</td>
 															<td>${examVo.regDate }</td>
-															<td>
-																<button class="btn btn-default btn-xs" >삭제</button>
-																<button class="btn btn-default btn-xs" >이동</button>
-															</td>
 														</tr>
 													</c:forEach>
 												</tbody>		

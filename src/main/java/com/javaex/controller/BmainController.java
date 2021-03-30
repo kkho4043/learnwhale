@@ -53,7 +53,7 @@ public class BmainController {
 		}
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
 
-		
+		System.out.println("정보확인"+banmainService.classInfo(url, session));
 		return "ban/exam/list";
 	}
 	

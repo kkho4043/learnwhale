@@ -125,9 +125,9 @@ public class BstudentController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/classjoin", method = { RequestMethod.GET, RequestMethod.POST })
-	public boolean classjoin(@PathVariable("url") String url,HttpSession session, Model model) {
+	public boolean classjoin(@PathVariable("url") String url, HttpSession session, Model model) {
 		banmainService.joinclass(url,session);
-		
+		//System.out.println(banmainService.joinclass(url,session));
 		return true;
 	}
 }

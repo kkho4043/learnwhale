@@ -5,18 +5,22 @@
 
 	<select id="selectjoinuser" resultType="JoinUserVo" parameterType="map">
 	 	<![CDATA[
-	 		select 
-  				u.name username,
-				j.type type,
-				j.join_no joinNo,
-				u.no userNo
-   			from join_users j, class c , users u
-   
-		    where j.class_no = c.class_no
-		    and j.user_no = u.no
-		    and c.class_url = #{url}
-		    and j.approval = '승인'
-		    and u.no = #{userNo}
+	 		select  join_no joinNo,
+			        u.name username,
+			        type
+			from (select no,
+			             name
+			      from   users
+			      where  no = #{userNo}) u left outer join (  select  join_no,
+					                                                  user_no,
+					                                                  type
+					                                          from    join_users
+					                                          where   class_no = (select class_no 
+					                                                              from class 
+					                                                              where class_url = #{url})
+					                                          )j
+			on u.no = j.user_no
+
 	 	]]>
 
 	</select>
