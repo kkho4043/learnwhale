@@ -57,11 +57,10 @@
 									<div class="row">
 										<div class="col-xs-9" id="Creat-Title">문제 작성지</div>
 
-
-										<div class="col-xs-9">
-											<form id="prblemForm" action="${pageContext.request.contextPath}/myclass/problem/modify" method="post" enctype="multipart/form-data">
-												<input type="text" name="problemNo" value="${proVo.problemNo}">
-												<div class="row col-xs-9">
+										<form id="prblemForm" action="${pageContext.request.contextPath}/myclass/problem/modify" method="post" enctype="multipart/form-data">
+											<div class="col-xs-9">
+												<input type="hidden" name="problemNo" value="${proVo.problemNo}">
+												<div class="row col-xs-9" id="need-hide">
 													<c:choose>
 														<c:when test="${proVo.type == '객관식'}">
 															<div class="col-sm-12 problemType">
@@ -86,84 +85,99 @@
 													<c:choose>
 														<c:when test="${proVo.type == '객관식'}">
 															<div class="col-sm-12 problemType radioArea">
-																<label for="typeMc">객관식</label>
+																<label for="typeMc">문제형식: 객관식</label>
 															</div>
 														</c:when>
 														<c:when test="${proVo.type == 'OX문제'}">
 															<div class="col-sm-12 problemType radioArea">
-																<label for="typeOx">OX문제</label>
+																<label for="typeOx">문제형식: OX문제</label>
 															</div>
 														</c:when>
 														<c:otherwise>
 															<div class="col-sm-12 problemType radioArea">
-																<label for="typeSj">주관식</label>
+																<label for="typeSj">문제형식: 주관식</label>
 															</div>
 														</c:otherwise>
 													</c:choose>
 												</div>
 												<!-- //row -->
-												<input type="text" name="cateNo" value="${proVo.cateNo}">
+												<input type="hidden" name="cateNo" value="${proVo.cateNo}">
 
 
 												<div class="row">
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
-															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle"
-																value="${proVo.problemTitle}">
+															<label for="problemTitle" id="title-label" style="float: left;">제목: </label>
+															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="${proVo.problemTitle}">
 														</div>
 														<div class="form-group">
-															<input type="text" class="form-control" id="content" placeholder="문제를 입력해주세요." name="content" value="${proVo.content}">
+															<label for="content" id="label-problem" style="float: left;">문제:</label>
+															<textarea class="form-control" id="content" placeholder="문제를 입력해주세요." name="content">${proVo.content}</textarea>
 														</div>
-														<div class="form-group">
-															<input type="text" class="form-control" placeholder="이미지를 넣어주세요.">
-														</div>
+
 														<div class="form-group" id="img-file">
-															<input type="file" name="Image" value="${proVo.contentImage }">
+															<label for="image" id="image-label">문제 이미지 : ${proVo.contentImage}</label>
+															 <input type="file" name="Image" id="image" value="">
 														</div>
 														<div class="form-group" id="last-makeType">
-															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description" value="${proVo.description}">
+															<label for="description" id="label-description" style="float: left;">설명:</label>
+															<textarea id="description" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description">${proVo.description}</textarea>
 														</div>
 
 
-														<!-- //col-sm-12 -->
 														<div class="mc-Area">
-															<div class="row answer-content">
+															<div class="row answer-content real-MaArea">
 																<c:choose>
 																	<c:when test="${proVo.type == '객관식'}">
 																		<div class="col-xs-12">
-																			<h4>각 문항에 내용을 입력해주세요.</h4>
+																			<h4 id="text-area">각 문항에 내용을 입력해주세요.</h4>
 																		</div>
 																	</c:when>
 																</c:choose>
 																<c:forEach items="${choVo}" var="choVo" varStatus="status">
 																	<c:choose>
 																		<c:when test="${proVo.type == '객관식'}">
-																			<div class="col-sm-1 answer-num">
-																				<strong>${status.count}</strong>
+																			<div class="clo-xs-12 row choice-textMargin">
+																				<div class="col-xs-1 answer-num">
+																					<strong>${status.count}</strong>
+																				</div>
+																				<div class="col-xs-9">
+																					<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="${choVo.choiceContent}">
+																					<input type="hidden" name="choiceNo" value="${choVo.choiceNo}">
+																				</div>
+																				<div class="col-xs-2">
+																					<input type="checkBox" class="answer" name="answer" id="check${choVo.orderNo}" value="${status.count}"> <label
+																						for="check${choVo.orderNo}">정답체크</label>
+																				</div>
 																			</div>
-																			<div class="col-xs-9">
-																				<input type="text" class="form-control" placeholder="The first answer" name="choiceContent" value="${choVo.choiceContent}">
-																				<input type="text" name="choiceNo" value="${choVo.choiceNo}">
-																			</div>
-
-
-																			<div class="col-xs-2">
-																				<input type="checkBox" class="answer" name="answer" id="check${choVo.orderNo}" value="${status.count}"> <label
-																					for="check${choVo.orderNo}">정답체크</label>
-																			</div>
-
-
-
-																			<div class="col-xs-12 fileArea">
-																				<input type="file" name="Image${status.count}">
-																			</div>
-																			<div class="col-xs-12 fileArea"></div>
 																		</c:when>
 																	</c:choose>
 																</c:forEach>
 															</div>
-															<!-- //answer-content -->
+															<!-- //real-MaArea -->
+
+															<c:choose>
+																<c:when test="${proVo.type == '객관식'}">
+																	<div class="row answer-content" id="image-area">
+																		<div class="col-xs-12 image-h4">
+																			<h4>각 문항에 이미지를 넣어주세요.</h4>
+																		</div>
+																		<c:forEach items="${choVo}" var="choVo" varStatus="status">
+																			<div class="col-xs-12 answer-num image-answer-num">
+																				<strong class="image-num">${status.count}</strong> 
+																				<input type="file" name="Image${status.count}" id="file${status.count}" class="image-file"> 
+																				<input type="checkBox" class="answer image-checkbox" name="answer" id="imgCheck-${status.count}" value="${status.count}">
+																				<label for="imgCheck-${status.count}" class="check-label">정답체크</label>
+																			</div>
+																			<div>
+																				<label>이미지: ${choVo.attachmentFile}</label>
+																			</div>
+																		</c:forEach>
+																	</div>
+																</c:when>
+															</c:choose>
+
 
 
 
@@ -239,42 +253,44 @@
 																</c:when>
 															</c:choose>
 
-
 														</div>
-														<!-- //col-sm-12 -->
 													</div>
-													<!-- //row -->
+													<!-- //col-sm-12 -->
 												</div>
+												<!-- //row -->
+											</div>
 
-												<div class="col-xs-4">
-													<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${proVo.cateNo}">
-														<button type="button" id="out" class="btn btn-danger">나가기</button>
-													</a>
-												</div>
-												<div class="col-xs-5">
-													<button type="submit" class="btn btn-primary" id="save">수정하기</button>
-												</div>
-											</form>
-											<!-- //form -->
-										</div>
+											<div class="col-xs-4">
+												<a href="${pageContext.request.contextPath}/myclass/problem/problemList?cateNo=${proVo.cateNo}">
+													<button type="button" id="out" class="btn btn-danger">나가기</button>
+												</a>
+											</div>
+											<div class="col-xs-5">
+												<button type="submit" class="btn btn-primary" id="save">수정하기</button>
+											</div>
 
+										</form>
+
+
+										<!-- //form -->
 									</div>
 
 								</div>
-								<!-- //container -->
-							</div>
-						</div>
 
+							</div>
+							<!-- //container -->
+						</div>
 					</div>
-					<!-- //col-xs-9 -->
+
 				</div>
-				<!-- //content-body-area -->
+				<!-- //col-xs-9 -->
 			</div>
-			<!-- //container-->
+			<!-- //content-body-area -->
 		</div>
-		<!-- //row -->
+		<!-- //container-->
 	</div>
-	<!-- //content-Area -->
+	<!-- //row -->
+
 
 
 	<!-- footer-Area -->
@@ -284,6 +300,7 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
+
 		if ("${proVo.type}" != '주관식') {
 			var answer = "${proVo.answer}";
 			var ar = answer.split(",");
@@ -323,9 +340,12 @@
 			return false;
 		}
 
-		if (!choiceContent) {
-			alert("보기 내용을 입력해 주세요.");
-			return false;
+		if ("${proVo.type}" == '객관식') {
+
+			if (!choiceContent) {
+				alert("보기 내용을 입력해 주세요.");
+				return false;
+			}
 		}
 
 		if ($("#typeOx").is(":checked") == true) {

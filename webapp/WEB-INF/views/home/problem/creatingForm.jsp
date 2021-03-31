@@ -25,7 +25,7 @@
 	<c:import url="/WEB-INF/views/home/include/header.jsp"></c:import>
 	<!-- //head-Area -->
 
-	<!-- content-Area -->
+	<!-- -Area -->
 	<div class="container-fluid">
 		<div class="row">
 			<div id="content-Area" class="container">
@@ -94,19 +94,17 @@
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
-															<span>제목: </span> <input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="">
+															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="">
 														</div>
 														<div class="form-group">
-															<input type="text" class="form-control" id="content" placeholder="문제를 입력해주세요." name="content" value="">
+															<textarea class="form-control" id="content" placeholder="문제를 입력해주세요." name="content"></textarea>
 														</div>
-														<div class="form-group">
-															<input type="text" class="form-control" placeholder="이미지를 넣어주세요.">
-														</div>
+
 														<div class="form-group" id="img-file">
-															<input type="file" name="Image" value="">
+															<label for="image" id="image-label">문제 이미지 :</label> <input type="file" name="Image" id="image" value="">
 														</div>
 														<div class="form-group" id="last-makeType">
-															<input type="text" class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description" value="">
+															<textarea class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description"></textarea>
 														</div>
 
 														<!-- //col-sm-12 -->
@@ -131,7 +129,7 @@
 																	<strong>1</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="choiceContent1" placeholder="The first answer" name="choiceContent">
+																	<input type="text" class="form-control choiceContent" id="choiceContent1" placeholder="The first answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkBox" class="answer" name="answer" id="check-first" value="1"> <label for="check-first">정답체크</label>
@@ -144,7 +142,7 @@
 																	<strong>2</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="choiceContent2" placeholder="The second answer" name="choiceContent">
+																	<input type="text" class="form-control choiceContent" id="choiceContent2" placeholder="The second answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkBox" class="answer" name="answer" id="check-second" value="2"> <label for="check-second">정답체크</label>
@@ -158,7 +156,7 @@
 																	<strong>3</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="choiceContent3" placeholder="The third answer" name="choiceContent">
+																	<input type="text" class="form-control choiceContent" id="choiceContent3" placeholder="The third answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkBox" class="answer" name="answer" id="check-third" value="3"> <label for="check-third">정답체크</label>
@@ -172,7 +170,7 @@
 																	<strong>4</strong>
 																</div>
 																<div class="col-xs-9">
-																	<input type="text" class="form-control" id="choiceContent4" placeholder="The fourth answer" name="choiceContent">
+																	<input type="text" class="form-control choiceContent" id="choiceContent4" placeholder="The fourth answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
 																	<input type="checkBox" class="answer" name="answer" id="check-fourth" value="4"> <label for="check-fourth">정답체크</label>
@@ -362,7 +360,6 @@
 		$(".mc-Area").show();
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
-
 	});
 
 	//보기 타입 이미지 선택할 때
@@ -372,6 +369,9 @@
 		$(".mc-Area").hide();
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
+
+		$(".mc-Area .choiceContent").attr("name", "none");
+		$(".mc-Area .answer").attr("name", "none");
 	});
 
 	/* 빈칸 여부 체크하기 */
@@ -394,9 +394,11 @@
 			return false;
 		}
 
-		/* if ($("#typeMc").is(":checked") == true) {
+		$("#choice-TextType").on("click", function() {
 
 			
+			
+			if ($("#typeMc").is(":checked") == true) {
 				if (!$("#choiceContent1").val()) {
 					console.log("보기 1번 비었음")
 					alert("보기 1번 입력해주세요");
@@ -415,30 +417,32 @@
 					alert("정답을 체크해주세요");
 					return false;
 				}
-		
-		} */
-
-		if ($("#typeMc").is(":checked") == true) {
-
-			if (!$("#file1").val()) {
-				alert("이미지 1번을 넣어주세요.");
-				return false;
-			} else if (!$("#file2").val()) {
-				alert("이미지 2번을 넣어주세요.");
-				return false;
-			} else if (!$("#file3").val()) {
-				alert("이미지 3번을 넣어주세요.");
-				return false;
-			} else if (!$("#file4").val()) {
-				alert("이미지 4번을 넣어주세요.");
-				return false;
-			} else if ($(".image-area .answer").is(":checked") == false) {
-				console.log("객관식");
-				alert("정답을 체크해주세요");
-				return false;
 			}
-		}
+		});
 
+		$("#choice-ImageType").on("click", function() {
+			
+			if ($("#typeMc").is(":checked") == true) {
+
+				if (!$("#file1").val()) {
+					alert("이미지 1번을 넣어주세요.");
+					return false;
+				} else if (!$("#file2").val()) {
+					alert("이미지 2번을 넣어주세요.");
+					return false;
+				} else if (!$("#file3").val()) {
+					alert("이미지 3번을 넣어주세요.");
+					return false;
+				} else if (!$("#file4").val()) {
+					alert("이미지 4번을 넣어주세요.");
+					return false;
+				} else if ($(".image-area .answer").is(":checked") == false) {
+					console.log("객관식");
+					alert("정답을 체크해주세요");
+					return false;
+				}
+			}
+		});
 		if ($("#typeOx").is(":checked") == true) {
 
 			if ($('input:radio[name=answer]').is(':checked') == false) {

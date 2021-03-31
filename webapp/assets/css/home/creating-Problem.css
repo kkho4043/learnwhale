@@ -1,9 +1,14 @@
 @charset "UTF-8";
 #Creat-Title{
 	font-weight: bold;
-	margin-bottom: 40px;
+	margin-bottom: 60px;
     padding-left: 263px;
 }
+#type-text{
+	font-weight: bold;
+	color: skyblue;
+}
+
 .problemType{
 	text-align: center;
 	margin-bottom: 50px;
@@ -12,10 +17,10 @@
 #TPdiv{margin-bottom: 50px;}
 #make-problem{text-align: center;}
 #img-file{
-	margin-top: -14px;
-	margin-bottom: 30px;
-	float: right;
-	width: 185px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	float: left;
+
 }
 .fileArea{
 		margin-left: 37px;
@@ -88,4 +93,39 @@ input[type=radio]{
 
 #text-area{
 	margin: 30px;
+}
+.choice-textMargin{
+	margin-bottom: 15px;
+}
+
+#image-label{
+	margin-right: 20px;
+	float: left;
+}
+#image{
+	float: left;
+}
+#title-label{
+	float: left;
+    margin-right: 11px;
+    margin-top: 5px;
+}
+#problemTitle{
+	width: 550px;
+}
+#label-problem{
+	float: left;
+    margin-right: 11px;
+    margin-top: 15px;
+}
+#content{
+	width: 550px;
+}
+#label-description{.
+	float: left;
+	margin-right: 11px;
+    margin-top: 15px;
+}
+#description{
+	width: 550px;
 }
