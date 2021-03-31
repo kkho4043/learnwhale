@@ -118,18 +118,30 @@
 
 									<nav class="text-center" id="paging">
 										<ul class="pagination">
-											<c:if test="${pMap.prev == true}">
-												<li><a href="${pageContext.request.contextPath}/myclass/list?crtPage=${pMap.startPageBtnNo-1}&search=${param.search}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-											</c:if>
+
+											<li>
+												<c:if test="${pMap.prev == true}">
+													<a href="${pageContext.request.contextPath}/myclass/list?crtPage=${pMap.startPageBtnNo-1}&search=${param.search}" aria-label="Previous">
+														<span aria-hidden="true">&laquo;</span>
+													</a>
+												</c:if>
+											</li>
 											
-											<c:forEach begin="${pMap.startPageBtnNo }" end="${pMap.endPageBtnNo }" step="1" var="page">
-												<li><a href="${pageContext.request.contextPath}/myclass/list?crtPage=${page}&search=${param.search}">${page }</a></li>
-											</c:forEach>
 											
+											
+											<li>
+												<c:forEach begin="${pMap.startPageBtnNo }" end="${pMap.endPageBtnNo }" step="1" var="page">
+													<a href="${pageContext.request.contextPath}/myclass/list?crtPage=${page}&search=${param.search}">${page }</a>
+												</c:forEach>
+											</li>
+										
 												
-											<c:if test="${pMap.next == true }">
-												<li><a href="${pageContext.request.contextPath}/myclass/list?crtPage=${pMap.endPageBtnNo+1 }&search=${param.search}" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
-											</c:if>
+											
+											<li>
+												<c:if test="${pMap.next == true }">
+													<a href="${pageContext.request.contextPath}/myclass/list?crtPage=${pMap.endPageBtnNo+1 }&search=${param.search}" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>
+												</c:if>
+											</li>
 										</ul>
 										
 										<div class="clear"></div>
