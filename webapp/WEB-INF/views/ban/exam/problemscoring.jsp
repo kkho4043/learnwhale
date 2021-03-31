@@ -57,7 +57,24 @@
 					<div id="main-title">
 						<div class="row">
 							<div class="col-xs-12">
-								<p>시험 출제</p>
+								<div class="row" style="margin-top: 15px;">
+									<div class="col-xs-2" style="padding-left: 40px;">
+										<p>문제 보기</p>
+									</div>
+									<div class="col-xs-4">
+										<p>${examInfo.examVo.examTitle}</p>
+									</div>
+									<div class="col-xs-1">${examInfo.qeustionVo.orderNum}번</div>
+
+									<div class="col-xs-3" style="padding: 0px; margin-top:">
+										<span>점수(</span> <input type="text" id="mypoint" style="width: 33px; height: 25px;"
+											<c:if test="${classInfo.joinVo.type != '선생님'}"> disabled </c:if>> <span>/${examInfo.qeustionVo.point}점)</span>
+										<c:if test="${classInfo.joinVo.type == '선생님'}">
+											<input type="button" value="부여" class="btn btn-primary" id="pointgrant">
+										</c:if>
+									</div>
+
+								</div>
 							</div>
 						</div>
 					</div>
@@ -71,23 +88,26 @@
 						<div class="row">
 							<div class="col-xs-9">
 								<div class="row protitle">
-									<div class="col-xs-1">${examInfo.qeustionVo.orderNum}번</div>
 									<div class="col-xs-7">${examInfo.problemVo.content}</div>
+									<div class="col-xs-4">정답 : ${examInfo.problemVo.answer}</div>
 								</div>
 								<c:if test="${examInfo.problemVo.contentImage != null}">
 									<div class="row">
-										<div class="testimg">
-											<img src="${examInfo.problemVo.contentImage}">
+										<div class="testimg" style="text-align: center;">
+											<img src="${pageContext.request.contextPath}/upload/${examInfo.problemVo.contentImage}" style="max-width: 600px; max-height: 250px;">
 
 											<!--  <input type="button" value="첨부파일">  -->
 										</div>
 									</div>
 								</c:if>
-								<div class="row">정답 : ${examInfo.problemVo.answer}</div>
-								<div class="row">
-									입력한답 : <span id="ineranswer"></span>
-								</div>
+
+
 								<div class="row protype">
+									<hr style="border: solid 1px gray;">
+									<div class = "row">
+										<div class="col-xs-5">제출한 답</div>
+										<div class="col-xs-7"></div>
+									</div>
 
 									<c:if test="${examInfo.problemVo.type == '주관식'}">
 										<div class="shortanswer">
@@ -98,7 +118,7 @@
 										</div>
 									</c:if>
 									<c:if test="${examInfo.problemVo.type == 'OX문제'}">
-										<div class="OX">
+										<div class="OX row">
 
 											<div>
 												<button id="O" class="btn btn-info">O</button>
@@ -112,57 +132,67 @@
 									<c:if test="${examInfo.problemVo.type == '객관식'}">
 										<div class="multiple">
 
-											<c:forEach items="${examInfo.cList}" var="vo" varStatus="status">
-												<div class="row">
-													<input type="button" id="choice${vo.orderNo}" value="${vo.orderNo}" class="btn btn-info choicebtn"><span>${vo.choiceContent}</span>
-												</div>
+											<c:choose>
+												<c:when test="${examInfo.cList[0].choiceContent == null}">
+													<c:forEach items="${examInfo.cList}" var="vo" varStatus="status">
+														<div class="col-xs-5" style="margin: 5px 0px 5px 0px;">
+															<div class="col-xs-1" style="margin-right: 0px">
+																<input type="button" id="choice${vo.orderNo}" value="${vo.orderNo}" class="btn btn-info choicebtn">
+															</div>
+															<div class="col-xs-8">
+																<img src="${pageContext.request.contextPath}/upload/${vo.attachmentFile}" style="max-height: 210px; max-width: 460px">
+															</div>
+														</div>
+													</c:forEach>
+												</c:when>
 
-											</c:forEach>
+												<c:otherwise>
+													<c:forEach items="${examInfo.cList}" var="vo" varStatus="status">
+														<div class="row">
+															<input type="button" id="choice${vo.orderNo}" value="${vo.orderNo}" class="btn btn-info choicebtn"><span>${vo.choiceContent}</span>
+														</div>
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
+
 										</div>
 
 									</c:if>
 
 
+
+
 								</div>
 
-								<div class="givescore row">
-									<div class="col-xs-5"></div>
-									<div class="col-xs-5">
-										<span>점수</span> <input type="text" id="mypoint" <c:if test="${classInfo.joinVo.type != '선생님'}"> readonly </c:if>><span>/${examInfo.qeustionVo.point}</span>
-									</div>
-								</div>
+
 
 								<div class="row">
-									<div class="col-xs-5"></div>
 									<div class="col-xs-2">
-										<c:if test="${classInfo.joinVo.type == '선생님'}">
-											<input type="button" value="점수 부여 확인" class="btn btn-primary" id="pointgrant">
-										</c:if>
+										<a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}"><input type="button"
+											value="리스트" class="btn btn-primary"></a>
 									</div>
 
-									<div class="col-xs-3"></div>
-									<div class="col-xs-2">
-										<input type="button" value="리스트" class="btn btn-primary">
-									</div>
+
 								</div>
 
 
 							</div>
 
-							<div class="col-xs-3">
+							<div class="col-xs-3" style="margin-top: 40px;border: solid;">
 								<div class="row">
 									<div class="prolist">
-										<table class="table">
+										<table class="table table table-stripedtable-hover">
 											<thead>
 												<tr>
 													<th>번호</th>
+													<th>점수</th>
 													<th>오답여부</th>
 													<th>상태</th>
 												</tr>
 
 
 											</thead>
-											<tbody id="sidesolveList">
+											<tbody id="sidesolveList" class="">
 
 											</tbody>
 
@@ -172,8 +202,7 @@
 												<input type="button" value="이전" class="btn btn-primary" id="prevbtn">
 											</div>
 											<div class="col-xs-6">
-												<input type="button" value="다음" class="btn btn-primary" id="nextbtn">
-												<input type="hidden" id = "Listorder">
+												<input type="button" value="다음" class="btn btn-primary" id="nextbtn"> <input type="hidden" id="Listorder">
 											</div>
 										</div>
 									</div>
@@ -326,23 +355,20 @@
 					}
 				});
 	}
-	
 
 	$("#prevbtn").on("click", function(orderNum) {
 		var oder = document.getElementById("Listorder").value;
 		var order = parseInt(oder) - 1;
 		getsideList(order);
-		
-		
+
 	});
-	
+
 	$("#nextbtn").on("click", function(orderNum) {
 		var oder = document.getElementById("Listorder").value;
 		var order = parseInt(oder) + 1;
 		getsideList(order);
 	});
-	
-	
+
 	function renders(qList) {
 		$("#sidesolveList").empty();
 		for (var i = 0; i < qList.length; i++) {
@@ -354,10 +380,10 @@
 		var str = "";
 		str += '<tr>';
 		str += '	<td><a href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${examInfo.examVo.examNo}&orderNum='
-				+ Vo.orderNum
-				+ '&joinNo=${param.joinNo}">'
-				+ Vo.orderNum
-				+ '<a></td>';
+				+ Vo.orderNum + '&joinNo=${param.joinNo}">' + Vo.orderNum
+		
+		+'<a></td>';
+		str += '	<td>' + Vo.mypoint+'</td>';
 		str += '	<td>' + Vo.result + '</td>';
 		str += '	<td>' + Vo.problemType + '</td>';
 		str += '</tr>';
@@ -366,10 +392,10 @@
 	}
 
 	$("#pointgrant").on("click", function() {
-		
+
 		var point = document.getElementById('mypoint').value;
-		console.log("넣어줄 포인트는"+point);
-		if (parseInt(point) > "${examInfo.qeustionVo.point}"){
+		console.log("넣어줄 포인트는" + point);
+		if (parseInt(point) > "${examInfo.qeustionVo.point}") {
 			alert('부여될점수가 너무 큽니다.');
 			return false;
 		}

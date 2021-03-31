@@ -39,9 +39,7 @@ public class BexamController {
 
 	@Autowired
 	private ProblemService proService;
-	
-	
-	
+
 	@RequestMapping(value = "/title", method = { RequestMethod.GET, RequestMethod.POST })
 	public String title(@PathVariable("url") String url, @RequestParam(value = "examNo") int examNo,
 			@RequestParam(value = "joinNo") int joinNo, HttpSession session, Model model) {
@@ -71,24 +69,25 @@ public class BexamController {
 			@RequestParam(value = "orderNum") int orderNum) {
 		System.out.println("[BanExamController.problemscoring()]");
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
-		model.addAttribute("examInfo", examService.examsolve(examNo, orderNum));
+		model.addAttribute("examInfo", examService.examsolve(examNo, orderNum, joinNo));
 		return "ban/exam/problemscoring";
 	}
 
 	@RequestMapping(value = "/examstart", method = { RequestMethod.GET, RequestMethod.POST })
 	public String examstart(HttpSession session, Model model, @PathVariable("url") String url,
-			@RequestParam(value = "examNo") int examNo) {
+			@RequestParam(value = "examNo") int examNo, @RequestParam(value = "joinNo") int joinNo) {
 		System.out.println("[BanExamController.start()]");
 
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
-		model.addAttribute("examVo", examService.examstart(examNo));
+		model.addAttribute("examVo", examService.examstart(examNo, joinNo));
 
 		return "ban/exam/examsolvestart";
 	}
 
 	@RequestMapping(value = "/examsolve", method = { RequestMethod.GET, RequestMethod.POST })
 	public String examsolve(HttpSession session, Model model, @PathVariable("url") String url,
-			@RequestParam(value = "orderNum") int orderNum, @RequestParam(value = "examNo") int examNo
+			@RequestParam(value = "orderNum") int orderNum, @RequestParam(value = "examNo") int examNo,
+			@RequestParam(value = "joinNo") int joinNo
 
 	) {
 		System.out.println("[BanExamController.end()]");
@@ -96,19 +95,20 @@ public class BexamController {
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
 
 		Map<String, Object> Map = new HashMap<String, Object>();
-		Map.put("classInfo", banmainService.classInfo(url, session));
 
-		model.addAttribute("examInfo", examService.examsolve(examNo, orderNum));
+		Map.put("classInfo", banmainService.classInfo(url, session));
+		model.addAttribute("examInfo", examService.examsolve(examNo, orderNum, joinNo));
 
 		return "ban/exam/examsolve";
 	}
 
 	@RequestMapping(value = "/examend", method = { RequestMethod.GET, RequestMethod.POST })
 	public String examend(@PathVariable("url") String url, HttpSession session, Model model,
-			@RequestParam(value = "examNo") int examNo, @RequestParam(value = "orderNum") int orderNum) {
+			@RequestParam(value = "examNo") int examNo, @RequestParam(value = "orderNum") int orderNum,
+			@RequestParam(value = "joinNo") int joinNo) {
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
-		model.addAttribute("examInfo", examService.examsolve(examNo, orderNum));
-		model.addAttribute("examVo", examService.examstart(examNo));
+		model.addAttribute("examInfo", examService.examsolve(examNo, orderNum, joinNo));
+		model.addAttribute("examVo", examService.examstart(examNo, joinNo));
 		System.out.println("[BanExamController.end()]");
 		return "ban/exam/examend";
 	}
@@ -228,12 +228,10 @@ public class BexamController {
 
 	@ResponseBody
 	@RequestMapping(value = "/examsolveList", method = { RequestMethod.GET, RequestMethod.POST })
-	public Map<String, Object> examsolveList(@RequestParam(value = "examNo") int examNo, @RequestParam(value = "orderNum") int orderNum,
-			@RequestParam(value = "joinNo") int joinNo) {
+	public Map<String, Object> examsolveList(@RequestParam(value = "examNo") int examNo,
+			@RequestParam(value = "orderNum") int orderNum, @RequestParam(value = "joinNo") int joinNo) {
 		System.out.println("체점시 리스트 출력 컨트롤러");
 		return examService.examsolvepaging(examNo, orderNum, joinNo);
 	}
-	
-	
 
 }

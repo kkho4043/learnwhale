@@ -96,6 +96,7 @@
 													<tr>
 														<th>번호</th>
 														<th>문제명</th>
+														<th>점수</th>
 														<th>오답여부</th>
 														<th>형식</th>
 
@@ -105,7 +106,10 @@
 													<c:forEach items="${upMap.eplist}" var="vo" varStatus="status">
 														<tr>
 															<td>${vo.orderNum}</td>
-															<td class="text-left"><a href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${param.examNo}&orderNum=${vo.orderNum}&joinNo=${param.joinNo}">${vo.problemTitle}</a></td>
+
+															<td class="text-left"><a
+																href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${param.examNo}&orderNum=${vo.orderNum}&joinNo=${param.joinNo}">${vo.problemTitle}</a></td>
+															<td>${vo.mypoint}</td>
 															<td>${vo.result}</td>
 															<td>${vo.type}</td>
 														</tr>
@@ -127,7 +131,8 @@
 													</c:if>
 
 													<c:forEach begin="${upMap.startPageBtnNo}" end="${upMap.endPageBtnNo}" step="1" var="page">
-														<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${page}">${page}</a></li>
+														<li><a
+															href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${page}">${page}</a></li>
 													</c:forEach>
 
 													<c:if test="${upMap.next == true}">

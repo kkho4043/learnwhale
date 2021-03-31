@@ -3,12 +3,18 @@ package com.javaex.vo;
 public class ProblemVo {
 
 	private int problemNo, cateNo;
-	private String type, problemTitle, content, contentImage, description, answer, regDate
-			;
+	private String type, problemTitle, content, contentImage, description, answer, regDate;
+
+	private int mypoint;
+	private String result;// 오답여부
+	private int orderNum; // 시험 관리 >> 문제리스트 문제순서
+
+	public ProblemVo() {
+	}
 
 	public ProblemVo(int problemNo, int cateNo, String type, String problemTitle, String content, String contentImage,
-			String description, String answer, String regDate, String choiceContent, String attachmentFile,
-			String result, int orderNum) {
+			String description, String answer, String regDate, int mypoint, String result, int orderNum) {
+		super();
 		this.problemNo = problemNo;
 		this.cateNo = cateNo;
 		this.type = type;
@@ -18,14 +24,17 @@ public class ProblemVo {
 		this.description = description;
 		this.answer = answer;
 		this.regDate = regDate;
+		this.mypoint = mypoint;
 		this.result = result;
 		this.orderNum = orderNum;
 	}
 
-	private String result;// 오답여부
-	private int orderNum; // 시험 관리 >> 문제리스트 문제순서
+	public int getMypoint() {
+		return mypoint;
+	}
 
-	public ProblemVo() {
+	public void setMypoint(int mypoint) {
+		this.mypoint = mypoint;
 	}
 
 	public int getProblemNo() {
@@ -120,11 +129,9 @@ public class ProblemVo {
 	public String toString() {
 		return "ProblemVo [problemNo=" + problemNo + ", cateNo=" + cateNo + ", type=" + type + ", problemTitle="
 				+ problemTitle + ", content=" + content + ", contentImage=" + contentImage + ", description="
-				+ description + ", answer=" + answer + ", regDate=" + regDate + ", result=" + result + ", orderNum="
-				+ orderNum + "]";
+				+ description + ", answer=" + answer + ", regDate=" + regDate + ", mypoint=" + mypoint + ", result="
+				+ result + ", orderNum=" + orderNum + "]";
 	}
 
-	
-	
 	
 }

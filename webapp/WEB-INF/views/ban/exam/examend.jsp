@@ -54,10 +54,15 @@
 
 					<!-- 메인영역 타이틀 -->
 					<div id="main-title">
-						<div class="row">
-							<div class="col-xs-12">
-								<p>시험 풀기</p>
-							</div>
+						<div class="col-xs-3" style="padding-left: 50px;">
+							<p>시험 풀기</p>
+						</div>
+						<div class="col-xs-2">
+							<p>${classInfo.cvo.className}</p>
+						</div>
+
+						<div class="col-xs-7">
+							<p>응시기간 :${examVo.startDate} ~ ${examVo.endDate}</p>
 						</div>
 					</div>
 					<!-- //메인영역 타이틀 -->
@@ -68,22 +73,41 @@
 					<div id="main-content-area">
 						<div class="examsovle-informaion">
 							<div class="row">
+								<h3>${examVo.examTitle}</h3>
+								<h3 style="margin-top: -10px;">(${examVo.examType})</h3>
+							</div>
+							<div class="row">
+
 								<h2>고생하셨습니다</h2>
 							</div>
 
-							<div class="row">
-								<h3>${examVo.examTitle}</h3>
+
+							<div class="row" style="height: 100px; font-size: 25px;">
+								<div class="col-xs-4">응시자 : ${classInfo.joinVo.username}</div>
+								<div class="col-xs-4">
+									<span>문항수 : </span><span>${examVo.problemAmount}개</span>
+								</div>
+								<div class="col-xs-4">
+									<span>푼문제수 : </span><span>${examVo.solveAmount}개</span>
+								</div>
+
+								<div class="col-xs-5"></div>
 							</div>
 
-							
 
 							<div class="row">
 								<div class="col-xs-3">
-									<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${examInfo.qeustionVo.orderNum}&joinNo=${classInfo.joinVo.joinNo}"><button class="btn btn-primary btn-sm">문제로</button></a>
+									<c:if test="${examInfo.examVo.examType != '쪽지시험'}">
+										<a
+											href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${examInfo.qeustionVo.orderNum}&joinNo=${classInfo.joinVo.joinNo}"><button
+												class="btn btn-primary btn-lg">문제로</button></a>
+									</c:if>
+
 								</div>
 								<div class="col-xs-7"></div>
 								<div class="col-xs-2">
-									<a href="${pageContext.request.contextPath}/${url}/exam/examfinish?examNo=${examInfo.examVo.examNo}&joinNo=${classInfo.joinVo.joinNo}"><button class="btn btn-primary btn-sm">시험제출</button></a>
+									<a href="${pageContext.request.contextPath}/${url}/exam/examfinish?examNo=${examInfo.examVo.examNo}&joinNo=${classInfo.joinVo.joinNo}"><button
+											class="btn btn-primary btn-lg">시험제출</button></a>
 								</div>
 							</div>
 						</div>

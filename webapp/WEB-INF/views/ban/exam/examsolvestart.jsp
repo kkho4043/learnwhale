@@ -59,11 +59,11 @@
 								<p>시험 풀기</p>
 							</div>
 							<div class="col-xs-2">
-								<p>풀스텍A반</p>
+								<p>${classInfo.cvo.className}</p>
 							</div>
 
 							<div class="col-xs-7">
-								<p>응시기간 :2021-03-30 06:30 ~ 2021-03-30 06:30</p>
+								<p>응시기간 :${examVo.startDate} ~ ${examVo.endDate}</p>
 							</div>
 						</div>
 					</div>
@@ -105,11 +105,11 @@
 
 							<div class="row">
 								<div class="col-xs-3">
-									<button class="btn btn-primary btn-lg" style="margin-left: -90px;">리스트</button>
+									<a href="${pageContext.request.contextPath}/${url}"><button class="btn btn-primary btn-lg" style="margin-left: -90px;">리스트</button></a>
 								</div>
 								<div class="col-xs-7"></div>
 								<div class="col-xs-2">
-									<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examVo.examNo}&orderNum=1"><button class="btn btn-primary btn-lg">시험풀기</button></a>
+									<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examVo.examNo}&orderNum=1&joinNo=${classInfo.joinVo.joinNo}"><button class="btn btn-primary btn-lg">시험풀기</button></a>
 								</div>
 							</div>
 						</div>

@@ -215,7 +215,7 @@ public class ExamService {
 
 		if (jvo.getType().equals("선생님")) { // 선생님일때
 			System.out.println("선생님");
-			return "/problemlist?examNo=" + examNo;
+			return "/problemlist?examNo=" + examNo + "&joinNo=" + joinNo;
 
 		} else {
 			// 학생일때
@@ -226,21 +226,21 @@ public class ExamService {
 				return "/problemlist?examNo=" + examNo + "&joinNo=" + joinNo;
 			} else {
 				System.out.println("문제를 안풀었을때");
-				return "examstart?examNo=" + examNo;
+				return "examstart?examNo=" + examNo + "&joinNo=" + joinNo;
 			}
 
 		}
 
 	}
 
-	public ExamVo examstart(int examNo) {
-		return examDao.examstart(examNo);
+	public ExamVo examstart(int examNo,int joinNo) {
+		return examDao.examstart(examNo,joinNo);
 	}
 
-	public Map<String, Object> examsolve(int examNo, int orderNum) {
+	public Map<String, Object> examsolve(int examNo, int orderNum ,int joinNo) {
 		Map<String, Object> Map = new HashMap<String, Object>();
 
-		ExamVo examVo = examDao.examstart(examNo);
+		ExamVo examVo = examDao.examstart(examNo,joinNo);
 		Map.put("examVo", examVo);
 
 		QuestionVo qeustionVo = examDao.startquestion(orderNum, examNo);
@@ -347,6 +347,7 @@ public class ExamService {
 		}
 		
 		if(orderNum < 6) {
+			orderNum = 5;
 			prev = false;
 		}
 		

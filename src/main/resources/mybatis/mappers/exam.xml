@@ -180,22 +180,24 @@ from(select
 			r.rnum,
 			r.ordernum,
 			r.problemtitle,
+			r.mypoint mypoint,
 			r.result,
 			r.type
 		from(select 
 				 rownum rnum,
 				 o.orderNum,
 				 o.problemTitle,
+				 o.mypoint mypoint,
 				 o.result,
 				 o.type
 			 from(select
 						q.order_num orderNum,
 						p.problem_title problemTitle,
-						
-						decode(p.answer,s.submit_answer,'O','X') result,
+						s.mypoint mypoint,
+						decode(q.point,s.mypoint,'O','X') result,
 						p.type type
 						
-						from solve s, question q, problem p 
+					from solve s, question q, problem p 
 					where s.question_no = q.question_no
 					and p.problem_no = q.problem_no
 					and q.exam_no = ${examNo}
@@ -301,12 +303,14 @@ from(select
 			set]]>
 		<if test="examTitle != null and examTitle != ''">
 
-				exam_title = #{examTitle}</if>
+			exam_title = #{examTitle}
+		</if>
 		<if test="examType != null and examType != ''">
-				,exam_type = #{examType}</if>
-		
+			,exam_type = #{examType}
+		</if>
+
 		<if test="time != null and time != ''">
-				,time = #{time}
+			,time = #{time}
 		</if>
 
 		<if test="startDate != null and startDate != ''">
@@ -355,21 +359,32 @@ from(select
 	</select>
 
 	<!-- 시험 풀기 시작시~~~~~~~~~~~~~ -->
-	<select id="examstart" parameterType="int" resultType="ExamVo">
+	<select id="examstart" parameterType="map" resultType="ExamVo">
 		<![CDATA[
 			select
 			    e.exam_no examNo,
 			    e.exam_title examTitle,
 			    e.exam_type examType,
 			    time,
-                qu.count problemAmount
+                qu.count problemAmount,
+                sq.count solveAmount,
+               TO_CHAR(e.start_date,'yyyy-MM-dd hh24:mm') startDate,
+			   TO_CHAR(e.end_date,'yyyy-MM-dd hh24:mm') endDate
 			from exam e,(select
                             exam_no,
                             count(*) count
                          from question
-                         group by exam_no)qu
-            
+                         group by exam_no)qu,(select 
+										        count(*) count,
+										        q.exam_no
+										     from solve s,question q
+										     where s.question_no = q.question_no
+										     and s.status = '저장'
+										     and s.join_no = #{joinNo}
+										     group by exam_no)sq
+             
             where e.exam_no = qu.exam_no
+            and e.exam_no = sq.exam_no(+)
 			and e.exam_no = #{examNo}
 		]]>
 	</select>
@@ -398,7 +413,7 @@ from(select
 			
 		]]>
 	</select>
-	
+
 	<select id="selectanswer" parameterType="map" resultType="String">
 		<![CDATA[
 			select
@@ -413,7 +428,7 @@ from(select
 			
 		]]>
 	</select>
-	
+
 	<select id="getpoint" parameterType="map" resultType="int">
 		<![CDATA[
 			select
@@ -428,7 +443,7 @@ from(select
 			
 		]]>
 	</select>
-	
+
 	<select id="selectchoice" parameterType="int" resultType="ChoiceVo">
 		<![CDATA[
 			select
@@ -441,53 +456,56 @@ from(select
 		]]>
 	</select>
 	<update id="updateSolve" parameterType="map">
-	update solve
-	set submit_answer = #{answer},
-	    status = '저장'
-	where join_no = #{joinNo}
-	and (status = '저장' or status = '출제')
-	and question_no = (select 
-	                        question_no
-	                   from question
-	                   where exam_no = #{examNo}
-	                   and order_num = #{orderNum})
+		update solve
+		set submit_answer = #{answer},
+		status = '저장'
+		where join_no = #{joinNo}
+		and (status = '저장' or
+		status = '출제')
+		and question_no = (select
+		question_no
+		from question
+		where exam_no = #{examNo}
+		and order_num = #{orderNum})
 	</update>
-	
+
 	<update id="updatefSolve" parameterType="map">
-	update solve
-	set ATTACHMENT_FILE = #{saveName},
-	    status = '저장'
-	where join_no = #{joinNo}
-	and question_no = (select 
-	                        question_no
-	                   from question
-	                   where exam_no = #{examNo}
-	                   and order_num = #{orderNum})
+		update solve
+		set ATTACHMENT_FILE = #{saveName},
+		status = '저장'
+		where join_no = #{joinNo}
+		and question_no =
+		(select
+		question_no
+		from question
+		where exam_no = #{examNo}
+		and order_num = #{orderNum})
 	</update>
-	
+
 	<update id="examfinish" parameterType="map">
-	update solve
-	set status = '제출'
-	where join_no = #{joinNo}
-	and question_no in (select 
-	                        question_no
-	                   from question
-	                   where exam_no = #{examNo})
+		update solve
+		set status = '제출'
+		where join_no = #{joinNo}
+		and question_no in (select
+		question_no
+		from question
+		where exam_no = #{examNo})
 	</update>
-	
-	
+
+
 	<update id="grantpoint" parameterType="map">
-	update solve
-	set	MYPOINT = #{point}
-	where join_no = #{joinNo}
-	and question_no in (select 
-	                        question_no
-	                   from question
-	                   where exam_no = #{examNo}
-	                   and order_num = #{orderNum})
+		update solve
+		set MYPOINT = #{point}
+		where join_no = #{joinNo}
+		and question_no in (select
+		question_no
+		from
+		question
+		where exam_no = #{examNo}
+		and order_num = #{orderNum})
 	</update>
-	
-	<!-- 문제풀기시 리스트 갯수  -->
+
+	<!-- 문제풀기시 리스트 갯수 -->
 	<select id="examsolvecount" parameterType="map" resultType="int">
 		<![CDATA[
 			select 
@@ -498,14 +516,15 @@ from(select
 			and join_no = #{joinNo}
 		]]>
 	</select>
-	
-	
-	<!-- 문제풀기시 리스트  -->
+
+
+	<!-- 문제풀기시 리스트 -->
 	<select id="examsolveList" parameterType="map" resultType="QuestionVo">
 		<![CDATA[
 			select
 				q.order_num orderNum,
 				p.type problemType,
+				s.mypoint mypoint,
 				decode(q.point,s.mypoint,'O','X') result
 			from question q, solve s,problem p
 			where q.question_no = s.question_no
@@ -517,6 +536,6 @@ from(select
 			order by order_num asc
 		]]>
 	</select>
-	
-	
+
+
 </mapper>

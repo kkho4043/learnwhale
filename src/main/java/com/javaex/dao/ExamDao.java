@@ -126,9 +126,11 @@ public class ExamDao {
 		sqlSession.insert("exam.questionupdate", map);
 	}
 
-	public ExamVo examstart(int examNo) {
-
-		return sqlSession.selectOne("exam.examstart", examNo);
+	public ExamVo examstart(int examNo,int joinNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("examNo", examNo);
+		map.put("joinNo", joinNo);
+		return sqlSession.selectOne("exam.examstart", map);
 	}
 
 	public int getAttendance(int joinNo, int examNo) {

@@ -57,8 +57,22 @@
 					<!-- 메인영역 타이틀 -->
 					<div id="main-title">
 						<div class="row">
-							<div class="col-xs-12">
-								<p>${examInfo.examVo.examTitle}</p>
+							<div class="col-xs-12"></div>
+
+							<div class="row" style="margin-top: 15px;">
+								<div class="col-xs-2" style="padding-left: 50px;">
+									<p>시험 풀기</p>
+								</div>
+								<div class="col-xs-4">
+									<p>${examInfo.examVo.examTitle}</p>
+								</div>
+								<div class="col-xs-1">${param.orderNum}번</div>
+								<div class="col-xs-2">(${examInfo.qeustionVo.point}점)</div>
+								<div class="col-xs-3">
+									<c:if test="${examInfo.examVo.time != null}">
+										<div id="demo"></div>
+									</c:if>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -72,18 +86,13 @@
 						<div class="row">
 							<div class="col-xs-10">
 								<div class="row protitle">
-									<div class="col-xs-1">${examInfo.qeustionVo.orderNum}번</div>
 									<div class="col-xs-7">${examInfo.problemVo.content}</div>
-									<div class="col-xs-1">(${examInfo.qeustionVo.point}점)</div>
-									<c:if test="${examInfo.examVo.time != null}">
-										<div class="col-xs-2" id="demo"></div>
-									</c:if>
 								</div>
 
 								<c:if test="${examInfo.problemVo.contentImage != null}">
 									<div class="row">
-										<div class="testimg">
-											<img src="${pageContext.request.contextPath}/upload/${examInfo.problemVo.contentImage}">
+										<div class="testimg" style="text-align: center;">
+											<img src="${pageContext.request.contextPath}/upload/${examInfo.problemVo.contentImage}" style="max-width: 640px; max-height: 250px;">
 
 											<!--  <input type="button" value="첨부파일">  -->
 										</div>
@@ -112,12 +121,31 @@
 									</c:if>
 									<c:if test="${examInfo.problemVo.type == '객관식'}">
 										<div class="multiple">
+											<hr style="border: solid 1px gray;">
 
-											<c:forEach items="${examInfo.cList}" var="vo" varStatus="status">
-												<div class="row">
-													<input type="button" id="choice${vo.orderNo}" value="${vo.orderNo}" class="btn btn-info choicebtn"><span>${vo.choiceContent}</span>
-												</div>
-											</c:forEach>
+											<c:choose>
+												<c:when test="${examInfo.cList[0].choiceContent == null}">
+													<c:forEach items="${examInfo.cList}" var="vo" varStatus="status">
+														<div class="col-xs-5" style="margin: 5px 0px 5px 0px;">
+															<div class="col-xs-1" style="margin-right: 0px">
+																<input type="button" id="choice${vo.orderNo}" value="${vo.orderNo}" class="btn btn-info choicebtn">
+															</div>
+															<div class="col-xs-8">
+																<img src="${pageContext.request.contextPath}/upload/${vo.attachmentFile}" style="max-height: 230px; max-width: 500px">
+															</div>
+														</div>
+													</c:forEach>
+												</c:when>
+
+												<c:otherwise>
+													<c:forEach items="${examInfo.cList}" var="vo" varStatus="status">
+														<div class="row">
+															<input type="button" id="choice${vo.orderNo}" value="${vo.orderNo}" class="btn btn-info choicebtn"><span>${vo.choiceContent}</span>
+														</div>
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
+
 										</div>
 
 									</c:if>
@@ -132,7 +160,8 @@
 													<a href="${pageContext.request.contextPath}/${url}/"><input type="button" value="리스트 로" class="btn btn-info"></a>
 												</c:when>
 												<c:otherwise>
-													<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum-1}"><input type="button" value="이전문제" class="btn btn-primary"></a>
+													<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum-1}&joinNo=${classInfo.joinVo.joinNo}"><input
+														type="button" value="이전문제" class="btn btn-primary"></a>
 												</c:otherwise>
 											</c:choose>
 										</c:if>
@@ -143,10 +172,12 @@
 									<div class="col-xs-2">
 										<c:choose>
 											<c:when test="${examInfo.endsolve == 'endsolve'}">
-												<a href="${pageContext.request.contextPath}/${url}/exam/examend?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum}"><input type="button" value="시험 종료" class="btn btn-info"></a>
+												<a href="${pageContext.request.contextPath}/${url}/exam/examend?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum}&joinNo=${classInfo.joinVo.joinNo}"><input
+													type="button" value="시험 종료" class="btn btn-info" id = "nextsolvebtn"></a>
 											</c:when>
 											<c:otherwise>
-												<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum+1}"><input type="button" value="다음문제" class="btn btn-primary"></a>
+												<a href="${pageContext.request.contextPath}/${url}/exam/examsolve?examNo=${examInfo.examVo.examNo}&orderNum=${param.orderNum+1}&joinNo=${classInfo.joinVo.joinNo}"><input
+													type="button" value="다음문제" class="btn btn-primary" id = "nextsolvebtn"></a>
 											</c:otherwise>
 										</c:choose>
 									</div>
@@ -163,8 +194,8 @@
 										<div class="prolist">
 											<ul id="problemList">
 											</ul>
-											<div class="row prolistbtn">
-												<div class="col-xs-6">
+											<div class="row prolistbtn" style="margin-top: -15px;">
+												<div class="col-xs-6" style="padding-left: 0px;">
 													<input type="button" value="이전" class="btn btn-primary" id="prevbtn">
 												</div>
 												<div class="col-xs-6">
@@ -224,6 +255,8 @@
 			if (time < 0) {
 				clearInterval(x);
 				document.getElementById("demo").innerHTML = "시간 초과";
+				alert("시간이 초과되어 다음문제로 이동합니다");
+				document.getElementById("nextsolvebtn").click();
 			}
 
 		}, 1000);

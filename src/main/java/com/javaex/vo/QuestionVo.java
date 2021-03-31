@@ -3,7 +3,8 @@ package com.javaex.vo;
 public class QuestionVo {
 
 	private int questionNo, examNo, problemNo, point, orderNum;
-	private String problemTitle, problemType ,result;//정답여부
+	private String problemTitle, problemType, result;// 정답여부
+	private int mypoint;// 받은점수
 
 	public QuestionVo() {
 	}
@@ -11,7 +12,7 @@ public class QuestionVo {
 	
 	
 	public QuestionVo(int questionNo, int examNo, int problemNo, int point, int orderNum, String problemTitle,
-			String problemType, String result) {
+			String problemType, String result, int mypoint) {
 		super();
 		this.questionNo = questionNo;
 		this.examNo = examNo;
@@ -21,6 +22,19 @@ public class QuestionVo {
 		this.problemTitle = problemTitle;
 		this.problemType = problemType;
 		this.result = result;
+		this.mypoint = mypoint;
+	}
+
+
+
+	public int getMypoint() {
+		return mypoint;
+	}
+
+
+
+	public void setMypoint(int mypoint) {
+		this.mypoint = mypoint;
 	}
 
 
@@ -88,14 +102,13 @@ public class QuestionVo {
 	public void setProblemType(String problemType) {
 		this.problemType = problemType;
 	}
-
+	
+	
 	@Override
 	public String toString() {
-		return "QuestionVo:questionNo=" + questionNo + ", examNo=" + examNo + ", problemNo=" + problemNo + ", point="
+		return "QuestionVo [questionNo=" + questionNo + ", examNo=" + examNo + ", problemNo=" + problemNo + ", point="
 				+ point + ", orderNum=" + orderNum + ", problemTitle=" + problemTitle + ", problemType=" + problemType
-				+ "]";
+				+ ", result=" + result + ", mypoint=" + mypoint + "]";
 	}
-	
-	
 
 }
