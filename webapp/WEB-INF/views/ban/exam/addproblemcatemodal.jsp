@@ -3,8 +3,8 @@
 
 <div class="row">
 	<div class="row">
-		<div id="cate-area" class="col-xs-2" style="margin-left: 20px;">
-			<div id="cate">
+		<div id="cate-area" class="col-xs-2" style="margin-left: 20px; overflow: auto; white-space: nowrap;">
+			<div id="cate" style="height: 356px;">
 
 				<c:forEach items="${cateList}" var="cateVo">
 					<c:choose>
@@ -12,15 +12,15 @@
 						<c:when test="${cateVo.depth == 0}">
 							<div class="parents-folder parentsFolder" id="top-folder" data-group="${cateVo.groupNo}">
 
-								<span class="glyphicon glyphicon-folder-close"></span> <a href="#" class="cateNum" data-catno="${cateVo.cateNo}"> ${cateVo.cateName}</a>
+								<span class="glyphicon2 glyphicon-folder-close"></span> <a href="#" class="cateNum" data-catno="${cateVo.cateNo}"> ${cateVo.cateName}</a>
 							</div>
 						</c:when>
 
 						<c:otherwise>
 
 							<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}" class="child-group">
-								<div class="child-folder">
-									<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon glyphicon-folder-close" id="folder-color"> </span><a href="#"
+								<div class="child-folder" style="margin-left: 0px;">
+									<span class="glyphicon glyphicon-menu-right"> <span class="glyphicon2 glyphicon-folder-close" id="folder-color"> </span><a href="#"
 										class="cateNum" data-catno="${cateVo.cateNo}">${cateVo.cateName}</a></span>
 								</div>
 							</div>
@@ -55,7 +55,7 @@
 			</div>
 
 			<div class="row">
-				<table class="table table-striped table-bordered table-hover" style="width: 90%;" id = "proList">
+				<table class="table table-striped table-bordered table-hover" style="width: 90%;" id="proList">
 					<colgroup>
 						<col style="width: 10%;">
 						<col>
@@ -73,7 +73,7 @@
 						</tr>
 					</thead>
 					<tbody id="cate-problem">
-					
+
 					</tbody>
 				</table>
 			</div>

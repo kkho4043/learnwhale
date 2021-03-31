@@ -199,6 +199,7 @@ public class ExamDao {
 		map.put("examNo", examNo);
 		map.put("joinNo", joinNo);
 		sqlSession.update("exam.examfinish", map);
+		sqlSession.update("exam.Autoscoring", map);
 	}
 
 	public int getpoint(int examNo, int orderNum, int joinNo) {

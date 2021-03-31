@@ -10,7 +10,7 @@
 	margin: 0px 0px 0px 0px;
 }
 
-.table > thead > tr > th, .table > tbody > tr > td {
+.table>thead>tr>th, .table>tbody>tr>td {
 	text-align: center;
 }
 
@@ -50,7 +50,6 @@
 	margin: 0px 10px 0px 0px;
 	font-size: 13px;
 	font-weight: bold;
-	
 }
 
 #top-banner-area {
@@ -70,7 +69,7 @@
 	top: 40px;
 	color: #ffffff;
 	font-size: 60px;
-    font-weight: bold;	
+	font-weight: bold;
 }
 
 #top-banner-area #date-area {
@@ -79,7 +78,7 @@
 	top: 116px;
 	color: #ffffff;
 	font-size: 45px;
-    font-weight: bold;	
+	font-weight: bold;
 }
 
 #top-banner-area #date-area .banDate {
@@ -96,15 +95,15 @@
 * 컨텐츠영역 > 왼쪽메뉴                   *
 *******************************************/
 #content #left-area {
-	margin: 0px 0px 20px 0px;	
-	padding: 0px 0px 0px 0px;	
+	margin: 0px 0px 20px 0px;
+	padding: 0px 0px 0px 0px;
 }
 
 #content #left-area #profile-area {
-    background: #efefef;
-    border: 1px solid #bebebe;
-    margin: 0px 0px 12px 0px;	
-    padding: 5px 5px 7px 5px;	
+	background: #efefef;
+	border: 1px solid #bebebe;
+	margin: 0px 0px 12px 0px;
+	padding: 5px 5px 7px 5px;
 }
 
 #content #left-area #profile-area #teacherName {
@@ -114,53 +113,65 @@
 }
 
 #content #left-area #profile-area .profile-text {
-	margin: 0px 0px 0px 0px;	
-	padding: 0px 0px 0px 0px;	
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	font-size: 11px;
 }
 
 #content #left-area #profile-area .profile-text.last {
-	margin: 0px 0px 10px 0px;	
-	padding: 0px 0px 0px 0px;	
+	margin: 0px 0px 10px 0px;
+	padding: 0px 0px 0px 0px;
 	font-size: 11px;
 }
 
 #content #left-area #menu-area {
-	margin: 10px 0px 10px 0px;	
+	margin: 10px 0px 10px 0px;
 }
 
-#content #left-area #menu-area > ul{
-	margin: 0px 0px 0px 0px;	
-	padding: 0px 0px 0px 0px;	
-	list-style: none;	
+#content #left-area #menu-area>ul {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	list-style: none;
 }
 
-#content #left-area #menu-area > ul > li{
-	margin: 0px 0px 0px 0px;	
-	padding: 10px 5px 10px 5px;	
+#content #left-area #menu-area>ul>li {
+	margin: 0px 0px 0px 0px;
+	padding: 10px 5px 10px 5px;
 	border-top: 1px solid #bebebe;
 	border-right: 1px solid #bebebe;
 	border-left: 1px solid #bebebe;
-	
 }
 
-#content #left-area #menu-area > ul > li.last{
-	margin: 0px 0px 0px 0px;	
-	padding: 10px 5px 10px 5px;	
+#content #left-area #menu-area>ul>li.last {
+	margin: 0px 0px 0px 0px;
+	padding: 10px 5px 10px 5px;
 	border: 1px solid #bebebe;
 }
 
-.glyphicon{
+.glyphicon {
 	color: #337ab7;
-    margin-right: 13px;
-    margin-left: 30px;}
+	margin-right: 13px;
+	margin-left: 30px;
+}
+
+.glyphicon2 {
+	osition: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 /******************************************
 * 컨텐츠영역 > 메인컨텐츠                   *
 *******************************************/
 #main-area {
-	margin: 0px 0px 0px 0px;	
-	padding: 0px 0px 0px 15px;	
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 15px;
 }
 
 #main-area #breadcrumb-area {
@@ -177,18 +188,16 @@
 	font-weight: bold;
 }
 
-
-
-#main-area #main-content-area ol{
+#main-area #main-content-area ol {
 	padding: 0px 0px 0px 20px;
 	font-size: 14px;
 }
 
-#main-area #main-content-area ol > li{
+#main-area #main-content-area ol>li {
 	padding: 3px 3px 3px 3px;
 }
 
-#main-area #main-content-area ol > li > a{
+#main-area #main-content-area ol>li>a {
 	text-decoration: none;
 }
 
@@ -196,12 +205,11 @@
 	padding: 0px 0px 0px 15px;
 }
 
-#main-area #main-content-area #report-area #report-summary{
+#main-area #main-content-area #report-area #report-summary {
 	margin: 0px 0px 15px 0px;
 	background: #f7f7f7;
 	border: 1px solid #8e8e8e;
 }
-
 
 /******************************************
 * 푸터영역                                *
@@ -216,29 +224,30 @@
 	border-bottom: 1px solid #bebebe;
 }
 
-#footer-Area #footer > ul {
+#footer-Area #footer>ul {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
-	list-style:none;
+	list-style: none;
 }
 
-#footer-Area #footer > ul > li{
+#footer-Area #footer>ul>li {
 	float: left;
 	font-size: 14px;
 	font-weight: bold;
 }
 
-#footer-Area #footer > ul > li:after{
+#footer-Area #footer>ul>li:after {
 	margin: 0px 10px 0px 10px;
 	content: "|";
 	font-size: 14px;
 	font-weight: bold;
 }
 
-#footer-Area #footer > ul > li.last:after{
+#footer-Area #footer>ul>li.last:after {
 	content: "";
 	margin: 0px 0px 0px 0px;
 }
 
-
-a:hover { text-decoration: none; }
+a:hover {
+	text-decoration: none;
+}

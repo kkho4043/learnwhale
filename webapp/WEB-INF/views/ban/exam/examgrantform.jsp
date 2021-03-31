@@ -90,10 +90,10 @@
 								</div>
 							</div>
 
-							<div class="row" class="simpletesttime" id="testtime" >
+							<div class="row" class="simpletesttime" id="testtime">
 								<div class="col-xs-2" style="margin-top: 3px;">시간설정</div>
 								<div class="col-xs-4">
-									<select name="testtime" id="timeselect" class = "selecttimebar"> 
+									<select name="testtime" id="timeselect" class="selecttimebar">
 										<option value="">문제당 시간</option>
 										<option value="30">30초</option>
 										<option value="60">1분</option>
@@ -109,11 +109,11 @@
 							<div class="row">
 								<div class="col-xs-2">응시 가능 시간</div>
 								<div class="col-xs-5">
-									<input type="datetime-local" id="startdate" class = "selecttimebar"> 부터
+									<input type="datetime-local" id="startdate" class="selecttimebar"> 부터
 								</div>
 
 								<div class="col-xs-5">
-									<input type="datetime-local" id="enddate" class = "selecttimebar">  까지
+									<input type="datetime-local" id="enddate" class="selecttimebar"> 까지
 								</div>
 							</div>
 
@@ -184,7 +184,7 @@
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-lg" style="height: 502px;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -234,81 +234,86 @@
 		document.getElementById("hapscore").innerHTML = hap;
 	}
 
-	$("#examgrant").on("click", function() {
-		var title = document.getElementById('examtitle').value;
-		console.log(title);
-		var langSelect = document.getElementById("timeselect");
-		var time = langSelect.options[langSelect.selectedIndex].value;
-		var startdate = document.getElementById("startdate").value;
-		var enddate = document.getElementById("enddate").value;
-		var etype = type;
-		console.log(title, etype, time);
-		console.log(startdate, enddate);
-		var qarr = [];
-		for (var i = 0; i < voarr.length; i++) {
-			var idN = '#score-' + i;
-			var val = $(idN).val();
-			qarr.push(voarr[i].problemNo + "/" + val);
+	$("#examgrant")
+			.on(
+					"click",
+					function() {
+						var title = document.getElementById('examtitle').value;
+						console.log(title);
+						var langSelect = document.getElementById("timeselect");
+						var time = langSelect.options[langSelect.selectedIndex].value;
+						var startdate = document.getElementById("startdate").value;
+						var enddate = document.getElementById("enddate").value;
+						var etype = type;
+						console.log(title, etype, time);
+						console.log(startdate, enddate);
+						var qarr = [];
+						for (var i = 0; i < voarr.length; i++) {
+							var idN = '#score-' + i;
+							var val = $(idN).val();
+							qarr.push(voarr[i].problemNo + "/" + val);
 
-		}
-		if (title == '') {
-			alert('제목을 입력해주세요');
-			return false;
-		} else if (etype == '쪽지시험') {
-			if (time == '') {
-				alert('시간을 입력해주세요');
-				return false;
-			}
-		} else if (startdate == '') {
-			alert('시작일을 선택해주세요');
-			return false;
-		} else if (enddate == '') {
-			alert('종료일을 선택해주세요');
-			return false;
-		} else if (qarr == '') {
-			alert('문제를 선택해주세요');
-			return false;
-		} else if (document.getElementById("hapscore").innerHTML != 100) {
-			alert('부여된 점수의 합이 100점이 아닙니다');
-			return false;
-		} else {
-			for (var i = 0; i < voarr.length; i++) {
-				var idN = '#score-' + i;
-				var val = $(idN).val();
+						}
+						if (title == '') {
+							alert('제목을 입력해주세요');
+							return false;
+						} else if (etype == '쪽지시험') {
+							if (time == '') {
+								alert('시간을 입력해주세요');
+								return false;
+							}
+						} else if (startdate == '') {
+							alert('시작일을 선택해주세요');
+							return false;
+						} else if (enddate == '') {
+							alert('종료일을 선택해주세요');
+							return false;
+						} else if (qarr == '') {
+							alert('문제를 선택해주세요');
+							return false;
+						} else if (document.getElementById("hapscore").innerHTML != 100) {
+							alert('부여된 점수의 합이 100점이 아닙니다');
+							return false;
+						} else {
+							for (var i = 0; i < voarr.length; i++) {
+								var idN = '#score-' + i;
+								var val = $(idN).val();
 
-				if (val == '') {
-					alert('점수가 부여되지않은 점수가 있습니다');
-					return false;
-				}
-			}
-		}
+								if (val == '') {
+									alert('점수가 부여되지않은 점수가 있습니다');
+									return false;
+								}
+							}
+						}
 
-		$.ajax({
-			url : "${pageContext.request.contextPath}/${url}/exam/grant",
-			type : "post",
-			//contentType : "application/json",
-			data : {
-				examTitle : title,
-				examType : etype,
-				time : time,
-				startDate : startdate,
-				endDate : enddate,
-				qarr : qarr
+						$
+								.ajax({
+									url : "${pageContext.request.contextPath}/${url}/exam/grant",
+									type : "post",
+									//contentType : "application/json",
+									data : {
+										examTitle : title,
+										examType : etype,
+										time : time,
+										startDate : startdate,
+										endDate : enddate,
+										qarr : qarr
 
-			},
-			success : function(url) {
-				console.log(url)
-				location.href = "${pageContext.request.contextPath}/" +"${url}";
+									},
+									success : function(url) {
+										console.log(url)
+										location.href = "${pageContext.request.contextPath}/"
+												+ "${url}";
 
-				/* location.href = "http://www.example.com/ThankYou.html" */
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
+										/* location.href = "http://www.example.com/ThankYou.html" */
+									},
+									error : function(XHR, status, error) {
+										console.error(status + " : " + error);
+									}
 
-		});
+								});
 
-	});
+					});
 
 	var order = 1;
 	$(document).ready(function() {
@@ -361,8 +366,10 @@
 					console.log("카테고리에 항목없음")
 				} else {
 					for (var i = 0; i < cateproList.length; i++) {
+
 						render(cateproList[i], "up");
 					}
+
 				}
 
 			},
@@ -375,7 +382,14 @@
 	});
 
 	//리스트 추가(출력)
-	function render(cateVo, updown) {
+	function render(cateVo, updown, btnflag) {
+		btnflag =true;
+		for (var i = 0; i < voarr.length; i++) {
+			if(voarr[i].problemNo === cateVo.problemNo){
+				btnflag = false;
+			}
+		}
+		
 		var str = "";
 		str += '<tr>';
 		str += '	<td>' + cateVo.problemNo + '</td>';
@@ -383,7 +397,9 @@
 		str += '	<td>' + cateVo.type + '</td>';
 		str += '	<td>' + cateVo.regDate + '</td>';
 		str += '	<td>';
-		str += '			<button class="btn btn-default btn-xs" data-no="'+cateVo.problemNo+'" data-title="'+cateVo.problemTitle+'" data-type="'+cateVo.type+'" data-regdate="'+cateVo.regDate+'">등록</button>';
+		if (btnflag) {
+			str += '			<button id="innerbtn'+cateVo.problemNo+'" class="btn btn-default btn-xs" data-no="'+cateVo.problemNo+'" data-title="'+cateVo.problemTitle+'" data-type="'+cateVo.type+'" data-regdate="'+cateVo.regDate+'">등록</button>';
+		}
 		str += '	</td>';
 		str += '</tr>';
 
@@ -404,7 +420,8 @@
 		var no = $(this).data("no");
 		var title = $(this).data("title");
 		var type = $(this).data("type");
-
+		$('#innerbtn' + no).hide();
+		console.log(no + "등록버튼 삭제");
 		console.log(no, title, type);
 
 		var vo = new Object();
@@ -420,12 +437,13 @@
 	$("#selectprolist").on("click", "input[type=button]", function() {
 		console.log("삭제버튼 클릭");
 		var delorder = $(this).data("order");
+		var no = $(this).data("no");
+		$('#innerbtn' + no).show();
 		voarr.splice(delorder, 1);
-
 		var remove = $(this);
 		remove.parents("tr").empty();
-		document.getElementById("#hapscore").innerHTML = 0;
 		rendersVo();
+		document.getElementById("hapscore").value = 0;
 	});
 
 	function rendersVo() {
@@ -446,8 +464,8 @@
 		str += '	<td><input type="text" id="score-' + (order - 1)
 				+ '" onchange = "getscore()" value="">점</td>';
 		str += '	<td>';
-		str += '			<input type="button" value="삭제" class="btn btn-xs btn-danger" data-order="'
-				+ (order - 1) + '">';
+		str += '			<input type="button" value="삭제" class="btn btn-xs btn-danger" data-no="'
+				+ Vo.problemNo + '" data-order="' + (order - 1) + '">';
 		str += '	</td>';
 		str += '	<input type="hidden" value="'+Vo.no+'">';
 		str += '</tr>';

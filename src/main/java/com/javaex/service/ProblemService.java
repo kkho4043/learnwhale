@@ -94,6 +94,9 @@ public class ProblemService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			if(proVo.getAnswer().substring(proVo.getAnswer().length()-1).equals(",")) {
+				proVo.setAnswer(proVo.getAnswer().substring(0, proVo.getAnswer().length()-1));
+			}
 			proDao.ProblemInsert(proVo);
 
 		} else {
@@ -102,6 +105,9 @@ public class ProblemService {
 
 			// 이미지가 없을때
 			System.out.println("serviceddd" + proVo);
+			if(proVo.getAnswer().substring(proVo.getAnswer().length()-1).equals(",")) {
+				proVo.setAnswer(proVo.getAnswer().substring(0, proVo.getAnswer().length()-1));
+			}
 			proDao.ProblemInsert(proVo);
 		}
 

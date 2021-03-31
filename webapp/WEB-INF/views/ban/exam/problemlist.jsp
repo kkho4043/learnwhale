@@ -67,7 +67,7 @@
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="main-content-area">
 						<c:if test="${classInfo.joinVo.type == '선생님'}">
-							<div id="student-list" class="col-xs-2" style="padding-right: 0px; padding-left: 0px; margin-left: -15px; width: 145px; height: 352px;">
+							<div id="student-list" class="col-xs-2" style="padding-right: 0px; padding-left: 0px; margin-left: -15px; width: 145px; height: 352px; background: #f7f7f7;">
 								<ol>
 									<c:forEach items="${upMap.eulist}" var="vo" varStatus="status">
 
@@ -144,7 +144,14 @@
 										</div>
 									</div>
 
+									<div class="row">
+										<div class="col-xs-2">
+											<a href="${pageContext.request.contextPath}/${url}/"><input type="button"
+												value="리스트" class="btn btn-primary"></a>
+										</div>
 
+
+									</div>
 								</div>
 							</div>
 						</div>

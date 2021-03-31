@@ -491,6 +491,22 @@ from(select
 		from question
 		where exam_no = #{examNo})
 	</update>
+	
+	<update id="Autoscoring" parameterType="map">
+		update (
+	        select 
+	            s.mypoint mypoint,
+	            q.point point
+	        from solve s,question q,problem p
+	        where s.question_no = q.question_no
+	        and q.problem_no = p.problem_no
+	        and s.SUBMIT_ANSWER = p.ANSWER 
+	        and q.exam_no = #{examNo}
+	        and s.join_no = #{joinNo}
+		)
+    
+		set mypoint = point
+	</update>
 
 
 	<update id="grantpoint" parameterType="map">

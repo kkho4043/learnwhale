@@ -257,8 +257,8 @@
 		},
 		success : function(answer) {
 			console.log(answer)
-			document.getElementById("ineranswer").innerHTML = answer;
-			if ("${examInfo.problemVo.type}" == 'OX') {
+	
+			if ("${examInfo.problemVo.type}" == 'OX문제') {
 				if (answer == 'O') {
 					$('#O').removeClass('btn-info');
 					$('#O').addClass('btn-primary');
