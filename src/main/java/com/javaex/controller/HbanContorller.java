@@ -53,9 +53,10 @@ public class HbanContorller {
 	
 	//반 수정
 	@RequestMapping(value = "/modify", method = {RequestMethod.GET, RequestMethod.POST})
-	public String modify(@ModelAttribute ClassVo classVo) {
+	public String modify(@ModelAttribute ClassVo classVo,
+						@RequestParam(value = "logo", required = false, defaultValue = "") MultipartFile file) {
 		System.out.println("[HbanController.modify()]");
-		classService.update(classVo);
+		classService.update(classVo, file);
 		return "redirect:list";
 	}
 	
@@ -92,8 +93,9 @@ public class HbanContorller {
 		System.out.println("[HbanController.remove()]");
 		System.out.println(classNo);
 		int count = classService.remove(classNo);
-			
-		return "redirect:list?result"+count;
+		
+		return "redirect:list?result="+count;
+		}
 	}
 
-}
+

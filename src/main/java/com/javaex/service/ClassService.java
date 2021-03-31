@@ -101,14 +101,41 @@ public class ClassService {
 	}
 
 	// 수정
-	public int update(ClassVo classVo) {
+	public int update(ClassVo classVo, MultipartFile file) {
 		classVo.setStartDate(classVo.getStartDate().replace("T", " "));
 		classVo.getStartDate().replace("T", " ");
 		System.out.println(classVo.getStartDate().replace("T", " "));
 		
 		classVo.setEndDate(classVo.getEndDate().replace("T", " "));
 		classVo.getEndDate().replace("T", " ");
+		if(file.getSize() > 0) {
+			String saveDir = "C:\\javaStudy\\upload";
+			// 확장자
+			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
+			// 서버 저장 파일 이름
+			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+
+			// 서버 파일 패스 --> 저장경로
+			String filePath = saveDir + "\\" + saveName;
+			System.out.println(filePath);
+			classVo.setLogoFile(saveName);
+			// 서버 하드디스크 파일 저장
+			System.out.println(saveName);
+			try {
+				byte[] fileData = file.getBytes();
+				OutputStream out = new FileOutputStream(filePath);
+				BufferedOutputStream bos = new BufferedOutputStream(out);
+
+				bos.write(fileData);
+				bos.close();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+		
 
 		return classDao.update(classVo);
 		

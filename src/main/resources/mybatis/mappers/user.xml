@@ -12,7 +12,7 @@
 					#{name},
 					#{email}, 
 					#{phoneNum},
-					#{proFile} )	
+					#{proFile,jdbcType=VARCHAR} )	
 		]]>
 	</insert>
 
