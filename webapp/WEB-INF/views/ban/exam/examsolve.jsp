@@ -83,7 +83,7 @@
 								<c:if test="${examInfo.problemVo.contentImage != null}">
 									<div class="row">
 										<div class="testimg">
-											<img src="${examInfo.problemVo.contentImage}">
+											<img src="${pageContext.request.contextPath}/upload/${examInfo.problemVo.contentImage}">
 
 											<!--  <input type="button" value="첨부파일">  -->
 										</div>

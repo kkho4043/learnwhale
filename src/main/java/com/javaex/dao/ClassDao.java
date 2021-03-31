@@ -62,8 +62,12 @@ public class ClassDao {
 	
 	public int getclassNo(String url) {
 		System.out.println("[classDao.dddd()]");
+		
+		System.out.println("url 은" +  url);
+		
 		int a = sqlSession.selectOne("class.selectclassNo", url);
-		System.out.println(a);
+		System.out.println("반번호는 : "+ a);
+		
 		return a;
 	}
 	

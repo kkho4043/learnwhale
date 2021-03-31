@@ -1,7 +1,5 @@
 package com.javaex.controller;
 
-
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,47 +17,43 @@ import com.javaex.service.ExamService;
 @Controller
 @RequestMapping("/")
 public class BmainController {
-	
+
 	@Autowired
 	private ExamService examService;
-	
+
 	@Autowired
 	private BanmainService banmainService;
-	
+
 	@ResponseBody
 	@RequestMapping(value = "sessioncheck", method = { RequestMethod.GET, RequestMethod.POST })
 	public boolean sessioncheck(HttpSession session) {
 		System.out.println("세션체크");
-		if(session.getAttribute("authUser") == null) {
+		if (session.getAttribute("authUser") == null) {
 			return false;
-		}else {
+		} else {
 			return true;
 		}
 	}
-	
+
 	@RequestMapping(value = "{url}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list( @PathVariable("url") String url,
-						@RequestParam(value = "crtPage", required = false ,defaultValue = "1") int crtPage,
-						@RequestParam(value = "keyward",required = false,defaultValue = "") String keyward,Model model,HttpSession session) {
+	public String list(@PathVariable("url") String url,
+			@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage,
+			@RequestParam(value = "keyward", required = false, defaultValue = "") String keyward, Model model,
+			HttpSession session) {
 		System.out.println("[BanExamController.list()]");
-		
-		model.addAttribute("eMap", examService.examList(url,crtPage,keyward));
-		if(examService.examList(url,crtPage,keyward) == null) {
-			
-			return "redirect:/user/loginForm";
-		}
-		if(banmainService.classInfo(url, session) == null) {
+
+		if (banmainService.classInfo(url, session) == null) {
 			return "redirect:/user/loginForm";
 		}
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
+		if (examService.examList(url, crtPage, keyward) == null) {
 
-		System.out.println("정보확인"+banmainService.classInfo(url, session));
+			return "redirect:/user/loginForm";
+		}
+		model.addAttribute("eMap", examService.examList(url, crtPage, keyward));
+
+		System.out.println("정보확인" + banmainService.classInfo(url, session));
 		return "ban/exam/list";
 	}
-	
-	
-	
-	
-	
-	
+
 }

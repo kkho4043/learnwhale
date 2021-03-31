@@ -25,9 +25,19 @@
 <div class="container">
 	<div class="row">
 		<div id="top-banner-area" class="col-xs-12" style="height: 208px; overflow: hidden;">
-			<img id="top-banner"  style=" width: 100%;height:100%;object-fit:cover;"
-			src="${pageContext.request.contextPath}/upload/${classInfo.cvo.logoFile}"
-				onerror="this.src='${pageContext.request.contextPath}/assets/image/top-banner.jpg'">
+
+			<c:choose>
+				<c:when test="${classInfo.cvo.logoFile} != null}">
+					<img id="top-banner" style="width: 100%; height: 100%; object-fit: cover;"
+						src="${pageContext.request.contextPath}/upload/${classInfo.cvo.logoFile}">
+				</c:when>
+
+				<c:otherwise>
+					<img id="top-banner" style="width: 100%; height: 100%; object-fit: cover;" src='${pageContext.request.contextPath}/assets/image/top-banner.jpg'>
+				</c:otherwise>
+
+			</c:choose>
+
 			<p id="banName" class="text-center">${classInfo.cvo.className}</p>
 			<div id="date-area" class="text-center">
 				<span class="banDate">${classInfo.cvo.startDate}</span> <span class="banDate"> ~ </span> <span class="banDate">${classInfo.cvo.endDate}</span>

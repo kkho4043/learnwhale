@@ -40,6 +40,7 @@ public class ExamService {
 
 	// 문제 리스트
 	public Map<String, Object> examList(String url, int crtPage, String keyward) {
+		
 		int classNo = classDao.getclassNo(url);
 
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);

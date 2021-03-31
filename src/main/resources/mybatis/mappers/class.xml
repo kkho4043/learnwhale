@@ -103,10 +103,10 @@
 		]]>
 	</select>
 	
-	<select id="selectclassNo" resultType="int" parameterType="int">
+	<select id="selectclassNo" resultType="int" parameterType="String">
 		<![CDATA[
 			select 
-				class_no
+				class_no 
 			from class
 			where class_url = #{url}
 		]]>
