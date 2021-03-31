@@ -63,26 +63,15 @@
 			.main-folder{
 				color: blue;			
 			}
+			
+				
 		</style>
 		
 	</head>
 <body>
 	<div id="cate-area" class="col-xs-3">
 		<div id="cate">
-			<div id="cate-controller" class="clearfix">
-				
-				<button class="btn btn-default btn-xs pull-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-					id="management-btn" aria-controls="collapseExample">관리</button>
-				
-				<div class="collapse" id="collapseExample">
-
-					<button class="btn btn-primary btn-xs pull-left" id="creating-btn">등록</button>
-					<button class="btn btn-primary btn-xs pull-left" id="modify-btn">수정</button>
-					<button class="btn btn-danger btn-xs pull-left" id="delete-btn">삭제</button>
-				</div>	
-				
-			</div>
-
+	
 			<c:forEach items="${cateList}" var="cateVo">
 				<c:choose>
 
@@ -127,7 +116,7 @@
 		</div>
 
 	</div>
-
+	
 	<form method="get" action="${pageContext.request.contextPath}/myclass/problem/addMainFolder">
 		<div class="modal fade" id="madeModal">
 			<div class="modal-dialog">

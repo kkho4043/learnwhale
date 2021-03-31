@@ -17,6 +17,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
+
+
+
 </head>
 <body>
 
@@ -161,9 +164,6 @@
 
 					<!-- //여기서부터 각페이지에 맞게 코딩 끝 -->
 
-
-
-
 				</div>
 
 			</div>
@@ -172,7 +172,7 @@
 		<!-- //row -->
 	</div>
 	<!-- //content-Area -->
-
+	
 
 	<!-- footer-Area -->
 	<c:import url="/WEB-INF/views/home/include/footer.jsp"></c:import>

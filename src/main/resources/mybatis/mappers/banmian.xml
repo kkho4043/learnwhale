@@ -8,7 +8,8 @@
 	 		select  join_no joinNo,
 			        u.name username,
 			        approval,
-			        type
+			        type,
+			        u.no userNo
 			from (select no,
 			             name
 			      from   users
