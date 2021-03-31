@@ -147,7 +147,7 @@
 									
 									<div class="row">
 										<div class="col-xs-12">
-											<table class="table table-striped table-hover table-bordered">
+											<table class="table table-hover table-bordered table-striped">
 												<colgroup>
 													<col style="width: 8%;">
 													<col>
@@ -202,7 +202,18 @@
 												    </li>
 												   
 												   	<c:forEach var="page" begin="${paMap.startPage }" end="${paMap.endPage }">
-														<li><a href="${pageContext.request.contextPath }/${url}/report/list?page=${page }&keyword=${param.keyword}&joinNo=${param.joinNo}&type=${param.type}">${page }</a></li>
+														<c:choose>
+												    		<c:when test="${param.page eq page or (empty param.page and page==1)}">
+												    		
+												    			<li class= "active"><a href="${pageContext.request.contextPath }/${url}/report/list?page=${page}&keyword=${param.keyword}&joinNo=${param.joinNo}&type=${param.type}">${page }</a></li>
+												    			
+												    		</c:when>
+												    		<c:otherwise>
+												    		
+												    			<li><a href="${pageContext.request.contextPath }/${url}/report/list?page=${page}&keyword=${param.keyword}&joinNo=${param.joinNo}&type=${param.type}">${page }</a></li>
+												
+												    		</c:otherwise>
+												    	</c:choose>
 													</c:forEach>
 												   
 												    <li>

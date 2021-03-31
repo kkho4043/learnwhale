@@ -91,12 +91,12 @@
 						<div class="row">
 						   
 						  <div class="btn-group" role="group" aria-label="submit">
-							  <button type="submit" class="btn btn-success">승인</button>
+							  <button type="submit" class="btn btn-default">승인</button>
 							  
 							  <button type="submit" class="btn btn-default"
 							  formaction="${pageContext.request.contextPath }/${url}/student/wait">대기</button>
 							  
-							  <button type="submit" class="btn btn-danger"
+							  <button type="submit" class="btn btn-default"
 							  formaction="${pageContext.request.contextPath }/${url}/student/delete">탈퇴</button>
 							  
 						  </div>
@@ -108,9 +108,10 @@
 					
 					<!-- board -->
 					
-					<div id="board">
 					
-						<table id="student" class="table table-striped table-hover table-bordered">
+					<div id="studentList" class="row">
+						<div class="col-xs-12">
+						<table  class="table table-hover table-bordered" >
 							<colgroup>
 								<col style="width: 1%;">
 								<col style="width: 3%;">
@@ -119,7 +120,7 @@
 								<col style="width: 2%;">
 								<col style="width: 1%;">
 							</colgroup>
-							<thead class="text-center">
+							<thead class="text-center" style="font-weight:bold;">
 								<tr>
 									<td>번호</td>
 									<td>이름</td>
@@ -148,7 +149,7 @@
 							</c:forEach>
 							
 						</table>
-						
+						</div>
 					</div>
 					<!-- board -->
 					
