@@ -110,7 +110,7 @@
 					
 					<div id="board">
 					
-						<table id="studentList" class="table table-bordered table-hover">
+						<table id="student" class="table table-striped table-hover table-bordered">
 							<colgroup>
 								<col style="width: 1%;">
 								<col style="width: 3%;">

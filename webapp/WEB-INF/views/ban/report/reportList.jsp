@@ -147,7 +147,7 @@
 									
 									<div class="row">
 										<div class="col-xs-12">
-											<table class="table table-striped table-bordered table-hover">
+											<table class="table table-striped table-hover table-bordered">
 												<colgroup>
 													<col style="width: 8%;">
 													<col>
