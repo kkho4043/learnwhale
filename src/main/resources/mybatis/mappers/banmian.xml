@@ -7,13 +7,15 @@
 	 	<![CDATA[
 	 		select  join_no joinNo,
 			        u.name username,
+			        approval,
 			        type
 			from (select no,
 			             name
 			      from   users
 			      where  no = #{userNo}) u left outer join (  select  join_no,
 					                                                  user_no,
-					                                                  type
+					                                                  type,
+					                                                  approval
 					                                          from    join_users
 					                                          where   class_no = (select class_no 
 					                                                              from class 

@@ -13,9 +13,18 @@
 		</p>
 		<p class="profile-text">이메일:${classInfo.cuVo.email}</p>
 		<p class="profile-text last">연락처:${classInfo.cuVo.phoneNum}</p>
-		<c:if test="${classInfo.joinVo.type == null}">
-			<button type="button" class="btn btn-primary btn-sm btn-block" id = "classjoinbtn">가입신청</button>
-		</c:if>
+		
+		<c:choose>
+			<c:when test="${classInfo.joinVo.approval == null}">
+				<button type="button" class="btn btn-primary btn-sm btn-block" id = "classjoinbtn">가입신청</button>
+			</c:when>
+			<c:when test="${classInfo.joinVo.approval == '대기'}">
+				<button type="button" class="btn btn-primary btn-sm btn-block">가입 대기중</button>
+			</c:when>
+			<c:otherwise>
+				
+			</c:otherwise>
+		</c:choose>
 		
 	</div>
 
@@ -23,7 +32,10 @@
 		<ul>
 
 			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/">시험관리</a></li>
-			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/student/list">학생관리</a></li>
+			
+			<c:if test="${classInfo.joinVo.type == '선생님' }">
+				<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/student/list">학생관리</a></li>
+			</c:if>
 			<li><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/report/list">성적관리</a></li>
 			<li class="last"><span class="glyphicon glyphicon-stop"></span><a href="${pageContext.request.contextPath}/${url}/notice/list">공지사항</a></li>
 
