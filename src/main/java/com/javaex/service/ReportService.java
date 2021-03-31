@@ -135,6 +135,9 @@ public class ReportService {
 			if(Double.isNaN(totalAvg)) {
 				totalAvg = 0;
 			}
+			else {
+				totalAvg = Math.floor(totalAvg);
+			}
 			
 			sum=0;
 			for(int i=0; i<quizArr.size(); i++) {
@@ -145,6 +148,9 @@ public class ReportService {
 			
 			if(Double.isNaN(quizAvg)) {
 				quizAvg = 0;
+			}
+			else {
+				quizAvg = Math.floor(quizAvg);
 			}
 			
 			sum=0;
@@ -157,6 +163,9 @@ public class ReportService {
 			if(Double.isNaN(testAvg)) {
 				testAvg = 0;
 			}
+			else {
+				testAvg = Math.floor(testAvg);
+			}
 			
 			sum=0;
 			for(int i=0; i<homeworkArr.size(); i++) {
@@ -167,6 +176,8 @@ public class ReportService {
 			
 			if(Double.isNaN(homeAvg)) {
 				homeAvg = 0;
+			}else {
+				homeAvg = Math.floor(homeAvg);
 			}
 			
 			double[] avgList = {totalAvg, quizAvg, testAvg, homeAvg}; 
