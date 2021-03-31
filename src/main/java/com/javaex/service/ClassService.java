@@ -4,7 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,9 +87,57 @@ public class ClassService {
 	};
 
 	// 리스트
-	public List<ClassVo> list(int no, String search) {
+	public Map<String, Object> list(int no, String search, int crtPage) {
 		System.out.println("[classService.list()]");
-		return classDao.selectList(no, search);
+		int listCnt = 10;
+		
+		//현재페이지
+		//if문 대신에 삼항연산자 사용
+		crtPage = (crtPage > 0) ? crtPage : (crtPage=1);
+		//crtPage
+		
+		//시작글 번호 startRnum
+		int startRnum = (crtPage -1) * listCnt +1;
+		
+		//끝글 번호 endRnum
+		int endRnum = (startRnum + listCnt) -1;
+		
+		List<ClassVo> classList = classDao.selectList(no, search, startRnum, endRnum);
+
+		int pageBtnCount=5;
+		
+		//전체 글갯수 구하기
+		int totalCount = classDao.selectTotalCnt(search);
+		
+		int endPageBtnNo = (int)Math.ceil(crtPage/(double)pageBtnCount) * pageBtnCount;
+				
+		//시작 버튼 번호
+		int startPageBtnNo = endPageBtnNo - (pageBtnCount - 1);
+	
+		//다음버튼 boolean
+		boolean next;
+		if(endPageBtnNo * listCnt < totalCount) {
+			next = true;
+		}else {
+			next = false;
+			endPageBtnNo = (int)Math.ceil(totalCount/(double)listCnt);
+		};
+		
+		//이전버튼 boolean
+		boolean prev;
+		if(startPageBtnNo != 1) {
+			prev = true;
+		}else {
+			prev = false;
+			
+		};
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		pMap.put("classList", classList);
+		pMap.put("prev", prev);
+		pMap.put("startPageBtnNo", startPageBtnNo);
+		pMap.put("endPageBtnNo", endPageBtnNo);
+		pMap.put("next", next);
+		return pMap;
 	};
 
 	// 수정폼 가져오기
@@ -149,7 +199,7 @@ public class ClassService {
 		if(count == 0) {
 			classDao.joinDelete(classNo);
 		}else {
-			return count;
+			return -1;
 		}
 		
 		return classDao.classDelete(classNo);

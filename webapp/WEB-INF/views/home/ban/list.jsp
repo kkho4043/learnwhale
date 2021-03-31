@@ -20,7 +20,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
-<c:if test="${request.count > 0 }">
+<c:if test="${param.count == -1}">
 	<script type="text/javascript">
 		alert("반에 학생이 남아 있습니다.");
 	</script>
@@ -91,9 +91,9 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${classList}" var="vo" varStatus="status">
+											<c:forEach items="${pMap.classList}" var="vo" varStatus="status">
 												<tr>
-													<td>${status.count}</td>
+													<td>${vo.classNo}</td>
 													<td><a href="${pageContext.request.contextPath}/${vo.classUrl}" target="_blank">${vo.className}(${vo.classUrl })</a></td>
 													<td>${vo.startDate}</td>
 													<td>${vo.endDate}</td>
@@ -107,60 +107,32 @@
 													<td><button class="btn btn-primary btn-xs">
 															<a href="${pageContext.request.contextPath}/myclass/modifyForm?classNo=${vo.classNo}" style="color: #fff;">수정</a>
 														</button>
-														<button class="btn btn-primary btn-xs" id="delete">삭제</button></td>
+														<button class="btn btn-primary btn-xs" id="delete"><a href="${pageContext.request.contextPath}/myclass/remove?classNo=${vo.classNo}" style="color: #fff;">삭제</a></button></td>
 												</tr>
-															<div class="modal fade" id="deleteModal">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-														<h4 class="modal-title">삭제</h4>
-													</div>
-													<div class="modal-body">
-														<p>반을 삭제하시겠습니까?</p>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-														<button type="submit" class="btn btn-primary"><a href="${pageContext.request.contextPath}/myclass/remove?classNo=${vo.classNo}" style="color: #fff;">삭제하기</a></button>
-													</div>
-												</div>
-												<!-- /.modal-content -->
-											</div>
-											<!-- /.modal-dialog -->
-										</div>
-										<!-- /.modal -->
-			
+
 											</c:forEach>
 
 										</tbody>
 
 									</table>
 
-
-						
-									
-									
-
-
-									<nav class="text-center">
+									<nav class="text-center" id="paging">
 										<ul class="pagination">
-											<li><a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-											</a></li>
-											<li><a href="#">1</a></li>
-											<li class="active"><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#">4</a></li>
-											<li><a href="#">5</a></li>
-											<li><a href="#">6</a></li>
-											<li><a href="#">7</a></li>
-											<li><a href="#">8</a></li>
-											<li><a href="#">9</a></li>
-											<li><a href="#">10</a></li>
-											<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											</a></li>
+											<c:if test="${pMap.prev == true}">
+												<li><a href="${pageContext.request.contextPath}/myclass/list?crtPage=${pMap.startPageBtnNo-1}&search=${param.search}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+											</c:if>
+											
+											<c:forEach begin="${pMap.startPageBtnNo }" end="${pMap.endPageBtnNo }" step="1" var="page">
+												<li><a href="${pageContext.request.contextPath}/myclass/list?crtPage=${page}&search=${param.search}">${page }</a></li>
+											</c:forEach>
+											
+												
+											<c:if test="${pMap.next == true }">
+												<li><a href="${pageContext.request.contextPath}/myclass/list?crtPage=${pMap.endPageBtnNo+1 }&search=${param.search}" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+											</c:if>
 										</ul>
+										
+										<div class="clear"></div>
 									</nav>
 								</div>
 							</div>

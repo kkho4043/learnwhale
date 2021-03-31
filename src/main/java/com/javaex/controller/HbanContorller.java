@@ -1,6 +1,6 @@
 package com.javaex.controller;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.ClassService;
 import com.javaex.vo.ClassVo;
-import com.javaex.vo.JoinUserVo;
 import com.javaex.vo.UserVo;
 
 @Controller
@@ -29,13 +28,14 @@ public class HbanContorller {
 	//반 리스트
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model, HttpSession session,
-						@RequestParam(value="search", required = false, defaultValue = "") String search) {
+						@RequestParam(value="search", required = false, defaultValue = "") String search,
+						@RequestParam(value="crtPage", required = false, defaultValue = "1") int crtPage) {
 		System.out.println("[HbanController.list()]");
 		
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
-		List<ClassVo> classList = classService.list(userVo.getNo(), search);
-
-		model.addAttribute("classList", classList);
+		Map<String, Object> pMap = classService.list(userVo.getNo(), search, crtPage);
+		
+		model.addAttribute("pMap", pMap);
 		
 		return "home/ban/list";
 	}
@@ -93,9 +93,15 @@ public class HbanContorller {
 		System.out.println("[HbanController.remove()]");
 		System.out.println(classNo);
 		int count = classService.remove(classNo);
-		
-		return "redirect:list?result="+count;
+		if(count == -1) {
+			System.out.println("삭제실패");
+			return "redirect:list?count="+count;
 		}
+				
+			
+		return "redirect:list";
+		
+		
 	}
-
+}
 

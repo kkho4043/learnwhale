@@ -40,12 +40,18 @@ public class ClassDao {
 	}
 	
 	//리스트
-	public List<ClassVo> selectList(int no, String search){
+	public List<ClassVo> selectList(int no, String search, int startRnum, int endRnum){
 		System.out.println("[classDao.selectList()]");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("no", no);
 		map.put("search", search);
+		map.put("startRnum", startRnum);
+		map.put("endRnum", endRnum);
 		return sqlSession.selectList("class.selectList", map);
+	}
+	
+	public int selectTotalCnt(String search) {
+		return sqlSession.selectOne("class.selectTotalCnt", search);
 	}
 	
 	//수정폼 가져오기

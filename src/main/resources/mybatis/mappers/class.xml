@@ -33,43 +33,79 @@
 	</insert>
 
 	<!-- 전체리스트 가져오기 -->
-	<select id="selectList" resultType="ClassVo" parameterType="int">
+	<select id="selectList" resultType="ClassVo" parameterType="Map">
 	    <![CDATA[
-			select cl.class_no classNo,
-			       cl.class_name className,
-			       nvl2(co.total, co.total, 0) total,
-			       nvl2(co.approval, co.approval, 0) approval,
-			       TO_CHAR(cl.start_date,'yyyy-mm-dd') startDate,
-			       TO_CHAR(cl.end_date,'yyyy-mm-dd') endDate,
-			       cl.class_url classUrl,
-			       cl.hidden hidden,
-			       CASE WHEN cl.start_date <= sysdate and sysdate <= cl.end_date THEN '진행중'
-			            WHEN sysdate < cl.start_date THEN '대기'
-			            ELSE '종료'
-			       END AS state
-			from join_users jj, users uu, class cl left outer join (select      j.class_no,
-			                                                                   count(j.class_no) total,
-			                                                                   count(case when type='학생' and approval = '승인' then 1 end) approval
-			                                from join_users j,users u, (select class_no
-			                                                            from   join_users j, users u
-			                                                            where j.user_no = u.no
-			                                                            and u.no = #{no}) c
-			                                where type='학생' and (approval = '대기' or approval='승인')
-			                                and c.class_no = j.class_no
-			                                and j.user_no = u.no
-			                                group by j.class_no
-			                                ) co
-			on cl.class_no = co.class_no
-			where jj.user_no = uu.no
-			and cl.class_no = jj.class_no
-			and uu.no = #{no}
+			SELECT r.rnum rnum,
+			        r.classNo classNo,
+			        r.classname className,
+			        r.total total,
+			        r.approval approval,
+			        r.startdate startDate,
+			        r.enddate endDate,
+			        r.classurl classUrl,
+			        r.hidden hidden,
+			        r.state state
+			FROM(SELECT  rownum rnum,
+			            o.classno classNo,
+			            o.classname className,
+			            o.total total,
+			            o.approval approval,
+			            o.startDate startDate,
+			            o.endDate endDate,
+			            o.classurl classUrl,
+			            o.hidden hidden,
+			            o.state state
+			    FROM (select   cl.class_no classNo,
+			                   cl.class_name className,
+			                   nvl2(co.total, co.total, 0) total,
+			                   nvl2(co.approval, co.approval, 0) approval,
+			                   TO_CHAR(cl.start_date,'yyyy-mm-dd') startDate,
+			                   TO_CHAR(cl.end_date,'yyyy-mm-dd') endDate,
+			                   cl.class_url classUrl,
+			                   cl.hidden hidden,
+			                   CASE WHEN cl.start_date <= sysdate and sysdate <= cl.end_date THEN '진행중'
+			                        WHEN sysdate < cl.start_date THEN '대기'
+			                        ELSE '종료'
+			                   END AS state
+			            from join_users jj, users uu, class cl left outer join (select      j.class_no,
+			                                                                       count(j.class_no) total,
+			                                                                       count(case when type='학생' and approval = '승인' then 1 end) approval
+			                                                                    from join_users j,users u, (select class_no
+			                                                                                                from   join_users j, users u
+			                                                                                                where j.user_no = u.no
+			                                                                                                and u.no = #{no}) c
+			                                                                    where type='학생' and (approval = '대기' or approval='승인')
+			                                                                    and c.class_no = j.class_no
+			                                                                    and j.user_no = u.no
+			                                                                    group by j.class_no
+			                                                                    ) co
+                         on cl.class_no = co.class_no
+                         where jj.user_no = uu.no
+                         and cl.class_no = jj.class_no
+                         and uu.no = #{no}
 		]]>
 			<if test="search != null and search !='' ">
 				and cl.class_name like '%' || #{search} || '%'
 			</if>	
 		<![CDATA[
-			order by cl.class_no desc
+						order by cl.class_no desc) o) r
+		where rnum >= #{startRnum}
+		and rnum <= #{endRnum}				
 	   	]]>
+	</select>
+	
+	<!-- 전체 글 개수 가져오기  -->
+	<select id="selectTotalCnt" parameterType="string" resultType="int">
+		<![CDATA[
+			SELECt count(*)
+			FROM class cl, join_users j, users u 
+			where cl.class_no = j.class_no
+			and j.user_no = u.no
+			and u.no = #{no} 
+		]]>	
+		<if test="value != null and value !='' ">
+			and cl.class_name like '%' || #{search} || '%'
+		</if>
 	</select>
 	
 	<!-- 수정폼 -->
@@ -103,10 +139,10 @@
 		]]>
 	</select>
 	
-	<select id="selectclassNo" resultType="int" parameterType="String">
+	<select id="selectclassNo" resultType="int" parameterType="int">
 		<![CDATA[
 			select 
-				class_no 
+				class_no
 			from class
 			where class_url = #{url}
 		]]>
