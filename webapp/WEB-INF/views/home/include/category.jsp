@@ -238,16 +238,141 @@
 		
 	
 		$(document).ready(function() {
+			fetchList();
+			
 			subMake();
 			rightClick();
 			subVisible();
 			empty();
 			
+			
+			
 		});
 		
 		
+		$(document).ready(function() {
+			
+			
+			let cateNum = "${param.cateNo}";
+			
+			if(!cateNum){
+				
+			}else{
+				
+				var groupNo = $('[data-cate='+cateNum+']').attr("data-group");
+				
+				let subFolder = $(".parents-folder").nextAll("#" + groupNo);
+				
+				if (subFolder.is(":visible")) {
+							subFolder.slideUp();
+				} 
+				else {
+							subFolder.slideDown();
+			
+				};
+
+				
+				$.ajax({
+					url: "${pageContext.request.contextPath}/myclass/category/api/problemList",
+					type: "get",
+					dataType : "json",
+					data : {"cateNo" : cateNum},
+					
+					success : function(proList){
+						
+						for(var i=0; i<proList.length; i++){
+							
+							render(proList[i]);
+						}
+					},
+					
+					error: function(XHR, status, error){
+						console.log(status+ ":" + error);
+			
+					}
+				});
+			
+			}
+			
+			
+		});
+
 		
 		
+		
+		
+		
+		
+		function fetchList(){
+			
+			
+			$(".child-folder a").on("click", function(e){
+				e.preventDefault();
+				
+				$(".child-folder a").css(
+						{'color': '',
+						'font-weight': ''}
+							);
+				
+				$(this).css(
+					{'color': 'red',
+					'font-weight': '900'}
+						);
+				
+				
+				var html = $("#problemList").html();	
+
+				if(html != null){
+					
+					$("#problemList").empty();
+				}
+				let cateNo = $(this).data("cate");
+				
+				document.getElementById("cateNosave").value = cateNo;
+				
+				$.ajax({
+					url: "${pageContext.request.contextPath}/myclass/category/api/problemList",
+					type: "get",
+					dataType : "json",
+					data : {"cateNo" : cateNo},
+					
+					success : function(proList){
+						
+						for(var i=0; i<proList.length; i++){
+							
+							render(proList[i]);
+						}
+					},
+					
+					error: function(XHR, status, error){
+						console.log(status+ ":" + error);
+			
+					}
+				});
+					
+				
+			  });
+		    
+		};
+
+
+		function render(proVo){
+				
+			let html = 		"<tr id='tr-center'>";
+			html += 			"<th>"+proVo.problemNo+"</th>";
+			html += 			"<th><a href='${pageContext.request.contextPath}/myclass/problem/creating-ViewForm?proNo="+proVo.problemNo+"'>"+proVo.problemTitle;
+			html +=				"</a></th>";
+			html += 			"<th>"+proVo.type+"</th>";
+			html += 			"<th>"+proVo.regDate+"</th>";
+			html += 			"<td>";
+			html +=					"<button class='btn btn-primary btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>이동</button>";	
+			html +=					"<button class='btn btn-danger btn-xs move-Btn'>삭제</button>";
+			html += 			"</td>";
+			html += 		"</tr>";
+
+			$("#problemList").append(html);
+		}
+				
 		function rightClick(){
 				
 			$(".parents-folder .main-folder, .child-folder .subFolder").contextmenu(function(e){
@@ -352,80 +477,7 @@
 		}
 			
 		
-		$(document).ready(function() {
-			$("#management-btn").click(function() {
-				
-				if ($(".collapse").is(":visible")) {
-					$(".collapse").slideUp();
-				} else {
-					$(".collapse").slideDown();
-				}
-	
-			});
-		});
-	
-		$("document").ready(function(){
-			fetchList();
-					
-		});
-		function fetchList(){
-			
-			$(".child-folder a").on("click", function(e){
-				e.preventDefault();
-				
-				var html = $("#problemList").html();	
 
-				if(html != null){
-					
-					$("#problemList").empty();
-				}
-							
-				let cateNo = $(this).data("cate");
-				history.pushState(null, null, 'problemList?cateNo='+cateNo);
-				document.getElementById("cateNosave").value = cateNo;
-				console.log("카테로리 클릭");
-				$.ajax({
-					url: "${pageContext.request.contextPath}/myclass/problem/cateproblem",
-					type: "get",
-					dataType : "json",
-					data : {"cateNo" : cateNo},
-					
-					success : function(proList){
-						
-						for(var i=0; i<proList.length; i++){
-							
-							render(proList[i]);
-						}
-					},
-					
-					error: function(XHR, status, error){
-						console.log(status+ ":" + error);
-			
-					}
-				});
-					
-				
-			});
-			
-		};
-
-
-		function render(proVo){
-				
-			let html = 		"<tr id='tr-center'>";
-			html += 			"<th>"+proVo.problemNo+"</th>";
-			html += 			"<th><a href='${pageContext.request.contextPath}/myclass/problem/creating-ViewForm?proNo="+proVo.problemNo+"'>"+proVo.problemTitle;
-			html +=				"</a></th>";
-			html += 			"<th>"+proVo.type+"</th>";
-			html += 			"<th>"+proVo.regDate+"</th>";
-			html += 			"<td>";
-			html +=					"<button class='btn btn-primary btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>이동</button>";	
-			html +=					"<button class='btn btn-danger btn-xs move-Btn'>삭제</button>";
-			html += 			"</td>";
-			html += 		"</tr>";
-
-			$("#problemList").append(html);
-		}
 	</script>
 
 </html>

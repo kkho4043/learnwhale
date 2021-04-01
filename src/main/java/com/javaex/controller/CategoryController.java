@@ -29,58 +29,48 @@ public class CategoryController {
 	 
 	@RequestMapping(value = "problemList", method = { RequestMethod.GET, RequestMethod.POST })
 	public String problemList(Model model, 
-			  				  @RequestParam(value="cateNo", required = false, defaultValue = "0") int cateNo, 
 			  				  HttpSession session) {
 	  
 		int no = ((UserVo) session.getAttribute("authUser")).getNo();
 	  	model.addAttribute("cateList", caService.getCategory(no));
-	  
+	  	
 	 	return "home/problem/problemList"; 
 	}
 	 
-
+	@ResponseBody
+	@RequestMapping(value = "api/problemList", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<ProblemVo> apiproblemList(@RequestParam int cateNo) {
+	 
+		
+	 	return caService.getProblem(cateNo); 
+	}
+	
+	
+	
 	@RequestMapping(value="delete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(@RequestParam int cateNo) {
 		
 		int result = caService.delete(cateNo);
 		
-		return "redirect:/myclass/problem/problemList?cateNo="+cateNo+"&result="+result;
+		return "redirect:problemList?cateNo="+cateNo+"&result="+result;
 	}
 
-	
-	
-	@RequestMapping(value = "/creatingForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String multipleChoice(Model model, HttpSession session) {
-		System.out.println("[ProblemController.creatingForm()]");
-		
-		int no = ((UserVo) session.getAttribute("authUser")).getNo();
-
-		model.addAttribute("cateList", caService.getCategory(no));
-
-		return "home/problem/creatingForm";
-	}
-
-	@RequestMapping(value = "/main", method = { RequestMethod.GET, RequestMethod.POST })
-	public String index() {
-		System.out.println("[ProblemController.main()]");
-		return "home/main/mainForm";
-	}
 
 	// 메인폴더생성
 	@RequestMapping(value = "/addMainFolder", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addMainFolder(@ModelAttribute CategoryVo cateVo) {
-		System.out.println("[ProblemController.addMainFolder()]");
+		
 		caService.addMainFolder(cateVo);
 
-		return "redirect:/myclass/problem/problem-Management";
+		return "redirect:problemList";
 	}
 
 	// 하위폴더생성
 	@RequestMapping(value = "/addSubFolder", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addSubFolder(@ModelAttribute CategoryVo cateVo) {
-		System.out.println("[ProblemController.addSubFolder()]");
+		
 		caService.addSubFolder(cateVo);
-		return "redirect:/myclass/problem/problem-Management";
+		return "redirect:problemList";
 	}
 
 	@RequestMapping(value = "/updateFolder", method = { RequestMethod.GET, RequestMethod.POST })
@@ -88,7 +78,7 @@ public class CategoryController {
 		System.out.println("[ProblemController.updateFolder()]");
 		caService.updateFolder(cateVo);
 
-		return "redirect:/myclass/problem/problem-Management";
+		return "redirect:problemList";
 	}
 
 	/*
