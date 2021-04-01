@@ -130,8 +130,7 @@
 											<td>${vo.numSubmit}/${vo.attendNum}</td>
 											<td>${vo.examType}</td>
 											<c:if test="${classInfo.joinVo.type == '선생님'}">
-												<td><a href="${pageContext.request.contextPath}/${url}/exam/exammodifyfrom?examNo=${vo.examNo}"><button
-															class="btn btn-default btn-xs">수정</button></a></td>
+												<td><a href="${pageContext.request.contextPath}/${url}/exam/exammodifyfrom?examNo=${vo.examNo}"><button class="btn btn-default btn-xs">수정</button></a></td>
 											</c:if>
 
 										</tr>
@@ -147,12 +146,12 @@
 								<nav>
 									<ul class="pagination">
 										<c:if test="${eMap.prev == true}">
-											<li><a href="${pageContext.request.contextPath}/${url}/list?crtPage=${pMap.startPageBtnNo-1}&keyward=${param.keyward}">◀</a></li>
+											<li><a href="${pageContext.request.contextPath}/${url}?crtPage=${pMap.startPageBtnNo-1}&keyward=${param.keyward}">◀</a></li>
 										</c:if>
 
 
 										<c:forEach begin="${eMap.startPageBtnNo}" end="${eMap.endPageBtnNo}" step="1" var="page">
-											<li><a href="${pageContext.request.contextPath}/${url}/exam/list?crtPage=${page}&keyward=${param.keyward}">${page}</a></li>
+											<li><a href="${pageContext.request.contextPath}/${url}?crtPage=${page}&keyward=${param.keyward}">${page}</a></li>
 										</c:forEach>
 
 
@@ -191,7 +190,16 @@
 	<!-- //footer-Area container 영역-->
 
 </body>
+
+<script type="text/javascript">
+	if ("${param.thissolve}" == "false") {
+		alert('가입하시기전 만들어진 시험입니다');
+	} else {
+
+	}
+</script>
 </html>
+
 
 
 

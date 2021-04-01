@@ -42,7 +42,6 @@ public class BanmainService {
 		ClassVo cvo = banmainDao.selectclassInfo(url);
 
 		map.put("cvo", cvo);
-		System.out.println("cvo = " + cvo.toString());
 		UserVo cuVo = banmainDao.selectclassteacher(cvo.getClassNo());
 		map.put("cuVo", cuVo);
 

@@ -46,7 +46,7 @@ public class BexamController {
 
 		model.addAttribute("classInfo", banmainService.classInfo(url, session));
 		String where = examService.clicktitle(url, examNo, session, joinNo);
-		return "redirect:/" + url + "/exam/" + where;
+		return "redirect:/" + url + where;
 	}
 
 	@RequestMapping(value = "/problemlist", method = { RequestMethod.GET, RequestMethod.POST })

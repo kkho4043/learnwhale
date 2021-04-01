@@ -242,4 +242,11 @@ public class ExamDao {
 		return sqlSession.selectList("examsolveList", map);
 	}
 
+	public int getsolve(int joinNo, int examNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("examNo", examNo);
+		map.put("joinNo", joinNo);
+		return sqlSession.selectOne("getsolve", map);
+	}
+
 }

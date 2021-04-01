@@ -67,20 +67,26 @@
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="main-content-area">
 						<c:if test="${classInfo.joinVo.type == '선생님'}">
-							<div id="student-list" class="col-xs-2" style="padding-right: 0px; padding-left: 0px; margin-left: -15px; width: 145px; height: 352px; background: #f7f7f7;">
-								<ol>
-									<c:forEach items="${upMap.eulist}" var="vo" varStatus="status">
+							<div class="col-xs-2" style="min-height: 250px;">
 
-										<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${vo.joinNo}">${vo.username}(${vo.result})</a></li>
+								<div id="student-list" class="row" style="padding-right: 0px; padding-left: 0px; margin-left: -15px; width: 145px; background: #f7f7f7;">
+									<ol>
+										<c:forEach items="${upMap.eulist}" var="vo" varStatus="status">
 
-									</c:forEach>
-								</ol>
+											<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${vo.joinNo}">${vo.username}(${vo.result})</a></li>
+
+										</c:forEach>
+									</ol>
+
+								</div>
+
 							</div>
 						</c:if>
 
+
 						<!-- //student-list -->
 
-						<div id="report-area" class="col-xs-10">
+						<div id="report-area" class="col-xs-10" style = "min-height: 250px;">
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="row">
@@ -107,8 +113,7 @@
 														<tr>
 															<td>${vo.orderNum}</td>
 
-															<td class="text-left"><a
-																href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${param.examNo}&orderNum=${vo.orderNum}&joinNo=${param.joinNo}">${vo.problemTitle}</a></td>
+															<td class="text-left"><a href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${param.examNo}&orderNum=${vo.orderNum}&joinNo=${param.joinNo}">${vo.problemTitle}</a></td>
 															<td>${vo.mypoint}</td>
 															<td>${vo.result}</td>
 															<td>${vo.type}</td>
@@ -126,39 +131,39 @@
 												<ul class="pagination">
 
 													<c:if test="${upMap.prev == true}">
-														<li><a
-															href="${pageContext.request.contextPath}/${url}/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.startPageBtnNo-1}">◀</a></li>
+														<li><a href="${pageContext.request.contextPath}/${url}/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.startPageBtnNo-1}">◀</a></li>
 													</c:if>
 
 													<c:forEach begin="${upMap.startPageBtnNo}" end="${upMap.endPageBtnNo}" step="1" var="page">
-														<li><a
-															href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${page}">${page}</a></li>
+														<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${page}">${page}</a></li>
 													</c:forEach>
 
 													<c:if test="${upMap.next == true}">
-														<li><a
-															href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.endPageBtnNo+1}">▶</a></li>
+														<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.endPageBtnNo+1}">▶</a></li>
 													</c:if>
 												</ul>
 											</nav>
 										</div>
 									</div>
 
-									<div class="row">
-										<div class="col-xs-2">
-											<a href="${pageContext.request.contextPath}/${url}/"><input type="button"
-												value="리스트" class="btn btn-primary"></a>
-										</div>
 
 
-									</div>
+
+
 								</div>
+
 							</div>
+
 						</div>
+
 						<!-- //report-area -->
 
 
 
+					</div>
+
+					<div class="row col-xs-12">
+						<a href="${pageContext.request.contextPath}/${url}/"><input type="button" value="리스트" class="btn btn-primary"></a>
 					</div>
 					<!-- //main-content-area -->
 					<!-- //여기서부터 각페이지에 맞게 코딩 끝 -->

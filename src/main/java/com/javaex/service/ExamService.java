@@ -215,7 +215,7 @@ public class ExamService {
 
 		if (jvo.getType().equals("선생님")) { // 선생님일때
 			System.out.println("선생님");
-			return "/problemlist?examNo=" + examNo + "&joinNo=" + joinNo;
+			return "/exam/problemlist?examNo=" + examNo + "&joinNo=" + joinNo;
 
 		} else {
 			// 학생일때
@@ -223,10 +223,15 @@ public class ExamService {
 			int flag = examDao.getAttendance(jvo.getJoinNo(), examNo);
 			if (flag > 0) { // 문제를 풀었을때
 				System.out.println("문제를 풀었을때");
-				return "/problemlist?examNo=" + examNo + "&joinNo=" + joinNo;
+				return "/exam/problemlist?examNo=" + examNo + "&joinNo=" + joinNo;
 			} else {
 				System.out.println("문제를 안풀었을때");
-				return "examstart?examNo=" + examNo + "&joinNo=" + joinNo;
+				flag = examDao.getsolve(joinNo , examNo);
+				
+				if(flag == 0) {
+					return "?thissolve=false";
+				}
+				return "/exam/examstart/?examNo=" + examNo + "&joinNo=" + joinNo;
 			}
 
 		}

@@ -85,56 +85,39 @@ from(select
             o.numSubmit,
             o.attendNum,
             o.examType
-            from(SELECT          
+            from( select
                         e.class_no classNo,
                         e.exam_no examNo,
                         e.exam_title examTitle,
-                        cn.count problemAmount,
+                        sc.problemAmount,
                         e.start_date startDate,
                         e.end_date endDate,
-                        can.count numSubmit,
-                        at.count attendNum,
+                        sc.numSubmit,
+                        sc.attendNum,
                         e.exam_type examType
-                FROM exam e,(select
-                                    e.exam_no,
-                                    count(q.exam_no) count
-                                     from exam e , question q
-                                    where e.exam_no = q.exam_no(+)
-                                    group by e.exam_no)cn,(select  
-                                                                cn.exam_no,
-                                                                count(cn.join_no) count
-                                                                from (select 
-                                                                            j.join_no,
-                                                                            q.exam_no,
-                                                                            count(q.question_no) count
-                                                                      from join_users j, solve s ,question q
-                                                                      where j.join_no = s.join_no
-                                                                      and j.type != '선생님'
-                                                                      and s.question_no = q.question_no
-                                                                      and (s.status = '제출' or s.status = '완료')
-                                                                      group by j.join_no , q.exam_no
-                                                                      order by j.join_no , q.exam_no)cn,(select
-                                                                                                                  exam_no,
-                                                                                                                  count(*) count
-                                                                                                           from question
-                                                                                                           group by exam_no) ca
-                                                                                                           where cn.count = ca.count
-                                                                                                           and cn.exam_no = ca.exam_no
-                                                                                                           group by cn.exam_no)can ,(select
-                                                                                                                                        c.class_no,
-                                                                                                                                        count(join_no) count
-                                                                                                                                        from class c, join_users j
-                                                                                                                                       
-                                                                                                                                        where c.class_no = j.class_no
-                                                                                                                                        and j.type != '선생님'
-                                                                                                                                        group by c.class_no)at
-                where e.exam_no= can.exam_no(+) 
-                and e.exam_no = cn.exam_no
-                and at.class_no = e.class_no
-                and e.class_no = #{classNo}
-                order by e.exam_regdate desc)o)r
+   					from exam e,(select
+                                    sv.exam_no,
+                                    sv.stcount problemAmount,
+                                    count(sv.chcount) attendNum,
+                                    count(case when sv.result = '진행' then 1 end) numSubmit
+                               	 from (select 
+                                           s.join_no,
+                                           q.exam_no,
+                                           count(status) stcount,
+                                           count(case when s.status = '제출' or s.status = '완료' then 1 end) chcount,
+                                           decode(count(status),count(case when s.status = '제출' or s.status = '완료' 
+                                           or s.status = '저장' then 1 end),'진행','대기') result                                                    
+                                      from solve s , question q ,join_users j 
+                                      where s.question_no = q.question_no
+                                      and s.join_no = j.join_no
+                                      and j.type != '선생님'
+                                      group by s.join_no ,q.exam_no)sv
+                               group by sv.exam_no,sv.stcount)sc
+		   			 where e.exam_no = sc.exam_no
+		   			 order by e.exam_no desc)o)r
+		    
                 
-                where ]]>
+               where ]]>
 
 		<if test="keyward != null and keyward != '' ">
 
@@ -143,12 +126,12 @@ from(select
 			and
 		</if>
                 
-                <![CDATA[
+        <![CDATA[
                 r.rnum >= #{startNum}
    		 		and r.rnum <= #{endNum}
                 
 		]]>
-
+			
 	</select>
 
 	<!--시험리스트갯수 -->
@@ -227,40 +210,35 @@ from(select
 	<!-- 시험의 사람 리스트 -->
 	<select id="examuserlist" resultType="JoinUserVo" parameterType="int">
 		<![CDATA[
-		 select 
-			al.join_no joinNo,
-		    u.name username,
-		    decode(al.count,cl.count,'제출','진행중') result
+		   select 
+           
+			cl.join_no joinNo,
+            u.name username,
+		    decode(cl.count,cl.encount,'완료',
+                decode(cl.count,cl.encount+cl.jecount,'제출',
+                     decode(cl.count,cl.chcount,'대기중','진행중'
+                    ))) result
 
-		from users u ,(select 
-			                e.exam_no,
-			                j.user_no,
-			                j.join_no,
-			                count(*) count 
-		               FROM question q , exam e, class c , join_users j
-		               where e.exam_no = q.exam_no
-		               and e.class_no = c.class_no
-		               and j.class_no = c.class_no
-		               and j.type != '선생님'
-		               group by j.user_no,e.exam_no,j.join_no) al , (SELECT
-					                                                        e.exam_no,
-					                                                        j.user_no,
-					                                                        j.join_no,
-					                                                        count (*)  count
-				                                                     FROM question q , exam e, class c , join_users j ,solve s
-				                                                     where e.exam_no = q.exam_no
-				                                                     and e.class_no = c.class_no
-				                                                     and j.class_no = c.class_no
-				                                                     and j.join_no = s.join_no
-				                                                     and j.type != '선생님'
-				                                                     and s.question_no = q.question_no
-				                                                     and (s.status = '제출' or s.status = '완료')
-		                                
-		                                                   			 group by j.user_no,e.exam_no,j.join_no)cl
-		where al.exam_no = cl.exam_no(+)
-        and al.user_no = cl.user_no(+)
-        and u.no =  al.user_no
-		and al.exam_no = #{examNo}
+			from users u,(SELECT
+                            e.exam_no,
+                            j.user_no,
+                            j.join_no,
+                            count (s.status) count,
+                            count (case when s.status = '출제' then 1 end) chcount,
+                            count (case when s.status = '저장' then 1 end) secount,
+                            count (case when s.status = '제출' then 1 end) jecount,
+                            count (case when s.status = '완료' then 1 end) encount
+                     FROM question q , exam e, class c , join_users j ,solve s
+                     where e.exam_no = q.exam_no
+                     and e.class_no = c.class_no
+                     and j.class_no = c.class_no
+                     and j.join_no = s.join_no
+                     and s.question_no = q.question_no
+                     
+                     group by j.user_no,e.exam_no,j.join_no)cl
+
+        where u.no = cl.user_no
+		and cl.exam_no = #{examNo}
 
 		]]>
 	</select>
@@ -345,7 +323,7 @@ from(select
 							)	
 		]]>
 	</insert>
-
+	<!-- 시험을 풀었는지 안풀었는지  -->
 	<select id="getAttendance" parameterType="int" resultType="int">
 		<![CDATA[
 			select  
@@ -355,6 +333,19 @@ from(select
 			and q.exam_no = #{examNo}
 			and s.join_no = #{joinNo}
 			and (s.status = '제출' or s.status = '완료')
+		]]>
+	</select>
+	
+	<!-- 시험을 풀었는지 안풀었는지  -->
+	<select id="getsolve" parameterType="int" resultType="int">
+		<![CDATA[
+			 select  
+				count(*)
+			from solve s ,question q
+			where s.question_no(+) = q.question_no
+			and q.exam_no = #{examNo}
+			and s.join_no = #{joinNo}
+			and s.status = '출제'
 		]]>
 	</select>
 
@@ -491,27 +482,28 @@ from(select
 		from question
 		where exam_no = #{examNo})
 	</update>
-	
+
 	<update id="Autoscoring" parameterType="map">
 		update (
-	        select 
-	            s.mypoint mypoint,
-	            q.point point
-	        from solve s,question q,problem p
-	        where s.question_no = q.question_no
-	        and q.problem_no = p.problem_no
-	        and s.SUBMIT_ANSWER = p.ANSWER 
-	        and q.exam_no = #{examNo}
-	        and s.join_no = #{joinNo}
+		select
+		s.mypoint mypoint,
+		q.point point
+		from solve s,question q,problem p
+		where s.question_no = q.question_no
+		and q.problem_no = p.problem_no
+		and s.SUBMIT_ANSWER = p.ANSWER
+		and q.exam_no = #{examNo}
+		and s.join_no = #{joinNo}
 		)
-    
+
 		set mypoint = point
 	</update>
 
 
 	<update id="grantpoint" parameterType="map">
 		update solve
-		set MYPOINT = #{point}
+		set MYPOINT = #{point},
+		STATUS = '완료'
 		where join_no = #{joinNo}
 		and question_no in (select
 		question_no
