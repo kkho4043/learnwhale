@@ -151,7 +151,7 @@
 													<div class="modal-body">
 														
 													</div>
-													<input type="text" name="classNo" value="" id="delno">
+													<input type="hide" name="classNo" value="" id="delno">
 													<div class="modal-footer">
 														<button type="button" class="btn btn-default"
 															data-dismiss="modal">취소</button>
