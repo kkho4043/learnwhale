@@ -10,7 +10,7 @@
 #main-area #main-content-area #student-list {
 	padding: 10px 10px 10px 10px;
 	background: #f7f7f7;
-	border: 1px solid #8e8e8e;
+	/* border: 1px solid #8e8e8e; */
 	height: 635px;
 }
 
@@ -87,7 +87,7 @@
 }
 
 #main-area #main-content-area .form-group {
-	margin: 0px 0px 5px 0px;
+	margin-bottom: 15px;
 }
 
 #main-area #main-content-area #selecOpt > ul{

@@ -48,6 +48,14 @@
 
 				<!-- 오른쪽 영역 -->
 				<div id="main-area" class="col-xs-10">
+					<!-- 위치 -->
+					<div id="breadcrumb-area">
+						<ol class="breadcrumb pull-right">
+							<li class="breadcrumb-item">반</li>
+							<li class="breadcrumb-item">공지사항</li>
+						</ol>
+					</div>
+					<!-- //위치 -->
 
 					<!-- 메인영역 타이틀 -->
 					<div id="main-title">
@@ -72,9 +80,12 @@
 									<div id="controll-area" class="row">
 										<div id="selecOpt" class="col-xs-6"></div>
 										<div class="col-xs-6">
-											<form action="${pageContext.request.contextPath}/${url}/notice/list" method="get">
+											<form
+												action="${pageContext.request.contextPath}/${url}/notice/list"
+												method="get">
 												<div class="form-group form-inline">
-													<input type="text" class="form-control input-sm" name="keyword" id="txtSearchKyword" placeholder="">
+													<input type="text" class="form-control input-sm"
+														name="keyword" id="txtSearchKyword" placeholder="">
 													<button class="btn btn-default btn-sm" type="submit">검색</button>
 												</div>
 											</form>
@@ -105,20 +116,22 @@
 													<c:forEach items="${requestScope.pMap.nList}" var="nvo">
 														<tr>
 															<td>${nvo.no}</td>
-															<td class="text-left"><a href="${pageContext.request.contextPath}/${url}/notice/read?no=${nvo.no}">${nvo.title}</a></td>
+															<td class="text-left"><a
+																href="${pageContext.request.contextPath}/${url}/notice/read?no=${nvo.no}">${nvo.title}</a></td>
 															<td>${nvo.name}</td>
 															<td>${nvo.hit}</td>
 															<td>${nvo.reg_date}</td>
 
-															<td><a href="${pageContext.request.contextPath}/${url}/notice/remove?no=${nvo.no}">[삭제]</a></td>							
-															
+															<td><a
+																href="${pageContext.request.contextPath}/${url}/notice/remove?no=${nvo.no}">[삭제]</a></td>
+
 															<!-- 미해결
 															<td><c:if test="${authUser.no == nvo.join_no}">
 																	<a href="${pageContext.request.contextPath}/noice/remove?no=${nvo.no}">[삭제]</a>
 																</c:if>
 															</td>
 															 -->
-															
+
 														</tr>
 													</c:forEach>
 
@@ -133,23 +146,23 @@
 											<nav>
 												<ul class="pagination">
 													<c:if test="${pMap.prev == true}">
-														<li>
-															<a href="${pageContext.request.contextPath}/notice/list?crtPage=${pMap.startPageBtnNo-1}&keyword=${param.keyword}" aria-label="Previous">
-																<span aria-hidden="true">&laquo;</span>
-															</a>
-														</li>	
+														<li><a
+															href="${pageContext.request.contextPath}/notice/list?crtPage=${pMap.startPageBtnNo-1}&keyword=${param.keyword}"
+															aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+														</a></li>
 													</c:if>
 
-													<c:forEach begin="${pMap.startPageBtnNo}" end="${pMap.endPageBtnNo}" step="1"  var="page">
-														<li><a href="${pageContext.request.contextPath}/notice/list?crtPage=${page}&keyword=${param.keyword}">${page}</a></li>
+													<c:forEach begin="${pMap.startPageBtnNo}"
+														end="${pMap.endPageBtnNo}" step="1" var="page">
+														<li><a
+															href="${pageContext.request.contextPath}/notice/list?crtPage=${page}&keyword=${param.keyword}">${page}</a></li>
 													</c:forEach>
 
 													<c:if test="${pMap.next == true}">
-														<li>
-															<a href="${pageContext.request.contextPath}/notice/list?crtPage=${pMap.endPageBtnNo+1}&keyword=${param.keyword}" aria-label="Next">
-																<span aria-hidden="true">&raquo;</span>
-															</a>
-														</li>
+														<li><a
+															href="${pageContext.request.contextPath}/notice/list?crtPage=${pMap.endPageBtnNo+1}&keyword=${param.keyword}"
+															aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+														</a></li>
 													</c:if>
 												</ul>
 											</nav>
@@ -157,7 +170,8 @@
 									</div>
 									<!-- //pagination 끝 -->
 
-									<a id="btn_write" href="${pageContext.request.contextPath}/${url}/notice/writeForm">글쓰기</a>
+									<a id="btn_write"
+										href="${pageContext.request.contextPath}/${url}/notice/writeForm">글쓰기</a>
 
 								</div>
 							</div>
