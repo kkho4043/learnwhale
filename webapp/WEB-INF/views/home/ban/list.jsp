@@ -126,10 +126,8 @@
 																href="${pageContext.request.contextPath}/myclass/modifyForm?classNo=${vo.classNo}"
 																style="color: #fff;">수정</a>
 														</button>
-														<button class="btn btn-primary btn-xs" id="delete">
-															<a
-																href="${pageContext.request.contextPath}/myclass/remove?classNo=${vo.classNo}"
-																style="color: #fff;">삭제</a>
+														<button class="btn btn-primary btn-xs" id="delete" data-classno="${vo.classNo }" data-classname="${vo.className }">
+															삭제
 														</button></td>
 												</tr>
 
@@ -139,12 +137,37 @@
 
 									</table>
 
-
+									<form method="get" action="${pageContext.request.contextPath}/myclass/remove">
+										<div class="modal fade" id="deleteModal">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+														<h4 class="modal-title">삭제하기</h4>
+													</div>
+													<div class="modal-body">
+														
+													</div>
+													<input type="text" name="classNo" value="" id="delno">
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">취소</button>
+														<button type="submit" class="btn btn-primary">삭제</button>
+													</div>
+												</div>
+												<!-- /.modal-content -->
+											</div>
+											<!-- /.modal-dialog -->
+										</div>
+										<!-- /.modal -->
+									</form>
 
 									<nav class="text-center" id="page">
 										<ul class="pagination">
-											<li>
-											<c:choose>
+											<li><c:choose>
 													<c:when test="${param.page <=1 or empty param.page }">
 														<a
 															href="${pageContext.request.contextPath }/myclass/list?page=1"
@@ -157,8 +180,7 @@
 															aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 														</a>
 													</c:otherwise>
-												</c:choose>
-											</li>
+												</c:choose></li>
 
 											<c:forEach var="page" begin="${pMap.startPage }"
 												end="${pMap.endPage }" step="1">
@@ -225,10 +247,25 @@
 	<!-- //footer-Area -->
 </body>
 <script type="text/javascript">
-	$("#delete").on("click", function() {
+	$(document).ready(function(){
+		$("#delete").on("click", function() {
 		//메인모달창 호출
+		var classno = $(this).data("classno");
+		console.log(classno);
+		
+		var classname = $(this).data("classname");
+		console.log(classname);
+		
+		$("#delno").val(classno);
+		
+		$(".modal-body").text(classname+'을 삭제하시겠습니까?');
+		
 		$("#deleteModal").modal();
 	});
+		
+	})
+	
+	
 </script>
 
 
