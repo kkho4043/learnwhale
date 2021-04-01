@@ -94,10 +94,11 @@
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
-															<input type="text" class="form-control" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle" value="">
+															<input type="text" class="form-control creating-problemTitle" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle"
+																value="">
 														</div>
 														<div class="form-group">
-															<textarea class="form-control" id="content" placeholder="문제를 입력해주세요." name="content"></textarea>
+															<textarea class="form-control creating-content" id="content" placeholder="문제를 입력해주세요." name="content"></textarea>
 														</div>
 
 														<div class="form-group" id="img-file">
@@ -258,6 +259,7 @@
 												<div class="col-xs-5">
 													<button type="submit" class="btn btn-primary" id="save">저장하기</button>
 												</div>
+												<input type="hidden" id="chioceType"> <input type="hidden" id="problemType">
 											</form>
 											<!-- //form -->
 										</div>
@@ -297,10 +299,6 @@
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
 
-		//console.log($(".ox-Area .answer").val());
-
-		//var a = $(".ox-Area .answer").attr("name", "none");
-
 	});
 
 	/* OX문제방식 선택할때 */
@@ -308,7 +306,7 @@
 
 		/* 폼초기화 */
 		formReset();
-
+		document.getElementById("problemType").value = "proOX";
 		/* 입력폼출력 */
 		$("#choType-div").hide();
 		$(".mc-Area").hide();
@@ -325,7 +323,7 @@
 	$(".sjF").on("click", function() {
 		/* 폼초기화 */
 		formReset();
-
+		document.getElementById("problemType").value = "proshort";
 		/* 입력폼출력 */
 		$("#choType-div").hide();
 		$(".mc-Area").hide();
@@ -337,7 +335,7 @@
 
 	/* 객관식문제방식 선택할때 */
 	$(".mcF").on("click", function() {
-
+		document.getElementById("problemType").value = "prochoice";
 		/* 폼초기화 */
 		formReset();
 
@@ -355,114 +353,109 @@
 
 	//보기 타입 텍스트 선택할 때
 	$("#choice-TextType").on("click", function() {
-
+		document.getElementById("chioceType").value = "typetext";
 		$("#image-area").hide();
 		$(".mc-Area").show();
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
+
+		imgInputReset();
+
 	});
 
 	//보기 타입 이미지 선택할 때
 	$("#choice-ImageType").on("click", function() {
 
+		document.getElementById("chioceType").value = "typeimage";
 		$("#image-area").show();
 		$(".mc-Area").hide();
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
 
-		$(".mc-Area .choiceContent").attr("name", "none");
-		$(".mc-Area .answer").attr("name", "none");
+		textInputReset();
+
 	});
 
 	/* 빈칸 여부 체크하기 */
-	$("#prblemForm").on("submit", function() {
-		console.log($(".row answer-content sj-Area .answer").val());
+$("#prblemForm").on("submit",function() {
+	console.log($(".row answer-content sj-Area .answer")
+			.val());
 
-		var problemTitle = $("#problemTitle").val();
-		var content = $("#content").val();
-		var answer = $("input[name=answer]");
+	var problemTitle = $("#problemTitle").val();
+	var content = $("#content").val();
+	var answer = $("input[name=answer]");
 
-		/* 문제 제목 체크 */
-		if (!problemTitle) {
-			alert("문제 제목을 입력해 주세요.");
-			return false;
-		}
+	/* 문제 제목 체크 */
+	if (!problemTitle) {
+		alert("문제 제목을 입력해 주세요.");
+		return false;
+	}
 
-		/* 문제지문 체크 */
-		if (!content) {
-			alert("문제 지문을 입력해 주세요.");
-			return false;
-		}
+	if (!content) {
+		alert("문제 지문을 입력해 주세요.");
+		return false;
+	}
+	if (document.getElementById("problemType").value == "prochoice") {
+		if (document.getElementById("chioceType").value == "typetext") {
 
-		$("#choice-TextType").on("click", function() {
-
-			
-			
-			if ($("#typeMc").is(":checked") == true) {
-				if (!$("#choiceContent1").val()) {
-					console.log("보기 1번 비었음")
-					alert("보기 1번 입력해주세요");
-					return false;
-				} else if (!$("#choiceContent2").val()) {
-					alert("보기 2번 입력해주세요");
-					return false;
-				} else if (!$("#choiceContent3").val()) {
-					alert("보기 3번 입력해주세요");
-					return false;
-				} else if (!$("#choiceContent4").val()) {
-					alert("보기 4번 입력해주세요");
-					return false;
-				} else if ($(".mc-Area .answer").is(":checked") == false) {
-					console.log("객관식");
-					alert("정답을 체크해주세요");
-					return false;
-				}
-			}
-		});
-
-		$("#choice-ImageType").on("click", function() {
-			
-			if ($("#typeMc").is(":checked") == true) {
-
-				if (!$("#file1").val()) {
-					alert("이미지 1번을 넣어주세요.");
-					return false;
-				} else if (!$("#file2").val()) {
-					alert("이미지 2번을 넣어주세요.");
-					return false;
-				} else if (!$("#file3").val()) {
-					alert("이미지 3번을 넣어주세요.");
-					return false;
-				} else if (!$("#file4").val()) {
-					alert("이미지 4번을 넣어주세요.");
-					return false;
-				} else if ($(".image-area .answer").is(":checked") == false) {
-					console.log("객관식");
-					alert("정답을 체크해주세요");
-					return false;
-				}
-			}
-		});
-		if ($("#typeOx").is(":checked") == true) {
-
-			if ($('input:radio[name=answer]').is(':checked') == false) {
-				console.log("ox");
+			if (!$("#choiceContent1").val()) {
+				console.log("보기 1번 비었음")
+				alert("보기 1번 입력해주세요");
+				return false;
+			} else if (!$("#choiceContent2").val()) {
+				alert("보기 2번 입력해주세요");
+				return false;
+			} else if (!$("#choiceContent3").val()) {
+				alert("보기 3번 입력해주세요");
+				return false;
+			} else if (!$("#choiceContent4").val()) {
+				alert("보기 4번 입력해주세요");
+				return false;
+			} else if ($(".mc-Area .answer").is(":checked") == false) {
+				console.log("객관식");
 				alert("정답을 체크해주세요");
 				return false;
 			}
-		}
+		} else if (document.getElementById("chioceType").value == "typeimage") {
 
-		if ($("#typeSj").is(":checked") == true) {
+			if (!$("#file1").val()) {
+				alert("이미지 1번을 넣어주세요.");
+				return false;
+			} else if (!$("#file2").val()) {
+				alert("이미지 2번을 넣어주세요.");
+				return false;
+			} else if (!$("#file3").val()) {
+				alert("이미지 3번을 넣어주세요.");
+				return false;
+			} else if (!$("#file4").val()) {
+				alert("이미지 4번을 넣어주세요.");
+				return false;
+			} else if ($(".image-area .answer").is(
+					":checked") == false) {
+				console.log("객관식");
+				alert("정답을 체크해주세요");
+				return false;
+			}
 
+		} else if (document.getElementById("problemType").value == "proshort") {
 			if (!$(".sj-Area .answer").val()) {
 				console.log("주관식")
 				alert("정답을 입력해주세요");
 				return false;
 			}
 
+		} else if (document.getElementById("problemType").value == "proshort") {
+			if ($('input:radio[name=answer]')
+					.is(':checked') == false) {
+				console.log("ox");
+				alert("정답을 체크해주세요");
+				return false;
+			}
 		}
+	}
+	/* 문제지문 체크 */
 
-	});
+});
 
 	/* 문제입력폼 리셋 */
 	function formReset() {
@@ -471,11 +464,20 @@
 		});
 	}
 
-	function choTextReset() {
-		$(".mc-Area").each(function() {
-			this.reset();
-		});
+	function textInputReset() {
+		document.getElementById("choiceContent1").value = "";
+		document.getElementById("choiceContent2").value = "";
+		document.getElementById("choiceContent3").value = "";
+		document.getElementById("choiceContent4").value = "";
+		$('input[name="answer"]').removeAttr('checked');
+	}
 
+	function imgInputReset() {
+		document.getElementById("file1").value = "";
+		document.getElementById("file2").value = "";
+		document.getElementById("file3").value = "";
+		document.getElementById("file4").value = "";
+		$('input[name="answer"]').removeAttr('checked');
 	}
 </script>
 </html>
