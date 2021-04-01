@@ -26,5 +26,7 @@ body{
 }
 
 .text-right {
-	text-aline:center;
+	font-size: 14px;
+    padding-right: 7px;
+    color: #316898;
 }
