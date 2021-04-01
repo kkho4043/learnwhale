@@ -29,7 +29,7 @@
 .contextmenu {
 	display: none;
 	position: absolute;
-	width: 50px;
+	width: 100px;
 	margin: 0;
 	padding: 0;
 	background: #FFFFFF;
@@ -88,13 +88,13 @@
 	<div id="cate-area" class="col-xs-3">
 		<div id="cate">
 
-			<div class="parents-folder" id="top-folder"
+			<div id="root-folder"
 				data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
 
-				<span class="mainGly glyphicon glyphicon-folder-close"></span> <span
-					class="main-folder" style="color: #6bc6ec;"
-					data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
-					폴더 생성하기 </span>
+				<span class="mainGly glyphicon glyphicon-folder-close"></span> 
+				<span class="main-folder" style="color: #6bc6ec;"
+					  data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
+					   문제 관리 폴더 </span>
 
 			</div>
 
