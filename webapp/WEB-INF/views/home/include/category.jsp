@@ -29,7 +29,7 @@
 .contextmenu {
 	display: none;
 	position: absolute;
-	width: 100px;
+	width: 140px;
 	margin: 0;
 	padding: 0;
 	background: #FFFFFF;
@@ -37,7 +37,8 @@
 	list-style: none;
 	box-shadow: 0 15px 35px rgba(50, 50, 90, 0.1), 0 5px 15px
 		rgba(0, 0, 0, 0.07);
-	overflow: hidden;
+	
+	z-index: 99;
 }
 
 .contextmenu li {
@@ -51,6 +52,7 @@
 	color: #B0BEC5;
 	text-decoration: none;
 	transition: ease .2s;
+	cursor:pointer;
 }
 
 .contextmenu li:hover {
@@ -64,6 +66,7 @@
 
 #cate {
 	position: relative;
+	overflow: visible;
 }
 
 .child-folder .glyphicon-folder-close {
@@ -92,7 +95,7 @@
 				data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
 
 				<span class="mainGly glyphicon glyphicon-folder-close"></span> 
-				<span class="main-folder" style="color: #6bc6ec;"
+				<span class="root-folder" style="color: #6bc6ec;"
 					  data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
 					   문제 관리 폴더 </span>
 
@@ -122,7 +125,7 @@
 							<div class="child-folder">
 
 								<span class="glyphicon glyphicon-folder-close"> </span> <a
-									class="subFolder" href="" data-cate="${cateVo.cateNo }"
+									class="subFolder" data-cate="${cateVo.cateNo }"
 									data-group="${cateVo.groupNo}"> ${cateVo.cateName} </a>
 
 							</div>
@@ -134,9 +137,10 @@
 			</c:forEach>
 
 			<ul class="contextmenu">
-				<li id="subMake" data-group=""><a href="">폴더 만들기</a></li>
-				<li id="modify"><a href="">수정</a></li>
-				<li id="delete"><a href="">삭제</a></li>
+				<li id="make" data-group=""><a>메인폴더 만들기</a></li>
+				<li id="subMake" data-group=""><a>서브폴더 만들기</a></li>
+				<li id="modify"><a>수정</a></li>
+				<li id="delete"><a>삭제</a></li>
 			</ul>
 
 		</div>
@@ -145,7 +149,7 @@
 
 	<form method="get"
 		action="${pageContext.request.contextPath}/myclass/problem/addMainFolder">
-		<div class="modal fade" id="madeModal">
+		<div class="modal fade" id="addMainFolder">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -278,8 +282,6 @@
 	
 		$(document).ready(function() {
 			fetchList();
-			
-			subMake();
 			rightClick();
 			subVisible();
 			empty();
@@ -422,21 +424,41 @@
 				
 		function rightClick(){
 				
-			$(".parents-folder .main-folder, .child-folder .subFolder").contextmenu(function(e){
+			$(".parents-folder .main-folder, .child-folder .subFolder, .root-folder").contextmenu(function(e){
 				
 				let groupNo = e.target.getAttribute("data-group");
 				let cateNo = e.target.getAttribute("data-cate");
-				//$(".contextmenu #subMake").attr("data-group", groupNo);
 				
-				if(e.target.getAttribute("class")=='subFolder'){
+	
+				if(e.target.getAttribute("class") =='root-folder'){
+					$("#make").show();
+					$("#subMake").hide();
+					
+				}else if(e.target.getAttribute("class") =='main-folder'){
+					$("#subMake").show();
+					$("#make").hide();
+					
+					$("input[name=groupNo]").val(groupNo);
+											
+				}else if(e.target.getAttribute("class")=='subFolder'){
+					$("#make").hide();
 					$("#subMake").hide();
 				}
-				else{
-					$("#subMake").show();
-				}
-				$("#subMake").on("click", function(){
+				
+					
+	
+					
+				/* if(e.target.getAttribute("class")=='subFolder'){
+					$("#make").hide();
+				}else{
+					$("#make").show();
+				} */
+				
+				
+				
+			 	$("#make").on("click", function(){
 					$("input[name=groupNo]").val(groupNo);
-				})
+				}) 
 				
 				$("#modify").on("click", function(){
 					$("input[name=cateNo]").val(cateNo);
@@ -464,23 +486,26 @@
 				$(".contextmenu").hide();
 			});
 		}
-	
-
-		$("#subMake").on("click", function(e) {
-			e.preventDefault();
-			//메인모달창 호출
+		
+		$("#make").on("click", function(){
+			
+			$("#addMainFolder").modal();
+		})
+		
+		$("#subMake").on("click", function(){
+			
 			$("#addSubFolder").modal();
-		});
+		})
 		
 		$("#modify").on("click", function(e) {
 			e.preventDefault();
-			//메인모달창 호출
+			
 			$("#modifyModal").modal();
 		});
 		
 		$("#delete").on("click", function(e) {
 			e.preventDefault();
-			//메인모달창 호출
+			
 			$("#deleteModal").modal();
 		});
 		
@@ -490,19 +515,6 @@
 		}
 		
 		
-		
-		function subMake() {
-	
-			$(".subFolder-btn").click(function() {
-	
-				var groupNo = $(this).data("group");
-				$('input[name=groupNo]').val(groupNo);
-				//서브모달창 호출
-				$("#addSubFolder").modal();
-	
-			});
-		};
-	
 			
 		function subVisible(){
 			
