@@ -21,12 +21,6 @@
 	
 	<style>
 		#problemList .btn-primary {background-color: #75ACDC; margin-right:4px;}
-		
-		#problemList .btn-danger{
-							    background-color: #F765F0;
-							    border-color: #EC2FE3;
-							    margin-left: 4px;
-							    } 
 	</style>
 
 </head>
@@ -87,7 +81,7 @@
 								</div>
 							</div>
 							
-							<div id="title" class="text-center" style="width:621px; background: white; height:100px;"><h1></h1></div>
+							<div id="title" class="text-center" style="width:621px; background: white; height:73px;"><h1 style="font-size: 25px; color: #bebebe;"></h1></div>
 							
 							<div class="row">
 								<table class="table table-striped table-bordered table-hover">
@@ -98,13 +92,13 @@
 										<col style="width: 15%;">
 										<col style="width: 15%;">
 									</colgroup>
-									<thead>
+									<thead class="thfont">
 										<tr>
-											<th>문제 번호</th>
-											<th>문제 제목</th>
-											<th>문제 유형</th>
-											<th>만든 날짜</th>
-											<th id="thead-last">관리</th>
+											<td>문제 번호</td>
+											<td style="font-color: #d0d0d0;">문제 제목</td>
+											<td>문제 유형</td>
+											<td>만든 날짜</td>
+											<td>관리</td>
 										</tr>
 									</thead>
 
@@ -254,7 +248,3 @@ $(document).ready(function(){
 	});
 </script>
 </html>
-
-
-
-

@@ -25,8 +25,8 @@
 }
 
 #top-folder{
-	margin-top: 40px;
-	color: #FFD767;
+	margin-top: 15px;
+	color: #6bc6ec;
 	margin-left: 8px;
 }
 #span-right{
@@ -58,4 +58,30 @@
 #subFolders{
 	margin-right: 3px;
 	color: #FFD767;
+}
+
+
+.mainGly{
+	color: #6bc6ec;
+    font-weight: 300;
+}
+
+.btn-danger {
+    background-color: #F7C2FF;
+    border-color: #EF88FE;
+}
+
+.text-center{
+	font-color: #316898;
+}
+
+.thfont{
+	text-align: center;
+    color: #AFAFAF;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#problemList{
+	font-weight: 600;
 }

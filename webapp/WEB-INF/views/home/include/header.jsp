@@ -33,7 +33,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="col-xs-2 text-right">
-						<span style="font-size:13px; padding-right: 7px;">
+						<span style="font-size:13px; padding-right: 7px; color: #316898;">
 							${authUser.name}님
 						</span>
 						<button id="btnJoin" type="button" class="btn btn-default btn-xs">
