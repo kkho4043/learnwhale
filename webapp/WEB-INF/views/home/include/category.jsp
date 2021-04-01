@@ -357,12 +357,12 @@
 				
 			let html = 		"<tr id='tr-center'>";
 			html += 			"<th class='text-center'>"+proVo.problemNo+"</th>";
-			html += 			"<th><a href='${pageContext.request.contextPath}/myclass/problem/creating-ViewForm?proNo="+proVo.problemNo+"'>"+proVo.problemTitle;
+			html += 			"<th><a href='${pageContext.request.contextPath}/myclass/problem/creating-ViewForm?proNo="+proVo.problemNo+"&cateNo="+proVo.cateNo+"'>"+proVo.problemTitle;
 			html +=				"</a></th>";
 			html += 			"<th class='text-center'>"+proVo.type+"</th>";
 			html += 			"<th>"+proVo.regDate+"</th>";
 			html += 			"<td>";
-			html +=					"<button id='move' class='btn btn-primary btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>이동</button>";	
+			html +=					"<button id='move' data-prono='"+proVo.problemNo+"' class='btn btn-primary btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>이동</button>";	
 			html +=					"<button class='btn btn-danger btn-xs move-Btn'>삭제</button>";
 			html += 			"</td>";
 			html += 		"</tr>";
