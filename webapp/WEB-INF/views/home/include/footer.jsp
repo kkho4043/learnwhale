@@ -13,7 +13,7 @@
 					<li class="last">관리자메일</li>
 				</ul>
 
-				<p>COPY RIGHT© 풀스택B반 시험조 ALL RIGHTS RESERVED</p>
+				<p style="color: #d0d0d0; font-weight: 500;">COPY RIGHT© 풀스택B반 시험조 ALL RIGHTS RESERVED</p>
 			</div>
 		</div>
 		<!-- //container-->

@@ -28,24 +28,24 @@
 	<!-- content-Area -->
 	<div class="container-fluid">
 		<div class="row">
-			<div id="content-Area" class="container">
+			<div id="contentArea" class="container">
 
 				<!-- 홈 메인페이지 영역 -->
 
-				<div id="position-parents">
+				<div id="position-parents" style="height: 534px;">
 					<div>
 						<img id="img-Area" src="">
 					</div>
 					<div class="container-fluid" id="div-position">
 						<div class="row">
 							<div class="container">
-								<div class="row" id="all-Area">
+								<div class="row" id="all-Area" style="margin-top: 110px;">
 
 
 									<!-- 로그인 시 나오는 창 -->
 									<div class="row" id="input-Area">
 										<div id="joinform">
-											<span id="join">로그인</span>
+											<span id="join"></span> <!-- 로그인 -->
 										</div>
 										<div class="col-sm-12">
 											<form class="form-inline" method="get" action="${pageContext.request.contextPath}/user/login">
@@ -64,17 +64,17 @@
 														<div class="col-sm-12">
 															<label for="password" id="pwArea">비밀번호</label>
 														</div>
-														<input type="text" class="form-control" id="password" name="password" placeholder="비밀번호를 입력해 주세요.">
+														<input type="text" class="form-control" id="password" stlye="margin-bottom: 14px;" name="password" placeholder="비밀번호를 입력해 주세요.">
 													</div>
 												</div>
 												<c:if test="${param.result =='fail' }">
-													<p>로그인에 실패했습니다. 다시 로그인 해주세요</p>
+													<p id="retry">로그인에 실패했습니다. 다시 로그인 해주세요</p>
 												</c:if>
 												<div class="col-sm-12">
-													<button type="submit" class="btn btn-defalut Btn_i" style="color:#337ab7;">로그인</button>
+													<button type="submit" class="btn btn-defalut Btn_i">로그인</button>
 												</div>
 												<div class="col-sm-12">
-													<button type="button" class="btn btn-defalut Btn_i"><a href="${pageContext.request.contextPath}/user/joinForm">회원가입</a></button>
+													<button type="button" class="btn btn-defalut Btn_j"><a href="${pageContext.request.contextPath}/user/joinForm" style="font-color: #75ACDC;">회원가입</a></button>
 												</div>
 
 												<!-- //joinArea -->

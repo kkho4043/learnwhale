@@ -50,8 +50,11 @@ public class ClassDao {
 		return sqlSession.selectList("class.selectList", map);
 	}
 	
-	public int selectTotalCnt(String search) {
-		return sqlSession.selectOne("class.selectTotalCnt", search);
+	public int selectTotalCnt(String search, int no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", search);
+		map.put("no", no);
+		return sqlSession.selectOne("class.selectTotalCnt", map);
 	}
 	
 	//수정폼 가져오기

@@ -111,7 +111,7 @@
 					
 					<div id="studentList" class="row">
 						<div class="col-xs-12">
-						<table  class="table table-hover table-bordered" >
+						<table  class="table table-hover table-bordered table-striped">
 							<colgroup>
 								<col style="width: 1%;">
 								<col style="width: 3%;">
@@ -131,10 +131,10 @@
 								</tr>
 							</thead>
 							
-							<c:forEach items="${joinList}" var="userVo" varStatus="status">
+							
 							
 								<tbody>
-								
+									<c:forEach items="${joinList}" var="userVo" varStatus="status">
 									<tr>
 										<td>${userVo.R }</td>
 										<td>${userVo.NAME }</td>
@@ -143,10 +143,10 @@
 										<td>${userVo.APPROVAL }</td>
 										<td><input type="checkbox" name="userNo" value="${userVo.NO }"></td>
 									</tr>
-														
+									</c:forEach>					
 								</tbody>
 								
-							</c:forEach>
+							
 							
 						</table>
 						</div>

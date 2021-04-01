@@ -4,7 +4,7 @@
 #position-parents{
 	background-color: white;
 	position: relative;
-	/* height: 900px; */
+/* 	height: 506px; */
 }
 
 
@@ -13,20 +13,18 @@ text-large{
 }
 
 #div-position{
-	/* background-color: #white; */
 	opacity: 0.9;
 	background-color: rgba(255, 255, 255);
-	margin-top: -900px;
-	/* width: 1080px; */
+	margin-top: 0px;
+	margin-bottom: 36px;
 }
 
 #joinform{
 	margin-bottom: 10px;
-	font-size: 50px;	
 }
 #join{
 	font-size: 23px;
-	color: #294350;
+	color: #d0d0d0;
 }
 
 
@@ -35,35 +33,59 @@ text-large{
 }
 
 .joinArea{
-	margin-bottom: 25px;
+	margin-bottom: 12px;
 }
 
 #idArea{
 	float: left;
-	margin-left: 50px;
+	margin-left: 41px;
+	font-size: 14px;
+	font-weight: 500;
+    color: #316898;
 }
 #pwArea{
 	float: left;
-	margin-left: 60px;
+	margin-left: 54px;
+	font-size: 14px;
+	font-weight: 500;
+    color: #316898;
 }
 #check-pwArea{
 	float: left;
 	margin-left: 85px;
+	font-weight: 100;
+	color: #d0d0d0;
 }
 
 #id-margin{
 	margin-left: 0px;
+	width: 196.5px;
+}
+
+#password{
+    width: 196.5px;
+	}
+
+#msg{
+	color: #8C8C8C;
+	font-size: 13px;
 }
 #nameArea{
 	float: left;
-	margin-left: 32px;
+	margin-left: 28px;
+	font-weight: 500;
+    color: #316898;
 }
 #emailArea{
 	float: left;
 	margin-left: 40px;
+	font-weight: 500;
+    color: #316898;
 }
 #phoneArea{
-	margin-right: 138px;
+	margin-right: 145px;
+	font-weight: 500;
+    color: #316898;
 }
 #agreeArea{
 	margin-left: 2px;
@@ -89,23 +111,33 @@ text-large{
 }
 #all-Area{
 	background-size: 100%;
-	margin-bottom: 109px;
-	margin-top: 100px;
+	margin-bottom: 20px;
+	margin-top: 15px; 
 }
 
 #img-Area{
-	 /* width: 100%; */
 	 display: table-cell;
- 	 height: 900px;
 }
 #input-Area{
 	text-align: center;
 }
 
 .Btn_i{
-	width: 190px;
+	width: 196.5px;
+	border-color: #2e6da4;
+	height: 34px;
+    border-radius: 4px;
+    background-color: #75ACDC;
+    margin-top: 7px;
+    margin-bottom: 9px;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.Btn_j{
+	width: 196.5px;
 	margin-bottom: 10px;
-	border-color: #2e6da4
+	border-color: #75ACDC;
 }
 
 .joinType{
@@ -116,5 +148,29 @@ text-large{
 	width: 600px;
 }
 
-	
-	
+#btnCheck {
+	background-color: #e6e6e6;
+    border-color: #ccc;
+    border-radius: 4px;
+    height: 34px;
+    color: #8C8C8C;
+    margin-left: 3px;
+}
+    
+.btn-join {
+    height: 34px;
+    border-radius: 4px;
+    background-color: #75ACDC;
+    margin-top: 7px;
+    width: 196.5px;
+    font-size: 14px;
+    }
+    
+.form-control{
+	width: 196.5px;
+}
+
+#retry{
+	margin-bottom: 13px;
+    color: #EF88FE;
+}

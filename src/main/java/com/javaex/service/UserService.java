@@ -25,9 +25,10 @@ public class UserService {
 
 		if (file.getSize() > 0) {
 			String saveDir = "C:\\javaStudy\\upload";
+			
 			// 확장자
 			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-
+			System.out.println(exName);	
 			// 서버 저장 파일 이름
 			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 

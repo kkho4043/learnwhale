@@ -8,6 +8,13 @@
     max-width: 195px;
     border-right: 1px #cccccc solid;
 }
+
+#root-folder{
+	margin-top:30px;
+	padding-left:10px;
+}
+
+
 .parents-folder{
 	margin-bottom: 10px;
 	cursor:pointer;
@@ -16,6 +23,7 @@
 	margin-bottom: 5px;
 	margin-left: 30px;
 	font-size: 12px;
+	padding-left:25px;
 }
 #folder-color{
 	color: #FFD767;
@@ -25,8 +33,11 @@
 }
 
 #top-folder{
-	margin-top: 40px;
-	color: #FFD767;
+	margin-top: 15px;
+	color: #6bc6ec;
+	margin-left: 8px;
+	padding-top:20px;
+	padding-left:30px;
 }
 #span-right{
 	float: right;
@@ -57,4 +68,30 @@
 #subFolders{
 	margin-right: 3px;
 	color: #FFD767;
+}
+
+
+.mainGly{
+	color: #6bc6ec;
+    font-weight: 300;
+}
+
+.btn-danger {
+    background-color: #F7C2FF;
+    border-color: #EF88FE;
+}
+
+.text-center{
+	font-color: #316898;
+}
+
+.thfont{
+	text-align: center;
+    color: #AFAFAF;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#problemList{
+	font-weight: 600;
 }

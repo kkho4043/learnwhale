@@ -24,7 +24,7 @@
 <!-- //header -->
 <div class="container">
 	<div class="row">
-		<div id="top-banner-area" class="col-xs-12" style="height: 208px; overflow: hidden;">
+		<div id="top-banner-area" class="col-xs-12" style="height: 188px; overflow: hidden;">
 
 			<c:choose>
 				<c:when test="${classInfo.cvo.logoFile} != null}">
