@@ -60,10 +60,9 @@
 			 	position:relative;
 			}
 			
-			.main-folder{
-				color: blue;			
-			}
+			.child-folder .glyphicon-folder-close {color:#316898;}
 			
+			.child-folder a{ text-decoration:none; }
 				
 		</style>
 		
@@ -80,7 +79,7 @@
 
 							<span class="glyphicon glyphicon-folder-close"></span>
 							
-							<span class="main-folder" data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
+							<span class="main-folder" style="color:#316898; font-weight:700;" data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
 							 	${cateVo.cateName}
 							</span> 
 									
@@ -91,9 +90,8 @@
 
 						<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}" class="child-group">
 							<div class="child-folder">
-								<span class="glyphicon glyphicon-menu-right"></span> 
-								
-								<span class="glyphicon glyphicon-folder-close"> </span> 
+								 
+								<span class="glyphicon glyphicon-folder-close" > </span> 
 								
 								<a class = "subFolder" href="" data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
 								 	${cateVo.cateName}
@@ -315,10 +313,9 @@
 							);
 				
 				$(this).css(
-					{'color': 'red',
-					'font-weight': '900'}
-						);
-				
+							{'color': '#F818ED',
+							'font-weight': '700'}
+						   );
 				
 				var html = $("#problemList").html();	
 
@@ -359,13 +356,13 @@
 		function render(proVo){
 				
 			let html = 		"<tr id='tr-center'>";
-			html += 			"<th>"+proVo.problemNo+"</th>";
+			html += 			"<th class='text-center'>"+proVo.problemNo+"</th>";
 			html += 			"<th><a href='${pageContext.request.contextPath}/myclass/problem/creating-ViewForm?proNo="+proVo.problemNo+"'>"+proVo.problemTitle;
 			html +=				"</a></th>";
-			html += 			"<th>"+proVo.type+"</th>";
+			html += 			"<th class='text-center'>"+proVo.type+"</th>";
 			html += 			"<th>"+proVo.regDate+"</th>";
 			html += 			"<td>";
-			html +=					"<button class='btn btn-primary btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>이동</button>";	
+			html +=					"<button id='move' class='btn btn-primary btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>이동</button>";	
 			html +=					"<button class='btn btn-danger btn-xs move-Btn'>삭제</button>";
 			html += 			"</td>";
 			html += 		"</tr>";

@@ -76,7 +76,16 @@ h1 span:nth-child(8) { animation-delay: .7s; }
   }
 }
 	</style> -->
-
+	
+	<style>
+		#problemList .btn-primary {background-color: #75ACDC; margin-right:4px;}
+		
+		#problemList .btn-danger{
+							    background-color: #F765F0;
+							    border-color: #EC2FE3;
+							    margin-left: 4px;
+							    } 
+	</style>
 
 </head>
 <body>
@@ -139,11 +148,11 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 							<div class="row">
 								<table class="table table-striped table-bordered table-hover">
 									<colgroup>
-										<col style="width: 15%;">
+										<col style="width: 12%;">
 										<col>
 										<col style="width: 15%;">
 										<col style="width: 15%;">
-										<col style="width: 20%;">
+										<col style="width: 15%;">
 									</colgroup>
 									<thead>
 										<tr>
@@ -222,7 +231,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 												<p style="float: left;">정말 삭제하시겠습니까?</p>
 
 												<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-												<button type="submit" class="btn btn-danger">삭제</button>
+												<button type="submit" class="btn btn-danger">이동</button>
 											</div>
 										</div>
 										<!-- /.modal-content -->
@@ -255,7 +264,9 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 </body>
 <script type="text/javascript">
 
-	$(".delete-Btn").on("click", function() {
+$(document).ready(function(){
+	
+	$(document).on("click", "#move", function() {
 		console.log("삭제버튼 클릭");
 
 		var title = $(this).data("title");
@@ -263,6 +274,8 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 
 		$("#delete-Modal").modal();
 	});
+})
+	
 
 	$("#cateMainSelectBox")
 			.change(
