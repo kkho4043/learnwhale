@@ -63,7 +63,10 @@
 			.child-folder .glyphicon-folder-close {color:#316898;}
 			
 			.child-folder a{ text-decoration:none; }
-				
+			
+			.main-folder {padding-left:2px; }
+			
+			.subFolder {font-size: 14px;}	
 		</style>
 		
 	</head>
@@ -260,6 +263,11 @@
 				var groupNo = $('[data-cate='+cateNum+']').attr("data-group");
 				
 				let subFolder = $(".parents-folder").nextAll("#" + groupNo);
+				
+				$('[data-cate='+cateNum+']').css(
+						{'color': '#F818ED',
+						'font-weight': '700'}
+					   );
 				
 				if (subFolder.is(":visible")) {
 							subFolder.slideUp();

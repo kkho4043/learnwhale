@@ -170,7 +170,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 							</div>
 							
 							
-							<!-- <div id="not-selected">
+							 <!-- <div id="not-selected">
 								<h1>
 								  <span>폴</span>
 								  <span>더</span>
@@ -183,7 +183,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 								  <span>세</span>
 								  <span>요</span>
 								</h1>
-							</div> -->
+							</div> --> 
 							
 							<div class="row">
 								<div class="col-xs-12 text-center">
