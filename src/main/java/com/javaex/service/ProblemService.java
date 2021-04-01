@@ -11,6 +11,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javaex.dao.ProblemDao;
 import com.javaex.vo.CategoryVo;
@@ -72,7 +73,6 @@ public class ProblemService {
 		if (file.getSize() > 0) {
 			// 컨텐츠에 이미지가 있을때
 
-
 			// db저장할 정보 수집
 			saveDir = "C:\\javaStudy\\upload";
 
@@ -94,19 +94,19 @@ public class ProblemService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			if(proVo.getAnswer().substring(proVo.getAnswer().length()-1).equals(",")) {
-				proVo.setAnswer(proVo.getAnswer().substring(0, proVo.getAnswer().length()-1));
+			if (proVo.getAnswer().substring(proVo.getAnswer().length() - 1).equals(",")) {
+				proVo.setAnswer(proVo.getAnswer().substring(0, proVo.getAnswer().length() - 1));
 			}
 			proDao.ProblemInsert(proVo);
 
 		} else {
-			
+
 			proVo.getAnswer().split(",");
 
 			// 이미지가 없을때
 			System.out.println("serviceddd" + proVo);
-			if(proVo.getAnswer().substring(proVo.getAnswer().length()-1).equals(",")) {
-				proVo.setAnswer(proVo.getAnswer().substring(0, proVo.getAnswer().length()-1));
+			if (proVo.getAnswer().substring(proVo.getAnswer().length() - 1).equals(",")) {
+				proVo.setAnswer(proVo.getAnswer().substring(0, proVo.getAnswer().length() - 1));
 			}
 			proDao.ProblemInsert(proVo);
 		}
@@ -167,8 +167,8 @@ public class ProblemService {
 		return proDao.choiceView(proNo);
 	}
 
-	// 문제 수정
-	public void ProblemModify(MultipartFile file, ProblemVo proVo, String choiceContent, String choiceNo, Map<String, Object> map) {
+	// 문제 수정2
+	public void ProblemModify2(MultipartFile file, ProblemVo proVo, String choiceContent, String choiceNo,Map<String, Object> map) {
 		System.out.println("ProblemService- ProblemModify");
 		System.out.println("파일이름" + file.getOriginalFilename());
 		String saveDir = "";
@@ -180,7 +180,6 @@ public class ProblemService {
 
 		if (file.getSize() > 0) {
 			// 컨텐츠에 이미지가 있을때
-
 
 			// db저장할 정보 수집
 			saveDir = "C:\\javaStudy\\upload";
@@ -206,39 +205,30 @@ public class ProblemService {
 			proDao.ProblemModify(proVo);
 
 		} else {
-
 			// 이미지가 없을때
-			System.out.println("asdasd" + proVo);
-			
 			proDao.ProblemModify(proVo);
 		}
+		
+		if(proVo.getType().equals( "객관식")){
+			System.out.println("이미지가있을때 보기 길이는 :" + choiceContent.length());
+			List<Integer> a = proDao.getchoiceNum(proVo.getProblemNo());
+			if(choiceContent.length()  < 6 ) {
+				
+				for(int i = 0; i < a.size() ; i ++) {
+					System.out.println("객관식 보기 이미지 들어옴");
+					String filename = "file"+(i + 1);
+					MultipartFile image = (MultipartFile) map.get(filename);
+					saveDir = "C:\\javaStudy\\upload";
 
-		String[] choiceArr = choiceContent.split(",");
-		String[] choiceNoArr = choiceNo.split(",");
-		System.out.println(choiceContent.length());
-
-		if (proVo.getType().equals("객관식")) {
-			for (int i = 1; i <= 4; i++) {
-
-				// 보기 1, 2,3,4 의 문자열이 있으면
-				if (choiceContent.length() > 3) {
-					System.out.println("proservice:" + choiceContent);
-					filePath = "";
-					proDao.ChoiceModify(filePath, choiceArr[i - 1], choiceNoArr[i - 1], proVo.getProblemNo(), i);
-				} else {
-					// 이미지가 4개 모두 들어왔다면 여기를 탄다
-					file = (MultipartFile) map.get("file" + i);
-					System.out.println("exName: " + file.getOriginalFilename());
-					exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+					exName = image.getOriginalFilename().substring(image.getOriginalFilename().lastIndexOf("."));
 
 					saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 
 					filePath = saveDir + "\\" + saveName;
 
 					proVo.setContentImage(saveName);
-
 					try {
-						byte[] fileData = file.getBytes();
+						byte[] fileData = image.getBytes();
 						OutputStream out = new FileOutputStream(filePath);
 						BufferedOutputStream bos = new BufferedOutputStream(out);
 
@@ -248,14 +238,97 @@ public class ProblemService {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					proDao.ChoiceModify(filePath, "", "", proVo.getProblemNo(), i);
+					
+					proDao.ChoiceModify(filePath,"",a.get(i), proVo.getProblemNo(), i);
+					
 				}
+				
+			}else {
+				String[] strar = choiceContent.split(",");
+				for(int i = 0; i < a.size() ; i ++) {
+					
+					
+					proDao.ChoiceModify("",strar[i],a.get(i), proVo.getProblemNo(), i);
+				}
+				
 			}
-
+			
 		}
+		
 	}
 
+	/*
+	 * public void ProblemModify(MultipartFile file, ProblemVo proVo, String
+	 * choiceContent, String choiceNo, Map<String, Object> map) {
+	 * System.out.println("ProblemService- ProblemModify");
+	 * System.out.println("파일이름" + file.getOriginalFilename()); String saveDir = "";
+	 * String exName; String saveName; String filePath;
+	 * 
+	 * System.out.println("서비스 초이스 :  " + choiceContent);
+	 * 
+	 * if (file.getSize() > 0) { // 컨텐츠에 이미지가 있을때
+	 * 
+	 * // db저장할 정보 수집 saveDir = "C:\\javaStudy\\upload";
+	 * 
+	 * exName =
+	 * file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(
+	 * "."));
+	 * 
+	 * saveName = System.currentTimeMillis() + UUID.randomUUID().toString() +
+	 * exName;
+	 * 
+	 * filePath = saveDir + "\\" + saveName;
+	 * 
+	 * proVo.setContentImage(saveName); try { byte[] fileData = file.getBytes();
+	 * OutputStream out = new FileOutputStream(filePath); BufferedOutputStream bos =
+	 * new BufferedOutputStream(out);
+	 * 
+	 * bos.write(fileData); bos.close();
+	 * 
+	 * } catch (IOException e) { e.printStackTrace(); } proDao.ProblemModify(proVo);
+	 * 
+	 * } else {
+	 * 
+	 * // 이미지가 없을때 System.out.println("asdasd" + proVo);
+	 * 
+	 * proDao.ProblemModify(proVo); }
+	 * 
+	 * String[] choiceArr = choiceContent.split(","); String[] choiceNoArr =
+	 * choiceNo.split(","); System.out.println(choiceContent.length());
+	 * 
+	 * if (proVo.getType().equals("객관식")) { for (int i = 1; i <= 4; i++) {
+	 * 
+	 * // 보기 1, 2,3,4 의 문자열이 있으면 if (choiceContent.length() > 3) {
+	 * System.out.println("proservice:" + choiceContent); filePath = "";
+	 * proDao.ChoiceModify(filePath, choiceArr[i - 1], choiceNoArr[i - 1],
+	 * proVo.getProblemNo(), i); } else { // 이미지가 4개 모두 들어왔다면 여기를 탄다 file =
+	 * (MultipartFile) map.get("file" + i); System.out.println("exName: " +
+	 * file.getOriginalFilename()); exName =
+	 * file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(
+	 * "."));
+	 * 
+	 * saveName = System.currentTimeMillis() + UUID.randomUUID().toString() +
+	 * exName;
+	 * 
+	 * filePath = saveDir + "\\" + saveName;
+	 * 
+	 * proVo.setContentImage(saveName);
+	 * 
+	 * try { byte[] fileData = file.getBytes(); OutputStream out = new
+	 * FileOutputStream(filePath); BufferedOutputStream bos = new
+	 * BufferedOutputStream(out);
+	 * 
+	 * bos.write(fileData); bos.close();
+	 * 
+	 * } catch (IOException e) { e.printStackTrace(); }
+	 * proDao.ChoiceModify(filePath, "", "", proVo.getProblemNo(), i); } }
+	 * 
+	 * } }
+	 */
+
 	public int delete(ProblemVo proVo) {
+
+		System.out.println("service delete" + proVo);
 
 		return proDao.delete(proVo);
 	}

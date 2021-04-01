@@ -102,7 +102,7 @@ public class ProblemDao {
 	}
 
 	// 보기 파일 수정
-	public int ChoiceModify(String filepath,String choiceContent, String choiceNo, int proNo, int orderNo) {
+	public int ChoiceModify(String filepath,String choiceContent, int choiceNo, int proNo, int orderNo) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -121,7 +121,7 @@ public class ProblemDao {
 	}
 	
 	public int delete(ProblemVo proVo) {
-		System.out.println("ProDao- delete");
+		System.out.println("ProDao- delete" + proVo);
 		
 		return sqlSession.update("category.delete", proVo);
 	}
@@ -131,5 +131,12 @@ public class ProblemDao {
 			System.out.println("SubCategoryByGroupNo");
 
 			return sqlSession.selectList("category.getSubCateByGroupNo", cateVo);
+		}
+
+		public List<Integer> getchoiceNum(int problemNo) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("problemNo", problemNo);
+			return sqlSession.selectList("category.getchoiceNum", problemNo);
+			
 		}
 }

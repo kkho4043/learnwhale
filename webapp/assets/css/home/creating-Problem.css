@@ -69,10 +69,11 @@ input[type=radio]{
 .image-num{
 	float: left;
 	margin-top: 3px;
+	margin-right: 20px;
 }
 .image-file{
 	float: left;
-	margin-left: 57px;
+	width: 300px;
 }
 .image-checkbox{
 	float: left;
@@ -102,6 +103,11 @@ input[type=radio]{
 	margin-right: 20px;
 	float: left;
 }
+#view-image-label{
+	margin-right: 20px;
+	float: left;
+	margin-left: -18px;
+}
 #image{
 	float: left;
 }
@@ -110,7 +116,7 @@ input[type=radio]{
     margin-right: 11px;
     margin-top: 5px;
 }
-#problemTitle{
+#view-problemTitle{
 	width: 550px;
 }
 #label-problem{
@@ -118,14 +124,26 @@ input[type=radio]{
     margin-right: 11px;
     margin-top: 15px;
 }
-#content{
+#view-content{
 	width: 550px;
 }
-#label-description{.
-	float: left;
+#label-description{
 	margin-right: 11px;
     margin-top: 15px;
 }
 #description{
 	width: 550px;
+}
+#img-file{
+	width: 551px;
+}
+.creating-content{
+	width: 594px;
+}
+.creating-problemTitle{
+	width: 594px;
+}
+#image-span{
+	float: left;
+    margin: -12px 0px 11px 27px;
 }

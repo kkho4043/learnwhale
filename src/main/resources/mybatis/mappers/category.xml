@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="category">
-  
+
 	<select id="selectCategory" parameterType="int" resultType="CategoryVo">
 		<![CDATA[
-			select  cate_no cateNo,
+			select   cate_no cateNo,
 			         user_no userNo,
 			         cate_name cateName,
 			         group_no groupNo,
@@ -40,7 +40,7 @@
 			where cate_no = #{cateNo}
 		]]>
 	</update>
-	
+
 	<delete id="deleteFolder" parameterType="int">
 	
 		<![CDATA[
@@ -49,13 +49,13 @@
 			where cate_no =  case when (select count(problem_no) from problem where cate_no = #{cateNo})= '0' 
                  			 then #{cateNo} end
 		]]>
-	
+
 	</delete>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<select id="selectProblem" parameterType="int" resultType="com.javaex.vo.ProblemVo">
 		<![CDATA[
 			select  c.cate_no cateNo,
@@ -72,7 +72,8 @@
 
 	<insert id="problemInsert" parameterType="ProblemVo">
 		<selectKey keyProperty="problemNo" resultType="int" order="AFTER">
-			SELECT seq_problem_no.CURRVAL FROM DUAL
+			SELECT seq_problem_no.CURRVAL
+			FROM DUAL
 		</selectKey>
 		<![CDATA[
 			insert into problem
@@ -144,7 +145,7 @@
 			where problem_no = #{problemNo}
 		]]>
 	</update>
-	
+
 	<update id="ChoiceModify" parameterType="map">
 		<![CDATA[
 			update choice
@@ -157,7 +158,7 @@
 	<update id="delete" parameterType="ProblemVo">
 		<![CDATA[
 			update problem
-			set problem_no = #{cateNo}
+			set cate_no = #{cateNo}
 			where problem_no = #{problemNo}
 		]]>
 	</update>
@@ -176,6 +177,16 @@
 					AND depth = 1
 			order by order_no asc
 			
+		]]>
+	</select>
+
+	<select id="getchoiceNum" parameterType="int" resultType="int">
+		<![CDATA[
+			select  
+				choice_no
+			from choice
+			where problem_no =#{problemNo}
+			order by 	choice_no asc
 		]]>
 	</select>
 

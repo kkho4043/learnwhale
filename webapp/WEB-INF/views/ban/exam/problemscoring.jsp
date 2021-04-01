@@ -284,7 +284,6 @@
 					$("#choice" + ar[i]).removeClass('btn-info');
 					$("#choice" + ar[i]).addClass('btn-primary');
 					$("#choice" + ar[i]).addClass('active');
-
 				}
 
 			} else {
