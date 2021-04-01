@@ -36,7 +36,7 @@
 	<!-- content-Area -->
 	<div class="container-fluid">
 		<div class="row">
-			<div id="content-Area" class="container">
+			<div id="contentArea" class="container">
 
 				<!-- 홈 메인페이지 영역 -->
 
@@ -55,7 +55,7 @@
 
 										<div class="row" id="input-Area">
 											<div id="joinform">
-												<span id="join">회원가입</span>
+												<span id="join"></span> <!-- 회원가입 -->
 											</div>
 
 											<div class="col-sm-12">
@@ -93,7 +93,7 @@
 															<div class="col-sm-12" >
 																<label for="pwCheck" id="check-pwArea">비밀번호 확인</label>
 															</div>
-															<input type="text" class="form-control" id="pwCheck"
+															<input type="text" class="form-control" id="pwCheck" style="color: #8C8C8C;"
 																 placeholder="비밀번호를 확인해 주세요."  onchange="check_pw()">
 																<p id="check"></p>
 														</div>
@@ -137,9 +137,9 @@
 													<div class="col-sm-12 joinArea">
 														<div class="form-group">
 															<div class="col-sm-12">
-																<label for="profile" id="phoneArea">프로필</label>
+																<label for="profile" id="phoneArea" style="margin-left: -8px;">프로필</label>
 															</div>
-															<input type="file" id="profile" style="padding-left:270px;"
+															<input type="file" id="profile" style="padding-left:279px;"
 																name="pro" placeholder="프로필사진을 입력해주세요">
 
 														</div>
@@ -148,7 +148,7 @@
 												
 
 													<div  class="col-sm-12" id="btnArea">
-														<button class="btn btn-primary btn-sm"
+														<button class="btn-join btn btn-primary btn-sm"
 															type="submit">회원가입</button>
 													</div>
 													<!-- //joinArea -->

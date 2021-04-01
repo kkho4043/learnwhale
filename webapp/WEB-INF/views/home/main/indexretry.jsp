@@ -13,7 +13,6 @@
 <link href="${pageContext.request.contextPath}/assets/css/home/maink.css" rel="stylesheet" type="text/css">
 
 
-
 <!-- js -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
@@ -22,82 +21,132 @@
 <body>
 
 	<!-- head-Area -->
-	<div id="header-Area" class="container-fluid">
-		<div class="row">
-			<div id="header" class="container navbar-brand">
-				<div class="col-xs-3">
-					<img id="logo-img" src="/learnwhale/assets/image/Logo.png">
-				</div>
-
-				<div class="col-xs-7">
-					<ul class="navbar">
-						<li class="nav"><a href="">OVERVIEW</a></li>
-						<li class="nav"><a href="">FEATURES</a></li>
-						<li class="nav"><a href="">SERVICE</a></li>
-						<li class="nav"><a id="myclass" href="">마이클래스</a></li>
-					</ul>
-				</div>
-				
-				<div class="col-xs-2 text-right">
-					<button id="btnLogin" type="button" class="btn btn-default btn-xs" >로그인</button>
-					<button id="btnJoin" type="button" class="btn btn-default btn-xs" >회원가입</button>
-				</div>
-			</div>
-			<!-- //header container-->
-			
-		</div>
-		<!-- //row -->
-	</div>
+	<c:import url="/WEB-INF/views/home/include/header.jsp"></c:import>
 	<!-- //head-Area -->
 
 	<!-- content-Area -->
-	<div  class="container-fluid">
+	<div class="container-fluid">
 		<div class="row">
 			<div id="content-Area"  class="container">
 				
-				<div id="main" class="col-xs-12">
-					<div id="content-title-area" class="row">
-						<div id="content-title" class="col-xs-8">
-							회원가입
-						</div>
-						<div id="breadcrumb-area" class="col-xs-4">
-							<ol class="breadcrumb pull-right">
-            					<li class="breadcrumb-item">홈</li>
-           						<li class="breadcrumb-item">마이클래스</li>
-            					<li class="breadcrumb-item">문제관리</li>
-          					</ol>
+				<!-- 홈 메인페이지 영역 -->
+				
+				<div id="position-parents">
+		<div>
+			<img id="img-Area" src="">
+		</div>
+		<div class="container-fluid" id="div-position">
+			<div class="row">
+				<div class="container">
+					<div class="row" id="all-Area">
+
+
+						<div class="col-sm-12">
+
+
+							<div class="row" id="input-Area">
+								<div id="joinform">
+									<span id="join">회원가입</span>
+								</div>
+								
+								<div class="col-sm-12">
+									<form class="form-inline">
+										<div class="col-sm-12 joinArea">
+											<div class="form-group">
+												<div class="col-sm-12">
+													<label for="id-margin" id="idArea">아이디</label>
+												</div>
+												<input type="text" class="form-control" id="id-margin" placeholder="아이디를 입력해 주세요.">
+											</div>
+											<!-- //form-group -->
+										</div>
+
+										<div class="col-sm-12 joinArea">
+											<div>
+												<!-- 한줄로 합치기 -->
+												<div class="col-sm-5">
+													<div class="form-group">
+														<div class="">
+															<label for="password" id="pwArea">비밀번호</label>
+														</div>
+														<input type="text" class="form-control" id="password" placeholder="비밀번호를 입력해 주세요.">
+													</div>
+												</div>
+												<!-- //joinArea -->
+		
+												<div  class="col-sm-5">
+													<div class="form-group">
+														<div class="">
+															<label for="check-password" id="check-pwArea">비밀번호 확인</label>
+														</div>
+														<input type="text" class="form-control" id="check-password" placeholder="비밀번호를 다시 입력해 주세요.">
+													</div>
+												</div>
+												<!-- //joinArea -->								
+											</div>
+										
+										
+										
+										</div>
+
+
+										<div class="col-sm-12 joinArea">
+											<div class="form-group">
+												<div class="col-sm-12">
+													<label for="name" id="nameArea">이름</label>
+												</div>
+												<input type="text" class="form-control" id="name" placeholder="이름을 입력해 주세요.">
+											</div>
+										</div>
+										<!-- //joinArea -->
+
+										<div class="col-sm-12 joinArea">
+											<div class="form-group">
+												<div class="col-sm-12">
+													<label for="phoneNo" id="phoneArea">전화번호</label>
+												</div>
+												<input type="text" class="form-control" id="phoneNo" placeholder="이름을 입력해 주세요.">
+											</div>
+										</div>
+										<!-- //joinArea -->
+
+										<div class="form-group joinArea" id="agreeArea">
+											<input type="checkbox" id="chk-agree" value="" name=""> <label for="chk-agree">서비스 약관에 동의합니다.</label>
+										</div>
+										<!-- //joinArea -->
+
+										<div class="col-sm-12 joinArea">
+											<div class="form-group joinArea" id="agreeArea">
+												<hr class="hr">
+											</div>
+										</div>
+										<!-- //joinArea -->
+
+										<div class="col-sm-12 anotherJoin-Area">
+											<a id="anotherJoin" href="">카카오로 회원가입</a>
+										</div>
+
+									</form>
+									<!-- //form -->
+								</div>
+								<!-- //col-sm-12 -->
+							</div>
+							<!-- //row -->
+
+		<!-- //회원가입 화면 -->
+
+						
 						</div>
 					</div>
-					<!-- //content-title-area -->
-					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
-					
-					<div id="content-body-area" class="row">
-							
-						<div id="join-area" class="text-enter">
-							<div class="col-xs-6 jointype-t">
-								<button type="button" class="btn btn-primary">선생님으로가입</button>
-							</div>
-							<div class="col-xs-6 jointype-s">
-								<button type="button" class="btn btn-primary">학생으로가입</button>
-							</div>
-						</div>
-
-
-											
-
-
-
-
-
-
-					</div>
-					<!-- //여기서부터 각페이지에 맞게 코딩 끝 -->
-					
-					
-
-					
 				</div>
-				<!-- //main -->
+				<!-- //container -->
+			</div>
+		</div>
+		<!-- //body -->
+	</div>
+				
+				<!-- //홈 메인페이지 영역 -->
+				
 				
 			</div>
 			<!-- //container-->
