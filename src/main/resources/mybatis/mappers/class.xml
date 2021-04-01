@@ -33,7 +33,7 @@
 	</insert>
 
 	<!-- 전체리스트 가져오기 -->
-	<select id="selectList" resultType="ClassVo" parameterType="Map">
+	<select id="selectList" resultType="classVo" parameterType="Map">
 	    <![CDATA[
 			SELECT r.rnum rnum,
 			        r.classNo classNo,
@@ -95,17 +95,17 @@
 	</select>
 	
 	<!-- 전체 글 개수 가져오기  -->
-	<select id="selectTotalCnt" parameterType="string" resultType="int">
+	<select id="selectTotalCnt" parameterType="Map" resultType="int">
 		<![CDATA[
-			SELECt count(*)
+			SELECT count(*)
 			FROM class cl, join_users j, users u 
 			where cl.class_no = j.class_no
 			and j.user_no = u.no
-			and u.no = #{no} 
-		]]>	
-		<if test="value != null and value !='' ">
+			and u.no = #{no}
+		]]>		
+			<if test="value != null and value !='' ">
 			and cl.class_name like '%' || #{search} || '%'
-		</if>
+			</if> 
 	</select>
 	
 	<!-- 수정폼 -->

@@ -29,11 +29,11 @@ public class HbanContorller {
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model, HttpSession session,
 						@RequestParam(value="search", required = false, defaultValue = "") String search,
-						@RequestParam(value="crtPage", required = false, defaultValue = "1") int crtPage) {
+						@RequestParam(value="page", required = false, defaultValue = "1") int page) {
 		System.out.println("[HbanController.list()]");
 		
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
-		Map<String, Object> pMap = classService.list(userVo.getNo(), search, crtPage);
+		Map<String, Object> pMap = classService.list(userVo.getNo(), search, page);
 		
 		model.addAttribute("pMap", pMap);
 		

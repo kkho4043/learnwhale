@@ -87,56 +87,38 @@ public class ClassService {
 	};
 
 	// 리스트
-	public Map<String, Object> list(int no, String search, int crtPage) {
+	public Map<String, Object> list(int no, String search, int page) {
 		System.out.println("[classService.list()]");
-		int listCnt = 10;
+		int postCnt = 10;
 		
-		//현재페이지
-		//if문 대신에 삼항연산자 사용
-		crtPage = (crtPage > 0) ? crtPage : (crtPage=1);
-		//crtPage
-		
-		//시작글 번호 startRnum
-		int startRnum = (crtPage -1) * listCnt +1;
-		
-		//끝글 번호 endRnum
-		int endRnum = (startRnum + listCnt) -1;
-		
-		List<ClassVo> classList = classDao.selectList(no, search, startRnum, endRnum);
+		int startRnum = (page-1)*postCnt +1;
+		int endRnum = page*postCnt;
 
-		int pageBtnCount=5;
+		int pageCnt = 5;
 		
 		//전체 글갯수 구하기
-		int totalCount = classDao.selectTotalCnt(search);
+		int totalCount = classDao.selectTotalCnt(search, no);
 		
-		int endPageBtnNo = (int)Math.ceil(crtPage/(double)pageBtnCount) * pageBtnCount;
-				
-		//시작 버튼 번호
-		int startPageBtnNo = endPageBtnNo - (pageBtnCount - 1);
+		int lastPage;
+		if((totalCount%postCnt)>0) {
+			lastPage = (totalCount/postCnt)+1;
+		}
+		else {
+			lastPage = (totalCount/postCnt);
+		}
+		
+		int startPage  = (((page-1)/pageCnt)*pageCnt)+1; 
+		int endPage = (startPage+pageCnt)-1;	
+		
+		endPage = (endPage>lastPage) ? lastPage : endPage;
 	
-		//다음버튼 boolean
-		boolean next;
-		if(endPageBtnNo * listCnt < totalCount) {
-			next = true;
-		}else {
-			next = false;
-			endPageBtnNo = (int)Math.ceil(totalCount/(double)listCnt);
-		};
-		
-		//이전버튼 boolean
-		boolean prev;
-		if(startPageBtnNo != 1) {
-			prev = true;
-		}else {
-			prev = false;
-			
-		};
+		List<ClassVo> classList = classDao.selectList(no, search, startRnum, endRnum);
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		pMap.put("classList", classList);
-		pMap.put("prev", prev);
-		pMap.put("startPageBtnNo", startPageBtnNo);
-		pMap.put("endPageBtnNo", endPageBtnNo);
-		pMap.put("next", next);
+		pMap.put("endPage", endPage);
+		pMap.put("startPage", startPage);
+		pMap.put("lastPage", lastPage);
+	
 		return pMap;
 	};
 
