@@ -260,6 +260,8 @@
 				
 			}else{
 				
+				$("#title h1").text($('[data-cate='+cateNum+']').text());
+				
 				var groupNo = $('[data-cate='+cateNum+']').attr("data-group");
 				
 				let subFolder = $(".parents-folder").nextAll("#" + groupNo);
@@ -314,6 +316,8 @@
 			
 			$(".child-folder a").on("click", function(e){
 				e.preventDefault();
+				
+				$("#title h1").text($(this).text());
 				
 				$(".child-folder a").css(
 						{'color': '',
