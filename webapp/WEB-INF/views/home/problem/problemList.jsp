@@ -17,10 +17,74 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
+<!-- <style>
+	 #not-selected {
+  width: 650px;
+  height: 400px;
+  background: #FF7777;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+h1 {
+  height: 100px;
+}
+
+h1 span {
+  position: relative;
+  top: 20px;
+  display: inline-block;
+  animation: bounce .3s ease infinite alternate;
+  font-family: 'Titan One', cursive;
+  font-size: 50px;
+  color: #FFF;
+  text-shadow: 0 1px 0 #CCC,
+               0 2px 0 #CCC,
+               0 3px 0 #CCC,
+               0 4px 0 #CCC,
+               0 5px 0 #CCC,
+               0 6px 0 transparent,
+               0 7px 0 transparent,
+               0 8px 0 transparent,
+               0 9px 0 transparent,
+               0 10px 10px rgba(0, 0, 0, .4);
+}
+
+h1 span:nth-child(2) { animation-delay: .1s; }
+h1 span:nth-child(3) { animation-delay: .2s; }
+h1 span:nth-child(4) { animation-delay: .3s; }
+h1 span:nth-child(5) { animation-delay: .4s; }
+h1 span:nth-child(6) { animation-delay: .5s; }
+h1 span:nth-child(7) { animation-delay: .6s; }
+h1 span:nth-child(8) { animation-delay: .7s; }
+
+@keyframes bounce {
+  100% {
+    top: -20px;
+    text-shadow: 0 1px 0 #CCC,
+                 0 2px 0 #CCC,
+                 0 3px 0 #CCC,
+                 0 4px 0 #CCC,
+                 0 5px 0 #CCC,
+                 0 6px 0 #CCC,
+                 0 7px 0 #CCC,
+                 0 8px 0 #CCC,
+                 0 9px 0 #CCC,
+                 0 50px 25px rgba(0, 0, 0, .2);
+  }
+}
+	</style> -->
 	
 	<style>
 		#problemList .btn-primary {background-color: #75ACDC; margin-right:4px;}
+		
+		#problemList .btn-danger{
+							    background-color: #F765F0;
+							    border-color: #EC2FE3;
+							    margin-left: 4px;
+							    } 
 	</style>
 
 </head>
@@ -80,9 +144,7 @@
 
 								</div>
 							</div>
-							
-							<div id="title" class="text-center" style="width:621px; background: white; height:73px;"><h1 style="font-size: 25px; color: #bebebe;"></h1></div>
-							
+
 							<div class="row">
 								<table class="table table-striped table-bordered table-hover">
 									<colgroup>
@@ -92,13 +154,13 @@
 										<col style="width: 15%;">
 										<col style="width: 15%;">
 									</colgroup>
-									<thead class="thfont">
+									<thead>
 										<tr>
-											<td>문제 번호</td>
-											<td style="font-color: #d0d0d0;">문제 제목</td>
-											<td>문제 유형</td>
-											<td>만든 날짜</td>
-											<td>관리</td>
+											<th>문제 번호</th>
+											<th>문제 제목</th>
+											<th>문제 유형</th>
+											<th>만든 날짜</th>
+											<th id="thead-last">관리</th>
 										</tr>
 									</thead>
 
@@ -107,6 +169,21 @@
 								</table>
 							</div>
 							
+							
+							<!-- <div id="not-selected">
+								<h1>
+								  <span>폴</span>
+								  <span>더</span>
+								  <span>를</span>
+								  <span></span>
+								  <span>선</span>
+								  <span>택</span>
+								  <span>해</span>
+								  <span>주</span>
+								  <span>세</span>
+								  <span>요</span>
+								</h1>
+							</div> -->
 							
 							<div class="row">
 								<div class="col-xs-12 text-center">
@@ -138,23 +215,25 @@
 											</div>
 											<div class="modal-body">
 												<p id="proTitle"></p>
+												<p id="cateNo"></p>
 												<select name="cateName" id="cateMainSelectBox">
 													<option selected disabled>폴더를 선택해 주세요</option>
 													<c:forEach items="${cateList}" var="cateList">
 														<c:choose>
 															<c:when test="${cateList.depth == 0}">
-																<option value="${cateList.groupNo}">${cateList.cateName}</option>
+																<option value="${cateList.cateNo}">${cateList.cateName}</option>
 															</c:when>
 														</c:choose>
 													</c:forEach>
-												</select> <select name="cateName" id="cateSubSelectBox" style="display: none">
-												</select>
+													
+												</select> 
+												<select name="" id="cateSubSelectBox" style="display: none"></select>
 											</div>
 											<div class="modal-footer">
-												<p style="float: left;">정말 삭제하시겠습니까?</p>
+												<p style="float: left;">문제를  이동 하시겠습니까?</p>
 
 												<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-												<button type="submit" class="btn btn-danger">이동</button>
+												<button type="submit" class="btn btn-primary">이동</button>
 											</div>
 										</div>
 										<!-- /.modal-content -->
@@ -188,12 +267,14 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-	
+	document.getElementById("cateNosave").value = ${param.cateNo}	
 	$(document).on("click", "#move", function() {
-		console.log("삭제버튼 클릭");
+		console.log("이동버튼 클릭");
 
 		var title = $(this).data("title");
+		
 		document.getElementById("proTitle").innerHTML = "문제 제목 :  " + title;
+		document.getElementById("cateNo").innerHTML = "카테고리 번호: " + cateNo;
 
 		$("#delete-Modal").modal();
 	});
@@ -242,9 +323,13 @@ $(document).ready(function(){
 	$("#creatbtn").on("click", function() {
 		var cateN = document.getElementById("cateNosave").value
 		
-		location.href = "${pageContext.request.contextPath}//myclass/problem/creatingForm?cateNo="+cateN+"";
+		location.href = "${pageContext.request.contextPath}/myclass/problem/creatingForm?cateNo="+cateN;
 
 		
 	});
 </script>
 </html>
+
+
+
+
