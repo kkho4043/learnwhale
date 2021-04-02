@@ -41,6 +41,33 @@
 }
 
 
+.tableFontSize{
+	font-size: 14px;
+}
 
+.radioSize{
+	margin-top: 0px;
+}
 
+#btnCheck{
+	margin-top: 6px;
+    margin-bottom: 5px;
+}
 
+#banner{
+    margin-top: 6px;
+}
+
+.btnSave{
+	margin-left: 5px;
+	width: 60px;
+}
+
+.btnCancel{
+	width: 60px;
+}
+
+.interval{
+	margin-top: 20px;
+    margin-bottom: 14px;
+}

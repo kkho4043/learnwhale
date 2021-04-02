@@ -89,10 +89,10 @@
 
 							<div class="row">
 								<div class="col-xs-11" style="width: 97%;">
-									<table class="table table-striped table-hover table-bordered"
+									<table class="tableFontSize table table-striped table-hover table-bordered"
 										style="margin-left: 15px;">
 
-										<thead>
+										<thead class="">
 											<tr>
 												<th>번호</th>
 												<th>반이름</th>
@@ -121,12 +121,12 @@
 
 													<td>${vo.hidden}</td>
 
-													<td><button class="btn btn-primary btn-xs">
+													<td><button class="btn-modify btn btn-primary btn-xs">
 															<a
 																href="${pageContext.request.contextPath}/myclass/modifyForm?classNo=${vo.classNo}"
 																style="color: #fff;">수정</a>
 														</button>
-														<button class="btn btn-primary btn-xs" id="delete" data-classno="${vo.classNo }" data-classname="${vo.className }">
+														<button class="btn-delete btn btn-primary btn-xs" id="delete" data-classno="${vo.classNo }" data-classname="${vo.className }">
 															삭제
 														</button></td>
 												</tr>

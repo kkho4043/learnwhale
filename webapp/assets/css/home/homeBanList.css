@@ -27,6 +27,20 @@ body{
 
 .text-right {
 	font-size: 14px;
-    padding-right: 7px;
+    padding-right: 14px;
     color: #316898;
+}
+
+.btn-delete{
+    background-color: #F765F0;
+    border-color: #EC2FE3;
+}
+
+.btn-modify{
+    background-color: #75ACDC;
+    border-color: #316898;
+}
+
+#msg{
+	color: #EF88FE;
 }
