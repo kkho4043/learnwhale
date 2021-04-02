@@ -138,7 +138,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 										</div>
 										<div class="col-xs-6">
 											<button class="btn btn-primary btn-sm pull-right" type="button" id = "creatbtn">문제등록</button>
-											<input TYPE="hidden" id = "cateNosave">
+											<input type="hidden" id = "cateNosave">
 										</div>
 									</div>
 
@@ -211,11 +211,13 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true"></span>
 												</button>
-												<h4 class="modal-title">문제 제목</h4>
+												<h4 class="modal-title">문제 제목</h4>		
+												<input type="text" value="${proVo.problemNo}" name="problemNo">	
+												<input type="text" value="${proVo.cateNo}"	name="cateNo">																
 											</div>
 											<div class="modal-body">
 												<p id="proTitle"></p>
-												<p id="cateNo"></p>
+												<p id="proNo"></p>										
 												<select name="cateName" id="cateMainSelectBox">
 													<option selected disabled>폴더를 선택해 주세요</option>
 													<c:forEach items="${cateList}" var="cateList">
@@ -225,7 +227,6 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 															</c:when>
 														</c:choose>
 													</c:forEach>
-													
 												</select> 
 												<select name="" id="cateSubSelectBox" style="display: none"></select>
 											</div>
@@ -272,18 +273,16 @@ $(document).ready(function(){
 		console.log("이동버튼 클릭");
 
 		var title = $(this).data("title");
+		var proNo = $(this).data("proNo");
 		
 		document.getElementById("proTitle").innerHTML = "문제 제목 :  " + title;
-		document.getElementById("cateNo").innerHTML = "카테고리 번호: " + cateNo;
-
+		
 		$("#delete-Modal").modal();
 	});
 })
 	
 
-	$("#cateMainSelectBox")
-			.change(
-					function() {
+	$("#cateMainSelectBox").change(function() {
 						var groupNo = $(this).val();
 
 						$.ajax({
@@ -294,13 +293,12 @@ $(document).ready(function(){
 										groupNo : groupNo,
 									},
 									success : function(data) {
-										$("#cateSubSelectBox").css("display",
-												"");
+										$("#cateSubSelectBox").css("display","");
 										$('#cateSubSelectBox').empty();
 
 										for (var i = 0; i < data.length; i++) {
 											$('#cateSubSelectBox').append(
-													'<option>'
+															  '<option>'
 															+ data[i].cateName
 															+ '</option>');
 										}

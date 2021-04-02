@@ -120,6 +120,7 @@ public class ProblemDao {
 		return sqlSession.update("category.ChoiceModify", map);
 	}
 	
+	//문제 삭제
 	public int delete(ProblemVo proVo) {
 		System.out.println("ProDao- delete" + proVo);
 		
