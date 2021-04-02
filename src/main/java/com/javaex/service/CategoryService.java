@@ -52,13 +52,5 @@ public class CategoryService {
 		return caDao.updateFolder(cateVo);
 	}
 
-	/*
-	 * // 문제 리스트 public List<ProblemVo> getProblems(int cateNo) {
-	 * System.out.println("ProblemService- getProblem");
-	 * 
-	 * System.out.println(caDao.selectProblem(cateNo) + "service");
-	 * 
-	 * return caDao.selectProblem(cateNo); }
-	 */
 	
 }

@@ -58,8 +58,8 @@ public class CategoryController {
 
 	// 메인폴더생성
 	@RequestMapping(value = "/addMainFolder", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addMainFolder(@ModelAttribute CategoryVo cateVo) {
-		
+	public String addMainFolder(@ModelAttribute CategoryVo cateVo, HttpSession session) {
+	
 		caService.addMainFolder(cateVo);
 
 		return "redirect:problemList";
@@ -81,19 +81,6 @@ public class CategoryController {
 		return "redirect:problemList";
 	}
 
-	/*
-	 * // 문제관리 리스트
-	 * 
-	 * @RequestMapping(value = "problemList", method = { RequestMethod.GET,
-	 * RequestMethod.POST }) public String problemList(Model model, HttpSession
-	 * session) { System.out.println("[ProblemController.problemList()]");
-	 * 
-	 * int no = ((UserVo) session.getAttribute("authUser")).getNo();
-	 * 
-	 * model.addAttribute("cateList", caService.getCategory(no));
-	 * 
-	 * return "home/problem/problemList"; }
-	 */
 	
 	
 }

@@ -148,7 +148,7 @@
 	</div>
 
 	<form method="get"
-		action="${pageContext.request.contextPath}/myclass/problem/addMainFolder">
+		action="${pageContext.request.contextPath}/myclass/category/addMainFolder">
 		<div class="modal fade" id="addMainFolder">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -164,7 +164,7 @@
 							type="text" name="cateName" placeholder="폴더 이름을 입력해주세요"
 							style="width: 400px;">
 						<!-- no 히든으로 처리 -->
-						<input type="text" name="userNo" value="1">
+						<input type="hidden" name="userNo" value="${authUser.no }">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -180,7 +180,7 @@
 	<!-- /.addMainFolder-->
 
 	<form method="get"
-		action="${pageContext.request.contextPath}/myclass/problem/addSubFolder">
+		action="${pageContext.request.contextPath}/myclass/category/addSubFolder">
 		<div class="modal fade" id="addSubFolder">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -195,8 +195,8 @@
 						<label for="SubName">폴더이름</label> <input id="SubName" type="text"
 							name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 						<!-- no 히든으로 처리 -->
-						<input type="text" name="userNo" value="1"> <input
-							type="text" name="groupNo" value="">
+						<input type="hidden" name="userNo" value="${authUser.no }"> <input
+							type="hidden" name="groupNo" value="">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -211,7 +211,7 @@
 	</form>
 	<!-- /.addSubFolder-->
 	<form method="get"
-		action="${pageContext.request.contextPath}/myclass/problem/updateFolder">
+		action="${pageContext.request.contextPath}/myclass/category/updateFolder">
 		<div class="modal fade" id="modifyModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -226,7 +226,7 @@
 						<p>
 							<input type="text" name="cateName" id="modiText"
 								placeholder="폴더 이름을 입력해주세요" style="width: 400px;"> <input
-								type="text" name="cateNo" value="">
+								type="hidden" name="cateNo" value="">
 						</p>
 					</div>
 					<div class="modal-footer">
@@ -243,7 +243,7 @@
 	</form>
 
 	<form method="get"
-		action="${pageContext.request.contextPath}/api/myclass/problem/delete">
+		action="${pageContext.request.contextPath}/myclass/category/delete">
 		<div class="modal fade" id="deleteModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -255,7 +255,7 @@
 						<h4 class="modal-title">폴더 삭제</h4>
 					</div>
 					<div class="modal-body">폴더를 삭제하시겠습니까?</div>
-					<input type="text" name="cateNo" value="">
+					<input type="hidden" name="cateNo" value="">
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 						<button type="submit" class="btn btn-primary">삭제하기</button>
@@ -433,26 +433,23 @@
 				if(e.target.getAttribute("class") =='root-folder'){
 					$("#make").show();
 					$("#subMake").hide();
+					$("#delete").hide();
+					$("#modify").hide();
 					
 				}else if(e.target.getAttribute("class") =='main-folder'){
 					$("#subMake").show();
 					$("#make").hide();
+					$("#delete").show();
+					$("#modify").show();
 					
 					$("input[name=groupNo]").val(groupNo);
 											
 				}else if(e.target.getAttribute("class")=='subFolder'){
 					$("#make").hide();
 					$("#subMake").hide();
+					$("#delete").show();
+					$("#modify").show();
 				}
-				
-					
-	
-					
-				/* if(e.target.getAttribute("class")=='subFolder'){
-					$("#make").hide();
-				}else{
-					$("#make").show();
-				} */
 				
 				
 				
