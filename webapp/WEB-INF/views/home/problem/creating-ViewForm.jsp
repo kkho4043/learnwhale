@@ -156,8 +156,8 @@
 																						<strong>${status.count}</strong>
 																					</div>
 																					<div class="col-xs-9">
-																						<input type="text" class="form-control" placeholder="The first answer" id="choiceContent${status.count}" name="choiceContent"
-																							value="${choVo.choiceContent}"> <input type="hidden" name="choiceNo" value="${choVo.choiceNo}">
+																						<input type="text" class="form-control" placeholder="The first answer" id="choiceContent${status.count}" name="choiceContent" value="${choVo.choiceContent}"> 
+																						<input type="hidden" name="choiceNo" value="${choVo.choiceNo}">
 																					</div>
 																					<div class="col-xs-2">
 																						<input type="checkBox" class="answer" name="answer" id="check${choVo.orderNo}" value="${status.count}"> <label
@@ -166,9 +166,7 @@
 																				</div>
 																			</c:forEach>
 																		</div>
-
-
-																		<!-- //real-MaArea -->
+																	
 
 																		<div class="row answer-content" id="image-area"
 																			<c:if test="${choVo[0].choiceContent != null}">style=" display: none;"</c:if>>
@@ -177,9 +175,11 @@
 																			</div>
 																			<c:forEach items="${choVo}" var="choVo" varStatus="status">
 																				<div class="col-xs-12 answer-num image-answer-num">
-																					<strong class="image-num">${status.count}</strong> <input type="file" name="Image" id="file${status.count}" class="image-file">
+																					<strong class="image-num">${status.count}</strong> 
+																					<input type="file" name="Image" id="file${status.count}" class="image-file">
 																					<input type="checkBox" class="answer image-checkbox" name="answer" id="imgCheck${status.count}" value="${status.count}">
-																					<label for="imgCheck-${status.count}" class="check-label">정답체크</label>
+																					<label for="imgCheck${status.count}" class="check-label">정답체크</label>
+																					<input type="hidden" name="choiceNo" value="${choVo.choiceNo}">
 																				</div>
 																				<div class="col-xs-12">
 																					<span id="image-span">이미지: ${choVo.attachmentFile}</span>
@@ -365,8 +365,7 @@
 	});
 
 	/* 빈칸 여부 체크하기 */
-	$("#prblemForm")
-			.on("submit",function() {
+	$("#prblemForm").on("submit",function() {
 						
 						var problemTitle = $("#view-problemTitle").val();
 						var content = $("#view-content").val();
@@ -405,16 +404,16 @@
 								}
 							} else if (document.getElementById("chioceType").value == "typeimage") {
 
-								if (!(document.getElementById("file1").value) {
+								if (!(document.getElementById("file1").value)) {
 									alert("이미지 1번을 넣어주세요.");
 									return false;
-								} else if (!(document.getElementById("file2").value) {
+								} else if (!(document.getElementById("file2").value)) {
 									alert("이미지 2번을 넣어주세요.");
 									return false;
-								} else if (!document.getElementById("file3").value) {
+								} else if (!(document.getElementById("file3").value)) {
 									alert("이미지 3번을 넣어주세요.");
 									return false;
-								} else if (!(document.getElementById("file4").value) {
+								} else if (!(document.getElementById("file4").value)) {
 									alert("이미지 4번을 넣어주세요.");
 									return false;
 								} else if ($("#image-area .answer").is(":checked") == false) {

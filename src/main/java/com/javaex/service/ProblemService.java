@@ -11,7 +11,6 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.javaex.dao.ProblemDao;
 import com.javaex.vo.CategoryVo;
@@ -212,7 +211,7 @@ public class ProblemService {
 		if(proVo.getType().equals( "객관식")){
 			System.out.println("이미지가있을때 보기 길이는 :" + choiceContent.length());
 			List<Integer> a = proDao.getchoiceNum(proVo.getProblemNo());
-			if(choiceContent.length()  < 6 ) {
+			if(choiceContent.length()  < 6) {
 				
 				for(int i = 0; i < a.size() ; i ++) {
 					System.out.println("객관식 보기 이미지 들어옴");

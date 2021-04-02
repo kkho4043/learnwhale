@@ -240,7 +240,7 @@
 																<h4>정답을 적어주세요.</h4>
 															</div>
 															<div class="col-sm-12" id="last-input">
-																<input type="text" class="form-control answer" id="exampleInputEmail3" name="answer">
+																<input type="text" class="form-control answer" id="exampleInputEmail3" name="answer" value="">
 															</div>
 														</div>
 														<!-- //answer-content -->
@@ -259,7 +259,8 @@
 												<div class="col-xs-5">
 													<button type="submit" class="btn btn-primary" id="save">저장하기</button>
 												</div>
-												<input type="hidden" id="chioceType"> <input type="hidden" id="problemType">
+												<input type="hidden" id="chioceType"> 
+												<input type="hidden" id="problemType">
 											</form>
 											<!-- //form -->
 										</div>
@@ -313,9 +314,6 @@
 		$(".ox-Area").show();
 		$(".sj-Area").hide();
 
-		//$(".mc-Area .answer").attr("name", "none");
-		//$(".ox-Area .answer").attr("name", "answer");
-
 		$('.oxF').prop('checked', true);
 	});
 
@@ -345,14 +343,12 @@
 		$(".ox-Area").hide();
 		$(".sj-Area").hide();
 
-		//$(".ox-Area .answer").attr("name", "none");
-		//$(".mc-Area .answer").attr("name", "answer");
-
 		$('.mcF').prop('checked', true);
 	});
 
 	//보기 타입 텍스트 선택할 때
 	$("#choice-TextType").on("click", function() {
+		
 		document.getElementById("chioceType").value = "typetext";
 		$("#image-area").hide();
 		$(".mc-Area").show();
@@ -360,7 +356,6 @@
 		$(".sj-Area").hide();
 
 		imgInputReset();
-
 	});
 
 	//보기 타입 이미지 선택할 때
@@ -378,8 +373,6 @@
 
 	/* 빈칸 여부 체크하기 */
 $("#prblemForm").on("submit",function() {
-	console.log($(".row answer-content sj-Area .answer")
-			.val());
 
 	var problemTitle = $("#problemTitle").val();
 	var content = $("#content").val();
@@ -395,6 +388,7 @@ $("#prblemForm").on("submit",function() {
 		alert("문제 지문을 입력해 주세요.");
 		return false;
 	}
+	
 	if (document.getElementById("problemType").value == "prochoice") {
 		if (document.getElementById("chioceType").value == "typetext") {
 
@@ -418,21 +412,19 @@ $("#prblemForm").on("submit",function() {
 			}
 		} else if (document.getElementById("chioceType").value == "typeimage") {
 
-			if (!$("#file1").val()) {
+			if (!(document.getElementById("file1").value)) {
 				alert("이미지 1번을 넣어주세요.");
 				return false;
-			} else if (!$("#file2").val()) {
+			} else if (!(document.getElementById("file2").value)) {
 				alert("이미지 2번을 넣어주세요.");
 				return false;
-			} else if (!$("#file3").val()) {
+			} else if (!(document.getElementById("file3").value)) {
 				alert("이미지 3번을 넣어주세요.");
 				return false;
-			} else if (!$("#file4").val()) {
+			} else if (!(document.getElementById("file4").value)) {
 				alert("이미지 4번을 넣어주세요.");
 				return false;
-			} else if ($(".image-area .answer").is(
-					":checked") == false) {
-				console.log("객관식");
+			} else if ($("#image-area .answer").is(":checked") == false) {
 				alert("정답을 체크해주세요");
 				return false;
 			}
@@ -444,16 +436,14 @@ $("#prblemForm").on("submit",function() {
 				return false;
 			}
 
-		} else if (document.getElementById("problemType").value == "proshort") {
-			if ($('input:radio[name=answer]')
-					.is(':checked') == false) {
+		} else if (document.getElementById("problemType").value == "proOX") {
+			if ($('input:radio[name=answer]').is(':checked') == false) {
 				console.log("ox");
 				alert("정답을 체크해주세요");
 				return false;
 			}
 		}
 	}
-	/* 문제지문 체크 */
 
 });
 
