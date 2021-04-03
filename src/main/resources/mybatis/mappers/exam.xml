@@ -129,9 +129,10 @@ from(select
         <![CDATA[
                 r.rnum >= #{startNum}
    		 		and r.rnum <= #{endNum}
+   		 		and r.classNo = #{classNo}
                 
 		]]>
-			
+
 	</select>
 
 	<!--시험리스트갯수 -->
@@ -165,6 +166,7 @@ from(select
 			r.problemtitle,
 			r.mypoint mypoint,
 			r.result,
+			r.whether,
 			r.type
 		from(select 
 				 rownum rnum,
@@ -172,12 +174,14 @@ from(select
 				 o.problemTitle,
 				 o.mypoint mypoint,
 				 o.result,
+				 o.whether,
 				 o.type
 			 from(select
 						q.order_num orderNum,
 						p.problem_title problemTitle,
 						s.mypoint mypoint,
 						decode(q.point,s.mypoint,'O','X') result,
+						decode(s.status,'완료','채점완료','미채점') whether,
 						p.type type
 						
 					from solve s, question q, problem p 
@@ -311,6 +315,16 @@ from(select
 			where exam_no = #{examNo}
 			]]>
 	</delete>
+	
+	<delete id="solvedelete" parameterType="int">
+		<![CDATA[
+			 delete 
+            from solve s
+            where s.question_no in (select question_no 
+                                    from question
+                                    where exam_no = #{examNo})
+			]]>
+	</delete>
 
 	<insert id="questionupdate" parameterType="QuestionVo">
 		<![CDATA[
@@ -323,7 +337,7 @@ from(select
 							)	
 		]]>
 	</insert>
-	<!-- 시험을 풀었는지 안풀었는지  -->
+	<!-- 시험을 풀었는지 안풀었는지 -->
 	<select id="getAttendance" parameterType="int" resultType="int">
 		<![CDATA[
 			select  
@@ -335,8 +349,8 @@ from(select
 			and (s.status = '제출' or s.status = '완료')
 		]]>
 	</select>
-	
-	<!-- 시험을 풀었는지 안풀었는지  -->
+
+	<!-- 시험을 풀었는지 안풀었는지 -->
 	<select id="getsolve" parameterType="int" resultType="int">
 		<![CDATA[
 			 select  
@@ -489,7 +503,8 @@ from(select
 		s.mypoint mypoint,
 		q.point point
 		from solve s,question q,problem p
-		where s.question_no = q.question_no
+		where s.question_no =
+		q.question_no
 		and q.problem_no = p.problem_no
 		and s.SUBMIT_ANSWER = p.ANSWER
 		and q.exam_no = #{examNo}
@@ -545,5 +560,70 @@ from(select
 		]]>
 	</select>
 
+
+	<!-- 문제풀기시 리스트 -->
+	<select id="getsolvetime" parameterType="int">
+		<![CDATA[
+			select
+			     count(*)
+			from exam
+			where exam_no = #{examNo}
+			and start_date > sysdate
+		]]>
+	</select>
+
+	<update id="allscoring" parameterType="map">
+		<![CDATA[
+			 update (
+		        select
+		            s.status,
+		            s.mypoint
+				from solve s,question q,exam e
+				where s.question_no = q.question_no
+		        and e.exam_no = q.exam_no
+		        and e.exam_no = #{examNo}
+		]]>
+		<if test="joinNo != null and joinNo != '' and joinNo != 0 ">
+			and join_no = #{joinNo}
+		</if>
+	
+	<![CDATA[
+		and (s.status = '출제' or s.status = '저장')
+       		 )
+		set mypoint = 0,
+        status = '완료'
+	]]>
+
+	</update>
+
+
+	<update id="endtimeexam">
+		<![CDATA[
+			 update (
+		        select
+		            s.status,
+		            s.mypoint
+				from solve s,question q,exam e
+				where s.question_no = q.question_no
+		        and e.exam_no = q.exam_no
+                and e.end_date < sysdate
+                and (s.status = '출제' or s.status = '저장')
+       		 )
+		set mypoint = 0,
+        status = '완료'
+	
+		]]>
+	</update>
+
+	<select id="exammodifywhere" parameterType="int" resultType="int">
+	<![CDATA[
+		select
+            count(*)
+            from question q,solve s
+            where s.question_no = q.question_no
+            and (s.status = '제출' or s.status = '완료')
+            and q.exam_no = #{examNo}
+		]]>
+	</select>
 
 </mapper>

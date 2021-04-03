@@ -257,6 +257,9 @@
 						if (title == '') {
 							alert('제목을 입력해주세요');
 							return false;
+						}else if (examTitle.lenght > 20 ) {
+							alert('시험제목의 길이는 20글자를 넘을수없습니다');
+							return false;
 						} else if (etype == '쪽지시험') {
 							if (time == '') {
 								alert('시간을 입력해주세요');
@@ -366,7 +369,6 @@
 					console.log("카테고리에 항목없음")
 				} else {
 					for (var i = 0; i < cateproList.length; i++) {
-
 						render(cateproList[i], "up");
 					}
 
@@ -382,7 +384,7 @@
 	});
 
 	//리스트 추가(출력)
-	function render(cateVo, updown, btnflag) {
+	function render(cateVo, updown) {
 		btnflag =true;
 		for (var i = 0; i < voarr.length; i++) {
 			if(voarr[i].problemNo === cateVo.problemNo){

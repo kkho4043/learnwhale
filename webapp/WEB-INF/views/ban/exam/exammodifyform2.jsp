@@ -73,10 +73,9 @@
 							<div class="row">
 								<div class="col-xs-2" style="margin-top: 3px;">제목</div>
 								<div class="col-xs-10">
-									<input type="text" id="examtitle">
+									<input type="text" id="examtitle" value = "${pMap.examVo.examTitle}">
 								</div>
 							</div>
-
 							<div class="row">
 								<div class="col-xs-2">시험 유형</div>
 
@@ -96,8 +95,6 @@
 										<option value="240" <c:if test="${pMap.examVo.time == '240'}"> selected="selected" </c:if>>4분</option>
 										<option value="300" <c:if test="${pMap.examVo.time == '300'}"> selected="selected" </c:if>>5분</option>
 									</select>
-
-
 								</div>
 							</div>
 
@@ -135,14 +132,7 @@
 									</tr>
 								</thead>
 								<tbody id="selectprolist">
-									<c:forEach items="${pMap.qList}" var="vo" varStatus="status">
-										<tr>
-											<td>${status.count}</td>
-											<td>${vo.problemTitle}</td>
-											<td>${vo.problemType}</td>
-											<td>${vo.point}</td>
-										</tr>
-									</c:forEach>
+									
 								</tbody>
 							</table>
 						</div>
@@ -194,6 +184,31 @@
 								$('#testtype-home').prop('checked', true);
 							}
 						}
+						
+						$.ajax({
+							url : "${pageContext.request.contextPath}/${url}/exam/selectquestion",
+							type : "post",
+							//contentType : "application/json",
+							data : {
+								examNo : "${param.examNo}"
+							},
+							success : function(List) {
+								var str = "";
+								for(var i = 0;i < List.length;i++){
+									str += '<tr>';
+									str += '	<td>' + List[i].problemNo + '</td>';
+									str += '	<td>' + List[i].problemTitle + '</td>';
+									str += '	<td>' + List[i].problemType + '</td>';
+									str += '	<td>' + List[i].point + '</td>';
+									str += '</tr>';
+									
+									$("#selectprolist").prepend(str);
+								}
+							},
+							error : function(XHR, status, error) {
+								console.error(status + " : " + error);
+							}
+						});
 
 					});
 	//시험 유형
@@ -220,14 +235,15 @@
 		if (examTitle == '') {
 			alert('제목을 입력해주세요');
 			return false;
-		} else if ("${pMap.examVo.examType}" == '쪽지시험') {
+		}
+		else if ("${pMap.examVo.examType}" == '쪽지시험') {
 			if (time == '') {
 				alert('시간을 입력해주세요');
 				return false;
 			}
 		}
 		$.ajax({
-			url : "${pageContext.request.contextPath}/abc/exam/modify2",
+			url : "${pageContext.request.contextPath}/${url}/exam/modify2",
 			type : "post",
 			//contentType : "application/json",
 			data : {
@@ -236,6 +252,7 @@
 				time : time
 			},
 			success : function(url) {
+				alert('시험내용이 수정되었습니다');
 				console.log(url)
 				location.href = "${pageContext.request.contextPath}" + url;
 
@@ -247,6 +264,11 @@
 		});
 
 	});
+	
+	
+
+	
+
 </script>
 </html>
 

@@ -70,7 +70,7 @@
 						<div class="row">
 
 							<div class="searchF form-group form-inline">
-								<form action="${pageContext.request.contextPath}/${url}/exam/list" method="get">
+								<form action="${pageContext.request.contextPath}/${url}" method="get">
 									<input type="text" class="form-control input-sm" id="txtSearchKyword" name="keyward" placeholder="">
 									<button type="submit" class="btn btn-default btn-sm">검색</button>
 								</form>
@@ -158,7 +158,7 @@
 
 
 										<c:if test="${eMap.next == true}">
-											<li><a href="${pageContext.request.contextPath}/${url}/exam/list?crtPage=${pMap.endPageBtnNo+1}&keyward=${param.keyward}">▶</a></li>
+											<li><a href="${pageContext.request.contextPath}/${url}/?crtPage=${pMap.endPageBtnNo+1}&keyward=${param.keyward}">▶</a></li>
 										</c:if>
 									</ul>
 								</nav>
@@ -192,11 +192,13 @@
 </body>
 
 <script type="text/javascript">
-	if ("${param.thissolve}" == "false") {
+	
+	if ("${param.thissolve}" == "nonesolve") {
 		alert('가입하시기전 만들어진 시험입니다');
-	} else {
-
+	} else if("${param.thissolve}" == "notyet"){
+		alert('아직 대기중인 시험입니다');
 	}
+	
 </script>
 </html>
 

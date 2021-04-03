@@ -62,90 +62,102 @@
 					</div>
 					<!-- //메인영역 타이틀 -->
 
-
-
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="main-content-area">
 						<c:if test="${classInfo.joinVo.type == '선생님'}">
-							<div class="col-xs-2" style="min-height: 250px;">
-
+							<div class="col-xs-2" style="min-height: 250px; margin: 0px 5px 30px -10px;">
+								<input type="button" class="btn btn-primary" id="classscroing" value="반 제첨 완료 하기" style="margin: 0px 0px 5px -10px;">
 								<div id="student-list" class="row" style="padding-right: 0px; padding-left: 0px; margin-left: -15px; width: 145px; background: #f7f7f7;">
 									<ol>
 										<c:forEach items="${upMap.eulist}" var="vo" varStatus="status">
-
-											<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${vo.joinNo}">${vo.username}(${vo.result})</a></li>
-
+											<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${vo.joinNo}">${vo.username}
+													(${vo.result})</a></li>
 										</c:forEach>
 									</ol>
-
 								</div>
-
 							</div>
 						</c:if>
 
 
 						<!-- //student-list -->
 
-						<div id="report-area" class="col-xs-10" style = "min-height: 250px;">
+						<div id="report-area" class="col-xs-10" style="min-height: 250px;">
 							<div class="row">
 								<div class="col-xs-12">
-									<div class="row">
-										<div class="col-xs-12">
-											<table class="table table-striped table-bordered table-hover">
-												<colgroup>
-													<col style="width: 10%;">
-													<col>
-													<col style="width: 15%;">
-													<col style="width: 15%;">
-												</colgroup>
-												<thead class="">
-													<tr>
-														<th>번호</th>
-														<th>문제명</th>
-														<th>점수</th>
-														<th>오답여부</th>
-														<th>형식</th>
+									<c:if test="${param.joinNo != 1 }">
+										<div class="row">
 
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach items="${upMap.eplist}" var="vo" varStatus="status">
+											<div class="col-xs-12">
+
+												<div class="row">
+													<div class="col-xs-10"></div>
+													<div class="col-xs-2">
+														<c:if test="${classInfo.joinVo.type == '선생님'}">
+															<input type="button" class="btn btn-primary" value="학생 체점 완료하기" id="studentscoring" style="margin: 0px 0px 3px -70px;">
+														</c:if>
+													</div>
+
+												</div>
+												<table class="table table-striped table-bordered table-hover">
+													<colgroup>
+														<col style="width: 10%;">
+														<col>
+														<col style="width: 13%;">
+														<col style="width: 13%;">
+													</colgroup>
+													<thead class="">
 														<tr>
-															<td>${vo.orderNum}</td>
+															<th>번호</th>
+															<th>문제명</th>
+															<th>점수</th>
+															<th>오답여부</th>
+															<th>형식</th>
 
-															<td class="text-left"><a href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${param.examNo}&orderNum=${vo.orderNum}&joinNo=${param.joinNo}">${vo.problemTitle}</a></td>
-															<td>${vo.mypoint}</td>
-															<td>${vo.result}</td>
-															<td>${vo.type}</td>
 														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
+													</thead>
+													<tbody>
+														<c:forEach items="${upMap.eplist}" var="vo" varStatus="status">
+															<tr>
+																<td>${vo.orderNum}</td>
+																<td class="text-left"><a
+																	href="${pageContext.request.contextPath}/${url}/exam/problemscoring?examNo=${param.examNo}&orderNum=${vo.orderNum}&joinNo=${param.joinNo}">${vo.problemTitle}
+																		(${vo.whether})</a></td>
+																<td>${vo.mypoint}</td>
+																<td>${vo.result}</td>
+																<td>${vo.type}</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+
 										</div>
-									</div>
 
 
-									<div class="row">
-										<div class="col-xs-12 text-center">
-											<nav>
-												<ul class="pagination">
+										<div class="row">
+											<div class="col-xs-12 text-center">
+												<nav>
+													<ul class="pagination">
 
-													<c:if test="${upMap.prev == true}">
-														<li><a href="${pageContext.request.contextPath}/${url}/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.startPageBtnNo-1}">◀</a></li>
-													</c:if>
+														<c:if test="${upMap.prev == true}">
+															<li><a
+																href="${pageContext.request.contextPath}/${url}/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.startPageBtnNo-1}">◀</a></li>
+														</c:if>
 
-													<c:forEach begin="${upMap.startPageBtnNo}" end="${upMap.endPageBtnNo}" step="1" var="page">
-														<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${page}">${page}</a></li>
-													</c:forEach>
+														<c:forEach begin="${upMap.startPageBtnNo}" end="${upMap.endPageBtnNo}" step="1" var="page">
+															<li><a
+																href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${page}">${page}</a></li>
+														</c:forEach>
 
-													<c:if test="${upMap.next == true}">
-														<li><a href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.endPageBtnNo+1}">▶</a></li>
-													</c:if>
-												</ul>
-											</nav>
+														<c:if test="${upMap.next == true}">
+															<li><a
+																href="${pageContext.request.contextPath}/${url}/exam/problemlist?examNo=${param.examNo}&joinNo=${param.joinNo}&crtPage=${upMap.endPageBtnNo+1}">▶</a></li>
+														</c:if>
+													</ul>
+												</nav>
+											</div>
 										</div>
-									</div>
-
+									</c:if>
 
 
 
@@ -188,7 +200,53 @@
 	<!-- //footer-Area container 영역-->
 
 </body>
+<script type="text/javascript">
+	$("#studentscoring").on("click",function() {
+		$.ajax({
+				url : "${pageContext.request.contextPath}/${url}/exam/allscoring",
+				type : "post",
+				//contentType : "application/json",
+				data : {
+					examNo : ${param.examNo},
+					joinNo : ${param.joinNo}
+				},
+				success : function(url) {
+					console.log(url);
+					alert('학생의 채점을 완료했습니다');
+					location.reload();
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			
+			});
+
+	});
+	
+	$("#classscroing").on("click", function() {
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/${url}/exam/allscoring",
+			type : "post",
+			//contentType : "application/json",
+			data : {
+				examNo : ${param.examNo}
+			},
+			success : function(url) {
+				console.log(url)
+				alert('반의 채점을 완료했습니다');
+				location.reload();
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+
+		});
+	});
+</script>
 </html>
+
+
 
 
 
