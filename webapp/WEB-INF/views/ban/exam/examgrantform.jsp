@@ -80,13 +80,13 @@
 							<div class="row">
 								<div class="col-xs-2">시험 유형</div>
 								<div class="col-xs-2">
-									<input type="radio" name="testtype" value="쪽지시험" checked="checked" onclick="gettype(event)"><span>쪽지시험</span>
+									<input type="radio" name="testtype" value="쪽지시험" checked="checked" onclick="gettype(event)"><span class="radioSize">쪽지시험</span>
 								</div>
 								<div class="col-xs-2">
-									<input type="radio" name="testtype" value="시험" onclick="gettype(event)"><span>시험</span>
+									<input type="radio" name="testtype" value="시험" onclick="gettype(event)"><span class="radioSize">시험</span>
 								</div>
 								<div class="col-xs-2">
-									<input type="radio" name="testtype" value="과제" onclick="gettype(event)"><span>과제</span>
+									<input type="radio" name="testtype" value="과제" onclick="gettype(event)"><span class="radioSize">과제</span>
 								</div>
 							</div>
 
@@ -108,12 +108,12 @@
 
 							<div class="row">
 								<div class="col-xs-2">응시 가능 시간</div>
-								<div class="col-xs-5">
-									<input type="datetime-local" id="startdate" class="selecttimebar"> 부터
+								<div class="col-xs-4">
+									<input type="datetime-local" id="startdate" class="selecttimebar" style="color: #d0d0d0; padding-left: 7px;"> 부터
 								</div>
 
-								<div class="col-xs-5">
-									<input type="datetime-local" id="enddate" class="selecttimebar"> 까지
+								<div class="col-xs-4" style="margin-left: -49px;">
+									<input type="datetime-local" id="enddate" class="selecttimebar"  style="color: #d0d0d0; padding-left: 7px;"> 까지
 								</div>
 							</div>
 
@@ -122,9 +122,9 @@
 
 
 						<div class="row">
-							<div class="col-xs-2">선택한 문제</div>
+							<div class="selectF col-xs-2">선택한 문제</div>
 							<div class="col-xs-6">
-								<button type="button" class="" data-toggle="modal" data-target="#myModal">문제 추가</button>
+								<button type="button" class="problemAdd" data-toggle="modal" data-target="#myModal">문제 추가</button>
 							</div>
 
 							<div class="col-xs-3" style="margin-left: -40px;">
@@ -153,7 +153,7 @@
 						<div class="row">
 							<div class="col-xs-5"></div>
 							<div class="col-xs-6">
-								<button type="button" class="btn btn-xs btn-primary" id="examgrant">시험 출제</button>
+								<button type="button" class="testBtn btn btn-xs btn-primary" id="examgrant">시험 출제</button>
 							</div>
 						</div>
 
