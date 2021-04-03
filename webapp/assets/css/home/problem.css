@@ -67,6 +67,11 @@
 	width: 60px;
 }
 
+#creatbtn{
+    border-radius: 4px;
+    font-size: 13px;
+}
+
 .interval{
 	margin-top: 20px;
     margin-bottom: 14px;

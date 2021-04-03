@@ -137,7 +137,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 											</form>
 										</div>
 										<div class="col-xs-6">
-											<button class="btn btn-primary btn-sm pull-right" type="button" id = "creatbtn">문제등록</button>
+											<button class="btn-insert btn btn-primary btn-sm pull-right" type="button" id = "creatbtn">문제등록</button>
 											<input type="hidden" id = "cateNosave">
 										</div>
 									</div>

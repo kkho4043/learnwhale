@@ -81,7 +81,7 @@
 								</form>
 							</div>
 							<div class="col-xs-6 text-right">
-								<button type="submit" class="btn btn-primary btn-sm">
+								<button type="submit" class="btn-create btn btn-primary btn-sm">
 									<a href="${pageContext.request.contextPath}/myclass/createForm"
 										style="color: #fff;">반생성</a>
 								</button>
