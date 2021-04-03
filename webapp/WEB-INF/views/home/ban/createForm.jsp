@@ -130,11 +130,11 @@
 								<!-- //노출여부 -->
 
 								<div class="row interval">
-									<div class="">
+									<div>
 										<button type="submit"
 											class="btnSave btn btn-primary btn-sm pull-right">저장</button>
 									</div>
-									<div class="">
+									<div>
 										<button class="btnCancel btn btn-primary btn-sm pull-right">
 											<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">취소</a>
 										</button>
