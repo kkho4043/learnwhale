@@ -18,8 +18,8 @@
 
 			<span>${classInfo.cuVo.name}</span><span>(${classInfo.cuVo.id})</span> 선생님
 		</p>
-		<p class="profile-text">이메일:${classInfo.cuVo.email}</p>
-		<p class="profile-text last">연락처:${classInfo.cuVo.phoneNum}</p>
+		<p class="profile-text">이메일: ${classInfo.cuVo.email}</p>
+		<p class="profile-text last">연락처: ${classInfo.cuVo.phoneNum}</p>
 
 		<c:choose>
 			<c:when test="${classInfo.joinVo.approval == null}">

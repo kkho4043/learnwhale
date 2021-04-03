@@ -107,7 +107,7 @@
 }
 
 #content #left-area #profile-area #teacherName {
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: bold;
 	margin-top: 7px;
 }
@@ -115,13 +115,14 @@
 #content #left-area #profile-area .profile-text {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
-	font-size: 11px;
+	font-size: 12px;
+	text-align: center;
 }
 
 #content #left-area #profile-area .profile-text.last {
 	margin: 0px 0px 10px 0px;
 	padding: 0px 0px 0px 0px;
-	font-size: 11px;
+	font-size: 12px;
 }
 
 #content #left-area #menu-area {
