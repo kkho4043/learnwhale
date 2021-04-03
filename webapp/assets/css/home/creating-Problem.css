@@ -4,7 +4,7 @@
 	font-weight: 600;
     font-size: 15px;
     margin-bottom: 22px;
-    margin-top: 26px;
+    margin-top: 20px;
     padding-left: 263px;
     color: #6bc6ec;
 }
@@ -15,7 +15,7 @@
 
 .problemType{
 	text-align: center;
-	margin-bottom: 41px;
+	margin-bottom: 38px;
 }
 #time-point{margin: 10px; text-align: right;}
 #TPdiv{margin-bottom: 50px;}
@@ -49,17 +49,16 @@
 }
 
 #O{
-	font-size: 100px;
-	color: #00E0F7;
+	font-size: 61px;
+    color: #A7D5E8;
 }
 #X{
-	font-size: 92px;
-	color: #E74407;
+    font-size: 61px;
+    color: #A7D5E8;
 }
 
 input[type=radio]{
-	width: 25px; 
-	height: 25px;
+	width: 17px;
 }
 
 #out{
@@ -74,9 +73,10 @@ input[type=radio]{
 	margin-top: -41px;
 }
 #choice-type{
-	font-size: 20px;
-	font-weight: bold;
 	margin-bottom: 20px;
+	color: #316898;
+    font-weight: 100;
+    font-size: 14px;
 }
 .answer-content{
 	margin-bottom: 15px;
@@ -86,6 +86,7 @@ input[type=radio]{
 	margin-top: 3px;
 	margin-right: 20px;
 }
+
 .image-file{
 	float: left;
 	width: 300px;
@@ -94,25 +95,36 @@ input[type=radio]{
 	float: left;
 	margin-left:100px;
 }
+
 .check-label{
 	float: left;
-    margin-top: 3px;
-    margin-left: 10px;
+    margin-top: 1px;
+    margin-left: 8px;
+    font-weight: 200;
 }
+
+.check-label1{
+    font-weight: 200;
+}
+
 .image-answer-num{
 	margin-bottom: 12px;
 }
 
 .image-h4{
-	margin: 30px;
+    margin-top: 15px;
+    margin-bottom: 14px;
+    color: #d0d0d0;
+    font-weight: 100;
+    font-size: 14px;
 }
 
 #text-area{
-	margin-top: 35px;
-    margin-bottom: 19px;
-	color: #316898;
+	margin-top: 15px;
+    margin-bottom: 14px;
+    color: #d0d0d0;
     font-weight: 100;
-    font-size: 17px;
+    font-size: 14px;
 }
 
 .choice-textMargin{
@@ -173,12 +185,6 @@ input[type=radio]{
     margin: -12px 0px 11px 27px;
 }
 
-#choice-type{
-	color: #316898;
-    font-weight: 100;
-    font-size: 17px;
-}
-
 .btn-success{
 	margin-bottom: 10px;
 }
@@ -204,4 +210,25 @@ input[type=radio]{
  .btn-success{
 	font-size: 12px;
 	height: 30px;
+}
+
+#choiceContent1{
+	font-size: 12px;
+}
+
+#choiceContent2{
+	font-size: 12px;
+}
+
+#choiceContent3{
+	font-size: 12px;
+}
+
+#choiceContent4{
+	font-size: 12px;
+}
+
+.image-file{
+	font-size: 14px;
+	color: #d0d0d0;
 }

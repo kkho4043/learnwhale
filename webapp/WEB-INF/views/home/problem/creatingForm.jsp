@@ -94,7 +94,7 @@
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
-															<input type="text" class="form-control creating-problemTitle" id="problemTitle" style="font-size: 11px;" placeholder="문제 제목을 입력해주세요." name="problemTitle"
+															<input type="text" class="form-control creating-problemTitle" id="problemTitle" style="font-size: 11px;" placeholder="제목을 입력해주세요." name="problemTitle"
 																value="">
 														</div>
 														<div class="form-group">
@@ -133,7 +133,7 @@
 																	<input type="text" class="form-control choiceContent" id="choiceContent1" placeholder="The first answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" class="answer" name="answer" id="check-first" value="1"> <label for="check-first">정답체크</label>
+																	<input type="checkBox" class="answer" name="answer" id="check-first" value="1"> <label for="check-first" class="check-label1">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -146,7 +146,7 @@
 																	<input type="text" class="form-control choiceContent" id="choiceContent2" placeholder="The second answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" class="answer" name="answer" id="check-second" value="2"> <label for="check-second">정답체크</label>
+																	<input type="checkBox" class="answer" name="answer" id="check-second" value="2"> <label for="check-second" class="check-label1">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -160,7 +160,7 @@
 																	<input type="text" class="form-control choiceContent" id="choiceContent3" placeholder="The third answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" class="answer" name="answer" id="check-third" value="3"> <label for="check-third">정답체크</label>
+																	<input type="checkBox" class="answer" name="answer" id="check-third" value="3"> <label for="check-third" class="check-label1">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -174,14 +174,14 @@
 																	<input type="text" class="form-control choiceContent" id="choiceContent4" placeholder="The fourth answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" class="answer" name="answer" id="check-fourth" value="4"> <label for="check-fourth">정답체크</label>
+																	<input type="checkBox" class="answer" name="answer" id="check-fourth" value="4"> <label for="check-fourth" class="check-label1">정답체크</label>
 																</div>
 															</div>
 														</div>
 
 														<div class="row answer-content" id="image-area">
 															<div class="col-xs-12 image-h4">
-																<h4>각 문항에 이미지를 넣어주세요.</h4>
+																<div>각 문항에 이미지를 넣어주세요.</div>
 															</div>
 															<div class="col-xs-12 answer-num image-answer-num">
 																<strong class="image-num">1</strong> <input type="file" name="Image1" id="file1" class="image-file"> <input type="checkBox"
@@ -208,8 +208,8 @@
 
 														<!-- ox문제 시작 -->
 														<div class="row ox-Area">
-															<div class="col-xs-12">
-																<h4>정답을 선택해주세요</h4>
+															<div class="col-xs-12" id="choice-type">
+																<span>정답을 선택해주세요.</span>
 															</div>
 															<!-- //col-sm-12 -->
 															<div class="col-xs-6">
@@ -217,7 +217,7 @@
 																	<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O">
 																</div>
 																<div id="O">
-																	<label for="quizAnswerO">O</label>
+																	<label for="quizAnswerO" id="size">O</label>
 																</div>
 															</div>
 															<!-- //col-sm-6 -->
@@ -236,8 +236,8 @@
 
 														<!-- 주관식 문제 시작 -->
 														<div class="row answer-content sj-Area">
-															<div class="col-sm-12">
-																<h4>정답을 적어주세요.</h4>
+															<div class="col-sm-12" id="choice-type">
+																<span>정답을 적어주세요.</span>
 															</div>
 															<div class="col-sm-12" id="last-input">
 																<input type="text" class="form-control answer" id="exampleInputEmail3" name="answer" value="">
