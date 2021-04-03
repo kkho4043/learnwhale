@@ -114,6 +114,10 @@ public class ExamDao {
 	public void qeustiondelete(int examNo) {
 		sqlSession.delete("exam.qeustiondelete", examNo);
 	}
+	//시험수정시 솔브 삭제
+	public void solvedelete(int examNo) {
+		sqlSession.delete("exam.solvedelete", examNo);
+	}
 
 	// 시험 수정시 업데이트(입력)
 	public void questionupdate(int examNo, int problemNo, int point, int order) {
@@ -239,14 +243,41 @@ public class ExamDao {
 		map.put("startNum", startNum);
 		map.put("endNum", endNum);
 		System.out.println(map.toString());
-		return sqlSession.selectList("examsolveList", map);
+		return sqlSession.selectList("exam.examsolveList", map);
 	}
-
+	//시험 리스트에 학생이 있는지
 	public int getsolve(int joinNo, int examNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("examNo", examNo);
 		map.put("joinNo", joinNo);
-		return sqlSession.selectOne("getsolve", map);
+		return sqlSession.selectOne("exam.getsolve", map);
 	}
+	//시험이 대기중일 경우
+	public int getsolvetime(int examNo) {
+		return sqlSession.selectOne("exam.getsolvetime", examNo);
+	}
+	
+	
+	//전체 채점
+	public int allscoring(int examNo, int joinNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("examNo", examNo);
+		map.put("joinNo", joinNo);
+		return sqlSession.update("exam.allscoring", map);
+	}
+	
+	//시간이 지나면 0점처리 채점
+	public void endtimeexam() {
+		sqlSession.update("exam.endtimeexam");
+	}
+	
+	
+	//수정시 푼인원이 있는지
+	public int exammodifywhere(int examNo) {
+		
+		return sqlSession.selectOne("exam.exammodifywhere", examNo);
+	}
+
+	
 
 }

@@ -40,11 +40,9 @@ public class ExamService {
 
 	// 문제 리스트
 	public Map<String, Object> examList(String url, int crtPage, String keyward) {
-		
+		examDao.endtimeexam();//시간이 지난 시험들 0점처리후 채점
 		int classNo = classDao.getclassNo(url);
-
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
-
 		int listCnt = 10;
 		int startNum = (crtPage - 1) * listCnt + 1;
 		int endNum = (crtPage * listCnt);
@@ -165,7 +163,7 @@ public class ExamService {
 	}
 
 	// 시험 수정
-	public Map<String, Object> exammodify(int examNo) {
+	public Map<String, Object> exammodifyform(int examNo) {
 
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		ExamVo examVo = examDao.selectExam(examNo);
@@ -173,21 +171,27 @@ public class ExamService {
 		examVo.setStartDate(examVo.getStartDate().replace(" ", "T"));
 		examVo.setEndDate(examVo.getEndDate().replace(" ", "T"));
 		pMap.put("examVo", examVo);
-
-		pMap.put("qList", examDao.selectquestion(examNo));
-
 		return pMap;
 	}
+	//수정시 문제 리스트
+	public List<QuestionVo> selectquestion(int examNo) {
+		return examDao.selectquestion(examNo);
+	}
+	
+	
 
-	public void exammodify(ExamVo examVo, String[] arr) {
-
+	public void exammodify(ExamVo examVo, String[] arr,String url) {
+		int classNo = classDao.getclassNo(url);
+		
 		examVo.setStartDate(examVo.getStartDate().replace("T", " "));
 		examVo.setEndDate(examVo.getStartDate().replace("T", " "));
 		System.out.println(examVo);
-
+		
+		
 		examDao.examupdate(examVo);
-
-		examDao.qeustiondelete(examVo.getExamNo());
+		examDao.solvedelete(examVo.getExamNo());
+		examDao.qeustiondelete(examVo.getExamNo());	
+		
 
 		String split;
 
@@ -197,12 +201,21 @@ public class ExamService {
 			examDao.questionupdate(examVo.getExamNo(), Integer.parseInt(splitarr[0]), Integer.parseInt(splitarr[1]),
 					i + 1);
 		}
+		
+		List<Integer> userarr = examDao.selectjusers(classNo);
+
+		List<Integer> squestionarr = examDao.selectsquestion(examVo.getExamNo());
+		
+		for (int i = 0; i < userarr.size(); i++) {
+			for (int j = 0; j < squestionarr.size(); j++) {
+				examDao.insertsolve(userarr.get(i), squestionarr.get(j));
+			}
+		}
 
 	}
 
 	// 시험 수정 2
 	public void exammodify2(ExamVo examVo) {
-		System.out.println(examVo);
 		examDao.examupdate(examVo);
 	}
 
@@ -215,6 +228,8 @@ public class ExamService {
 
 		if (jvo.getType().equals("선생님")) { // 선생님일때
 			System.out.println("선생님");
+			
+			
 			return "/exam/problemlist?examNo=" + examNo + "&joinNo=" + joinNo;
 
 		} else {
@@ -226,10 +241,17 @@ public class ExamService {
 				return "/exam/problemlist?examNo=" + examNo + "&joinNo=" + joinNo;
 			} else {
 				System.out.println("문제를 안풀었을때");
+				
+				flag = examDao.getsolvetime(examNo);
+				if(flag == 0) {//시험 시간 전일때
+					return "?thissolve=notyet";
+				}
+				
+				
 				flag = examDao.getsolve(joinNo , examNo);
 				
-				if(flag == 0) {
-					return "?thissolve=false";
+				if(flag == 0) {//시험 목록에 없을때										
+					return "?thissolve=nonesolve";
 				}
 				return "/exam/examstart/?examNo=" + examNo + "&joinNo=" + joinNo;
 			}
@@ -356,8 +378,6 @@ public class ExamService {
 			prev = false;
 		}
 		
-			
-		
 		List<QuestionVo> qList = examDao.examsolveList(examNo ,joinNo,startNum ,endNum);
 		
 		Map<String, Object> pMap = new HashMap<String, Object>();
@@ -370,12 +390,21 @@ public class ExamService {
 		System.out.println("넣어줄때"+orderNum);
 		pMap.put("thisoderNum", orderNum);
 		return pMap;
-		
-		
-		
-		
 
 	}
+
+	public int allscoring(int examNo, int joinNo) {
+		return examDao.allscoring(examNo, joinNo);
+	}
+
+	public String exammodifywhere(int examNo) {
+		if(examDao.exammodifywhere(examNo) == 0) {
+			return "exammodifyform";
+		}else {
+			return "exammodifyform2";
+		}
+	}
+	
 
 	
 

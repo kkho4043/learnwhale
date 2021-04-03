@@ -8,12 +8,14 @@ public class ProblemVo {
 	private int mypoint;
 	private String result;// 오답여부
 	private int orderNum; // 시험 관리 >> 문제리스트 문제순서
+	private String whether; // 시험 체점 여부
 
 	public ProblemVo() {
 	}
 
 	public ProblemVo(int problemNo, int cateNo, String type, String problemTitle, String content, String contentImage,
-			String description, String answer, String regDate, int mypoint, String result, int orderNum) {
+			String description, String answer, String regDate, int mypoint, String result, int orderNum,
+			String whether) {
 		super();
 		this.problemNo = problemNo;
 		this.cateNo = cateNo;
@@ -27,6 +29,15 @@ public class ProblemVo {
 		this.mypoint = mypoint;
 		this.result = result;
 		this.orderNum = orderNum;
+		this.whether = whether;
+	}
+
+	public String getWhether() {
+		return whether;
+	}
+
+	public void setWhether(String whether) {
+		this.whether = whether;
 	}
 
 	public int getMypoint() {
@@ -130,8 +141,7 @@ public class ProblemVo {
 		return "ProblemVo [problemNo=" + problemNo + ", cateNo=" + cateNo + ", type=" + type + ", problemTitle="
 				+ problemTitle + ", content=" + content + ", contentImage=" + contentImage + ", description="
 				+ description + ", answer=" + answer + ", regDate=" + regDate + ", mypoint=" + mypoint + ", result="
-				+ result + ", orderNum=" + orderNum + "]";
+				+ result + ", orderNum=" + orderNum + ", whether=" + whether + "]";
 	}
 
-	
 }

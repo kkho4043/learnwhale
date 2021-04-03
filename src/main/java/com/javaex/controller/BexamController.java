@@ -134,14 +134,15 @@ public class BexamController {
 	}
 
 	@RequestMapping(value = "/exammodifyfrom", method = { RequestMethod.GET, RequestMethod.POST })
-	public String exammodifyform(Model model, @RequestParam(value = "examNo") int examNo,
+	public String exammodifyform(Model model, HttpSession session, @RequestParam(value = "examNo") int examNo,
 			@PathVariable("url") String url) {
 		System.out.println("[BanExamController.exammodifyform()]");
 
+		model.addAttribute("classInfo", banmainService.classInfo(url, session));
 		model.addAttribute("cateList", proService.getCategory(1));// 유저번호를 주면 그에해당하는 카테고리를 준다~
-		model.addAttribute("pMap", examService.exammodify(examNo));
+		model.addAttribute("pMap", examService.exammodifyform(examNo));
 
-		return "ban/exam/exammodifyform2";
+		return "ban/exam/" + examService.exammodifywhere(examNo);
 	}
 
 	@ResponseBody
@@ -150,8 +151,15 @@ public class BexamController {
 			@RequestParam("qarr[]") String[] qarr) {
 		System.out.println("[BanExamController.exammodify()]");
 
-		examService.exammodify(examVo, qarr);
-		return "/" + url + "/exam/list";
+		examService.exammodify(examVo, qarr, url);
+		return "/" + url;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/selectquestion", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<QuestionVo> selectquestion(@RequestParam("examNo") int examNo) {
+		System.out.println("[BanExamController.exammodify()]");
+		return examService.selectquestion(examNo);
 	}
 
 	@ResponseBody
@@ -234,4 +242,12 @@ public class BexamController {
 		return examService.examsolvepaging(examNo, orderNum, joinNo);
 	}
 
+	// 전체 채점
+	@ResponseBody
+	@RequestMapping(value = "/allscoring", method = { RequestMethod.GET, RequestMethod.POST })
+	public int allscoring(@RequestParam(value = "examNo") int examNo,
+						  @RequestParam(value = "joinNo" , required = false, defaultValue = "0") int joinNo){
+		
+		return examService.allscoring(examNo, joinNo);
+	}
 }

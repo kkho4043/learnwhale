@@ -73,7 +73,7 @@
 							<div class="row">
 								<div class="col-xs-2" style="margin-top: 3px;">제목</div>
 								<div class="col-xs-10">
-									<input type="text" id="examtitle" value = "${pMap.examVo.examTitle}">
+									<input type="text" id="examtitle" value="${pMap.examVo.examTitle}">
 								</div>
 							</div>
 							<div class="row">
@@ -132,7 +132,7 @@
 									</tr>
 								</thead>
 								<tbody id="selectprolist">
-									
+
 								</tbody>
 							</table>
 						</div>
@@ -184,31 +184,38 @@
 								$('#testtype-home').prop('checked', true);
 							}
 						}
-						
-						$.ajax({
-							url : "${pageContext.request.contextPath}/${url}/exam/selectquestion",
-							type : "post",
-							//contentType : "application/json",
-							data : {
-								examNo : "${param.examNo}"
-							},
-							success : function(List) {
-								var str = "";
-								for(var i = 0;i < List.length;i++){
-									str += '<tr>';
-									str += '	<td>' + List[i].problemNo + '</td>';
-									str += '	<td>' + List[i].problemTitle + '</td>';
-									str += '	<td>' + List[i].problemType + '</td>';
-									str += '	<td>' + List[i].point + '</td>';
-									str += '</tr>';
-									
-									$("#selectprolist").prepend(str);
-								}
-							},
-							error : function(XHR, status, error) {
-								console.error(status + " : " + error);
-							}
-						});
+
+						$
+								.ajax({
+									url : "${pageContext.request.contextPath}/${url}/exam/selectquestion",
+									type : "post",
+									//contentType : "application/json",
+									data : {
+										examNo : "${param.examNo}"
+									},
+									success : function(List) {
+										var str = "";
+										for (var i = 0; i < List.length; i++) {
+											str += '<tr>';
+											str += '	<td>' + List[i].problemNo
+													+ '</td>';
+											str += '	<td>'
+													+ List[i].problemTitle
+													+ '</td>';
+											str += '	<td>'
+													+ List[i].problemType
+													+ '</td>';
+											str += '	<td>' + List[i].point
+													+ '</td>';
+											str += '</tr>';
+
+											$("#selectprolist").prepend(str);
+										}
+									},
+									error : function(XHR, status, error) {
+										console.error(status + " : " + error);
+									}
+								});
 
 					});
 	//시험 유형
@@ -235,8 +242,7 @@
 		if (examTitle == '') {
 			alert('제목을 입력해주세요');
 			return false;
-		}
-		else if ("${pMap.examVo.examType}" == '쪽지시험') {
+		} else if ("${pMap.examVo.examType}" == '쪽지시험') {
 			if (time == '') {
 				alert('시간을 입력해주세요');
 				return false;
@@ -264,11 +270,6 @@
 		});
 
 	});
-	
-	
-
-	
-
 </script>
 </html>
 

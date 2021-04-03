@@ -382,7 +382,7 @@
 	});
 
 	//리스트 추가(출력)
-	function render(cateVo, updown, btnflag) {
+	function render(cateVo, updown) {
 		btnflag =true;
 		for (var i = 0; i < voarr.length; i++) {
 			if(voarr[i].problemNo === cateVo.problemNo){

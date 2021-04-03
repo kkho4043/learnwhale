@@ -208,6 +208,8 @@
 </body>
 
 <script type="text/javascript">
+	var voarr = [];
+	console.log(voarr);
 	$(document)
 			.ready(
 					function() {
@@ -222,72 +224,37 @@
 							} else {
 								$('#testtype-home').prop('checked', true);
 							}
+							$
+									.ajax({
+										url : "${pageContext.request.contextPath}/${url}/exam/selectquestion",
+										type : "post",
+										//contentType : "application/json",
+										data : {
+											examNo : "${param.examNo}"
+										},
+										success : function(List) {
 
+											for (var i = 0; i < List.length; i++) {
+												var vo = new Object();
+												var proNo = List[i].problemNo
+												vo.problemNo = proNo;
+												var protitle = List[i].problemTitle;
+												vo.problemTitle = protitle;
+												var protype = List[i].problemType;
+												vo.type = protype;
+												var propo = List[i].point;
+												vo.point = propo;
+												voarr.push(vo);
+											}
+											rendersVo();
+										},
+										error : function(XHR, status, error) {
+											console.error(status + " : "
+													+ error);
+										}
+									});
 						}
 
-						document.getElementById("startdate").value = "${pMap.examVo.startDate}";
-						document.getElementById("enddate").value = "${pMap.examVo.endDate}";
-
-						console.log('${pMap.qList}');
-						var ar = '${pMap.qList}'.split("QuestionVo");
-						var proNos;
-						var eq;
-						var rut;
-						var prono;
-						var poi;
-						var proti;
-						var proty;
-						for (var i = 0; i < ar.length; i++) {
-
-							proNos = ar[i].indexOf('problemNo');
-							if (proNos == -1) {
-								continue;
-							}
-							eq = ar[i].indexOf('=', proNos);
-							rut = ar[i].indexOf(',', eq);
-							prono = ar[i].substring(eq + 1, rut);
-							console.log("problemNo = " + prono);
-
-							proNos = ar[i].indexOf('point');
-							if (proNos == -1) {
-								continue;
-							}
-							eq = ar[i].indexOf('=', proNos);
-							rut = ar[i].indexOf(',', eq);
-							poi = ar[i].substring(eq + 1, rut);
-
-							console.log("point = " + poi);
-
-							proNos = ar[i].indexOf('problemTitle');
-							if (proNos == -1) {
-								continue;
-							}
-							eq = ar[i].indexOf('=', proNos);
-							rut = ar[i].indexOf(',', eq);
-							proti = ar[i].substring(eq + 1, rut);
-
-							console.log("problemTitle = " + proti);
-
-							proNos = ar[i].indexOf('problemType');
-							if (proNos == -1) {
-								continue;
-							}
-							eq = ar[i].indexOf('=', proNos);
-							rut = ar[i].indexOf(']', eq);
-							proty = ar[i].substring(eq + 1, rut - 1);
-
-							console.log("problemType = " + proty);
-
-							var vo = new Object();
-							vo.problemNo = prono;
-							vo.point = poi;
-							vo.problemTitle = proti;
-							vo.problemType = proty;
-							voarr.push(vo);
-						}
-
-						rendersVo();
-						getscore();
 					});
 	//시험 유형
 	function gettype(event) {
@@ -320,7 +287,6 @@
 
 	$("#examgrant").on("click", function() {
 		var title = document.getElementById('examtitle').value;
-		console.log(title);
 		var langSelect = document.getElementById("timeselect");
 		var time = langSelect.options[langSelect.selectedIndex].value;
 		var startdate = document.getElementById("startdate").value;
@@ -339,21 +305,26 @@
 		if (title == '') {
 			alert('제목을 입력해주세요');
 			return false;
-		} else if (etype == '쪽지시험') {
+		}
+		if (etype == '쪽지시험') {
 			if (time == '') {
 				alert('시간을 입력해주세요');
 				return false;
 			}
-		} else if (startdate == '') {
+		}
+		if (startdate == '') {
 			alert('시작일을 선택해주세요');
 			return false;
-		} else if (enddate == '') {
+		}
+		if (enddate == '') {
 			alert('종료일을 선택해주세요');
 			return false;
-		} else if (qarr == '') {
+		}
+		if (qarr == '') {
 			alert('문제를 선택해주세요');
 			return false;
-		} else if (document.getElementById("hapscore").innerHTML != 100) {
+		}
+		if (document.getElementById("hapscore").innerHTML != 100) {
 			alert('부여된 점수의 합이 100점이 아닙니다');
 			return false;
 		} else {
@@ -369,7 +340,7 @@
 		}
 
 		$.ajax({
-			url : "${pageContext.request.contextPath}/abc/exam/modify",
+			url : "${pageContext.request.contextPath}/${url}/exam/modify",
 			type : "post",
 			//contentType : "application/json",
 			data : {
@@ -383,6 +354,7 @@
 
 			},
 			success : function(url) {
+				alert('시험내용이 수정되었습니다');
 				console.log(url)
 				location.href = "${pageContext.request.contextPath}" + url;
 
@@ -435,7 +407,7 @@
 		$("#cate-problem").empty();
 		console.log(cateNo);
 		$.ajax({
-			url : "${pageContext.request.contextPath}/abc/exam/cateproList",
+			url : "${pageContext.request.contextPath}/{url}/exam/cateproList",
 			type : "post",
 			//contentType : "application/json",
 			data : {
@@ -462,6 +434,12 @@
 
 	//리스트 추가(출력)
 	function render(cateVo, updown) {
+		btnflag = true;
+		for (var i = 0; i < voarr.length; i++) {
+			if (voarr[i].problemNo === cateVo.problemNo) {
+				btnflag = false;
+			}
+		}
 		var str = "";
 		str += '<tr>';
 		str += '	<td>' + cateVo.problemNo + '</td>';
@@ -469,7 +447,9 @@
 		str += '	<td>' + cateVo.type + '</td>';
 		str += '	<td>' + cateVo.regDate + '</td>';
 		str += '	<td>';
-		str += '			<button class="btn btn-default btn-xs" data-no="'+cateVo.problemNo+'" data-title="'+cateVo.problemTitle+'" data-type="'+cateVo.type+'" data-regdate="'+cateVo.regDate+'">등록</button>';
+		if (btnflag) {
+			str += '			<button id="innerbtn'+cateVo.problemNo+'" class="btn btn-default btn-xs" data-no="'+cateVo.problemNo+'" data-title="'+cateVo.problemTitle+'" data-type="'+cateVo.type+'" data-regdate="'+cateVo.regDate+'">등록</button>';
+		}
 		str += '	</td>';
 		str += '</tr>';
 
@@ -487,14 +467,15 @@
 	//등록버튼 클릭
 	$("#cate-problem").on("click", "button", function() {
 
-		var problemNo = $(this).data("no");
+		var no = $(this).data("no");
 		var title = $(this).data("title");
-		var problemType = $(this).data("type");
+		var type = $(this).data("type");
+		$('#innerbtn' + no).hide();
 
 		var vo = new Object();
-		vo.problemNo = problemNo;
+		vo.problemNo = no;
 		vo.problemTitle = title;
-		vo.problemType = problemType;
+		vo.type = type;
 		vo.point = "";
 		voarr.push(vo);
 		rendersVo();
@@ -504,12 +485,13 @@
 	$("#selectprolist").on("click", "input[type=button]", function() {
 		console.log("삭제버튼 클릭");
 		var delorder = $(this).data("order");
+		var no = $(this).data("no");
+		$('#innerbtn' + no).show();
 		voarr.splice(delorder, 1);
-
 		var remove = $(this);
 		remove.parents("tr").empty();
-		document.getElementById("hapscore").innerHTML = 0;
 		rendersVo();
+		document.getElementById("hapscore").value = 0;
 	});
 
 	function rendersVo() {
@@ -522,20 +504,18 @@
 	//리스트 출력
 	function serender(Vo, order) {
 
-		var str = "";
 		str += '<tr>';
 		str += '	<td>' + order + '</td>';
 		str += '	<td>' + Vo.problemTitle + '</td>';
-		str += '	<td>' + Vo.problemType + '</td>';
+		str += '	<td>' + Vo.type + '</td>';
 		str += '	<td><input type="text" id="score-' + (order - 1)
 				+ '" onchange = "getscore()" value="' + Vo.point + '">점</td>';
 		str += '	<td>';
-		str += '			<input type="button" value="삭제" class="btn btn-xs btn-danger" data-order="'
-				+ (order - 1) + '">';
+		str += '			<input type="button" value="삭제" class="btn btn-xs btn-danger" data-no="'
+				+ Vo.problemNo + '" data-order="' + (order - 1) + '">';
 		str += '	</td>';
-		str += '	<input type="hidden" value="'+Vo.problemNo+'">';
+		str += '	<input type="hidden" value="'+Vo.no+'">';
 		str += '</tr>';
-
 		$("#selectprolist").prepend(str);
 	}
 </script>
