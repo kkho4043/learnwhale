@@ -415,12 +415,7 @@ $("#prblemForm").on("submit",function() {
 				alert("정답을 체크해주세요");
 				return false;
 			}
-<<<<<<< HEAD
 		} else if (document.getElementById("choiceType").value == "typeimage") {
-=======
-		} else if (document.getElementById("chioceType").value == "typeimage") {
->>>>>>> branch 'master' of https://github.com/kkho4043/learnwhale.git
-
 			if (!(document.getElementById("file1").value)) {
 				alert("이미지 1번을 넣어주세요.");
 				return false;

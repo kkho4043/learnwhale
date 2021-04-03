@@ -140,7 +140,9 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 											</form>
 										</div>
 										<div class="col-xs-6">
+
 											<button class="btn btn-primary btn-sm pull-right" type="button" id="creatbtn">문제등록</button>
+
 											<input type="hidden" id="cateNosave">
 										</div>
 									</div>
@@ -308,9 +310,15 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 
 </body>
 <script type="text/javascript">
-	$(document).ready(function() {
-						document.getElementById("cateNosave").value = ${param.cateNo}
-						$(document).on("click","#move",function() {
+	$(document)
+			.ready(
+					function() {
+
+						$(document)
+								.on(
+										"click",
+										"#move",
+										function() {
 											console.log("이동버튼 클릭");
 
 											var title = $(this).data("title");
@@ -322,25 +330,28 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 
 											$("#move-Modal").modal();
 										});
-						
-						$(document).on("click","#delete",function() {
-									console.log("이동버튼 클릭");
 
-									var title = $(this).data("title");
-									var proNo = $(this).data("prono");
+						$(document)
+								.on(
+										"click",
+										"#delete",
+										function() {
+											console.log("이동버튼 클릭");
 
-									document.getElementById("delete-proTitle").innerHTML = "문제 제목 :  "+ title;
-									$("#deleteInput-proNo").val(proNo);
+											var title = $(this).data("title");
+											var proNo = $(this).data("prono");
 
-									$("#delete-Modal").modal();
-								});
+											document
+													.getElementById("delete-proTitle").innerHTML = "문제 제목 :  "
+													+ title;
+											$("#deleteInput-proNo").val(proNo);
+
+											$("#delete-Modal").modal();
+										});
 					});
 
-	$(document).ready(
-			function() {
-
-				$("#cateMainSelectBox").change(
-						function() {
+	$(document).ready(function() {
+		$("#cateMainSelectBox").change(function() {
 
 							var group = $(this).val();
 
@@ -353,7 +364,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 									"[data-group='" + group + "']").hide();
 							/* console.log(group);
 							console.log($("#cateSubSelectBox").nextAll("#"+group).getAttribute("id")); */
-						})
+						});
 
 			});
 
@@ -385,16 +396,13 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 								});
 					}); */
 
-	$("#creatbtn")
-			.on(
-					"click",
-					function() {
+	$("#creatbtn").on("click",function() {
 						var cateN = document.getElementById("cateNosave").value
 
 						location.href = "${pageContext.request.contextPath}/myclass/problem/creatingForm?cateNo="
 								+ cateN;
 
-					});
+	});
 </script>
 </html>
 

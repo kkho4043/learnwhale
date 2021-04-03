@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 
@@ -7,21 +6,13 @@
 <head>
 <meta charset="UTF-8">
 
-<link
-	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="${pageContext.request.contextPath}/assets/css/home/category.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="${pageContext.request.contextPath}/assets/css/home/homeCommon.css"
-	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/home/category.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/home/homeCommon.css" rel="stylesheet" type="text/css">
 
 
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 <title>Insert title here</title>
 
@@ -37,7 +28,6 @@
 	list-style: none;
 	box-shadow: 0 15px 35px rgba(50, 50, 90, 0.1), 0 5px 15px
 		rgba(0, 0, 0, 0.07);
-	
 	z-index: 99;
 }
 
@@ -52,7 +42,7 @@
 	color: #B0BEC5;
 	text-decoration: none;
 	transition: ease .2s;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 .contextmenu li:hover {
@@ -91,13 +81,10 @@
 	<div id="cate-area" class="col-xs-3">
 		<div id="cate">
 
-			<div id="root-folder"
-				data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
+			<div id="root-folder" data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
 
-				<span class="mainGly glyphicon glyphicon-folder-close"></span> 
-				<span class="root-folder" style="color: #6bc6ec;"
-					  data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
-					   문제 관리 폴더 </span>
+				<span class="mainGly glyphicon glyphicon-folder-close"></span> <span class="root-folder" style="color: #6bc6ec;" data-cate="${cateVo.cateNo }"
+					data-group="${cateVo.groupNo}"> 문제 관리 폴더 </span>
 
 			</div>
 
@@ -107,26 +94,21 @@
 				<c:choose>
 
 					<c:when test="${cateVo.depth == 0}">
-						<div class="parents-folder" id="top-folder"
-							data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
+						<div class="parents-folder" id="top-folder" data-group="${cateVo.groupNo}" data-cate="${cateVo.cateNo }">
 
-							<span class="glyphicon glyphicon-folder-close"></span> <span
-								class="main-folder" style="color: #316898; font-weight: 700;"
-								data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
-								${cateVo.cateName} </span>
+							<span class="glyphicon glyphicon-folder-close"></span> <span class="main-folder" style="color: #316898; font-weight: 700;"
+								data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}"> ${cateVo.cateName} </span>
 
 						</div>
 					</c:when>
 
 					<c:otherwise>
 
-						<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}"
-							class="child-group">
+						<div id="${cateVo.groupNo}" data-group="${cateVo.groupNo}" class="child-group">
 							<div class="child-folder">
 
-								<span class="glyphicon glyphicon-folder-close"> </span> <a
-									class="subFolder" data-cate="${cateVo.cateNo }"
-									data-group="${cateVo.groupNo}"> ${cateVo.cateName} </a>
+								<span class="glyphicon glyphicon-folder-close"> </span> <a class="subFolder" data-cate="${cateVo.cateNo }" data-group="${cateVo.groupNo}">
+									${cateVo.cateName} </a>
 
 							</div>
 						</div>
@@ -147,22 +129,18 @@
 
 	</div>
 
-	<form method="get"
-		action="${pageContext.request.contextPath}/myclass/category/addMainFolder">
+	<form method="get" action="${pageContext.request.contextPath}/myclass/category/addMainFolder">
 		<div class="modal fade" id="addMainFolder">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title">메인폴더 생성</h4>
 					</div>
 					<div class="modal-body">
-						<label for="modalName">폴더이름</label> <input id="modalName"
-							type="text" name="cateName" placeholder="폴더 이름을 입력해주세요"
-							style="width: 400px;">
+						<label for="modalName">폴더이름</label> <input id="modalName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 						<!-- no 히든으로 처리 -->
 						<input type="hidden" name="userNo" value="${authUser.no }">
 					</div>
@@ -179,24 +157,20 @@
 	</form>
 	<!-- /.addMainFolder-->
 
-	<form method="get"
-		action="${pageContext.request.contextPath}/myclass/category/addSubFolder">
+	<form method="get" action="${pageContext.request.contextPath}/myclass/category/addSubFolder">
 		<div class="modal fade" id="addSubFolder">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title">서브폴더 생성</h4>
 					</div>
 					<div class="modal-body">
-						<label for="SubName">폴더이름</label> <input id="SubName" type="text"
-							name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
+						<label for="SubName">폴더이름</label> <input id="SubName" type="text" name="cateName" placeholder="폴더 이름을 입력해주세요" style="width: 400px;">
 						<!-- no 히든으로 처리 -->
-						<input type="hidden" name="userNo" value="${authUser.no }"> <input
-							type="hidden" name="groupNo" value="">
+						<input type="hidden" name="userNo" value="${authUser.no }"> <input type="hidden" name="groupNo" value="">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -210,28 +184,24 @@
 		<!-- /.madeModal -->
 	</form>
 	<!-- /.addSubFolder-->
-	<form method="get"
-		action="${pageContext.request.contextPath}/myclass/category/updateFolder">
+	<form method="get" action="${pageContext.request.contextPath}/myclass/category/updateFolder">
 		<div class="modal fade" id="modifyModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title">폴더 수정</h4>
 					</div>
 					<div class="modal-body">
 						<p>
-							<input type="text" name="cateName" id="modiText"
-								placeholder="폴더 이름을 입력해주세요" style="width: 400px;"> <input
-								type="hidden" name="cateNo" value="">
+							<input type="text" name="cateName" id="modiText" placeholder="폴더 이름을 입력해주세요" style="width: 400px;"> <input type="hidden" name="cateNo"
+								value="">
 						</p>
 					</div>
 					<div class="modal-footer">
-						<button onclick="empty();" type="button" id="cancel"
-							class="btn btn-default" data-dismiss="modal">취소</button>
+						<button onclick="empty();" type="button" id="cancel" class="btn btn-default" data-dismiss="modal">취소</button>
 						<button type="submit" class="btn btn-primary">수정하기</button>
 					</div>
 				</div>
@@ -242,14 +212,12 @@
 		<!-- /.modifyModal -->
 	</form>
 
-	<form method="get"
-		action="${pageContext.request.contextPath}/myclass/category/delete">
+	<form method="get" action="${pageContext.request.contextPath}/myclass/category/delete">
 		<div class="modal fade" id="deleteModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 						<h4 class="modal-title">폴더 삭제</h4>
@@ -278,262 +246,266 @@
 </body>
 
 <script type="text/javascript">
-		
-	
-		$(document).ready(function() {
-			fetchList();
-			rightClick();
-			subVisible();
-			empty();
-			
-			
-			
-		});
-		
-		
-		$(document).ready(function() {
-			
-			
-			let cateNum = "${param.cateNo}";
-			
-			if(!cateNum){
-				
-			}else{
-				
-				$("#title h1").text($('[data-cate='+cateNum+']').text());
-				
-				var groupNo = $('[data-cate='+cateNum+']').attr("data-group");
-				
-				let subFolder = $(".parents-folder").nextAll("#" + groupNo);
-				
-				$('[data-cate='+cateNum+']').css(
-						{'color': '#F818ED',
-						'font-weight': '700'}
-					   );
-				
-				if (subFolder.is(":visible")) {
-							subFolder.slideUp();
-				} 
-				else {
-							subFolder.slideDown();
-			
-				};
+	$(document).ready(function() {
+		fetchList();
+		rightClick();
+		subVisible();
+		empty();
 
-				
-				$.ajax({
-					url: "${pageContext.request.contextPath}/myclass/category/api/problemList",
-					type: "get",
-					dataType : "json",
-					data : {"cateNo" : cateNum},
-					
-					success : function(proList){
-						
-						for(var i=0; i<proList.length; i++){
-							
-							render(proList[i]);
+	});
+
+	$(document)
+			.ready(
+					function() {
+
+						let cateNum = "${param.cateNo}";
+
+						if (!cateNum) {
+
+						} else {
+
+							$("#title h1").text(
+									$('[data-cate=' + cateNum + ']').text());
+
+							var groupNo = $('[data-cate=' + cateNum + ']')
+									.attr("data-group");
+
+							let subFolder = $(".parents-folder").nextAll(
+									"#" + groupNo);
+
+							$('[data-cate=' + cateNum + ']').css({
+								'color' : '#F818ED',
+								'font-weight' : '700'
+							});
+
+							if (subFolder.is(":visible")) {
+								subFolder.slideUp();
+							} else {
+								subFolder.slideDown();
+
+							}
+							;
+
+							$
+									.ajax({
+										url : "${pageContext.request.contextPath}/myclass/category/api/problemList",
+										type : "get",
+										dataType : "json",
+										data : {
+											"cateNo" : cateNum
+										},
+
+										success : function(proList) {
+
+											for (var i = 0; i < proList.length; i++) {
+
+												render(proList[i]);
+											}
+										},
+
+										error : function(XHR, status, error) {
+											console.log(status + ":" + error);
+
+										}
+									});
+
 						}
-					},
-					
-					error: function(XHR, status, error){
-						console.log(status+ ":" + error);
-			
-					}
-				});
-			
+
+					});
+
+	function fetchList() {
+
+		$(".child-folder a")
+				.on(
+						"click",
+						function(e) {
+							e.preventDefault();
+
+							$("#title h1").text($(this).text());
+
+							$(".child-folder a").css({
+								'color' : '',
+								'font-weight' : ''
+							});
+
+							$(this).css({
+								'color' : '#EF88FE',
+								'font-weight' : '700'
+							});
+
+							var html = $("#problemList").html();
+
+							if (html != null) {
+
+								$("#problemList").empty();
+							}
+							let cateNo = $(this).data("cate");
+
+							document.getElementById("cateNosave").value = cateNo;
+
+							$
+									.ajax({
+										url : "${pageContext.request.contextPath}/myclass/category/api/problemList",
+										type : "get",
+										dataType : "json",
+										data : {
+											"cateNo" : cateNo
+										},
+
+										success : function(proList) {
+
+											for (var i = 0; i < proList.length; i++) {
+
+												render(proList[i]);
+											}
+										},
+
+										error : function(XHR, status, error) {
+											console.log(status + ":" + error);
+
+										}
+									});
+
+						});
+
+	};
+
+	function render(proVo) {
+
+		let html = "<tr id='tr-center'>";
+		html += "<td class='text-center'>" + proVo.problemNo + "</td>";
+		html += "<td><a href='${pageContext.request.contextPath}/myclass/problem/creating-ViewForm?proNo="
+				+ proVo.problemNo
+				+ "&cateNo="
+				+ proVo.cateNo
+				+ "'>"
+				+ proVo.problemTitle;
+		html += "</a></td>";
+		html += "<td class='text-center'>" + proVo.type + "</td>";
+		html += "<td>" + proVo.regDate + "</td>";
+		html += "<td>";
+		html += "<button id='move' data-prono="+proVo.problemNo+" class='btn btn-primary btn-xs move-Btn' data-title='"+proVo.problemTitle+"'>이동</button>";
+		html += "<button id='delete' data-prono="+proVo.problemNo+" class='btn btn-danger btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>삭제</button>";
+		html += "</td>";
+		html += "</tr>";
+
+		$("#problemList").append(html);
+	}
+
+	function rightClick() {
+
+		$(
+				".parents-folder .main-folder, .child-folder .subFolder, .root-folder")
+				.contextmenu(
+						function(e) {
+
+							let groupNo = e.target.getAttribute("data-group");
+							let cateNo = e.target.getAttribute("data-cate");
+
+							if (e.target.getAttribute("class") == 'root-folder') {
+								$("#make").show();
+								$("#subMake").hide();
+								$("#delete").hide();
+								$("#modify").hide();
+
+							} else if (e.target.getAttribute("class") == 'main-folder') {
+								$("#subMake").show();
+								$("#make").hide();
+								$("#delete").show();
+								$("#modify").show();
+
+								$("input[name=groupNo]").val(groupNo);
+
+							} else if (e.target.getAttribute("class") == 'subFolder') {
+								$("#make").hide();
+								$("#subMake").hide();
+								$("#delete").show();
+								$("#modify").show();
+							}
+
+							$("#make").on("click", function() {
+								$("input[name=groupNo]").val(groupNo);
+							})
+
+							$("#modify").on("click", function() {
+								$("input[name=cateNo]").val(cateNo);
+							})
+
+							$("#delete").on("click", function() {
+								$("input[name=cateNo]").val(cateNo);
+							})
+							//pointer position
+
+							var poX = e.offsetX;
+							var poY = $(this).offset().top - 150;
+
+							$(".contextmenu").css({
+								"left" : poX,
+								"top" : poY
+							}).show();
+
+							//Prevent browser default contextmenu
+							return false;
+
+						});
+
+		$(document).click(function() {
+			$(".contextmenu").hide();
+		});
+	}
+
+	$("#make").on("click", function() {
+
+		$("#addMainFolder").modal();
+	})
+
+	$("#subMake").on("click", function() {
+
+		$("#addSubFolder").modal();
+	})
+
+	$("#modify").on("click", function(e) {
+		e.preventDefault();
+
+		$("#modifyModal").modal();
+	});
+
+	$("#delete").on("click", function(e) {
+		e.preventDefault();
+
+		$("#deleteModal").modal();
+	});
+
+	function empty() {
+
+		$("#modiText").val("");
+	}
+
+	function subVisible() {
+
+		$(".parents-folder").click(function() {
+
+			let parentNo = $(this).data("group");
+
+			var submenu = $(this).nextAll("#" + parentNo);
+
+			if (submenu.is(":visible")) {
+				submenu.slideUp();
+			} else {
+				submenu.slideDown();
+
 			}
-			
-			
+			;
+
 		});
 
-		
-		
-		
-		
-		
-		
-		function fetchList(){
-			
-			
-			$(".child-folder a").on("click", function(e){
-				e.preventDefault();
-				
-				$("#title h1").text($(this).text());
-				
-				$(".child-folder a").css(
-						{'color': '',
-						'font-weight': ''}
-							);
-				
-				$(this).css(
-							{'color': '#EF88FE',
-							'font-weight': '700'}
-						   );
-				
-				var html = $("#problemList").html();	
+	}
 
-				if(html != null){
-					
-					$("#problemList").empty();
-				}
-				let cateNo = $(this).data("cate");
-				
-				document.getElementById("cateNosave").value = cateNo;
-				
-				$.ajax({
-					url: "${pageContext.request.contextPath}/myclass/category/api/problemList",
-					type: "get",
-					dataType : "json",
-					data : {"cateNo" : cateNo},
-					
-					success : function(proList){
-						
-						for(var i=0; i<proList.length; i++){
-							
-							render(proList[i]);
-						}
-					},
-					
-					error: function(XHR, status, error){
-						console.log(status+ ":" + error);
-			
-					}
-				});
-					
-				
-			  });
-		    
-		};
-
-
-		function render(proVo){
-				
-			let html = 		"<tr id='tr-center'>";
-			html += 			"<td class='text-center'>"+proVo.problemNo+"</td>";
-			html += 			"<td><a href='${pageContext.request.contextPath}/myclass/problem/creating-ViewForm?proNo="+proVo.problemNo+"&cateNo="+proVo.cateNo+"'>"+proVo.problemTitle;
-			html +=				"</a></td>";
-			html += 			"<td class='text-center'>"+proVo.type+"</td>";
-			html += 			"<td>"+proVo.regDate+"</td>";
-			html += 			"<td>";
-			html +=					"<button id='move' data-prono="+proVo.problemNo+" class='btn btn-primary btn-xs move-Btn' data-title='"+proVo.problemTitle+"'>이동</button>";	
-			html +=					"<button id='delete' data-prono="+proVo.problemNo+" class='btn btn-danger btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>삭제</button>";
-			html += 			"</td>";
-			html += 		"</tr>";
-
-			$("#problemList").append(html);
-		}
-				
-		function rightClick(){
-				
-			$(".parents-folder .main-folder, .child-folder .subFolder, .root-folder").contextmenu(function(e){
-				
-				let groupNo = e.target.getAttribute("data-group");
-				let cateNo = e.target.getAttribute("data-cate");
-				
-	
-				if(e.target.getAttribute("class") =='root-folder'){
-					$("#make").show();
-					$("#subMake").hide();
-					$("#delete").hide();
-					$("#modify").hide();
-					
-				}else if(e.target.getAttribute("class") =='main-folder'){
-					$("#subMake").show();
-					$("#make").hide();
-					$("#delete").show();
-					$("#modify").show();
-					
-					$("input[name=groupNo]").val(groupNo);
-											
-				}else if(e.target.getAttribute("class")=='subFolder'){
-					$("#make").hide();
-					$("#subMake").hide();
-					$("#delete").show();
-					$("#modify").show();
-				}
-				
-				
-				
-			 	$("#make").on("click", function(){
-					$("input[name=groupNo]").val(groupNo);
-				}) 
-				
-				$("#modify").on("click", function(){
-					$("input[name=cateNo]").val(cateNo);
-				})
-				
-				$("#delete").on("click", function(){
-					$("input[name=cateNo]").val(cateNo);
-				})
-				//pointer position
-				
-				var poX = e.offsetX;
-				var poY = $(this).offset().top -150;
-				
-				$(".contextmenu").css({
-					"left": poX,
-					"top" : poY
-				}).show();
-		
-				//Prevent browser default contextmenu
-				return false;
-	
-			});
-		
-			$(document).click(function(){
-				$(".contextmenu").hide();
-			});
-		}
-		
-		$("#make").on("click", function(){
-			
-			$("#addMainFolder").modal();
-		})
-		
-		$("#subMake").on("click", function(){
-			
-			$("#addSubFolder").modal();
-		})
-		
-		$("#modify").on("click", function(e) {
-			e.preventDefault();
-			
-			$("#modifyModal").modal();
-		});
-		
-		$("#delete").on("click", function(e) {
-			e.preventDefault();
-			
-			$("#deleteModal").modal();
-		});
-		
-		function empty(){
-			
-			$("#modiText").val("");
-		}
-		
-		
-			
-		function subVisible(){
-			
-			$(".parents-folder").click(function() {
-
-				let parentNo = $(this).data("group");
-	
-				var submenu = $(this).nextAll("#" + parentNo);
-				
-				if (submenu.is(":visible")) {
-					submenu.slideUp();
-				} else {
-					submenu.slideDown();
-	
-				};
-				
-			});
-		
-		}
-			
-		
-
-	</script>
+	$("#creatbtn").hide();
+	console.log(document.getElementById("cateNosave").value);
+	if (document.getElementById("cateNosave").value != ' ') {
+		$("#creatbtn").show();
+	}
+</script>
 
 </html>
