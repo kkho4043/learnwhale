@@ -114,10 +114,10 @@
 								<!-- //노출여부 -->
 								<input type="hidden" name="classNo" value="${classVo.classNo}">
 								<div class="row interval">
-									<div class="col-xs-7">
+									<div class="">
 										<button type="submit" class="btn btn-primary btn-sm pull-right">수정</button>
 									</div>
-									<div class="col-xs-5">
+									<div class="">
 										<button class="btn btn-primary btn-sm pull-right">
 											<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">취소</a>
 										</button>
