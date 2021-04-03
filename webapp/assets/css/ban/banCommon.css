@@ -65,11 +65,11 @@
 
 #top-banner-area #banName {
 	width: 980px;
-	position: absolute;
-	top: 33px;
-	color: #ffffff;
-	font-size: 60px;
-	font-weight: bold;
+    position: absolute;
+    top: 45px;
+    color: #ffffff;
+    font-size: 48px;
+    font-weight: bold;
 }
 
 #top-banner-area #date-area {
