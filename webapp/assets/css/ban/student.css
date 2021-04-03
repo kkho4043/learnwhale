@@ -3,20 +3,26 @@
 /******************************************
 * 학생리스트 css                             *
 *******************************************/
-#board #gradeBoard {width:720px;
-							   }
+#board #gradeBoard {
+	width:720px;
+}
 		
 									 	
-#title-form .row {margin-left: 640px;
-				  padding-bottom: 5px;
-				 			  }
+#title-form .row {
+	margin-left: 640px;
+	padding-bottom: 10px;
+}
 			
-#page {text-align:center;
-	   width:820px;}
+#page {
+	text-align:center;
+	width:820px;
+}
 	   
 /* #studentList table { background: white; } */
 
-
+#btnT{
+	font-size: 14px;
+}
 
 
 	

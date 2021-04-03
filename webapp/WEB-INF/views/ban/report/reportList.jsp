@@ -156,13 +156,13 @@
 													<col style="width: 12%;">
 													<col style="width: 15%;">
 												</colgroup>
-												<thead class="">
+												<thead class="theadS">
 													<tr>
-														<th>번호</th>
-														<th>문제명</th>
-														<th>형식</th>
-														<th>점수</th>
-														<th>작성일</th>
+														<td>번호</td>
+														<td>문제명</td>
+														<td>형식</td>
+														<td>점수</td>
+														<td>작성일</td>
 														
 													</tr>
 												</thead>

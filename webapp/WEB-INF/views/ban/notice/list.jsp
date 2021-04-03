@@ -102,14 +102,14 @@
 													<col style="width: 15%;">
 													<col style="width: 15%;">
 												</colgroup>
-												<thead class="">
+												<thead class="theadS">
 													<tr>
-														<th>번호</th>
-														<th>제목</th>
-														<th>글쓴이</th>
-														<th>조회수</th>
-														<th>작성일</th>
-														<th>관리</th>
+														<td>번호</td>
+														<td>제목</td>
+														<td>글쓴이</td>
+														<td>조회수</td>
+														<td>작성일</td>
+														<td>관리</td>
 													</tr>
 												</thead>
 												<tbody>

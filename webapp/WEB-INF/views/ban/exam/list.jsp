@@ -78,25 +78,25 @@
 
 							<div class="addtest ">
 								<c:if test="${classInfo.joinVo.type == '선생님'}">
-									<a href="${pageContext.request.contextPath}/${url}/exam/grantform?userNo=${classInfo.joinVo.userNo}"><button class="btn btn-primary btn-sm">시험출제</button></a>
+									<a href="${pageContext.request.contextPath}/${url}/exam/grantform?userNo=${classInfo.joinVo.userNo}"><button class="btn btn-primary btn-sm" style="font-size: 13px;">시험출제</button></a>
 								</c:if>
 
 							</div>
 						</div>
 						<div class="row">
 							<table class="table table-striped table-bordered table-hover">
-								<thead class="">
+								<thead class="theadS">
 									<tr>
-										<th>번호</th>
-										<th>시험제목</th>
-										<th>문항수</th>
-										<th>시작일</th>
-										<th>종료일</th>
-										<th>상태</th>
-										<th>참석자</th>
-										<th>형태</th>
+										<td>번호</td>
+										<td>시험제목</td>
+										<td>문항수</td>
+										<td>시작일</td>
+										<td>종료일</td>
+										<td>상태</td>
+										<td>참석자</td>
+										<td>형태</td>
 										<c:if test="${classInfo.joinVo.type == '선생님'}">
-											<th>수정</th>
+											<td>수정</td>
 										</c:if>
 
 									</tr>

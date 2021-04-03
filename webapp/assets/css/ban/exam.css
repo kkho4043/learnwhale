@@ -10,6 +10,7 @@
 
 .addtest {
 	float: right;
+	text-size: 14px;
 }
 
 .test_table {
@@ -51,6 +52,10 @@
 
 .table input[type=text] {
 	width: 50px;
+}
+
+.theadS{
+	text-align: center;
 }
 
 /*  문제 풀기  */

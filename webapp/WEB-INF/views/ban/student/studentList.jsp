@@ -91,7 +91,7 @@
 						<div class="row">
 						   
 						  <div class="btn-group" role="group" aria-label="submit">
-							  <button type="submit" class="btn btn-default">승인</button>
+							  <button type="submit" id="btnT" class="btn btn-default">승인</button>
 							  
 							  <button type="submit" class="btn btn-default"
 							  formaction="${pageContext.request.contextPath }/${url}/student/wait">대기</button>
@@ -120,7 +120,7 @@
 								<col style="width: 2%;">
 								<col style="width: 1%;">
 							</colgroup>
-							<thead class="text-center" style="font-weight:bold;">
+							<thead class="text-center">
 								<tr>
 									<td>번호</td>
 									<td>이름</td>
