@@ -304,7 +304,7 @@
 		document.getElementById("problemType").value = "prochoice";
 		
 		if("${choVo[0].choiceContent}" === null){
-			document.getElementById("chioceType").value = "typetext";
+			document.getElementById("chioceType").value = "typeimage";
 			
 			for (var i = 0; i < ar.length; i++) {
 				document.getElementById("check"+ar[i]).checked = true;
@@ -312,7 +312,7 @@
 			}
 			
 		}else {
-			document.getElementById("chioceType").value = "typeimage";
+			document.getElementById("chioceType").value = "typetext";
 			for (var i = 0; i < ar.length; i++) {
 				document.getElementById("imgCheck"+ar[i]).checked = true;
 			

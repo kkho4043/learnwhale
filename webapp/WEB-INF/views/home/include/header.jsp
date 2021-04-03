@@ -40,11 +40,9 @@
 						<span style="font-size:13px; padding-right: 7px; color: #316898;">
 							${authUser.name}님
 						</span>
-						<a href="${pageContext.request.contextPath}/user/logout">
-							<button id="btnJoin" type="button" class="btn btn-default btn-xs">
-								로그아웃
-							</button>
-						</a>
+						<button id="btnJoin" type="button" class="btn btn-default btn-xs">
+							<a href="${pageContext.request.contextPath}/user/logout">로그아웃</a>
+						</button>
 					</div>
 				</c:otherwise>
 			</c:choose>

@@ -60,18 +60,18 @@
 					<!-- 여기서부터 각페이지에 맞게 코딩 시작-->
 					<div id="main-content-area">
 
-						<div class="">
+						<div class="col-xs-12">
 					
 
 								<div id="board">
 									<div id="writeForm">
 										<form action="${pageContext.request.contextPath}/${url}/notice/write" method="get">
 										
-											<input type="hidden" id="" name="user_no" value="${authUser.no }">
+											<input type="text" id="" name="user_no" value="${authUser.no }">
 											
 											<!-- 제목 -->
 											<div class="form-group">
-												<label class="form-text" for="txt-title">제목 :</label>
+												<label class="form-text" for="txt-title">제목</label>
 												<input type="text" id="txt-title" name="title" value="" placeholder="제목을 입력해 주세요">
 											</div>
 

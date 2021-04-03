@@ -76,16 +76,19 @@ h1 span:nth-child(8) { animation-delay: .7s; }
   }
 }
 	</style> -->
-	
-	<style>
-		#problemList .btn-primary {background-color: #75ACDC; margin-right:4px;}
-		
-		#problemList .btn-danger{
-							    background-color: #F765F0;
-							    border-color: #EC2FE3;
-							    margin-left: 4px;
-							    } 
-	</style>
+
+<style>
+#problemList .btn-primary {
+	background-color: #75ACDC;
+	margin-right: 4px;
+}
+
+#problemList .btn-danger {
+	background-color: #F765F0;
+	border-color: #EC2FE3;
+	margin-left: 4px;
+}
+</style>
 
 </head>
 <body>
@@ -137,8 +140,8 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 											</form>
 										</div>
 										<div class="col-xs-6">
-											<button class="btn btn-primary btn-sm pull-right" type="button" id = "creatbtn">문제등록</button>
-											<input type="hidden" id = "cateNosave">
+											<button class="btn btn-primary btn-sm pull-right" type="button" id="creatbtn">문제등록</button>
+											<input type="hidden" id="cateNosave">
 										</div>
 									</div>
 
@@ -165,11 +168,11 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 									</thead>
 
 									<tbody id="problemList"></tbody>
-									
+
 								</table>
 							</div>
-							
-							
+
+
 							<!-- <div id="not-selected">
 								<h1>
 								  <span>폴</span>
@@ -184,7 +187,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 								  <span>요</span>
 								</h1>
 							</div> -->
-							
+
 							<div class="row">
 								<div class="col-xs-12 text-center">
 									<nav>
@@ -203,53 +206,41 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 								</div>
 							</div>
 
-							<form method="post" action="${pageContext.request.contextPath}/myclass/problem/delete">
-								<div class="modal fade" id="delete-Modal">
+							<form method="post" action="${pageContext.request.contextPath}/myclass/problem/move">
+								<div class="modal fade" id="move-Modal">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true"></span>
 												</button>
-												<h4 class="modal-title">문제 제목</h4>		
-												<input  id="input-proNo" type="text" value="" name="problemNo">																
+												<h4 class="modal-title">문제 제목</h4>
+												<input id="input-proNo" type="hidden" value="" name="problemNo">
 											</div>
-											
-											
 											<div class="modal-body">
 												<p id="proTitle"></p>
-												
-												
-										<select name="cateName" id="cateMainSelectBox">
+												<select name="cateName" id="cateMainSelectBox">
 													<option selected disabled>폴더를 선택해 주세요</option>
 													<c:forEach items="${cateList }" var="cateList">
 														<c:choose>
-															
 															<c:when test="${cateList.depth == 0}">
 																<option data-group="${cateList.groupNo }" class="select" value="${cateList.groupNo}">${cateList.cateName}</option>
 															</c:when>
-															
 														</c:choose>
 													</c:forEach>
-												</select> 
-												
-												
-												<select name="" id="cateSubSelectBox" style="display: none;">
+												</select> <select id="cateSubSelectBox" name="cateNo" style="display: none;">
 													<option selected disabled>서브폴더를 선택해 주세요</option>
-													<c:forEach items="${cateList }" var="cateList" >
-														<c:choose>	
+													<c:forEach items="${cateList }" var="cateList">
+														<c:choose>
 															<c:when test="${cateList.depth == 1 }">
 																<option class="subSelect" id="${cateList.groupNo }" data-group="${cateList.groupNo }" value="${cateList.cateNo}">${cateList.cateName }</option>
 															</c:when>
 														</c:choose>
 													</c:forEach>
-								 				</select> 
-												
-												
+												</select>
 											</div>
 											<div class="modal-footer">
-												<p style="float: left;">문제를  이동 하시겠습니까?</p>
-
+												<p style="float: left;">문제를 다른 폴더로 옮기시겠습니까?</p>
 												<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 												<button type="submit" class="btn btn-primary">이동</button>
 											</div>
@@ -260,10 +251,44 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 								</div>
 								<!-- /.modal -->
 							</form>
+
+							<form method="post" action="${pageContext.request.contextPath}/myclass/problem/move">
+								<div class="modal fade" id="delete-Modal">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true"></span>
+												</button>
+												<h4 class="modal-title">문제 제목</h4>
+												<input id="deleteInput-proNo" type="text" value="" name="problemNo">
+											</div>
+											<div class="modal-body">
+												<p id="delete-proTitle"></p>
+												<input type="text" value="119" name="cateNo">
+											</div>
+											<div class="modal-footer">
+												<p style="float: left;">문제를 삭제하시겠습니까?</p>
+												<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+												<button type="submit" class="btn btn-danger">삭제</button>
+											</div>
+										</div>
+										<!-- /.modal-content -->
+									</div>
+									<!-- /.modal-dialog -->
+								</div>
+								<!-- /.modal -->
+							</form>
+
+
+
+
 						</div>
 						<!-- //col-xs-9 -->
 					</div>
 					<!-- //content-body-area -->
+
+
 
 					<!-- //여기서부터 각페이지에 맞게 코딩 끝 -->
 
@@ -275,7 +300,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 		<!-- //row -->
 	</div>
 	<!-- //content-Area -->
-	
+
 
 	<!-- footer-Area -->
 	<c:import url="/WEB-INF/views/home/include/footer.jsp"></c:import>
@@ -283,44 +308,55 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 
 </body>
 <script type="text/javascript">
+	$(document).ready(function() {
+						document.getElementById("cateNosave").value = ${param.cateNo}
+						$(document).on("click","#move",function() {
+											console.log("이동버튼 클릭");
 
-$(document).ready(function(){
-	document.getElementById("cateNosave").value = ${param.cateNo}	
-	$(document).on("click", "#move", function() {
-		console.log("이동버튼 클릭");
+											var title = $(this).data("title");
+											var proNo = $(this).data("prono");
 
-		var title = $(this).data("title");
-		var proNo = $(this).data("prono");
-		
-		
-		document.getElementById("proTitle").innerHTML = "문제 제목 :  " + title;
-		$("#input-proNo").val(proNo);
-		
-		$("#delete-Modal").modal();
-	});
-})
-	
-	
-	$(document).ready(function(){
-		
-		$("#cateMainSelectBox").change(function(){
-			
-			var group =	$(this).val();
-			
-			$("#cateSubSelectBox").show();
-			
-			$("#cateSubSelectBox option[data-group='"+group+"']").show();
-			$("#cateSubSelectBox option").not("[data-group='"+group+"']").hide();
-			/* console.log(group);
-			console.log($("#cateSubSelectBox").nextAll("#"+group).getAttribute("id")); */
-		}) 
-			
-			
-		
-		
-	});
-	
-	
+											document.getElementById("proTitle").innerHTML = "문제 제목 :  "
+													+ title;
+											$("#input-proNo").val(proNo);
+
+											$("#move-Modal").modal();
+										});
+						
+						$(document).on("click","#delete",function() {
+									console.log("이동버튼 클릭");
+
+									var title = $(this).data("title");
+									var proNo = $(this).data("prono");
+
+									document.getElementById("delete-proTitle").innerHTML = "문제 제목 :  "+ title;
+									$("#deleteInput-proNo").val(proNo);
+
+									$("#delete-Modal").modal();
+								});
+					});
+
+	$(document).ready(
+			function() {
+
+				$("#cateMainSelectBox").change(
+						function() {
+
+							var group = $(this).val();
+
+							$("#cateSubSelectBox").show();
+
+							$(
+									"#cateSubSelectBox option[data-group='"
+											+ group + "']").show();
+							$("#cateSubSelectBox option").not(
+									"[data-group='" + group + "']").hide();
+							/* console.log(group);
+							console.log($("#cateSubSelectBox").nextAll("#"+group).getAttribute("id")); */
+						})
+
+			});
+
 	/* $("#cateMainSelectBox").change(function() {
 						var groupNo = $(this).val();
 
@@ -349,21 +385,16 @@ $(document).ready(function(){
 								});
 					}); */
 
-	$(".move-Btn").on("click", function() {
-		console.log("이동버튼 클릭");
+	$("#creatbtn")
+			.on(
+					"click",
+					function() {
+						var cateN = document.getElementById("cateNosave").value
 
-		$("#move-Modal").modal();
-	});
-	
+						location.href = "${pageContext.request.contextPath}/myclass/problem/creatingForm?cateNo="
+								+ cateN;
 
-	
-	$("#creatbtn").on("click", function() {
-		var cateN = document.getElementById("cateNosave").value
-		
-		location.href = "${pageContext.request.contextPath}/myclass/problem/creatingForm?cateNo="+cateN;
-
-		
-	});
+					});
 </script>
 </html>
 

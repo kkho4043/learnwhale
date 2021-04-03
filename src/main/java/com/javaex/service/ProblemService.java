@@ -325,11 +325,11 @@ public class ProblemService {
 	 * } }
 	 */
 
-	public int delete(ProblemVo proVo) {
+	public int move(ProblemVo proVo) {
 
-		System.out.println("service delete" + proVo);
+		System.out.println("service move" + proVo);
 
-		return proDao.delete(proVo);
+		return proDao.move(proVo);
 	}
 
 	// 객관식 보기

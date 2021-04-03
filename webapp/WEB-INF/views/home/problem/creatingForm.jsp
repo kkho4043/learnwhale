@@ -259,8 +259,8 @@
 												<div class="col-xs-5">
 													<button type="submit" class="btn btn-primary" id="save">저장하기</button>
 												</div>
-												<input type="hidden" id="chioceType"> 
-												<input type="hidden" id="problemType">
+												<input type="hidden" id="choiceType"> 
+												<input type="hidden" id="problemType2">
 											</form>
 											<!-- //form -->
 										</div>
@@ -292,7 +292,7 @@
 <script type="text/javascript">
 	/* 시작할때 */
 	$(document).ready(function() {
-
+	document.getElementById("problemType2").value = "prochoice";
 		/* 입력폼출력 */
 		$("#choType-div").show();
 		$("#image-area").hide();
@@ -307,7 +307,7 @@
 
 		/* 폼초기화 */
 		formReset();
-		document.getElementById("problemType").value = "proOX";
+		document.getElementById("problemType2").value = "proOX";
 		/* 입력폼출력 */
 		$("#choType-div").hide();
 		$(".mc-Area").hide();
@@ -321,7 +321,7 @@
 	$(".sjF").on("click", function() {
 		/* 폼초기화 */
 		formReset();
-		document.getElementById("problemType").value = "proshort";
+		document.getElementById("problemType2").value = "proshort";
 		/* 입력폼출력 */
 		$("#choType-div").hide();
 		$(".mc-Area").hide();
@@ -333,7 +333,7 @@
 
 	/* 객관식문제방식 선택할때 */
 	$(".mcF").on("click", function() {
-		document.getElementById("problemType").value = "prochoice";
+		document.getElementById("problemType2").value = "prochoice";
 		/* 폼초기화 */
 		formReset();
 
@@ -348,8 +348,9 @@
 
 	//보기 타입 텍스트 선택할 때
 	$("#choice-TextType").on("click", function() {
+		document.getElementById("choiceType").value = "typetext";
+		console.log(document.getElementById("choiceType").value);
 		
-		document.getElementById("chioceType").value = "typetext";
 		$("#image-area").hide();
 		$(".mc-Area").show();
 		$(".ox-Area").hide();
@@ -360,8 +361,9 @@
 
 	//보기 타입 이미지 선택할 때
 	$("#choice-ImageType").on("click", function() {
-
-		document.getElementById("chioceType").value = "typeimage";
+		document.getElementById("choiceType").value = "typeimage";
+		console.log(document.getElementById("choiceType").value);
+		
 		$("#image-area").show();
 		$(".mc-Area").hide();
 		$(".ox-Area").hide();
@@ -388,9 +390,12 @@ $("#prblemForm").on("submit",function() {
 		alert("문제 지문을 입력해 주세요.");
 		return false;
 	}
+	alert(document.getElementById("problemType2").value);
 	
-	if (document.getElementById("problemType").value == "prochoice") {
-		if (document.getElementById("chioceType").value == "typetext") {
+	if (document.getElementById("problemType2").value == "prochoice") {
+		console.log("choicetype");
+		
+		if (document.getElementById("choiceType").value == "typetext") {
 
 			if (!$("#choiceContent1").val()) {
 				console.log("보기 1번 비었음")
@@ -410,7 +415,11 @@ $("#prblemForm").on("submit",function() {
 				alert("정답을 체크해주세요");
 				return false;
 			}
+<<<<<<< HEAD
+		} else if (document.getElementById("choiceType").value == "typeimage") {
+=======
 		} else if (document.getElementById("chioceType").value == "typeimage") {
+>>>>>>> branch 'master' of https://github.com/kkho4043/learnwhale.git
 
 			if (!(document.getElementById("file1").value)) {
 				alert("이미지 1번을 넣어주세요.");
@@ -429,14 +438,14 @@ $("#prblemForm").on("submit",function() {
 				return false;
 			}
 
-		} else if (document.getElementById("problemType").value == "proshort") {
+		} else if (document.getElementById("problemType2").value == "proshort") {
 			if (!$(".sj-Area .answer").val()) {
 				console.log("주관식")
 				alert("정답을 입력해주세요");
 				return false;
 			}
 
-		} else if (document.getElementById("problemType").value == "proOX") {
+		} else if (document.getElementById("problemType2").value == "proOX") {
 			if ($('input:radio[name=answer]').is(':checked') == false) {
 				console.log("ox");
 				alert("정답을 체크해주세요");
