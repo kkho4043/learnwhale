@@ -212,22 +212,40 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 													<span aria-hidden="true"></span>
 												</button>
 												<h4 class="modal-title">문제 제목</h4>		
-												<input  id="input-proNo" type="text" value="" name="problemNo">	
-												<input  type="text" value="" name="cateNo">																
+												<input  id="input-proNo" type="text" value="" name="problemNo">																
 											</div>
+											
+											
 											<div class="modal-body">
 												<p id="proTitle"></p>
-												<select name="cateName" id="cateMainSelectBox">
+												
+												
+										<select name="cateName" id="cateMainSelectBox">
 													<option selected disabled>폴더를 선택해 주세요</option>
-													<c:forEach items="${cateList}" var="cateList">
+													<c:forEach items="${cateList }" var="cateList">
 														<c:choose>
+															
 															<c:when test="${cateList.depth == 0}">
-																<option value="${cateList.cateNo}">${cateList.cateName}</option>
+																<option data-group="${cateList.groupNo }" class="select" value="${cateList.groupNo}">${cateList.cateName}</option>
 															</c:when>
+															
 														</c:choose>
 													</c:forEach>
 												</select> 
-												<select id="cateSubSelectBox" style="display: none"></select>
+												
+												
+												<select name="" id="cateSubSelectBox" style="display: none;">
+													<option selected disabled>서브폴더를 선택해 주세요</option>
+													<c:forEach items="${cateList }" var="cateList" >
+														<c:choose>	
+															<c:when test="${cateList.depth == 1 }">
+																<option class="subSelect" id="${cateList.groupNo }" data-group="${cateList.groupNo }" value="${cateList.cateNo}">${cateList.cateName }</option>
+															</c:when>
+														</c:choose>
+													</c:forEach>
+								 				</select> 
+												
+												
 											</div>
 											<div class="modal-footer">
 												<p style="float: left;">문제를  이동 하시겠습니까?</p>
@@ -282,8 +300,28 @@ $(document).ready(function(){
 	});
 })
 	
-
-	$("#cateMainSelectBox").change(function() {
+	
+	$(document).ready(function(){
+		
+		$("#cateMainSelectBox").change(function(){
+			
+			var group =	$(this).val();
+			
+			$("#cateSubSelectBox").show();
+			
+			$("#cateSubSelectBox option[data-group='"+group+"']").show();
+			$("#cateSubSelectBox option").not("[data-group='"+group+"']").hide();
+			/* console.log(group);
+			console.log($("#cateSubSelectBox").nextAll("#"+group).getAttribute("id")); */
+		}) 
+			
+			
+		
+		
+	});
+	
+	
+	/* $("#cateMainSelectBox").change(function() {
 						var groupNo = $(this).val();
 
 						$.ajax({
@@ -309,7 +347,7 @@ $(document).ready(function(){
 										console.error(status + " : " + error);
 									}
 								});
-					});
+					}); */
 
 	$(".move-Btn").on("click", function() {
 		console.log("이동버튼 클릭");
