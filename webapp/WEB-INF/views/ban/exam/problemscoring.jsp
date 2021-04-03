@@ -415,6 +415,7 @@
 			success : function(url) {
 				console.log(url);
 				alert('점수가 부여되었습니다');
+				location.reload();
 
 			},
 			error : function(XHR, status, error) {

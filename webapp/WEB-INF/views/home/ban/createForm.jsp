@@ -79,7 +79,7 @@
 									<label class="col-xs-2 text-right" for="banner">메인배너</label> <span
 										class="col-xs-9"> <input type="text" readonly
 										class="form-control input-sm" id=""
-										placeholder="메인배너 이미지를 넣어주세요" style="width: 710px;">
+										placeholder="메인배너 이미지를 넣어주세요" style="width: 710px; background-color: #fff;">
 										<input type="file" id="banner"
 										 name="logo">
 									</span> 
@@ -106,7 +106,7 @@
 
 								<div class="row interval">
 									<label class="col-xs-2 text-right">노출여부</label>
-									<div class="radio col-xs-10">
+									<div class="radioSize radio col-xs-10">
 										<label> <input type="radio" id="hidden" name="hidden" value="보이기">보이기
 										</label> <label> <input type="radio" id="hidden" name="hidden" value="숨기기">숨기기
 										</label>
@@ -124,18 +124,18 @@
 										<p id="msg" class="text-danger">
 											<!-- url 사용 가능 여부 메세지  -->
 										</p> 
-										<p class="text-warning">※url의 경우 중복불가, 수정불가</p>
+										<p class="text-warning">※ url의 경우 중복불가, 수정불가</p>
 									</span>
 								</div>
 								<!-- //노출여부 -->
 
 								<div class="row interval">
-									<div class="col-xs-7">
+									<div class="">
 										<button type="submit"
-											class="btn btn-primary btn-sm pull-right">저장</button>
+											class="btnSave btn btn-primary btn-sm pull-right">저장</button>
 									</div>
-									<div class="col-xs-5">
-										<button class="btn btn-primary btn-sm pull-right">
+									<div class="">
+										<button class="btnCancel btn btn-primary btn-sm pull-right">
 											<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">취소</a>
 										</button>
 									</div>
