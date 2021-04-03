@@ -63,27 +63,27 @@
 												<div class="row col-xs-9">
 
 													<div class="col-sm-4 problemType">
-														<input type="radio" class="mcF" id="typeMc" name="type" value="객관식" checked="checked">
+														<input type="radio" class="mcF" id="typeMc" name="type" value="객관식" style="width: 17px;" checked="checked">
 													</div>
 													<div class="col-sm-4 problemType">
-														<input type="radio" class="oxF" id="typeOx" name="type" value="OX문제">
+														<input type="radio" class="oxF" id="typeOx" name="type" value="OX문제" style="width: 17px;" >
 													</div>
 													<div class="col-sm-4 problemType">
-														<input type="radio" class="sjF" id="typeSj" name="type" value="주관식">
+														<input type="radio" class="sjF" id="typeSj" name="type" value="주관식"  style="width: 17px;" >
 													</div>
 												</div>
 
 												<div class="row col-xs-9">
 													<div class="col-sm-4 problemType radioArea">
-														<label for="typeMc">객관식</label>
+														<label for="typeMc" class="type">객관식</label>
 
 													</div>
 													<div class="col-sm-4 problemType radioArea">
-														<label for="typeOx">OX문제</label>
+														<label for="typeOx" class="type">OX문제</label>
 
 													</div>
 													<div class="col-sm-4 problemType radioArea">
-														<label for="typeSj">주관식</label>
+														<label for="typeSj" class="type">주관식</label>
 
 													</div>
 												</div>
@@ -94,18 +94,18 @@
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
-															<input type="text" class="form-control creating-problemTitle" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle"
+															<input type="text" class="form-control creating-problemTitle" id="problemTitle" style="font-size: 11px;" placeholder="문제 제목을 입력해주세요." name="problemTitle"
 																value="">
 														</div>
 														<div class="form-group">
-															<textarea class="form-control creating-content" id="content" placeholder="문제를 입력해주세요." name="content"></textarea>
+															<textarea class="form-control creating-content" id="content" style="font-size: 11px;" placeholder="문제를 입력해주세요." name="content"></textarea>
 														</div>
 
 														<div class="form-group" id="img-file">
 															<label for="image" id="image-label">문제 이미지 :</label> <input type="file" name="Image" id="image" value="">
 														</div>
 														<div class="form-group" id="last-makeType">
-															<textarea class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description"></textarea>
+															<textarea class="form-control" style="font-size: 11px;" placeholder="정답에 대한 설명을 넣어주세요." name="description"></textarea>
 														</div>
 
 														<!-- //col-sm-12 -->
@@ -114,7 +114,7 @@
 																<span>보기 등록 방식을 선택해 주세요.</span>
 															</div>
 															<div class="col-xs-6">
-																<button type="button" class="btn btn-success" id="choice-TextType">내용 입력</button>
+																<button type="button" class="btn btn-success" id="choice-TextType" style="margin-bottom: 16px;">내용 입력</button>
 															</div>
 															<div class="col-xs-6">
 																<button type="button" class="btn btn-info" id="choice-ImageType">이미지 등록</button>
@@ -410,7 +410,7 @@ $("#prblemForm").on("submit",function() {
 				alert("정답을 체크해주세요");
 				return false;
 			}
-		} else if (document.getElementById("chioceType").value == "	") {
+		} else if (document.getElementById("chioceType").value == "typeimage") {
 
 			if (!(document.getElementById("file1").value)) {
 				alert("이미지 1번을 넣어주세요.");
