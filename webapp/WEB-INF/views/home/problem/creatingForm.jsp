@@ -410,7 +410,7 @@ $("#prblemForm").on("submit",function() {
 				alert("정답을 체크해주세요");
 				return false;
 			}
-		} else if (document.getElementById("chioceType").value == "typeimage") {
+		} else if (document.getElementById("chioceType").value == "	") {
 
 			if (!(document.getElementById("file1").value)) {
 				alert("이미지 1번을 넣어주세요.");

@@ -212,7 +212,8 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 													<span aria-hidden="true"></span>
 												</button>
 												<h4 class="modal-title">문제 제목</h4>		
-												<input  id="input-proNo" type="text" value="" name="problemNo">																
+												<input  id="input-proNo" type="text" value="" name="problemNo">	
+												<input  type="text" value="" name="cateNo">																
 											</div>
 											<div class="modal-body">
 												<p id="proTitle"></p>
@@ -226,7 +227,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 														</c:choose>
 													</c:forEach>
 												</select> 
-												<select name="" id="cateSubSelectBox" style="display: none"></select>
+												<select id="cateSubSelectBox" style="display: none"></select>
 											</div>
 											<div class="modal-footer">
 												<p style="float: left;">문제를  이동 하시겠습니까?</p>
