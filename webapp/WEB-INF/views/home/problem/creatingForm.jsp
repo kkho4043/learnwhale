@@ -63,27 +63,27 @@
 												<div class="row col-xs-9">
 
 													<div class="col-sm-4 problemType">
-														<input type="radio" class="mcF" id="typeMc" name="type" value="객관식" checked="checked">
+														<input type="radio" class="mcF" id="typeMc" name="type" value="객관식" style="width: 17px;" checked="checked">
 													</div>
 													<div class="col-sm-4 problemType">
-														<input type="radio" class="oxF" id="typeOx" name="type" value="OX문제">
+														<input type="radio" class="oxF" id="typeOx" name="type" value="OX문제" style="width: 17px;" >
 													</div>
 													<div class="col-sm-4 problemType">
-														<input type="radio" class="sjF" id="typeSj" name="type" value="주관식">
+														<input type="radio" class="sjF" id="typeSj" name="type" value="주관식"  style="width: 17px;" >
 													</div>
 												</div>
 
 												<div class="row col-xs-9">
 													<div class="col-sm-4 problemType radioArea">
-														<label for="typeMc">객관식</label>
+														<label for="typeMc" class="type">객관식</label>
 
 													</div>
 													<div class="col-sm-4 problemType radioArea">
-														<label for="typeOx">OX문제</label>
+														<label for="typeOx" class="type">OX문제</label>
 
 													</div>
 													<div class="col-sm-4 problemType radioArea">
-														<label for="typeSj">주관식</label>
+														<label for="typeSj" class="type">주관식</label>
 
 													</div>
 												</div>
@@ -94,18 +94,18 @@
 													<div class="col-xs-9" id="make-problem">
 
 														<div class="form-group">
-															<input type="text" class="form-control creating-problemTitle" id="problemTitle" placeholder="문제 제목을 입력해주세요." name="problemTitle"
+															<input type="text" class="form-control creating-problemTitle" id="problemTitle" style="font-size: 11px;" placeholder="제목을 입력해주세요." name="problemTitle"
 																value="">
 														</div>
 														<div class="form-group">
-															<textarea class="form-control creating-content" id="content" placeholder="문제를 입력해주세요." name="content"></textarea>
+															<textarea class="form-control creating-content" id="content" style="font-size: 11px;" placeholder="문제를 입력해주세요." name="content"></textarea>
 														</div>
 
 														<div class="form-group" id="img-file">
 															<label for="image" id="image-label">문제 이미지 :</label> <input type="file" name="Image" id="image" value="">
 														</div>
 														<div class="form-group" id="last-makeType">
-															<textarea class="form-control" placeholder="정답에 대한 설명을 넣어주세요." name="description"></textarea>
+															<textarea class="form-control" style="font-size: 11px;" placeholder="정답에 대한 설명을 넣어주세요." name="description"></textarea>
 														</div>
 
 														<!-- //col-sm-12 -->
@@ -114,7 +114,7 @@
 																<span>보기 등록 방식을 선택해 주세요.</span>
 															</div>
 															<div class="col-xs-6">
-																<button type="button" class="btn btn-success" id="choice-TextType">내용 입력</button>
+																<button type="button" class="btn btn-success" id="choice-TextType" style="margin-bottom: 16px;">내용 입력</button>
 															</div>
 															<div class="col-xs-6">
 																<button type="button" class="btn btn-info" id="choice-ImageType">이미지 등록</button>
@@ -133,7 +133,7 @@
 																	<input type="text" class="form-control choiceContent" id="choiceContent1" placeholder="The first answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" class="answer" name="answer" id="check-first" value="1"> <label for="check-first">정답체크</label>
+																	<input type="checkBox" class="answer" name="answer" id="check-first" value="1"> <label for="check-first" class="check-label1">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -146,7 +146,7 @@
 																	<input type="text" class="form-control choiceContent" id="choiceContent2" placeholder="The second answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" class="answer" name="answer" id="check-second" value="2"> <label for="check-second">정답체크</label>
+																	<input type="checkBox" class="answer" name="answer" id="check-second" value="2"> <label for="check-second" class="check-label1">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -160,7 +160,7 @@
 																	<input type="text" class="form-control choiceContent" id="choiceContent3" placeholder="The third answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" class="answer" name="answer" id="check-third" value="3"> <label for="check-third">정답체크</label>
+																	<input type="checkBox" class="answer" name="answer" id="check-third" value="3"> <label for="check-third" class="check-label1">정답체크</label>
 																</div>
 															</div>
 															<!-- //answer-content -->
@@ -174,14 +174,14 @@
 																	<input type="text" class="form-control choiceContent" id="choiceContent4" placeholder="The fourth answer" name="choiceContent">
 																</div>
 																<div class="col-xs-2">
-																	<input type="checkBox" class="answer" name="answer" id="check-fourth" value="4"> <label for="check-fourth">정답체크</label>
+																	<input type="checkBox" class="answer" name="answer" id="check-fourth" value="4"> <label for="check-fourth" class="check-label1">정답체크</label>
 																</div>
 															</div>
 														</div>
 
 														<div class="row answer-content" id="image-area">
 															<div class="col-xs-12 image-h4">
-																<h4>각 문항에 이미지를 넣어주세요.</h4>
+																<div>각 문항에 이미지를 넣어주세요.</div>
 															</div>
 															<div class="col-xs-12 answer-num image-answer-num">
 																<strong class="image-num">1</strong> <input type="file" name="Image1" id="file1" class="image-file"> <input type="checkBox"
@@ -208,8 +208,8 @@
 
 														<!-- ox문제 시작 -->
 														<div class="row ox-Area">
-															<div class="col-xs-12">
-																<h4>정답을 선택해주세요</h4>
+															<div class="col-xs-12" id="choice-type">
+																<span>정답을 선택해주세요.</span>
 															</div>
 															<!-- //col-sm-12 -->
 															<div class="col-xs-6">
@@ -217,7 +217,7 @@
 																	<input id="quizAnswerO" class="answer" type="radio" name="answer" value="O">
 																</div>
 																<div id="O">
-																	<label for="quizAnswerO">O</label>
+																	<label for="quizAnswerO" id="size">O</label>
 																</div>
 															</div>
 															<!-- //col-sm-6 -->
@@ -236,8 +236,8 @@
 
 														<!-- 주관식 문제 시작 -->
 														<div class="row answer-content sj-Area">
-															<div class="col-sm-12">
-																<h4>정답을 적어주세요.</h4>
+															<div class="col-sm-12" id="choice-type">
+																<span>정답을 적어주세요.</span>
 															</div>
 															<div class="col-sm-12" id="last-input">
 																<input type="text" class="form-control answer" id="exampleInputEmail3" name="answer" value="">
@@ -259,8 +259,8 @@
 												<div class="col-xs-5">
 													<button type="submit" class="btn btn-primary" id="save">저장하기</button>
 												</div>
-												<input type="hidden" id="chioceType"> 
-												<input type="hidden" id="problemType">
+												<input type="hidden" id="choiceType"> 
+												<input type="hidden" id="problemType2">
 											</form>
 											<!-- //form -->
 										</div>
@@ -292,7 +292,7 @@
 <script type="text/javascript">
 	/* 시작할때 */
 	$(document).ready(function() {
-
+	document.getElementById("problemType2").value = "prochoice";
 		/* 입력폼출력 */
 		$("#choType-div").show();
 		$("#image-area").hide();
@@ -307,7 +307,7 @@
 
 		/* 폼초기화 */
 		formReset();
-		document.getElementById("problemType").value = "proOX";
+		document.getElementById("problemType2").value = "proOX";
 		/* 입력폼출력 */
 		$("#choType-div").hide();
 		$(".mc-Area").hide();
@@ -321,7 +321,7 @@
 	$(".sjF").on("click", function() {
 		/* 폼초기화 */
 		formReset();
-		document.getElementById("problemType").value = "proshort";
+		document.getElementById("problemType2").value = "proshort";
 		/* 입력폼출력 */
 		$("#choType-div").hide();
 		$(".mc-Area").hide();
@@ -333,7 +333,7 @@
 
 	/* 객관식문제방식 선택할때 */
 	$(".mcF").on("click", function() {
-		document.getElementById("problemType").value = "prochoice";
+		document.getElementById("problemType2").value = "prochoice";
 		/* 폼초기화 */
 		formReset();
 
@@ -348,8 +348,9 @@
 
 	//보기 타입 텍스트 선택할 때
 	$("#choice-TextType").on("click", function() {
+		document.getElementById("choiceType").value = "typetext";
+		console.log(document.getElementById("choiceType").value);
 		
-		document.getElementById("chioceType").value = "typetext";
 		$("#image-area").hide();
 		$(".mc-Area").show();
 		$(".ox-Area").hide();
@@ -360,8 +361,9 @@
 
 	//보기 타입 이미지 선택할 때
 	$("#choice-ImageType").on("click", function() {
-
-		document.getElementById("chioceType").value = "typeimage";
+		document.getElementById("choiceType").value = "typeimage";
+		console.log(document.getElementById("choiceType").value);
+		
 		$("#image-area").show();
 		$(".mc-Area").hide();
 		$(".ox-Area").hide();
@@ -388,9 +390,12 @@ $("#prblemForm").on("submit",function() {
 		alert("문제 지문을 입력해 주세요.");
 		return false;
 	}
+	alert(document.getElementById("problemType2").value);
 	
-	if (document.getElementById("problemType").value == "prochoice") {
-		if (document.getElementById("chioceType").value == "typetext") {
+	if (document.getElementById("problemType2").value == "prochoice") {
+		console.log("choicetype");
+		
+		if (document.getElementById("choiceType").value == "typetext") {
 
 			if (!$("#choiceContent1").val()) {
 				console.log("보기 1번 비었음")
@@ -410,7 +415,7 @@ $("#prblemForm").on("submit",function() {
 				alert("정답을 체크해주세요");
 				return false;
 			}
-		} else if (document.getElementById("chioceType").value == "	") {
+		} else if (document.getElementById("choiceType").value == "typeimage") {
 
 			if (!(document.getElementById("file1").value)) {
 				alert("이미지 1번을 넣어주세요.");
@@ -429,14 +434,14 @@ $("#prblemForm").on("submit",function() {
 				return false;
 			}
 
-		} else if (document.getElementById("problemType").value == "proshort") {
+		} else if (document.getElementById("problemType2").value == "proshort") {
 			if (!$(".sj-Area .answer").val()) {
 				console.log("주관식")
 				alert("정답을 입력해주세요");
 				return false;
 			}
 
-		} else if (document.getElementById("problemType").value == "proOX") {
+		} else if (document.getElementById("problemType2").value == "proOX") {
 			if ($('input:radio[name=answer]').is(':checked') == false) {
 				console.log("ox");
 				alert("정답을 체크해주세요");

@@ -161,15 +161,15 @@ public class HproblemController {
 	}
 
 	// 문제 삭제
-	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/move", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(@ModelAttribute ProblemVo proVo, Model model) {
-		System.out.println("[ProblemController.delete()]");
+		System.out.println("[ProblemController.move()]");
 
 		model.addAttribute("proVo", proVo);
 
-		System.out.println("delete문Vo:   " + proVo);
+		System.out.println("move문Vo:   " + proVo);
 
-		proService.delete(proVo);
+		proService.move(proVo);
 
 		return "redirect:/myclass/problem/problemList?cateNo=" + proVo.getCateNo();
 	}

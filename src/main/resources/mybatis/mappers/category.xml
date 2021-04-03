@@ -155,7 +155,7 @@
 		]]>
 	</update>
 
-	<update id="delete" parameterType="ProblemVo">
+	<update id="move" parameterType="ProblemVo">
 		<![CDATA[
 			update problem
 			set cate_no = #{cateNo}

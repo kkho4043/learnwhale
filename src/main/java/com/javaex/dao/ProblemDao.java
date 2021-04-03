@@ -120,10 +120,10 @@ public class ProblemDao {
 		return sqlSession.update("category.ChoiceModify", map);
 	}
 	
-	public int delete(ProblemVo proVo) {
-		System.out.println("ProDao- delete" + proVo);
+	public int move(ProblemVo proVo) {
+		System.out.println("ProDao- move" + proVo);
 		
-		return sqlSession.update("category.delete", proVo);
+		return sqlSession.update("category.move", proVo);
 	}
 
 	// 서브 카테고리 조회
