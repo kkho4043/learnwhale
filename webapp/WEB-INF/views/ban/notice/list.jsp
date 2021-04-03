@@ -92,8 +92,8 @@
 										</div>
 									</div>
 
-									<div class="row">
-										<div class="col-xs-12">
+									<div class="row" style="width: 801.66px;">
+										<div class="">
 											<table class="table table-striped table-bordered table-hover">
 												<colgroup>
 													<col style="width: 10%;">
