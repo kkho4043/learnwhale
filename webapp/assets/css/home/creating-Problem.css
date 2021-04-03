@@ -1,8 +1,12 @@
+
 @charset "UTF-8";
 #Creat-Title{
-	font-weight: bold;
-	margin-bottom: 60px;
+	font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 22px;
+    margin-top: 20px;
     padding-left: 263px;
+    color: #6bc6ec;
 }
 #type-text{
 	font-weight: bold;
@@ -11,11 +15,14 @@
 
 .problemType{
 	text-align: center;
-	margin-bottom: 50px;
+	margin-bottom: 38px;
 }
 #time-point{margin: 10px; text-align: right;}
 #TPdiv{margin-bottom: 50px;}
-#make-problem{text-align: center;}
+#make-problem{
+    text-align: center;
+    margin-top: -18px;
+	}
 #img-file{
 	margin-top: 5px;
 	margin-bottom: 15px;
@@ -26,31 +33,38 @@
 		margin-left: 37px;
 		margin-bottom: 20px;
 }
-#last-makeType{margin-bottom: 60px;}
+#last-makeType{margin-bottom: 35px;}
 
 .answer-num{margin-top: 5px;}
-.checkBox{margin-top: 10px;}
+
+.checkBox{
+	margin-top: 10px;
+	}
+
 #save{
 	float: right;
 	margin-bottom: 20px;
+	margin-right: -5px;
+	height: 30px;
 }
 
 #O{
-	font-size: 100px;
-	color: #00E0F7;
+	font-size: 61px;
+    color: #A7D5E8;
 }
 #X{
-	font-size: 92px;
-	color: #E74407;
+    font-size: 61px;
+    color: #A7D5E8;
 }
 
 input[type=radio]{
-	width: 25px; 
-	height: 25px;
+	width: 17px;
 }
 
 #out{
+	margin-left: -14px;
 	float:left;
+	height: 30px;
 }
 #last-input{
 	margin-bottom: 50px;
@@ -59,9 +73,10 @@ input[type=radio]{
 	margin-top: -41px;
 }
 #choice-type{
-	font-size: 20px;
-	font-weight: bold;
 	margin-bottom: 20px;
+	color: #316898;
+    font-weight: 100;
+    font-size: 14px;
 }
 .answer-content{
 	margin-bottom: 15px;
@@ -71,6 +86,7 @@ input[type=radio]{
 	margin-top: 3px;
 	margin-right: 20px;
 }
+
 .image-file{
 	float: left;
 	width: 300px;
@@ -79,30 +95,49 @@ input[type=radio]{
 	float: left;
 	margin-left:100px;
 }
+
 .check-label{
 	float: left;
-    margin-top: 3px;
-    margin-left: 10px;
+    margin-top: 1px;
+    margin-left: 8px;
+    font-weight: 200;
 }
+
+.check-label1{
+    font-weight: 200;
+}
+
 .image-answer-num{
 	margin-bottom: 12px;
 }
 
 .image-h4{
-	margin: 30px;
+    margin-top: 15px;
+    margin-bottom: 14px;
+    color: #d0d0d0;
+    font-weight: 100;
+    font-size: 14px;
 }
 
 #text-area{
-	margin: 30px;
+	margin-top: 15px;
+    margin-bottom: 14px;
+    color: #d0d0d0;
+    font-weight: 100;
+    font-size: 14px;
 }
+
 .choice-textMargin{
 	margin-bottom: 15px;
 }
 
 #image-label{
-	margin-right: 20px;
-	float: left;
+	margin-right: 11px;
+    font-size: 14px;
+    font-weight: 500;
+    float: left;
 }
+
 #view-image-label{
 	margin-right: 20px;
 	float: left;
@@ -110,6 +145,8 @@ input[type=radio]{
 }
 #image{
 	float: left;
+	color: #d0d0d0;
+    font-size: 14px;
 }
 #title-label{
 	float: left;
@@ -146,4 +183,52 @@ input[type=radio]{
 #image-span{
 	float: left;
     margin: -12px 0px 11px 27px;
+}
+
+.btn-success{
+	margin-bottom: 10px;
+}
+
+.type{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.problemType{
+	width: 20px;
+}
+
+.formT{
+	font-size: 11px;
+}
+
+.btn-info{
+	font-size: 12px;
+	height: 30px;
+}
+
+ .btn-success{
+	font-size: 12px;
+	height: 30px;
+}
+
+#choiceContent1{
+	font-size: 12px;
+}
+
+#choiceContent2{
+	font-size: 12px;
+}
+
+#choiceContent3{
+	font-size: 12px;
+}
+
+#choiceContent4{
+	font-size: 12px;
+}
+
+.image-file{
+	font-size: 14px;
+	color: #d0d0d0;
 }

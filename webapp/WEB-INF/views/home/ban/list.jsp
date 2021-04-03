@@ -41,7 +41,7 @@
 				<c:import url="/WEB-INF/views/home/include/aside.jsp"></c:import>
 				<!-- //왼쪽메뉴 -->
 
-				<div id="main" class="col-xs-10">
+				<div id="main" class="col-xs-10" style="height: 534px;">
 					<div id="content-title-area" class="row">
 						<div id="content-title" class="col-xs-8">반관리</div>
 						<div id="breadcrumb-area" class="col-xs-4">
