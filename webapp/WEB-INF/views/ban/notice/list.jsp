@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Insert title here</title>
+<c:import url="/WEB-INF/views/ban/include/title.jsp"></c:import>
 
 <!-- css -->
 <link
