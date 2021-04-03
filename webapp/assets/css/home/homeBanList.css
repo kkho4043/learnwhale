@@ -27,6 +27,23 @@ body{
 
 .text-right {
 	font-size: 14px;
-    padding-right: 7px;
     color: #316898;
+}
+
+.tableFontSize{
+	font-size: 14px;
+}
+
+.btn-create{
+ 	width: 70px;
+}
+
+.btn-modify{
+	background-color: #F765F0;
+    border-color: #EC2FE3;
+}
+
+.btn-delete{
+	background-color: #75ACDC;
+    border-color: #316898;
 }
