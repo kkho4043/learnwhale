@@ -4,15 +4,8 @@
 <div id="left-area" class="col-xs-2">
 	<div id="profile-area">
 		<div id="profile-img">
-			<c:choose>
-				<c:when test="${classInfo.cuVo.proFile} != null}">
-					<img src="${pageContext.request.contextPath}/upload/${classInfo.cuVo.proFile}" class="img-thumbnail">
-				</c:when>
+					<img src="${pageContext.request.contextPath}/upload/${classInfo.cuVo.proFile}" class="img-thumbnail" onerror="this.src='${pageContext.request.contextPath}/assets/image/profile.jpg'">
 
-				<c:otherwise>
-					<img src="${pageContext.request.contextPath}/assets/image/profile.jpg" class="img-thumbnail">
-				</c:otherwise>
-			</c:choose>
 		</div>
 		<p id="teacherName" class="text-center">
 

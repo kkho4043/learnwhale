@@ -557,13 +557,13 @@ from(select
 
 
 	<!-- 문제풀기시 리스트 -->
-	<select id="getsolvetime" parameterType="int">
+	<select id="getsolvetime" parameterType="int" resultType="int">
 		<![CDATA[
 			select
 			     count(*)
 			from exam
 			where exam_no = #{examNo}
-			and start_date > sysdate
+			and start_date < sysdate
 		]]>
 	</select>
 

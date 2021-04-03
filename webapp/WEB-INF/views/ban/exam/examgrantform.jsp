@@ -113,7 +113,7 @@
 								</div>
 
 								<div class="col-xs-4" style="margin-left: -49px;">
-									<input type="datetime-local" id="enddate" class="selecttimebar"  style="color: #d0d0d0; padding-left: 7px;"> 까지
+									<input type="datetime-local" id="enddate" class="selecttimebar" style="color: #d0d0d0; padding-left: 7px;"> 까지
 								</div>
 							</div>
 
@@ -383,13 +383,13 @@
 
 	//리스트 추가(출력)
 	function render(cateVo, updown) {
-		btnflag =true;
+		btnflag = true;
 		for (var i = 0; i < voarr.length; i++) {
-			if(voarr[i].problemNo === cateVo.problemNo){
+			if (voarr[i].problemNo === cateVo.problemNo) {
 				btnflag = false;
 			}
 		}
-		
+
 		var str = "";
 		str += '<tr>';
 		str += '	<td>' + cateVo.problemNo + '</td>';
@@ -399,6 +399,8 @@
 		str += '	<td>';
 		if (btnflag) {
 			str += '			<button id="innerbtn'+cateVo.problemNo+'" class="btn btn-default btn-xs" data-no="'+cateVo.problemNo+'" data-title="'+cateVo.problemTitle+'" data-type="'+cateVo.type+'" data-regdate="'+cateVo.regDate+'">등록</button>';
+		} else {
+			str += '			<button id="innerbtn'+cateVo.problemNo+'" style="display: none;" class="btn btn-default btn-xs" data-no="'+cateVo.problemNo+'" data-title="'+cateVo.problemTitle+'" data-type="'+cateVo.type+'" data-regdate="'+cateVo.regDate+'">등록</button>';
 		}
 		str += '	</td>';
 		str += '</tr>';

@@ -449,6 +449,8 @@
 		str += '	<td>';
 		if (btnflag) {
 			str += '			<button id="innerbtn'+cateVo.problemNo+'" class="btn btn-default btn-xs" data-no="'+cateVo.problemNo+'" data-title="'+cateVo.problemTitle+'" data-type="'+cateVo.type+'" data-regdate="'+cateVo.regDate+'">등록</button>';
+		}else{
+			str += '			<button id="innerbtn'+cateVo.problemNo+'" style="display: none;" class="btn btn-default btn-xs" data-no="'+cateVo.problemNo+'" data-title="'+cateVo.problemTitle+'" data-type="'+cateVo.type+'" data-regdate="'+cateVo.regDate+'">등록</button>';
 		}
 		str += '	</td>';
 		str += '</tr>';
@@ -477,6 +479,7 @@
 		vo.problemTitle = title;
 		vo.type = type;
 		vo.point = "";
+		
 		voarr.push(vo);
 		rendersVo();
 	});
@@ -486,7 +489,7 @@
 		console.log("삭제버튼 클릭");
 		var delorder = $(this).data("order");
 		var no = $(this).data("no");
-		$('#innerbtn' + no).show();
+		$('#innerbtn'+ no).show();
 		voarr.splice(delorder, 1);
 		var remove = $(this);
 		remove.parents("tr").empty();
@@ -500,10 +503,9 @@
 			serender(voarr[i], i + 1);
 		}
 	}
-
 	//리스트 출력
 	function serender(Vo, order) {
-
+	var str = "";
 		str += '<tr>';
 		str += '	<td>' + order + '</td>';
 		str += '	<td>' + Vo.problemTitle + '</td>';
@@ -514,10 +516,11 @@
 		str += '			<input type="button" value="삭제" class="btn btn-xs btn-danger" data-no="'
 				+ Vo.problemNo + '" data-order="' + (order - 1) + '">';
 		str += '	</td>';
-		str += '	<input type="hidden" value="'+Vo.no+'">';
+		str += '	<input type="hidden" value="'+Vo.problemNo+'">';
 		str += '</tr>';
 		$("#selectprolist").prepend(str);
 	}
+	
 </script>
 </html>
 

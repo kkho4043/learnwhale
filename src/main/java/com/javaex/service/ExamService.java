@@ -243,6 +243,7 @@ public class ExamService {
 				System.out.println("문제를 안풀었을때");
 				
 				flag = examDao.getsolvetime(examNo);
+				System.out.println(flag);
 				if(flag == 0) {//시험 시간 전일때
 					return "?thissolve=notyet";
 				}

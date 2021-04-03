@@ -195,7 +195,9 @@
 	
 	if ("${param.thissolve}" == "nonesolve") {
 		alert('가입하시기전 만들어진 시험입니다');
+		
 	} else if("${param.thissolve}" == "notyet"){
+		
 		alert('아직 대기중인 시험입니다');
 	}
 	

@@ -254,7 +254,9 @@ public class ExamDao {
 	}
 	//시험이 대기중일 경우
 	public int getsolvetime(int examNo) {
-		return sqlSession.selectOne("exam.getsolvetime", examNo);
+		int a = sqlSession.selectOne("exam.getsolvetime", examNo);
+		System.out.println("대기중인지 : "+  a);
+		return a;
 	}
 	
 	

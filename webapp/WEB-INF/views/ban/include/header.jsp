@@ -26,16 +26,9 @@
 	<div class="row">
 	<a href="${pageContext.request.contextPath}/${url}">
 		<div id="top-banner-area" class="col-xs-12" style="height: 188px; overflow: hidden;">
-			 <c:choose>
-
-					<c:when test="${classInfo.cvo.logoFile} != null}">
+		
 						<img id="top-banner" style="width: 100%; height: 100%; object-fit: cover;"
-							src="${pageContext.request.contextPath}/upload/${classInfo.cvo.logoFile}">
-					</c:when>
-					<c:otherwise>
-						<img id="top-banner" style="width: 100%; height: 100%; object-fit: cover;" src='${pageContext.request.contextPath}/assets/image/top-banner.jpg'>
-					</c:otherwise>
-				</c:choose>
+							src="${pageContext.request.contextPath}/upload/${classInfo.cvo.logoFile}" onerror="this.src='${pageContext.request.contextPath}/assets/image/top-banner.jpg'">
 			
 			<p id="banName" class="text-center">${classInfo.cvo.className}</p>
 			<div id="date-area" class="text-center">
