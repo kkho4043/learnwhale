@@ -137,7 +137,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 											</form>
 										</div>
 										<div class="col-xs-6">
-											<button class="btn-insert btn btn-primary btn-sm pull-right" type="button" id = "creatbtn">문제등록</button>
+											<button class="btn btn-primary btn-sm pull-right" type="button" id = "creatbtn">문제등록</button>
 											<input type="hidden" id = "cateNosave">
 										</div>
 									</div>
@@ -212,12 +212,10 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 													<span aria-hidden="true"></span>
 												</button>
 												<h4 class="modal-title">문제 제목</h4>		
-												<input type="text" value="${proVo.problemNo}" name="problemNo">	
-												<input type="text" value="${proVo.cateNo}"	name="cateNo">																
+												<input  id="input-proNo" type="text" value="" name="problemNo">																
 											</div>
 											<div class="modal-body">
 												<p id="proTitle"></p>
-												<p id="proNo"></p>										
 												<select name="cateName" id="cateMainSelectBox">
 													<option selected disabled>폴더를 선택해 주세요</option>
 													<c:forEach items="${cateList}" var="cateList">
@@ -273,9 +271,11 @@ $(document).ready(function(){
 		console.log("이동버튼 클릭");
 
 		var title = $(this).data("title");
-		var proNo = $(this).data("proNo");
+		var proNo = $(this).data("prono");
+		
 		
 		document.getElementById("proTitle").innerHTML = "문제 제목 :  " + title;
+		$("#input-proNo").val(proNo);
 		
 		$("#delete-Modal").modal();
 	});
