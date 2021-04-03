@@ -23,12 +23,16 @@
 			<c:choose>
 				<c:when test="${authUser == null }">
 					<div class="col-xs-2 text-right">
-						<button id="btnLogin" type="button" class="btn btn-default btn-xs">
-							<a href="${pageContext.request.contextPath}/user/loginForm">로그인</a>
-						</button>
-						<button id="btnJoin" type="button" class="btn btn-default btn-xs">
-							<a href="${pageContext.request.contextPath}/user/joinForm">회원가입</a>
-						</button>
+						<a href="${pageContext.request.contextPath}/user/loginForm">
+							<button id="btnLogin" type="button" class="btn btn-default btn-xs">
+								로그인
+							</button>
+						</a>
+						<a href="${pageContext.request.contextPath}/user/joinForm">
+							<button id="btnJoin" type="button" class="btn btn-default btn-xs">
+								회원가입
+							</button>
+						</a>
 					</div>
 				</c:when>
 				<c:otherwise>
