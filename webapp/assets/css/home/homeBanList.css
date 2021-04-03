@@ -47,3 +47,31 @@ body{
 	background-color: #75ACDC;
     border-color: #316898;
 }
+
+#banner{
+	padding-top: 4px;
+}
+
+#btnCheck{
+	margin-top: 4px;
+}
+
+#text-warning{
+	margin-top: 4px;
+}
+
+#msg {
+ 	color: #EF88FE;
+     padding-top: 3px;
+}
+
+.btnSave {
+ 	margin-left: 4px;
+ 	background-color: #75ACDC;
+ 	width: 70px;
+}
+
+.btnCancel{
+	background-color: #75ACDC;
+	width: 70px;
+}
