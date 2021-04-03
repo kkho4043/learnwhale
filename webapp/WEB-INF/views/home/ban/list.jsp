@@ -126,7 +126,7 @@
 																href="${pageContext.request.contextPath}/myclass/modifyForm?classNo=${vo.classNo}"
 																style="color: #fff;">수정</a>
 														</button>
-														<button class="btn btn-primary btn-xs" id="delete" data-classno="${vo.classNo }" data-classname="${vo.className }">
+														<button class="btn btn-primary btn-xs delete" data-classno="${vo.classNo }" data-classname="${vo.className }">
 															삭제
 														</button></td>
 												</tr>
@@ -151,7 +151,7 @@
 													<div class="modal-body">
 														
 													</div>
-													<input type="hide" name="classNo" value="" id="delno">
+													<input type="hidden" name="classNo" value="" id="delno">
 													<div class="modal-footer">
 														<button type="button" class="btn btn-default"
 															data-dismiss="modal">취소</button>
@@ -248,7 +248,7 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#delete").on("click", function() {
+		$(".delete").on("click", function() {
 		//메인모달창 호출
 		var classno = $(this).data("classno");
 		console.log(classno);
