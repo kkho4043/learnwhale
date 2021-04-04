@@ -105,7 +105,7 @@
 								<!-- //종료일 -->
 
 								<div class="row interval">
-									<label class="col-xs-2 text-right">노출여부</label>
+									<label class="col-xs-2 text-right" for="hidden">노출여부</label>
 									<div class="radioSize radio col-xs-10">
 										<label> <input type="radio" id="hidden" name="hidden" value="보이기">보이기
 										</label> <label> <input type="radio" id="hidden" name="hidden" value="숨기기">숨기기

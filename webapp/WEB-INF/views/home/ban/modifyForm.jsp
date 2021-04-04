@@ -84,7 +84,7 @@
 								<!-- //종료일 -->
 
 								<div class="row interval">
-									<label class="col-xs-2 text-right">노출여부</label>
+									<label class="col-xs-2 text-right" for="hidden">노출여부</label>
 									<div class="radio col-xs-10">
 										<c:choose>
 											<c:when test="${requestScope.classVo.hidden == '보이기' }">
