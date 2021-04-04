@@ -334,9 +334,9 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 						$(document)
 								.on(
 										"click",
-										"#delete",
+										"#problem-delete",
 										function() {
-											console.log("이동버튼 클릭");
+											console.log("삭제버튼 클릭");
 
 											var title = $(this).data("title");
 											var proNo = $(this).data("prono");

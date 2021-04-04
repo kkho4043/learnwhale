@@ -387,7 +387,7 @@
 		html += "<td>" + proVo.regDate + "</td>";
 		html += "<td>";
 		html += "<button id='move' data-prono="+proVo.problemNo+" class='btn btn-primary btn-xs move-Btn' data-title='"+proVo.problemTitle+"'>이동</button>";
-		html += "<button id='delete' data-prono="+proVo.problemNo+" class='btn btn-danger btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>삭제</button>";
+		html += "<button id='problem-delete' data-prono="+proVo.problemNo+" class='btn btn-danger btn-xs delete-Btn' data-title='"+proVo.problemTitle+"'>삭제</button>";
 		html += "</td>";
 		html += "</tr>";
 
