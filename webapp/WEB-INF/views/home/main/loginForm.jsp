@@ -64,7 +64,7 @@
 														<div class="col-sm-12">
 															<label for="password" id="pwArea">비밀번호</label>
 														</div>
-														<input type="text" class="form-control" id="password" stlye="margin-bottom: 14px;" name="password" placeholder="비밀번호를 입력해 주세요.">
+														<input type="password" class="form-control" id="password" stlye="margin-bottom: 14px;" name="password" placeholder="비밀번호를 입력해 주세요.">
 													</div>
 												</div>
 												<c:if test="${param.result =='fail' }">
