@@ -106,7 +106,7 @@
 								<!-- //노출여부 -->
 
 								<div class="row interval">
-									<label class="col-xs-2 text-right" for="url">url</label> <span class="col-xs-10"> <input type="text" readonly
+									<label class="col-xs-2 text-right" for="url">url</label> <span class="col-xs-10"> <input type="text"
 										class="form-control input-sm" placeholder="${classVo.classUrl }" id="url" style="width: 710px;">
 										<p class="text-warning">※url의 경우 중복불가, 수정불가</p>
 									</span>

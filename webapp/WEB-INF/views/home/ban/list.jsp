@@ -104,7 +104,7 @@
 													<td>${vo.state }</td>
 
 													<td>${vo.hidden}</td>
-
+																	
 													<td>
 													<a href="${pageContext.request.contextPath}/myclass/modifyForm?classNo=${vo.classNo}" style="color: #fff;">
 														<button class="btn-modify btn btn-primary btn-xs">

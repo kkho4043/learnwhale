@@ -77,7 +77,7 @@
 
 								<div class="row interval">
 									<label class="col-xs-2 text-right" for="banner">메인배너</label> <span
-										class="col-xs-9"> <input type="text" readonly
+										class="col-xs-9"> <input type="text" 
 										class="form-control input-sm" id=""
 										placeholder="메인배너 이미지를 넣어주세요" style="width: 710px; background-color: #fff;">
 										<input type="file" id="banner"
@@ -131,15 +131,12 @@
 
 								<div class="row interval">
 									<div>
-										<button type="submit"
+										<button type="submit" id="create"
 											class="btnSave btn btn-primary btn-sm pull-right">저장</button>
 									</div>
 									<div>
-									<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">
-										<button class="btnCancel btn btn-primary btn-sm pull-right">
-											취소
-										</button>
-									</a>
+									<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;"><button class="btnCancel btn btn-primary btn-sm pull-right" type="button">
+											취소</button></a>
 									</div>
 								</div>
 							</form>
