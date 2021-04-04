@@ -115,11 +115,11 @@
 								<input type="hidden" name="classNo" value="${classVo.classNo}">
 								<div class="row interval">
 									<div class="">
-										<button type="submit" class="btn btn-primary btn-sm pull-right">수정</button>
+										<button type="submit" class="btnSave btn btn-primary btn-sm pull-right">수정</button>
 									</div>
 									<div class="">
 									<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">
-										<button class="btn btn-primary btn-sm pull-right" type="button">
+										<button class="btnCancel btn btn-primary btn-sm pull-right" type="button">
 											취소
 										</button>
 									</a>

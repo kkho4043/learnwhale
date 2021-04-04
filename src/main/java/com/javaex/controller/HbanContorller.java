@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.ClassService;
 import com.javaex.vo.ClassVo;
+import com.javaex.vo.JoinUserVo;
 import com.javaex.vo.UserVo;
 
 @Controller
@@ -33,6 +34,7 @@ public class HbanContorller {
 		System.out.println("[HbanController.list()]");
 		
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
+		
 		Map<String, Object> pMap = classService.list(userVo.getNo(), search, page);
 		
 		model.addAttribute("pMap", pMap);
