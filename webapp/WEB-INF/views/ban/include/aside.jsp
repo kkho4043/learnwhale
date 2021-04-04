@@ -56,6 +56,8 @@
 									success : function(flag) {
 										if (flag) {
 											alert('가입신청이 완료 되었습니다.');
+											location.reload();
+											
 										}
 
 										/* location.href = "http://www.example.com/ThankYou.html" */

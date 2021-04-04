@@ -103,11 +103,18 @@
 
 
 								<div class="row protype">
+								
+									<hr style="border: solid 1px gray;">
+									<div class = "row">
+										<div class="col-xs-2">설명 : </div>
+										<div class="col-xs-10">${examInfo.problemVo.description}</div>
+									</div>
 									<hr style="border: solid 1px gray;">
 									<div class = "row">
 										<div class="col-xs-5">제출한 답</div>
 										<div class="col-xs-7"></div>
 									</div>
+									
 
 									<c:if test="${examInfo.problemVo.type == '주관식'}">
 										<div class="shortanswer">

@@ -407,6 +407,7 @@ from(select
 				type type,
 				content,
 				content_image contentImage,
+				description description,
 				ANSWER answer
 			from problem
 			where problem_no = #{problemNo}

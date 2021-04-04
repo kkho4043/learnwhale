@@ -257,21 +257,26 @@
 						if (title == '') {
 							alert('제목을 입력해주세요');
 							return false;
-						} else if (etype == '쪽지시험') {
+						}
+						if (etype == '쪽지시험') {
 							if (time == '') {
 								alert('시간을 입력해주세요');
 								return false;
 							}
-						} else if (startdate == '') {
+						}
+						if (startdate == '') {
 							alert('시작일을 선택해주세요');
 							return false;
-						} else if (enddate == '') {
+						}
+						if (enddate == '') {
 							alert('종료일을 선택해주세요');
 							return false;
-						} else if (qarr == '') {
+						}
+						if (qarr == '') {
 							alert('문제를 선택해주세요');
 							return false;
-						} else if (document.getElementById("hapscore").innerHTML != 100) {
+						}
+						if (document.getElementById("hapscore").innerHTML != 100) {
 							alert('부여된 점수의 합이 100점이 아닙니다');
 							return false;
 						} else {

@@ -136,7 +136,7 @@ public class ExamService {
 	// 시험 출제
 	public void examgrant(String url, ExamVo examVo, String[] arr) {
 		examVo.setStartDate(examVo.getStartDate().replace("T", " "));
-		examVo.setEndDate(examVo.getStartDate().replace("T", " "));
+		examVo.setEndDate(examVo.getEndDate().replace("T", " "));
 		int classNo = classDao.getclassNo(url);
 
 		examVo.setClassNo(classNo);
