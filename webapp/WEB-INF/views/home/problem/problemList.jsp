@@ -263,11 +263,11 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 													<span aria-hidden="true"></span>
 												</button>
 												<h4 class="modal-title">문제 제목</h4>
-												<input id="deleteInput-proNo" type="text" value="" name="problemNo">
+												<input id="deleteInput-proNo" type="hidden" value="" name="problemNo">
 											</div>
 											<div class="modal-body">
 												<p id="delete-proTitle"></p>
-												<input type="text" value="7" name="cateNo">
+												<input type="hidden" value="7" name="cateNo">
 											</div>
 											<div class="modal-footer">
 												<p style="float: left;">문제를 삭제하시겠습니까?</p>
