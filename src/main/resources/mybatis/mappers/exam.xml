@@ -90,8 +90,8 @@ from(select
                         e.exam_no examNo,
                         e.exam_title examTitle,
                         sc.problemAmount,
-                        e.start_date startDate,
-                        e.end_date endDate,
+                        TO_CHAR(start_date,'yyyy-MM-dd hh:mm') startDate,
+						TO_CHAR(end_date,'yyyy-MM-dd hh:mm') endDate ,
                         sc.numSubmit,
                         sc.attendNum,
                         e.exam_type examType
@@ -117,13 +117,13 @@ from(select
 		   			 order by e.exam_no desc)o)r
 		    
                 
-               where ]]>
+               where  ]]>
 
 		<if test="keyward != null and keyward != '' ">
-
-			r.examTitle LIKE '%'|| '#{keyward}' ||'%'
-
+			<![CDATA[		
+			r.examTitle LIKE '%'|| #{keyward} ||'%'
 			and
+			]]>   
 		</if>
                 
         <![CDATA[
@@ -145,9 +145,11 @@ from(select
 		]]>
 
 		<if test="keyward != null and keyward != '' ">
-
-			exam_Title LIKE '%'|| '#{keyward}' ||'%'
+			<![CDATA[		
+			exam_Title LIKE '%'|| #{keyward} ||'%' 
 			and
+			]]>
+			
 		</if>
 		
 		<![CDATA[		
