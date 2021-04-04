@@ -74,7 +74,7 @@
 													<button type="submit" class="btn btn-defalut Btn_i">로그인</button>
 												</div>
 												<div class="col-sm-12">
-													<button type="button" class="btn btn-defalut Btn_j"><a href="${pageContext.request.contextPath}/user/joinForm" style="font-color: #75ACDC;">회원가입</a></button>
+													<a href="${pageContext.request.contextPath}/user/joinForm" style="font-color: #75ACDC;"><button type="button" class="btn btn-defalut Btn_j">회원가입</button></a>
 												</div>
 
 												<!-- //joinArea -->
