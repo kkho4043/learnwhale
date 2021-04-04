@@ -141,7 +141,7 @@ h1 span:nth-child(8) { animation-delay: .7s; }
 										</div>
 										<div class="col-xs-6">
 
-											<button class="btn btn-primary btn-sm pull-right" type="button" id="creatbtn">문제등록</button>
+											<button class="btn btn-primary btn-sm pull-right" style="display:none;"  type="button" id="creatbtn">문제등록</button>
 
 											<input type="hidden" id="cateNosave">
 										</div>
