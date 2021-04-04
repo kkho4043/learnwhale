@@ -90,13 +90,13 @@
 											<c:when test="${requestScope.classVo.hidden == '보이기' }">
 												<label> <input type="radio" id="hidden" name="hidden" value="보이기" checked="checked">보이기
 												</label>
-												<label> <input type="radio" id="hidden" name="hidden" value="숨기기">숨기기
+												<label style="margin-left: 20px;"> <input type="radio" id="hidden" name="hidden" value="숨기기">숨기기
 												</label>
 											</c:when>
 											<c:otherwise>
 												<label> <input type="radio" id="hidden" name="hidden" value="보이기">보이기
 												</label>
-												<label> <input type="radio" id="hidden" name="hidden" value="숨기기" checked="checked">숨기기
+												<label style="margin-left: 20px;"> <input type="radio" id="hidden" name="hidden" value="숨기기" checked="checked">숨기기
 												</label>
 											</c:otherwise>
 										</c:choose>

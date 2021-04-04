@@ -82,7 +82,7 @@
 															<div class="col-sm-12">
 																<label for="password" id="pwArea">비밀번호</label>
 															</div>
-															<input type="text" class="form-control" id="password"
+															<input type="password" class="form-control" id="password"
 																name="password" placeholder="비밀번호를 입력해 주세요."  onchange="check_pw()">
 														</div>
 													</div>
@@ -93,7 +93,7 @@
 															<div class="col-sm-12" >
 																<label for="pwCheck" id="check-pwArea">비밀번호 확인</label>
 															</div>
-															<input type="text" class="form-control" id="pwCheck" style="color: ##EF88FE;"
+															<input type="password" class="form-control" id="pwCheck" style="color: ##EF88FE;"
 																 placeholder="비밀번호를 확인해 주세요."  onchange="check_pw()">
 																<p id="check"></p>
 														</div>
