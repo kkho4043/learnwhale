@@ -67,9 +67,16 @@ text-large{
 	}
 
 #msg{
-	color: #8C8C8C;
-	font-size: 13px;
+	color: #6bc6ec;
+	font-size: 12px;
 }
+
+#check{
+    margin-top: 8px;
+    font-size: 12px;
+    color: #EF88FE;
+}
+
 #nameArea{
 	float: left;
 	margin-left: 28px;
@@ -173,4 +180,22 @@ text-large{
 #retry{
 	margin-bottom: 13px;
     color: #EF88FE;
+}
+
+.joinOk{
+	text-align: center;
+}
+
+.position{
+	margin-top: 182px;
+}
+
+.imgWelcome{
+    width: 400px;
+    margin-top: 123px;
+    margin-bottom: 20px;
+}
+
+.imgW{
+	text-align: center;
 }

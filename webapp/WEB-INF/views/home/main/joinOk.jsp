@@ -36,15 +36,15 @@
 	<!-- content-Area -->
 	<div class="container-fluid">
 		<div class="row">
-			<div id="content-Area" class="container">
+			<div id="contentArea" class="container">
 
 				<!-- 홈 메인페이지 영역 -->
 
-				<div id="position-parents">
+				<div id="position-parents" style="height: 534px;">
 					<div>
 						<img id="img-Area" src="">
 					</div>
-					<div class="container-fluid" id="div-position">
+					<div class="position container-fluid" id="div-position">
 						<div class="row">
 							<div class="container">
 								<div class="row" id="all-Area">
@@ -55,10 +55,12 @@
 
 										<div id="user">
 											<div id="joinOK">
-
-												<p class="text-large bold joinOk" style="padding-left: 450px;">
+												<div class="imgW">
+													<img class="imgWelcome" src="${pageContext.request.contextPath}/assets/image/welcome.jpg">
+												</div>
+												<p class="text-large bold joinOk" style="">
 													회원가입을 축하합니다.<br> <br> <a
-														href="${pageContext.request.contextPath}/user/loginForm">[로그인하기]</a>
+														href="${pageContext.request.contextPath}/user/loginForm">[ 로그인하기 ]</a>
 												</p>
 
 											</div>

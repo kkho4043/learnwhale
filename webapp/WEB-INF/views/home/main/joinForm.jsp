@@ -93,7 +93,7 @@
 															<div class="col-sm-12" >
 																<label for="pwCheck" id="check-pwArea">비밀번호 확인</label>
 															</div>
-															<input type="text" class="form-control" id="pwCheck" style="color: #8C8C8C;"
+															<input type="text" class="form-control" id="pwCheck" style="color: ##EF88FE;"
 																 placeholder="비밀번호를 확인해 주세요."  onchange="check_pw()">
 																<p id="check"></p>
 														</div>
@@ -222,11 +222,11 @@
 		 if(document.getElementById('password').value !='' && document.getElementById('pwCheck').value!=''){
              if(document.getElementById('password').value==document.getElementById('pwCheck').value){
                  document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
-                 document.getElementById('check').style.color='blue';
+                 document.getElementById('check').style.color='#316898';
              }
              else{
                  document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
-                 document.getElementById('check').style.color='red';
+                 document.getElementById('check').style.color='#EF88FE';
              }
 		 }
 	}
