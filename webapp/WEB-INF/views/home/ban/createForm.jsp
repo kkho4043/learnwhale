@@ -135,9 +135,11 @@
 											class="btnSave btn btn-primary btn-sm pull-right">저장</button>
 									</div>
 									<div>
+									<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">
 										<button class="btnCancel btn btn-primary btn-sm pull-right">
-											<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">취소</a>
+											취소
 										</button>
+									</a>
 									</div>
 								</div>
 							</form>

@@ -118,9 +118,11 @@
 										<button type="submit" class="btn btn-primary btn-sm pull-right">수정</button>
 									</div>
 									<div class="">
+									<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">
 										<button class="btn btn-primary btn-sm pull-right">
-											<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">취소</a>
+											취소
 										</button>
+									</a>
 									</div>
 
 								</div>
