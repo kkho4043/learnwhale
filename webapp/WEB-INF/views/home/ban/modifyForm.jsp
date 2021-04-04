@@ -119,7 +119,7 @@
 									</div>
 									<div class="">
 									<a href="${pageContext.request.contextPath}/myclass/list" style="color:#fff;">
-										<button class="btn btn-primary btn-sm pull-right">
+										<button class="btn btn-primary btn-sm pull-right" type="button">
 											취소
 										</button>
 									</a>
