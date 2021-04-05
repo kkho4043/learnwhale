@@ -390,7 +390,6 @@ $("#prblemForm").on("submit",function() {
 		alert("문제 지문을 입력해 주세요.");
 		return false;
 	}
-	alert(document.getElementById("problemType2").value);
 	
 	if (document.getElementById("problemType2").value == "prochoice") {
 		console.log("choicetype");
